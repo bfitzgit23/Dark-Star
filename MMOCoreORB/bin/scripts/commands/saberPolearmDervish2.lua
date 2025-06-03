@@ -46,13 +46,13 @@ SaberPolearmDervish2Command = {
 
 	damageMultiplier = 4.5,
 	accuracyBonus = 50,
-	speedMultiplier = 4.0,
+	speedMultiplier = 1.0,
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
 	coneAngle = 45,
-	coneAction = true,
-	coneRange = 24,
+	areaAction = true,
+	areaRange = 32,
 	forceCostMultiplier = 3.0,
 	visMod = 25,
 
@@ -93,7 +93,7 @@ SaberPolearmDervish2Command = {
 
 	poolsToDamage = RANDOM_ATTRIBUTE,
 
-	weaponType = POLEARMJEDIWEAPON,
+	weaponType = JEDIWEAPON,
 
 	range = -1
 }

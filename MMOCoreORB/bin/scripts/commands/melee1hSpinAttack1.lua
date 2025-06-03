@@ -44,11 +44,11 @@
 Melee1hSpinAttack1Command = {
 	name = "melee1hspinattack1",
 
-	damageMultiplier = 2.0,
-	speedMultiplier = 1.5,
-	healthCostMultiplier = 1.0,
-	actionCostMultiplier = 1.0,
-	mindCostMultiplier = 1.5,
+	damageMultiplier = 3.0,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 0,
+	mindCostMultiplier = 0,
         accuracyBonus = 25,
 
 	animation = "attack_high_right_medium_2",
@@ -58,7 +58,7 @@ Melee1hSpinAttack1Command = {
 	weaponType = ONEHANDMELEEWEAPON,
 
 	areaAction = true,
-	areaRange = 16,
+	areaRange = 32,
 
 	range = -1
 }

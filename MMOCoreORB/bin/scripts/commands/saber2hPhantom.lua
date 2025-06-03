@@ -51,8 +51,8 @@ Saber2hPhantomCommand = {
 	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
 	coneAngle = 45,
-	coneAction = true,
-	coneRange = 24,
+	areaAction = true,
+	areaRange = 32,
 	forceCostMultiplier = 3.0,
 	visMod = 25,
 
@@ -93,7 +93,7 @@ Saber2hPhantomCommand = {
 
 	poolsToDamage = RANDOM_ATTRIBUTE,
 
-	weaponType = TWOHANDJEDIWEAPON,
+	weaponType = JEDIWEAPON,
 
 	range = -1
 }

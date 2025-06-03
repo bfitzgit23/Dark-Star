@@ -44,14 +44,14 @@
 FanShotCommand = {
         name = "fanshot",
 	damageMultiplier = 4.0,
-	speedMultiplier = 2.0,
+	speedMultiplier = 1.0,
 	healthCostMultiplier = 0.5,
 	actionCostMultiplier = 1,
 	mindCostMultiplier = 0.5,
         accuracyBonus = 50,
 
         --cone angle isn't strictly documented, leaving it alone
-	coneAngle = 60,
+	coneAngle = 180,
 	coneAction = true,
 
 	poolsToDamage = RANDOM_ATTRIBUTE,
@@ -61,7 +61,7 @@ FanShotCommand = {
 
 	combatSpam = "fanshot",
 	
-	weaponType = PISTOLWEAPON,
+	weaponType = PISTOLWEAPON + CARBINEWEAPON + RIFLEWEAPON,
 
 	range = -1
 }
