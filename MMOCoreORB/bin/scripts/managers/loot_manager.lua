@@ -41,13 +41,13 @@
 --which carries forward this exception.
 
 --Chance divisor for attribute bonus modifiers
-levelChance = 100
+levelChance = 1000
 
 --Chance dividend for attribute bonus modifiers
-baseChance = 100
-yellowChance = 1000
-exceptionalChance = 100000
-legendaryChance = 1000000
+baseChance = 10
+yellowChance = 20
+exceptionalChance = 25
+legendaryChance = 30
 
 --Multiplier values for bonus modifiers
 baseModifier = 1
