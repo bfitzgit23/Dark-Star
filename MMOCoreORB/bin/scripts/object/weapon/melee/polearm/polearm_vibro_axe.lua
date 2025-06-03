@@ -101,24 +101,24 @@ object_weapon_melee_polearm_polearm_vibro_axe = object_weapon_melee_polearm_shar
 
 
 	-- The values below are the default values.  To be used for blue frog objects primarily
-	healthAttackCost = 70,
-	actionAttackCost = 58,
-	mindAttackCost = 28,
+	healthAttackCost = 0,
+	actionAttackCost = 0,
+	mindAttackCost = 0,
 	forceCost = 0,
 
 	pointBlankRange = 0,
-	pointBlankAccuracy = -35,
+	pointBlankAccuracy = 10,
 
 	idealRange = 3,
-	idealAccuracy = -35,
+	idealAccuracy = 10,
 
-	maxRange = 7,
-	maxRangeAccuracy = -31,
+	maxRange = 10,
+	maxRangeAccuracy = 10,
 
-	minDamage = 105,
-	maxDamage = 380,
+	minDamage = 200,
+	maxDamage = 400,
 
-	attackSpeed = 4.5,
+	attackSpeed = 1,
 
 	woundsRatio = 40,
 

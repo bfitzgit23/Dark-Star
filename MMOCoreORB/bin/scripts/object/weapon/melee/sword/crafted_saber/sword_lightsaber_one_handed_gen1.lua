@@ -99,9 +99,9 @@ object_weapon_melee_sword_crafted_saber_sword_lightsaber_one_handed_gen1 = objec
 
 
 	-- The values below are the default values.  To be used for blue frog objects primarily
-	healthAttackCost = 20,
-	actionAttackCost = 35,
-	mindAttackCost = 40,
+	healthAttackCost = 0,
+	actionAttackCost = 0,
+	mindAttackCost = 0,
 	forceCost = 12,
 
 	pointBlankRange = 0,
@@ -110,13 +110,13 @@ object_weapon_melee_sword_crafted_saber_sword_lightsaber_one_handed_gen1 = objec
 	idealRange = 3,
 	idealAccuracy = 15,
 
-	maxRange = 5,
+	maxRange = 10,
 	maxRangeAccuracy = 5,
 
-	minDamage = 70,
-	maxDamage = 160,
+	minDamage = 150,
+	maxDamage = 300,
 
-	attackSpeed = 4.5,
+	attackSpeed = 1,
 
 	woundsRatio = 15,
 

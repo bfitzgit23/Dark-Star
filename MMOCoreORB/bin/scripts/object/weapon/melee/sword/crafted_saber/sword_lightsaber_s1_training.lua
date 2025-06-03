@@ -101,10 +101,10 @@ object_weapon_melee_sword_crafted_saber_sword_lightsaber_s1_training = object_we
 
 
 	-- The values below are the default values.  To be used for blue frog objects primarily
-	healthAttackCost = 20,
-	actionAttackCost = 35,
-	mindAttackCost = 40,
-	forceCost = 15,
+	healthAttackCost = 0,
+	actionAttackCost = 0,
+	mindAttackCost = 0,
+	forceCost = 0,
 
 	pointBlankRange = 0,
 	pointBlankAccuracy = 20,
@@ -115,14 +115,14 @@ object_weapon_melee_sword_crafted_saber_sword_lightsaber_s1_training = object_we
 	maxRange = 5,
 	maxRangeAccuracy = 5,
 
-	minDamage = 50,
-	maxDamage = 130,
+	minDamage = 100,
+	maxDamage = 150,
 
-	attackSpeed = 4.8,
+	attackSpeed = 1,
 
 	woundsRatio = 6,
 
-	noTrade = 1,
+	noTrade = 0,
 
 	childObjects = {
 		{templateFile = "object/tangible/inventory/lightsaber_inventory_training.iff", x = 0, z = 0, y = 0, ox = 0, oy = 0, oz = 0, ow = 0, cellid = -1, containmentType = 4}
