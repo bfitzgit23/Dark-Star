@@ -101,9 +101,9 @@ object_weapon_melee_2h_sword_2h_sword_katana = object_weapon_melee_2h_sword_shar
 
 
 	-- The values below are the default values.  To be used for blue frog objects primarily
-	healthAttackCost = 27,
-	actionAttackCost = 56,
-	mindAttackCost = 31,
+	healthAttackCost = 0,
+	actionAttackCost = 0
+	mindAttackCost = 0,
 	forceCost = 0,
 
 	pointBlankRange = 0,
@@ -112,13 +112,13 @@ object_weapon_melee_2h_sword_2h_sword_katana = object_weapon_melee_2h_sword_shar
 	idealRange = 3,
 	idealAccuracy = 1,
 
-	maxRange = 4,
+	maxRange = 10,
 	maxRangeAccuracy = 1,
 
-	minDamage = 35,
-	maxDamage = 220,
+	minDamage = 150,
+	maxDamage = 300,
 
-	attackSpeed = 3,
+	attackSpeed = 1,
 
 	woundsRatio = 30,
 
