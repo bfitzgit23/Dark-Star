@@ -76,7 +76,7 @@ object_weapon_melee_baton_baton_gaderiffi = object_weapon_melee_baton_shared_bat
 	damageType = KINETIC,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = NONE,
+	armorPiercing = HEAVY,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
@@ -104,24 +104,24 @@ object_weapon_melee_baton_baton_gaderiffi = object_weapon_melee_baton_shared_bat
 
 
 	-- The values below are the default values.  To be used for blue frog objects primarily
-	healthAttackCost = 50,
-	actionAttackCost = 29,
-	mindAttackCost = 12,
+	healthAttackCost = 0,
+	actionAttackCost = 0,
+	mindAttackCost = 0,
 	forceCost = 0,
 
 	pointBlankRange = 0,
-	pointBlankAccuracy = -8,
+	pointBlankAccuracy = 10,
 
 	idealRange = 3,
-	idealAccuracy = -8,
+	idealAccuracy = 10,
 
-	maxRange = 4,
-	maxRangeAccuracy = -8,
+	maxRange = 10,
+	maxRangeAccuracy = 10,
 
-	minDamage = 100,
-	maxDamage = 195,
+	minDamage = 200,
+	maxDamage = 500,
 
-	attackSpeed = 4,
+	attackSpeed = 1,
 
 	woundsRatio = 25,
 
