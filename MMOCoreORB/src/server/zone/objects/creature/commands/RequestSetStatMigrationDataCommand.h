@@ -86,12 +86,8 @@ public:
 		// Player is in the tutorial zone and is allowed to migrate stats.
 		auto zone = creature->getZone();
 
-		if (zone != NULL && (zone->getZoneName() == "tutorial" or "tatooine" or "corellia" or "dantooine" or "dathomir" or "endor" or "lok" or "naboo" or "rori" or "talus" or "yavin4") || privilegedPlayer)) {
+		if (zone != NULL && (zone->getZoneName() == "tutorial" or "tatooine" or "corellia" or "dantooine" or "dathomir" or "endor" or "lok" or "naboo" or "rori" or "talus" or "yavin4")) {
 			session->migrateStats();
-
-			if (privilegedPlayer) {
-				creature->sendSystemMessage("Stat Migration Permitted due to Staff Privileges.");
-			}
 		}
 
 		return SUCCESS;
