@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /opt/swgserver/
+cd ~/workspace/Core3/MMOCoreORB/bin
 
 echo "Starting GDB..."
 gdb ./core3
