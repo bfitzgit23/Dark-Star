@@ -3,7 +3,7 @@ cd ~/workspace/Core3/MMOCoreORB/bin
 
 echo "Starting GDB..."
 gdb ./core3
-sleep 10
+sleep 15
 
 echo "Starting core server components..."
 r
