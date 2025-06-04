@@ -197,7 +197,7 @@ void MissionManagerImplementation::handleMissionListRequest(MissionTerminal* mis
 	}
 
 	// UI gray out is for 1500ms, default to 1400 to give a bit of gracetime
-	player->addCooldown("mission_list_request", ConfigManager::instance()->getInt("Core3.MissionManager.ListRequestCooldown", 1400));
+	player->addCooldown("mission_list_request", ConfigManager::instance()->getInt("Core3.MissionManager.ListRequestCooldown", 500));
 
 	ManagedReference<SceneObject*> missionBag = player->getSlottedObject("mission_bag");
 
