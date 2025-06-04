@@ -167,7 +167,7 @@ void MissionManagerImplementation::handleMissionListRequest(MissionTerminal* mis
 		return;
 	}
 
-	if (!player->isInRange(missionTerminal, 6)) {
+	if (!player->isInRange(missionTerminal, 15)) {
 		StringIdChatParameter stringId("ui", "radial_out_of_range_prose"); // %TT is too far away to '%TO'.
 		stringId.setTT(missionTerminal->getObjectID());
 		stringId.setTO("ui_radial", "terminal_mission_list"); // List Missions
@@ -266,7 +266,7 @@ void MissionManagerImplementation::handleMissionAccept(MissionTerminal* missionT
 	}
 
 	//Limit to two missions (only one of them can be a bounty mission)
-	if (missionCount >= 2 || (hasBountyMission && mission->getTypeCRC() == MissionTypes::BOUNTY)) {
+	if (missionCount >= 5 || (hasBountyMission && mission->getTypeCRC() == MissionTypes::BOUNTY)) {
 		StringIdChatParameter stringId("mission/mission_generic", "too_many_missions");
 		player->sendSystemMessage(stringId);
 		return;
