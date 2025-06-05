@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Navigate to the Core3 bin directory
-cd ~/workspace/Core3/MMOCoreORB/bin || { echo "Error: Directory not found. Exiting."; exit 1; }
+cd ~/workspace/Dark-Star/MMOCoreORB/bin || { echo "Error: Directory not found. Exiting."; exit 1; }
 
 echo "Starting GDB with Core3 and executing commands from script..."
 

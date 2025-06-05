@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SESSION_NAME="swg_server"
-SWG_SERVER_DIR="~/workspace/Core3/scripts"
+SWG_SERVER_DIR="~/workspace/Dark-Star/scripts"
 SWG_START_SCRIPT="${SWG_SERVER_DIR}/start_server.sh"
 
 # Check if the tmux session already exists
