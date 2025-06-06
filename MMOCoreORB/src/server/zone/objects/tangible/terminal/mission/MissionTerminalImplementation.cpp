@@ -21,7 +21,7 @@ void MissionTerminalImplementation::fillObjectMenuResponse(ObjectMenuResponse* m
 	if (city != nullptr && city->isMayor(player->getObjectID()) && getParent().get() == nullptr) {
 
 		// Add "Configure Missions" or "Select Direction" option
-		CreatureObject* player = cast<CreatureObject*>(sceneObject);
+		CreatureObject* player = cast<CreatureObject*>(asSceneObject);
 		if (player != nullptr) {
 			menuResponse->add								  // Add option to the radial menu
 				(new ObjectMenuItem("Select Mission Filters", // Display text in radial menu
