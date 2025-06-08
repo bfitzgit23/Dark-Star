@@ -10,23 +10,23 @@ TuskenBunkerScreenPlay = ScreenPlay:new {
 			5995609
 	},
 
-	lootLevel = 26,
+	lootLevel = 300,
 
 	lootGroups = {
 		{
 			groups = {
-				{group = "color_crystals", chance = 160000},
+				{group = "color_crystals", chance = 10},
 				{group = "junk", chance = 8240000},
 				{group = "rifles", chance = 500000},
 				{group = "pistols", chance = 500000},
-				{group = "clothing_attachments", chance = 300000},
-				{group = "armor_attachments", chance = 300000}
+				{group = "clothing_attachments", chance = 10},
+				{group = "armor_attachments", chance = 10}
 			},
 			lootChance = 8000000
 		}
 	},
 
-	lootContainerRespawn = 1800
+	lootContainerRespawn = 300
 }
 
 registerScreenPlay("TuskenBunkerScreenPlay", true)
