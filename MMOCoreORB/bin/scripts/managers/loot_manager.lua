@@ -64,7 +64,7 @@ randomDotPotency = {1, 100}
 randomDotUses = {250, 9999}
 
 -- Modifier applied to min/max junk values found in loot item lua
-junkValueModifier = 5;
+junkValueModifier = 50;
 
 lootableArmorAttachmentStatMods = {
 	"aim",
@@ -140,6 +140,15 @@ lootableArmorAttachmentStatMods = {
 }
 
 lootableClothingAttachmentStatMods = {
+	"jedi_force_power_regen",
+	"jedi_force_power_max",
+	"saber_block",
+	"jedi_toughness",
+	"lightsaber_toughness",
+	"unarmed_toughness",
+	"onehandmelee_toughness",
+	"twohandmelee_toughness",
+	"polearm_toughness",
 	"aim",
 	"alert",
 	"armor_assembly",
@@ -367,6 +376,15 @@ lootableArmorStatMods = {
 }
 
 lootableClothingStatMods = {
+	"jedi_force_power_regen",
+	"jedi_force_power_max",
+	"saber_block",
+	"jedi_toughness",
+	"lightsaber_toughness",
+	"unarmed_toughness",
+	"onehandmelee_toughness",
+	"twohandmelee_toughness",
+	"polearm_toughness",
 	"aim",
 	"alert",
 	"armor_assembly",
@@ -804,10 +822,10 @@ lootableHeavyWeaponStatMods = {
 -- Values used to generate lightsaber crystal stats
 jediCrystalStats = {
 	lightsaber_module_force_crystal = {
-		minDamage = 0,
-		maxDamage = 50,
-		minHitpoints = 700,
-		maxHitpoints = 1400,
+		minDamage = 75,
+		maxDamage = 100,
+		minHitpoints = 5000,
+		maxHitpoints = 5500,
 		minHealthSac = 0,
 		maxHealthSac = -9,
 		minActionSac = 0,
@@ -816,16 +834,16 @@ jediCrystalStats = {
 		maxMindSac = -9,
 		minAttackSpeed = 0,
 		maxAttackSpeed = -0.6,
-		minForceCost = 0,
+		minForceCost = -9.0,
 		maxForceCost = -9.9,
 		minWoundChance = 0,
 		maxWoundChance = 4,
 	},
 	lightsaber_module_krayt_dragon_pearl = {
-		minDamage = 20,
-		maxDamage = 50,
-		minHitpoints = 900,
-		maxHitpoints = 1400,
+		minDamage = 125,
+		maxDamage = 150,
+		minHitpoints = 5000,
+		maxHitpoints = 5500,
 		minHealthSac = -6,
 		maxHealthSac = -9,
 		minActionSac = -6,
@@ -834,7 +852,7 @@ jediCrystalStats = {
 		maxMindSac = -9,
 		minAttackSpeed = -0.3,
 		maxAttackSpeed = -0.6,
-		minForceCost = -5.0,
+		minForceCost = -9.0,
 		maxForceCost = -9.9,
 		minWoundChance = 2,
 		maxWoundChance = 4,
