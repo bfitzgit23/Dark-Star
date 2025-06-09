@@ -17,13 +17,13 @@ JantaCaveScreenPlay = ScreenPlay:new {
 		{
 			groups = {
 				{group = "color_crystals", chance = 10},
-				{group = "junk", chance = 8240000},
-				{group = "rifles", chance = 500000},
-				{group = "pistols", chance = 500000},
-				{group = "clothing_attachments", chance = 10},
-				{group = "armor_attachments", chance = 10}
+				--{group = "junk", chance = 8240000},
+				--{group = "rifles", chance = 500000},
+				--{group = "pistols", chance = 500000},
+				--{group = "clothing_attachments", chance = 10},
+				--{group = "armor_attachments", chance = 10}
 			},
-			lootChance = 10
+			lootChance = 1
 		}					
 	},
 	
