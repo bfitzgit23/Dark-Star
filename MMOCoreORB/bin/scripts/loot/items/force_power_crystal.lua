@@ -9,25 +9,7 @@ force_power_crystal = {
 		{"color",31,31,0},
 	},
 	customizationStringNames = {},
-	customizationValues = {
-	minDamage = 75,
-		maxDamage = 100,
-		minHitpoints = 5000,
-		maxHitpoints = 5500,
-		minHealthSac = 0,
-		maxHealthSac = -9,
-		minActionSac = 0,
-		maxActionSac = -9,
-		minMindSac = 0,
-		maxMindSac = -9,
-		minAttackSpeed = 0,
-		maxAttackSpeed = -0.6,
-		minForceCost = -9.0,
-		maxForceCost = -9.9,
-		minWoundChance = 0,
-		maxWoundChance = 4,
-	
-	}
+	customizationValues = {}
 }
 
 addLootItemTemplate("force_power_crystal", force_power_crystal)
