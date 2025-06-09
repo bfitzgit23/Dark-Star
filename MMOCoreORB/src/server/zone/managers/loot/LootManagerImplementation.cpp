@@ -195,7 +195,7 @@ void LootManagerImplementation::loadDefaultConfig() {
 
 }
 
-void LootManagerImplementation::setInitialObjectStats(const LootItemTemplate* templateObject, CraftingValues* craftingValues, TangibleObject* prototype) {
+/* void LootManagerImplementation::setInitialObjectStats(const LootItemTemplate* templateObject, CraftingValues* craftingValues, TangibleObject* prototype) {
 	SharedTangibleObjectTemplate* tanoTemplate = dynamic_cast<SharedTangibleObjectTemplate*>(prototype->getObjectTemplate());
 
 	if (tanoTemplate != nullptr) {
@@ -231,9 +231,9 @@ void LootManagerImplementation::setInitialObjectStats(const LootItemTemplate* te
 			prototype->setCustomizationVariable(customizationString, randomValue, false);
 		}
 	}
-}
+} */
 
-void LootManagerImplementation::setCustomObjectName(TangibleObject* object, const LootItemTemplate* templateObject) {
+ /* void LootManagerImplementation::setCustomObjectName(TangibleObject* object, const LootItemTemplate* templateObject) {
 	const String& customName = templateObject->getCustomObjectName();
 
 	if (!customName.isEmpty()) {
@@ -245,7 +245,7 @@ void LootManagerImplementation::setCustomObjectName(TangibleObject* object, cons
 			object->setCustomObjectName(customName, false);
 		}
 	}
-}
+ }*/
 
 int LootManagerImplementation::calculateLootCredits(int level) {
 	int maxcredits = (int) round((.03f * level * level) + (3 * level) + 50);
@@ -258,7 +258,7 @@ int LootManagerImplementation::calculateLootCredits(int level) {
 	return credits;
 }
 
-TangibleObject* LootManagerImplementation::createLootObject(const LootItemTemplate* templateObject, int level, bool maxCondition) {
+ /*TangibleObject* LootManagerImplementation::createLootObject(const LootItemTemplate* templateObject, int level, bool maxCondition) {
 	int uncappedLevel = level;
 
 	if(level < 1)
@@ -621,7 +621,7 @@ TangibleObject* LootManagerImplementation::createLootObject(const LootItemTempla
 	delete craftingValues;
 
 	return prototype;
-}
+  }*/
 
 void LootManagerImplementation::addConditionDamage(TangibleObject* loot, CraftingValues* craftingValues) {
 	if (!loot->isWeaponObject() && !loot->isArmorObject())
