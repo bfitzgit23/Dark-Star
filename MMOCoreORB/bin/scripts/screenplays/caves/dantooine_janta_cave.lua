@@ -23,7 +23,7 @@ JantaCaveScreenPlay = ScreenPlay:new {
 				{group = "clothing_attachments", chance = 10},
 				{group = "armor_attachments", chance = 10}
 			},
-			lootChance = 8000000
+			lootChance = 10
 		}					
 	},
 	
