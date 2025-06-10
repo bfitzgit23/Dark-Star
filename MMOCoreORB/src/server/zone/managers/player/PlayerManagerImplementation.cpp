@@ -2132,7 +2132,13 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				if (xpType != "jedi_general")
 					combatXp += xpAmount;
 				else
+					{
 					xpAmount *= 0.8f;
+
+					if (attacker->hasSkill("force_title_jedi_rank_03"))
+						awardExperience(attacker, "force_rank_xp", xpAmount, true, .01, true);
+				}
+					//xpAmount *= 0.8f;
 
 				if (xpType == "dotDMG") { // Prevents XP generated from DoTs from applying to the equiped weapon, but still counts towards combat XP
 					continue;
