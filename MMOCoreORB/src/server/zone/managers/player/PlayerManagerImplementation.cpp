@@ -2134,12 +2134,18 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				else
 					{
 					xpAmount *= 0.8f;
+					// First, get the attacker as a CreatureObject
+					CreatureObject* creatureAttacker = attacker->asCreatureObject();
 
+					// ALWAYS check if the object is actually a creature before using creature functions
+						if (creatureAttacker != nullptr && creatureAttacker->hasSkill("force_title_jedi_rank_03")) {
+						// Your code that should run if the attacker has the skill goes here
+						
 					if (attacker->hasSkill("force_title_jedi_rank_03"))
 						awardExperience(attacker, "force_rank_xp", xpAmount, true, .01, true);
 				}
 					//xpAmount *= 0.8f;
-
+					}
 				if (xpType == "dotDMG") { // Prevents XP generated from DoTs from applying to the equiped weapon, but still counts towards combat XP
 					continue;
 				}
