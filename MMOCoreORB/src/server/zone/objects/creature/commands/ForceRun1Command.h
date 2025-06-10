@@ -12,12 +12,13 @@ public:
 
 	ForceRun1Command(const String& name, ZoneProcessServer* server)
 	: JediQueueCommand(name, server) {
+
 		// BuffCRC's, first one is used.
 		buffCRC = BuffCRC::JEDI_FORCE_RUN_1;
-    
+		
         // If these are active they will block buff use
-		blockingCRCs.add(BuffCRC::JEDI_FORCE_RUN_2);
-		blockingCRCs.add(BuffCRC::JEDI_FORCE_RUN_3);
+		//blockingCRCs.add(BuffCRC::JEDI_FORCE_RUN_2);
+		//blockingCRCs.add(BuffCRC::JEDI_FORCE_RUN_3);
     
     
 		// Skill mods.
@@ -38,10 +39,13 @@ public:
 		}
 
 		// SPECIAL - For Force Run.
-		if (creature->hasBuff(STRING_HASHCODE("burstrun")) || creature->hasBuff(STRING_HASHCODE("retreat"))) {
+		if (creature->hasBuff(STRING_HASHCODE("burstrun")) || creature->hasBuff(STRING_HASHCODE("retreat")) || creature->hasBuff(STRING_HASHCODE("force_run"))) {
 			creature->removeBuff(STRING_HASHCODE("burstrun"));
 			creature->removeBuff(STRING_HASHCODE("retreat"));
+			creature->removeBuff(STRING_HASHCODE("force_run"));
 		}
+		
+
 
 		// Return.
 		return SUCCESS;
