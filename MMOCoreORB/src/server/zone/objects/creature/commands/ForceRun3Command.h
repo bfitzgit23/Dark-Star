@@ -26,9 +26,15 @@ public:
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 		int res = creature->hasBuff(buffCRC) ? NOSTACKJEDIBUFF : doJediSelfBuffCommand(creature);
 
+		//		if (res == NOSTACKJEDIBUFF) {
+		//			creature->sendSystemMessage("@jedi_spam:already_force_running"); // You are already force running.
+		//			return GENERALERROR;
+		//		}
+
+		// Toggle On/Off
 		if (res == NOSTACKJEDIBUFF) {
-			creature->sendSystemMessage("@jedi_spam:already_force_running"); // You are already force running.
-			return GENERALERROR;
+			creature->sendSystemMessage("You feel the Force leave your body, and you return to normal movement speed."); // Toggle Force Run off.
+			creature->removeBuff(BuffCRC::JEDI_FORCE_RUN_3);
 		}
 
 		if (res != SUCCESS) {
@@ -36,7 +42,7 @@ public:
 		}
 
 		// need to apply the damage reduction in a separate buff so that the multiplication and division applies right
-		Buff* buff = creature->getBuff(BuffCRC::JEDI_FORCE_RUN_3);
+		/*Buff* buff = creature->getBuff(BuffCRC::JEDI_FORCE_RUN_3);
 		if (buff == nullptr)
 			return GENERALERROR;
 
@@ -52,7 +58,7 @@ public:
 
 		Locker blocker(buff);
 
-		buff->addSecondaryBuffCRC(multBuff->getBuffCRC());
+		buff->addSecondaryBuffCRC(multBuff->getBuffCRC());*/
 
 		if (creature->hasBuff(STRING_HASHCODE("burstrun")) || creature->hasBuff(STRING_HASHCODE("retreat"))) {
 			creature->removeBuff(STRING_HASHCODE("burstrun"));
@@ -61,7 +67,6 @@ public:
 
 		return SUCCESS;
 	}
-
 };
 
-#endif //FORCERUN3COMMAND_H_
+#endif // FORCERUN3COMMAND_H_
