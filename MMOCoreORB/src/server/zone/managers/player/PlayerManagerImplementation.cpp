@@ -2131,9 +2131,12 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				// Jedi experience doesn't count towards combat experience, and is earned at 20% the rate of normal experience
 				if (xpType != "jedi_general")
 					combatXp += xpAmount;
-				else
-					
+				else {
 					xpAmount *= 0.8f;
+
+					if (attacker->hasSkill("force_title_jedi_rank_03"))
+						awardExperience(attackerCreo, "force_rank_xp", xpAmount, true, .01, true);
+				}
 
 				if (xpType == "dotDMG") { // Prevents XP generated from DoTs from applying to the equiped weapon, but still counts towards combat XP
 					continue;
@@ -2144,7 +2147,6 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 			}
 
 			awardExperience(attackerCreo, "combat_general", combatXp, true, 0.1f);
-			frsXp = awardExperience(attackerCreo, "force_rank_xp", frsXp, true, 0.01f);
 
 
 			//Check if the group leader is a squad leader
