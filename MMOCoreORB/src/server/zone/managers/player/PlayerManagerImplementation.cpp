@@ -2134,7 +2134,7 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				else {
 					xpAmount *= 0.8f;
 
-					if (attacker->hasSkill("force_title_jedi_rank_03"))
+					if (attackerCreo->hasSkill("force_title_jedi_rank_03"))
 						awardExperience(attackerCreo, "force_rank_xp", xpAmount, true, .01, true);
 				}
 
