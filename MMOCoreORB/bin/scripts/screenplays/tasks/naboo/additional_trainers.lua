@@ -3,7 +3,7 @@ additional_trainers = ScreenPlay:new {
     questString = "trainers",                   
     states = {}, 
 }
-
+registerScreenPlay("additional_trainers", true)
 function additional_trainers:start()
 
 	local pWeaponsmith4 = spawnMobile("dantooine", "trainer_brawler", 1, -636, 3.0, 2503, 35, 0 )--mining
