@@ -239,13 +239,13 @@ newbuff1 = ConvoScreen:new {
 }
 myswg_vendor_conv:addScreen(newbuff1);
 
-myswg_vendor_accept_quest = ConvoScreen:new {    
-    id = "buff1",
-    leftDialog = "",
-    customDialogText = "Enjoy!",
-    stopConversation = "true",
-    options = { }
-}
+-- myswg_vendor_accept_quest = ConvoScreen:new {    
+    -- id = "buff1",
+    -- leftDialog = "",
+    -- customDialogText = "Enjoy!",
+    -- stopConversation = "true",
+    -- options = { }
+-- }
 myswg_vendor_accept_quest = ConvoScreen:new {    
     id = "buff2",
     leftDialog = "",
