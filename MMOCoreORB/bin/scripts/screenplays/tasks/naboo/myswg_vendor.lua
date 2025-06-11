@@ -64,6 +64,12 @@ function myswg_vendor:start()
     local pWeaponsmith4 = spawnMobile("dathomir", "junk_dealer", 1, 617, 3.0, 3090, 35, 0 )--trade
     local pWeaponsmith4 = spawnMobile("dathomir", "junk_dealer", 1, -45, 18.0, -1586, 35, 0 )--science
     local pWeaponsmith5 = spawnMobile("tatooine", "junk_dealer", 1, 6668.33,22.00,4245.53, 35, 0 )--gy 
+	
+	
+	--Brawler Trainer
+	local pWeaponsmith4 = spawnMobile("dantooine", "brawler", 1, -638, 3.0, 2515, 35, 0 )--mining
+    local pWeaponsmith4 = spawnMobile("dantooine", "brawler", 1, -4209, 3.0, -2359, 35, 0 )--imp
+    local pWeaponsmith4 = spawnMobile("dantooine", "brawler", 1, 1564, 4.0, -6425, 35, 0 )--aggro
                 
 --    local pLarry = spawnMobile("naboo", "merch_crazy_larry", 1, -4881, 6.0, 4150, 35, 0 )
 end
