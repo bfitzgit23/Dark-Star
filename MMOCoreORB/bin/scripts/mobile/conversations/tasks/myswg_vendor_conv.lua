@@ -18,6 +18,7 @@ myswg_vendor_first_screen = ConvoScreen:new {
         {"Architect", "arch1"},
         {"Chef", "chef1"},        
         {"Medic", "doc1"},
+		{"Jedi Items","jedi"},
         --{"Droids", "droid1"},
         --{"Tailor", "tailor1"},
                 
@@ -219,6 +220,20 @@ tailor1 = ConvoScreen:new {
     }
 }
 myswg_vendor_conv:addScreen(tailor1);
+
+jedi = ConvoScreen:new {    
+    id = "jedi",
+    leftDialog = "",
+    customDialogText = "Selling rare Jedi Loot.",
+    stopConversation = "false",
+    options = { 
+        {"Lightsaber Color Crystal - 25k", "option100"},
+        {"Main menu.", "first_screen"},
+    }
+}
+
+
+
 
 newbuff1 = ConvoScreen:new {
     id = "newbuff1",

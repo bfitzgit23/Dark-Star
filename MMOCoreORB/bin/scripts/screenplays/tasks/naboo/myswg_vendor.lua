@@ -1180,7 +1180,15 @@ function myswg_vendor_convo_handler:getNextConversationScreen(conversationTempla
                     giveItem(pInventory, "object/tangible/mission/mission_bounty_droid_probot.iff", -1)
                     --createLoot(pInventory, "junk", 300, false) 
                     
-                                       
+ --Jedi Items
+				elseif (optionLink == "option100" and bankcredits < 25000) then
+					--if player does not have enough cash then inform Player
+					nextConversationScreen = conversation:getScreen("insufficient_funds")
+                    creature:sendSystemMessage("You have insufficient funds")
+				elseif (optionLink == "option100" and bankcredits >= 25000) then
+					--Take credits from player and give requested Item(s)
+					creature:subtractCashCredits(10000)
+					local pItem = giveItem(pInventory, "color_crystals", -1)
                 end
             end
         end
