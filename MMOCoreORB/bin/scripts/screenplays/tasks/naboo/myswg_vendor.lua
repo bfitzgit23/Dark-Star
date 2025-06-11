@@ -98,7 +98,6 @@ function myswg_vendor_convo_handler:getNextConversationScreen(conversationTempla
                 -- Get some information about the player.
                 local credits = creature:getCashCredits()
 				local bankcredits = creature:getBankCredits()
-				local totalcredits = credits + bankcredits
                 local pInventory = creature:getSlottedObject("inventory")
                 local inventory = LuaSceneObject(pInventory)
                 -- Take action when the player makes a purchase.
@@ -1031,7 +1030,7 @@ function myswg_vendor_convo_handler:getNextConversationScreen(conversationTempla
                     
 --DOCTOR
                     
-                elseif (optionLink == "buff1" and bankcreditscredits < 15000) then
+                elseif (optionLink == "buff1" and bankcredits < 15000) then
                     -- Bail if the player doesn’t have enough cash on hand.  
                     -- Plays a chat box message from the NPC as well as a system message.
                       nextConversationScreen = conversation:getScreen("insufficient_funds")
