@@ -97,6 +97,8 @@ function myswg_vendor_convo_handler:getNextConversationScreen(conversationTempla
                 nextConversationScreen = conversation:getScreen(optionLink)
                 -- Get some information about the player.
                 local credits = creature:getCashCredits()
+				local bankcredits = creature:getBankCredits()
+				local totalcredits = credits + bankcredits
                 local pInventory = creature:getSlottedObject("inventory")
                 local inventory = LuaSceneObject(pInventory)
                 -- Take action when the player makes a purchase.
@@ -1029,19 +1031,18 @@ function myswg_vendor_convo_handler:getNextConversationScreen(conversationTempla
                     
 --DOCTOR
                     
-                elseif (optionLink == "buff1" and credits < 15000) then
+                elseif (optionLink == "buff1" and totalcreditscredits < 15000) then
                     -- Bail if the player doesn’t have enough cash on hand.  
                     -- Plays a chat box message from the NPC as well as a system message.
                       nextConversationScreen = conversation:getScreen("insufficient_funds")
                       creature:sendSystemMessage("You have insufficient funds") 
-                elseif (optionLink == "buff1" and credits >= 15000) then
+                elseif (optionLink == "buff1" and totalcredits >= 15000) then
                     -- Take 10,000 credits from the player’s cash on hand and give player a speederbike.
-                    creature:subtractCashCredits(15000)
-                   
-										CreatureObject(conversingPlayer):enhanceCharacter()
-										--buffTerminalMenuComponent:logUsage(conversingPlayer, "enhanceCharacter")
-                    --giveItem(pInventory, "object/tangible/deed/vehicle_deed/speederbike_deed.iff", -1)
-                    --createLoot(pInventory, "junk", 1, false)
+                    if (credits <= 15000) then
+					creature:subtractBankCredits(15000)
+					elseif (credits >= 15000) then
+					creature:subtractCashCredits(15000)
+					CreatureObject(conversingPlayer):enhanceCharacter()   							
                     
                 elseif (optionLink == "buff2" and credits < 20000) then
                     -- Bail if the player doesn’t have enough cash on hand.  
