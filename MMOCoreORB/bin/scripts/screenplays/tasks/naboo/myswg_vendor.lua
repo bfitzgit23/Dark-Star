@@ -1029,15 +1029,14 @@ function myswg_vendor_convo_handler:getNextConversationScreen(conversationTempla
                     createLoot(pInventory, "wearables_all", 300, false)
                     
 --DOCTOR
-                    
                 elseif (optionLink == "buff1" and bankcredits < 15000) then
                     -- Bail if the player doesn’t have enough cash on hand.  
                     -- Plays a chat box message from the NPC as well as a system message.
                       nextConversationScreen = conversation:getScreen("insufficient_funds")
                       creature:sendSystemMessage("You have insufficient funds") 
                 elseif (optionLink == "buff1" and bankcredits >= 15000) then
-                    -- Take 10,000 credits from the player’s cash on hand and give player a speederbike.
-					creature:subtractBashCredits(15000)
+                    -- Take 15,000 credits from the player’s cash on hand and Buff Player
+					creature:subtractBankCredits(15000)
 					CreatureObject(conversingPlayer):enhanceCharacter()   
                     
                 -- elseif (optionLink == "buff2" and credits < 20000) then
