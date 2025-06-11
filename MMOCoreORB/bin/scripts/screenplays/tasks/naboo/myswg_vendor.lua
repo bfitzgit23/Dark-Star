@@ -11,7 +11,7 @@ function myswg_vendor:start()
     local pWeaponsmith2 = spawnMobile("corellia", "myswg_vendor", 1, -3138, 31.0, 2796, 35, 0 )--korvella   
     local pWeaponsmith2 = spawnMobile("corellia", "myswg_vendor", 1, 3333, 308.0, 5524, 35, 0 )--doaba   
     local pWeaponsmith2 = spawnMobile("corellia", "myswg_vendor", 1, -5550, 15.58, -6061, 35, 0 )--venri  
-		local pWeaponsmith2 = spawnMobile("corellia", "myswg_vendor", 1, 6643.02,330.00,-5920.87, 35, 0 )--belav  
+	local pWeaponsmith2 = spawnMobile("corellia", "myswg_vendor", 1, 6643.02,330.00,-5920.87, 35, 0 )--belav  
 
     local pWeaponsmith3 = spawnMobile("naboo", "myswg_vendor", 1, -4872, 6.0, 4151, 35, 0 )--theed
     local pWeaponsmith4 = spawnMobile("naboo", "myswg_vendor", 1, 4807, 4.0, -4705, 35, 0 )--moena
