@@ -18,7 +18,7 @@ myswg_vendor_first_screen = ConvoScreen:new {
         {"Architect", "arch1"},
         {"Chef", "chef1"},        
         {"Medic", "doc1"},
-		{"Jedi Items", "jedi1"},
+		{"Jedi Items", "jedi"},
         --{"Droids", "droid1"},
         --{"Tailor", "tailor1"},               
     }
