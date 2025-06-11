@@ -735,3 +735,6 @@ includeFile("../custom_scripts/screenplays/screenplays.lua")
 
 --myswg screenplays
 includeFile("tasks/naboo/myswg_vendor.lua")
+
+--additional trainers screenplays
+includeFile("tasks/naboo/additional_trainers.lua")
