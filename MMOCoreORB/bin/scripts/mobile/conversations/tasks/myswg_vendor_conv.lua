@@ -219,8 +219,8 @@ tailor1 = ConvoScreen:new {
 }
 myswg_vendor_conv:addScreen(tailor1);
 
-jedi1 = ConvoScreen:new {    
-    id = "jedi1",
+jedi = ConvoScreen:new {    
+    id = "jedi",
     leftDialog = "",
     customDialogText = "Selling rare Jedi Loot.",
     stopConversation = "false",
@@ -229,10 +229,7 @@ jedi1 = ConvoScreen:new {
         {"Main menu.", "first_screen"},
     }
 }
-
-
-
-
+myswg_vendor_conv:addScreen(jedi);
 newbuff1 = ConvoScreen:new {
     id = "newbuff1",
     leftDialog = "",
@@ -241,19 +238,13 @@ newbuff1 = ConvoScreen:new {
     options = { 
 
         {"2k Medical & Ent buffs 3hr - 15k", "buff1"},
-        -- {"200% Doctor Buffs 5hr - 20k", "buff2"},
-        -- {"300% Doctor Buffs 6hr - 30k", "buff3"},
-        -- {"200% Entertainer Buffs 4hr - 10k", "buff4"},
-        -- {"300% Entertainer Buffs 6hr - 20k", "buff5"},
- 
-
       	{"Main menu.", "first_screen"},
     }
 }
 myswg_vendor_conv:addScreen(newbuff1);
 
 myswg_vendor_accept_quest = ConvoScreen:new {    
-    id = "jedi1",
+    id = "jedi",
     leftDialog = "",
     customDialogText = "Enjoy!",
     stopConversation = "true",
