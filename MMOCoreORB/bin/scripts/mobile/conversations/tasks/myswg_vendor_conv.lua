@@ -18,11 +18,9 @@ myswg_vendor_first_screen = ConvoScreen:new {
         {"Architect", "arch1"},
         {"Chef", "chef1"},        
         {"Medic", "doc1"},
-		{"Jedi Items","jedi"},
+		{"Jedi Items", "jedi1"},
         --{"Droids", "droid1"},
-        --{"Tailor", "tailor1"},
-                
-			--	{"No thank you.", "deny_quest"},--not needed
+        --{"Tailor", "tailor1"},               
     }
 }
 myswg_vendor_conv:addScreen(myswg_vendor_first_screen);
@@ -221,8 +219,8 @@ tailor1 = ConvoScreen:new {
 }
 myswg_vendor_conv:addScreen(tailor1);
 
-jedi = ConvoScreen:new {    
-    id = "jedi",
+jedi1 = ConvoScreen:new {    
+    id = "jedi1",
     leftDialog = "",
     customDialogText = "Selling rare Jedi Loot.",
     stopConversation = "false",
@@ -255,7 +253,7 @@ newbuff1 = ConvoScreen:new {
 myswg_vendor_conv:addScreen(newbuff1);
 
 myswg_vendor_accept_quest = ConvoScreen:new {    
-    id = "jedi",
+    id = "jedi1",
     leftDialog = "",
     customDialogText = "Enjoy!",
     stopConversation = "true",
