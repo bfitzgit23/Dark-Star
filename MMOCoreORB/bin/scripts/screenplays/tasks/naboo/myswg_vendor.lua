@@ -1038,7 +1038,7 @@ function myswg_vendor_convo_handler:getNextConversationScreen(conversationTempla
                     -- Take 15,000 credits from the player’s cash on hand and Buff Player
 					creature:subtractBankCredits(15000)
 					CreatureObject(conversingPlayer):enhanceCharacter()
-					nextConversationScreen = conversation:getScreen("buff1")
+					nextConversationScreen = conversation:getScreen("buff_complete")
                     
                 -- elseif (optionLink == "buff2" and credits < 20000) then
                     -- -- Bail if the player doesn’t have enough cash on hand.  

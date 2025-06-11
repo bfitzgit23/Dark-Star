@@ -830,5 +830,12 @@ myswg_vendor_insufficient_space = ConvoScreen:new {
     stopConversation = "true",  
     options = { }
 }
+myswg_vendor_buff_complete = ConvoScreen:new {
+    id = "buff_complete",
+    leftDialog = "", 
+    customDialogText = "Thank you please come again.",    
+    stopConversation = "true",  
+    options = { }
+}
 myswg_vendor_conv:addScreen(myswg_vendor_insufficient_space);
 addConversationTemplate("myswg_vendor_conv", myswg_vendor_conv);
