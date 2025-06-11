@@ -1037,7 +1037,7 @@ function myswg_vendor_convo_handler:getNextConversationScreen(conversationTempla
                       creature:sendSystemMessage("You have insufficient funds") 
                 elseif (optionLink == "buff1" and bankcredits >= 15000) then
                     -- Take 10,000 credits from the player’s cash on hand and give player a speederbike.
-
+					creature:subtractBashCredits(15000)
 					CreatureObject(conversingPlayer):enhanceCharacter()   
                     
                 -- elseif (optionLink == "buff2" and credits < 20000) then
