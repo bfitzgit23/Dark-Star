@@ -306,11 +306,31 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You have insufficient funds")
 				
             elseif (optionLink == "jedi02" and credits >= 1) then
-                -- Take credits from the player’s cash on hand and give the player the item purchased
+				-- 1. Create the 'looted' pearl in memory. This part you did correctly!
 				local pLootItem = LootManager:instance():createLoot("krayt_pearls", 340)
-                creature:subtractCashCredits(1)
-                local pItem = giveItem(pInventory, pLootItem, -1)
+
+				-- 2. IMPORTANT: Check if the pearl was created successfully BEFORE taking money.
+				if (pLootItem ~= nil) then
+				-- The item exists, so proceed with the transaction.
+
+				-- 3. Take the player's credits.
+				creature:subtractCashCredits(1)
+
+				-- 4. Transfer the created object (pLootItem) to the inventory.
+				--    This is the corrected line.
+				pInventory:transferObject(pLootItem, -1, true)
+
+				-- 5. Set the next conversation screen to show success.
 				nextConversationScreen = conversation:getScreen("purchase_complete")
+				else
+				-- If loot creation fails, tell the player and DON'T take their money.
+				-- This prevents "credit eating" bugs.
+				creature:sendSystemMessage("There was an error stocking this item. Please contact an administrator.")
+        
+				-- You might want to create an "error" screen in your conversation template.
+				-- Or just end the conversation by not setting a next screen.
+				nextConversationScreen = nil 
+				end
 				
 			elseif (optionLink == "jedi03" and credits < 1) then
                 -- Bail if the player doesn’t have enough cash on hand.
