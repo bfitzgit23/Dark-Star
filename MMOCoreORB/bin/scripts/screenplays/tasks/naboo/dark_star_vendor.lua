@@ -308,7 +308,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             elseif (optionLink == "jedi02" and credits >= 1) then
                 -- Take credits from the player’s cash on hand and give the player the item purchased
                 creature:subtractCashCredits(1)
-                local pItem = giveItem(pInventory, "object/tangible/component/weapon/lightsaber/lightsaber_module_krayt_dragon_pearl.iff", -1)
+                local pItem = giveItem(pInventory, "krayt_pearls", -1)
 				nextConversationScreen = conversation:getScreen("purchase_complete")
 				
 			elseif (optionLink == "jedi03" and credits < 1) then
