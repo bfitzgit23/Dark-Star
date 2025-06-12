@@ -1,3 +1,5 @@
+includeFile("../managers/loot_manager.lua")
+
 dark_star_vendor = ScreenPlay:new {
     numberOfActs = 1,
     questString = "dark_star_vendor_task",
@@ -88,7 +90,6 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             creature:sendSystemMessage("You do not have enough inventory space")
             return nextConversationScreen
         end
-	end
 
         -- BUFFS
         if (optionLink == "buffs" and bankcredits < 1) then
@@ -195,54 +196,41 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             creature:sendSystemMessage("You have insufficient funds.")
         elseif (optionLink == "jedi01" and credits >= 1) then
             creature:subtractCashCredits(1)
-            giveItem(pInventory, "object/tangible/jedi/jedi_holocron_dark.iff", -1)
+            giveItem(pInventory, "object/tangible/component/weapon/lightsaber/lightsaber_module_force_crystal.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
         elseif (optionLink == "jedi02" and credits < 1) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
         elseif (optionLink == "jedi02" and credits >= 1) then
+            if (lootManager ~= nil) then
+                local pLootItem = lootManager:createLoot("krayt_pearls", 340)
+                if (pLootItem ~= nil) then
+                    creature:subtractCashCredits(1)
+                    pInventory:transferObject(pLootItem, -1, true)
+                    nextConversationScreen = conversation:getScreen("purchase_complete")
+                else
+                    creature:sendSystemMessage("There was an error stocking this item. Please contact an administrator.")
+                    nextConversationScreen = nil 
+                end
+            else
+                creature:sendSystemMessage("CRITICAL ERROR: Loot Manager system is unavailable.")
+                nextConversationScreen = nil
+            end
+        elseif (optionLink == "jedi03" and credits < 1) then
+            nextConversationScreen = conversation:getScreen("insufficient_funds")
+            creature:sendSystemMessage("You have insufficient funds.")
+        elseif (optionLink == "jedi03" and credits >= 1) then
+            creature:subtractCashCredits(1)
+            giveItem(pInventory, "object/tangible/jedi/jedi_holocron_dark.iff", -1)
+            nextConversationScreen = conversation:getScreen("purchase_complete")
+        elseif (optionLink == "jedi04" and credits < 1) then
+            nextConversationScreen = conversation:getScreen("insufficient_funds")
+            creature:sendSystemMessage("You have insufficient funds.")
+        elseif (optionLink == "jedi04" and credits >= 1) then
             creature:subtractCashCredits(1)
             giveItem(pInventory, "object/tangible/jedi/jedi_holocron_light.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-		
-		-- Medic ITEMS
-        elseif (optionLink == "medic01" and credits < 1) then
-            nextConversationScreen = conversation:getScreen("insufficient_funds")
-            creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "medic01" and credits >= 1) then
-            creature:subtractCashCredits(1)
-            giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_a.iff", -1)
-            nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "medic02" and credits < 1) then
-            nextConversationScreen = conversation:getScreen("insufficient_funds")
-            creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "medic02" and credits >= 1) then
-            creature:subtractCashCredits(1)
-            giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_b.iff", -1)
-            nextConversationScreen = conversation:getScreen("purchase_complete")
-		elseif (optionLink == "medic03" and credits < 1) then
-            nextConversationScreen = conversation:getScreen("insufficient_funds")
-            creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "medic03" and credits >= 1) then
-            creature:subtractCashCredits(1)
-            giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_c.iff", -1)
-            nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "medic04" and credits < 1) then
-            nextConversationScreen = conversation:getScreen("insufficient_funds")
-            creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "medic04" and credits >= 1) then
-            creature:subtractCashCredits(1)
-            giveItem(pInventory, "oobject/tangible/medicine/crafted/crafted_stimpack_sm_s1_d.iff", -1)
-            nextConversationScreen = conversation:getScreen("purchase_complete")
-		elseif (optionLink == "medic05" and credits < 1) then
-            nextConversationScreen = conversation:getScreen("insufficient_funds")
-            creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "medic05" and credits >= 1) then
-            creature:subtractCashCredits(1)
-            giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_e.iff", -1)
-            nextConversationScreen = conversation:getScreen("purchase_complete")
         end
-		
     end
     
     return nextConversationScreen
