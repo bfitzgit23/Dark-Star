@@ -819,6 +819,7 @@ myswg_vendor_accept_quest = ConvoScreen:new {
     options = { }
 }
 myswg_vendor_conv:addScreen(myswg_vendor_accept_quest);
+
 myswg_vendor_deny_quest = ConvoScreen:new {
     id = "deny_quest",
     leftDialog = "",
