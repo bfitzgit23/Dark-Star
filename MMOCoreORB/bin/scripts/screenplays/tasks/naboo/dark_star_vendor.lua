@@ -203,7 +203,6 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             creature:subtractCashCredits(1)
             giveItem(pInventory, "object/tangible/jedi/jedi_holocron_light.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-        end
 		
 		-- Medic ITEMS
         elseif (optionLink == "medic01" and credits < 1) then
