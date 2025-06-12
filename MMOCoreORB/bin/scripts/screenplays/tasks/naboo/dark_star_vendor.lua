@@ -138,7 +138,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You have insufficient funds")
 				
             elseif (optionLink == "weapon01" and credits >= 1) then
-                -- Take credits from the player’s cash on hand and give player an item.
+                -- Take credits from the player’s cash on hand and give the player the item purchased
                 creature:subtractCashCredits(1)
                 local pItem = giveItem(pInventory, "object/weapon/ranged/pistol/pistol_cdef.iff", -1)
 				nextConversationScreen = conversation:getScreen("purchase_complete")
@@ -154,7 +154,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You have insufficient funds")
 				
             elseif (optionLink == "armor01" and credits >= 1) then
-                -- Take credits from the player’s cash on hand and give player an item.
+                -- Take credits from the player’s cash on hand and give the player the item purchased
                 creature:subtractCashCredits(1)
                 local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_helmet.iff", -1)
 				nextConversationScreen = conversation:getScreen("purchase_complete")
@@ -166,7 +166,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You have insufficient funds")
 				
             elseif (optionLink == "armor02" and credits >= 1) then
-                -- Take credits from the player’s cash on hand and give player an item.
+                -- Take credits from the player’s cash on hand and give the player the item purchased
                 creature:subtractCashCredits(1)
                 local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_chest_plate.iff", -1)
 				nextConversationScreen = conversation:getScreen("purchase_complete")
@@ -178,7 +178,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You have insufficient funds")
 				
             elseif (optionLink == "armor03" and credits >= 1) then
-                -- Take credits from the player’s cash on hand and give player an item.
+                -- Take credits from the player’s cash on hand and give the player the item purchased
                 creature:subtractCashCredits(1)
                 local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_leggings.iff", -1)
 				nextConversationScreen = conversation:getScreen("purchase_complete")
@@ -190,7 +190,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You have insufficient funds")
 				
             elseif (optionLink == "armor04" and credits >= 1) then
-                -- Take credits from the player’s cash on hand and give player an item.
+                -- Take credits from the player’s cash on hand and give the player the item purchased
                 creature:subtractCashCredits(1)
                 local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_boots.iff", -1)
 				nextConversationScreen = conversation:getScreen("purchase_complete")
@@ -202,7 +202,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You have insufficient funds")
 				
             elseif (optionLink == "armor05" and credits >= 1) then
-                -- Take credits from the player’s cash on hand and give player an item.
+                -- Take credits from the player’s cash on hand and give the player the item purchased
                 creature:subtractCashCredits(1)
                 local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_bicep_r.iff", -1)
 				nextConversationScreen = conversation:getScreen("purchase_complete")
@@ -214,7 +214,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You have insufficient funds")
 				
             elseif (optionLink == "armor06" and credits >= 1) then
-                -- Take credits from the player’s cash on hand and give player an item.
+                -- Take credits from the player’s cash on hand and give the player the item purchased
                 creature:subtractCashCredits(1)
                 local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_bicep_l.iff", -1)
 				nextConversationScreen = conversation:getScreen("purchase_complete")
@@ -226,7 +226,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You have insufficient funds")
 				
             elseif (optionLink == "armor07" and credits >= 1) then
-                -- Take credits from the player’s cash on hand and give player an item.
+                -- Take credits from the player’s cash on hand and give the player the item purchased
                 creature:subtractCashCredits(1)
                 local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_bracer_r.iff", -1)
 				nextConversationScreen = conversation:getScreen("purchase_complete")
@@ -238,7 +238,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You have insufficient funds")
 				
             elseif (optionLink == "armor08" and credits >= 1) then
-                -- Take credits from the player’s cash on hand and give player an item.
+                -- Take credits from the player’s cash on hand and give the player the item purchased
                 creature:subtractCashCredits(1)
                 local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_bracer_l.iff", -1)
 				nextConversationScreen = conversation:getScreen("purchase_complete")
@@ -250,13 +250,40 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You have insufficient funds")
 				
             elseif (optionLink == "armor09" and credits >= 1) then
-                -- Take credits from the player’s cash on hand and give player an item.
+                -- Take credits from the player’s cash on hand and give the player the item purchased
                 creature:subtractCashCredits(1)
                 local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_gloves.iff", -1)
 				nextConversationScreen = conversation:getScreen("purchase_complete")
 				
             end
 			
+		--DEEDS
+		
+			if (optionLink == "deeds01" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "deeds01" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give the player the item purchased
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/veteran_reward/resource.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+			elseif (optionLink == "deeds02" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "deeds02" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give the player the item purchased
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/deed/vehicle_deed/speederbike_deed.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+            end
 			
         end
     end

@@ -13,7 +13,8 @@ dark_star_vendor_first_screen = ConvoScreen:new {
         {"Buffs", "buffs"},
         {"Weapons", "weapons"},
         {"Armor", "armor"},
-        {"Loot", "loot1"},
+		{"Deeds", "deeds"},
+        {"Loot", "loot"},
         {"Artisan", "art1"},
         {"Architect", "arch1"},
         {"Chef", "chef1"},        
@@ -69,6 +70,31 @@ armor = ConvoScreen:new {
     }
 }
 dark_star_vendor_conv:addScreen(armor);
+
+deeds = ConvoScreen:new {
+    id = "deeds",
+    leftDialog = "",
+    customDialogText = "Would you like to buy some Deeds?",
+    stopConversation = "false",
+    options = { 
+        {"10k stack Resource Deed - 200k", "deeds01"},
+        {"Speeder Bike - 15k", "deeds02"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(deeds);
+
+loot = ConvoScreen:new {
+    id = "loot",
+    leftDialog = "",
+    customDialogText = "Would you like to buy some loot drops?",
+    stopConversation = "false",
+    options = { 
+       	{"Jedi Holocron - 10mil", "loot01"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(loot);
 
 -- art1 = ConvoScreen:new {
     -- id = "art1",
@@ -134,29 +160,7 @@ dark_star_vendor_conv:addScreen(armor);
 -- }
 -- dark_star_vendor_conv:addScreen(chef1);
 
--- loot1 = ConvoScreen:new {
-    -- id = "loot1",
-    -- leftDialog = "",
-    -- customDialogText = "Would you like to buy some loot drops?",
-    -- stopConversation = "false",
-    -- options = { 
-        -- {"10k stack Resource Deed - 200k", "option46"},
-        -- {"Random lvl 50 Pistol Loot - 15k", "option56"},
-        -- {"Random lvl 50 Carbine Loot - 15k", "option57"},
-        -- {"Random lvl 50 Rifle Loot - 15k", "option58"},
-        -- {"Random lvl 50 1h sword Loot - 15k", "option59"},
-        -- {"Random lvl 50 2h sword Loot - 15k", "option60"},
-        -- {"Random lvl 50 Polearm Loot - 15k", "option61"},
-		-- {"Random lvl 50 Unarmed Loot - 15k", "option62"},        
-		-- {"Random lvl 50 Hvy Weapons (flame/acid/LLC) - 15k", "option63"},  	              
-        -- {"Random lvl 300 Clothing Loot - 100k", "option47"},
-		-- {"Random lvl 100 Armor Loot - 100k", "option48"},
-        -- {"Random lvl 100 Weapon Loot - 100k", "option49"},
-       	-- {"Jedi Holocron - 10mil", "option5"},
-        -- {"Main menu.", "first_screen"},
-    -- }
--- }
--- dark_star_vendor_conv:addScreen(loot1);
+
 
 -- doc1 = ConvoScreen:new {
     -- id = "doc1",
