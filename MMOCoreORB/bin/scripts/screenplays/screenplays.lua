@@ -741,3 +741,6 @@ includeFile("tasks/naboo/additional_trainers.lua")
 
 --additional junk dealers screenplays
 includeFile("tasks/naboo/additional_junk_dealers.lua")
+
+--world spawner
+includeFile{"world.world_spawner"}
