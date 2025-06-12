@@ -108,6 +108,76 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             creature:subtractCashCredits(1)
             giveItem(pInventory, "object/weapon/ranged/pistol/pistol_cdef.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
+		elseif (optionLink == "weapon02" and credits < 1) then
+            nextConversationScreen = conversation:getScreen("insufficient_funds")
+            creature:sendSystemMessage("You have insufficient funds.")
+        elseif (optionLink == "weapon02" and credits >= 1) then
+            creature:subtractCashCredits(1)
+            giveItem(pInventory, "object/weapon/ranged/carbine/carbine_cdef.iff", -1)
+            nextConversationScreen = conversation:getScreen("purchase_complete")
+		elseif (optionLink == "weapon03" and credits < 1) then
+            nextConversationScreen = conversation:getScreen("insufficient_funds")
+            creature:sendSystemMessage("You have insufficient funds.")
+        elseif (optionLink == "weapon03" and credits >= 1) then
+            creature:subtractCashCredits(1)
+            giveItem(pInventory, "object/weapon/ranged/rifle/rifle_cdef.iff", -1)
+            nextConversationScreen = conversation:getScreen("purchase_complete")
+		elseif (optionLink == "weapon04" and credits < 1) then
+            nextConversationScreen = conversation:getScreen("insufficient_funds")
+            creature:sendSystemMessage("You have insufficient funds.")
+        elseif (optionLink == "weapon04" and credits >= 1) then
+            creature:subtractCashCredits(1)
+            giveItem(pInventory, "object/weapon/ranged/pistol/pistol_dh17.iff", -1)
+            nextConversationScreen = conversation:getScreen("purchase_complete")
+		elseif (optionLink == "weapon05" and credits < 1) then
+            nextConversationScreen = conversation:getScreen("insufficient_funds")
+            creature:sendSystemMessage("You have insufficient funds.")
+        elseif (optionLink == "weapon05" and credits >= 1) then
+            creature:subtractCashCredits(1)
+            giveItem(pInventory, "object/weapon/ranged/carbine/carbine_dh17.iff", -1)
+            nextConversationScreen = conversation:getScreen("purchase_complete")
+		elseif (optionLink == "weapon06" and credits < 1) then
+            nextConversationScreen = conversation:getScreen("insufficient_funds")
+            creature:sendSystemMessage("You have insufficient funds.")
+        elseif (optionLink == "weapon06" and credits >= 1) then
+            creature:subtractCashCredits(1)
+            giveItem(pInventory, "object/weapon/ranged/rifle/rifle_dlt20a.iff", -1)
+            nextConversationScreen = conversation:getScreen("purchase_complete")
+		elseif (optionLink == "weapon07" and credits < 1) then
+            nextConversationScreen = conversation:getScreen("insufficient_funds")
+            creature:sendSystemMessage("You have insufficient funds.")
+        elseif (optionLink == "weapon07" and credits >= 1) then
+            creature:subtractCashCredits(1)
+            giveItem(pInventory, "object/weapon/melee/baton/baton_gaderiffi.iff", -1)
+            nextConversationScreen = conversation:getScreen("purchase_complete")
+		elseif (optionLink == "weapon08" and credits < 1) then
+            nextConversationScreen = conversation:getScreen("insufficient_funds")
+            creature:sendSystemMessage("You have insufficient funds.")
+        elseif (optionLink == "weapon08" and credits >= 1) then
+            creature:subtractCashCredits(1)
+            giveItem(pInventory, "object/weapon/melee/baton/baton_stun.iff", -1)
+            nextConversationScreen = conversation:getScreen("purchase_complete")
+		elseif (optionLink == "weapon09" and credits < 1) then
+            nextConversationScreen = conversation:getScreen("insufficient_funds")
+            creature:sendSystemMessage("You have insufficient funds.")
+        elseif (optionLink == "weapon09" and credits >= 1) then
+            creature:subtractCashCredits(1)
+            giveItem(pInventory, "object/weapon/melee/polearm/polearm_vibro_axe.iff", -1)
+            nextConversationScreen = conversation:getScreen("purchase_complete")
+		elseif (optionLink == "weapon10" and credits < 1) then
+            nextConversationScreen = conversation:getScreen("insufficient_funds")
+            creature:sendSystemMessage("You have insufficient funds.")
+        elseif (optionLink == "weapon10" and credits >= 1) then
+            creature:subtractCashCredits(1)
+            giveItem(pInventory, "object/weapon/melee/2h_sword/2h_sword_katana.iff", -1)
+            nextConversationScreen = conversation:getScreen("purchase_complete")
+		elseif (optionLink == "weapon11" and credits < 1) then
+            nextConversationScreen = conversation:getScreen("insufficient_funds")
+            creature:sendSystemMessage("You have insufficient funds.")
+        elseif (optionLink == "weapon11" and credits >= 1) then
+            creature:subtractCashCredits(1)
+            giveItem(pInventory, "object/weapon/melee/special/vibroknuckler.iff", -1)
+            nextConversationScreen = conversation:getScreen("purchase_complete")
 
         -- ARMOR
         elseif (optionLink == "armor01" and credits < 1) then

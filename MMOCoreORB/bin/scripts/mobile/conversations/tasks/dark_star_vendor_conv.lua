@@ -46,6 +46,16 @@ weapons = ConvoScreen:new {
     stopConversation = "false",
     options = { 
 		{"CDEF Pistol - 5k", "weapon01"},
+		{"CDEF Carbine - 5k", "weapon02"},
+		{"CDEF Rifle - 5k", "weapon03"},
+		{"DH17 Pistol - 5k", "weapon04"},
+		{"DH17 Carbine - 5k", "weapon05"},
+		{"DLT20a Rifle - 5k", "weapon06"},
+		{"Gaderiffi Baton - 5k", "weapon07"},
+		{"Stun Baton - 5k", "weapon08"},
+		{"Long Vibro Axe - 5k", "weapon09"},
+		{"Two-handed Curved Sword - 5k", "weapon10"},
+		{"Vibro Knuckler - 5k", "weapon11"},
         {"Main menu.", "first_screen"},
     }
 }
