@@ -90,10 +90,8 @@ jedi = ConvoScreen:new {
     customDialogText = "Selling rare Jedi Loot.",
     stopConversation = "false",
     options = { 
-        {"Lightsaber Color Crystal - 25k", "jedi01"},
-		{"Krayt Dragon Pearl - 25k", "jedi02"},
-		{"Sith Holocron - 25k", "jedi03"},
-		{"Jedi Holocron - 25k", "jedi04"},
+		{"Sith Holocron - 25k", "jedi01"},
+		{"Jedi Holocron - 25k", "jedi02"},
         {"Main menu.", "first_screen"},
     }
 }

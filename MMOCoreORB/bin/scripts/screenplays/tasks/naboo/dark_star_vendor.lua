@@ -194,19 +194,12 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             creature:sendSystemMessage("You have insufficient funds.")
         elseif (optionLink == "jedi01" and credits >= 1) then
             creature:subtractCashCredits(1)
-            giveItem(pInventory, "object/tangible/component/weapon/lightsaber/lightsaber_module_force_crystal.iff", -1)
-            nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "jedi03" and credits < 1) then
-            nextConversationScreen = conversation:getScreen("insufficient_funds")
-            creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "jedi03" and credits >= 1) then
-            creature:subtractCashCredits(1)
             giveItem(pInventory, "object/tangible/jedi/jedi_holocron_dark.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "jedi04" and credits < 1) then
+        elseif (optionLink == "jedi02" and credits < 1) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "jedi04" and credits >= 1) then
+        elseif (optionLink == "jedi02" and credits >= 1) then
             creature:subtractCashCredits(1)
             giveItem(pInventory, "object/tangible/jedi/jedi_holocron_light.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
