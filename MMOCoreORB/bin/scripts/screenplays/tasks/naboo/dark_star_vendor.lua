@@ -1,3 +1,5 @@
+includeFile("scripts/managers/loot_manager.lua")
+
 dark_star_vendor = ScreenPlay:new {
     numberOfActs = 1,
     questString = "dark_star_vendor_task",
