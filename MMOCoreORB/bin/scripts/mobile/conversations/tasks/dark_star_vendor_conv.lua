@@ -263,8 +263,8 @@ dark_star_vendor_conv:addScreen(dark_star_vendor_insufficient_space);
 dark_star_vendor_purchase_complete = ConvoScreen:new {
     id = "purchase_complete",
     leftDialog = "", 
-    customDialogText = "Thank you! Need anything else?",    
-    stopConversation = "false",  
+    customDialogText = "Thank you! Have a great day!",    
+    stopConversation = "true",  
     options = { }
 }
 dark_star_vendor_conv:addScreen(dark_star_vendor_purchase_complete);
