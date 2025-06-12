@@ -101,215 +101,215 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             nextConversationScreen = conversation:getScreen("purchase_complete")
 
         -- WEAPONS
-        elseif (optionLink == "weapon01" and credits < 1) then
+        elseif (optionLink == "weapon01" and credits < 5000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "weapon01" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "weapon01" and credits >= 5000) then
+            creature:subtractCashCredits(5000)
             giveItem(pInventory, "object/weapon/ranged/pistol/pistol_cdef.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-		elseif (optionLink == "weapon02" and credits < 1) then
+		elseif (optionLink == "weapon02" and credits < 5000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "weapon02" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "weapon02" and credits >= 5000) then
+            creature:subtractCashCredits(5000)
             giveItem(pInventory, "object/weapon/ranged/carbine/carbine_cdef.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-		elseif (optionLink == "weapon03" and credits < 1) then
+		elseif (optionLink == "weapon03" and credits < 5000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "weapon03" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "weapon03" and credits >= 5000) then
+            creature:subtractCashCredits(5000)
             giveItem(pInventory, "object/weapon/ranged/rifle/rifle_cdef.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-		elseif (optionLink == "weapon04" and credits < 1) then
+		elseif (optionLink == "weapon04" and credits < 15000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "weapon04" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "weapon04" and credits >= 15000) then
+            creature:subtractCashCredits(15000)
             giveItem(pInventory, "object/weapon/ranged/pistol/pistol_dh17.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-		elseif (optionLink == "weapon05" and credits < 1) then
+		elseif (optionLink == "weapon05" and credits < 15000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "weapon05" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "weapon05" and credits >= 15000) then
+            creature:subtractCashCredits(15000)
             giveItem(pInventory, "object/weapon/ranged/carbine/carbine_dh17.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-		elseif (optionLink == "weapon06" and credits < 1) then
+		elseif (optionLink == "weapon06" and credits < 15000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "weapon06" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "weapon06" and credits >= 15000) then
+            creature:subtractCashCredits(15000)
             giveItem(pInventory, "object/weapon/ranged/rifle/rifle_dlt20a.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-		elseif (optionLink == "weapon07" and credits < 1) then
+		elseif (optionLink == "weapon07" and credits < 25000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "weapon07" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "weapon07" and credits >= 25000) then
+            creature:subtractCashCredits(25000)
             giveItem(pInventory, "object/weapon/melee/baton/baton_gaderiffi.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-		elseif (optionLink == "weapon08" and credits < 1) then
+		elseif (optionLink == "weapon08" and credits < 50000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "weapon08" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "weapon08" and credits >= 50000) then
+            creature:subtractCashCredits(50000)
             giveItem(pInventory, "object/weapon/melee/baton/baton_stun.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-		elseif (optionLink == "weapon09" and credits < 1) then
+		elseif (optionLink == "weapon09" and credits < 25000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "weapon09" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "weapon09" and credits >= 25000) then
+            creature:subtractCashCredits(25000)
             giveItem(pInventory, "object/weapon/melee/polearm/polearm_vibro_axe.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-		elseif (optionLink == "weapon10" and credits < 1) then
+		elseif (optionLink == "weapon10" and credits < 25000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "weapon10" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "weapon10" and credits >= 25000) then
+            creature:subtractCashCredits(25000)
             giveItem(pInventory, "object/weapon/melee/2h_sword/2h_sword_katana.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-		elseif (optionLink == "weapon11" and credits < 1) then
+		elseif (optionLink == "weapon11" and credits < 25000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "weapon11" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "weapon11" and credits >= 25000) then
+            creature:subtractCashCredits(25000)
             giveItem(pInventory, "object/weapon/melee/special/vibroknuckler.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
 
         -- ARMOR
-        elseif (optionLink == "armor01" and credits < 1) then
+        elseif (optionLink == "armor01" and credits < 5000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "armor01" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "armor01" and credits >= 5000) then
+            creature:subtractCashCredits(5000)
             giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_helmet.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "armor02" and credits < 1) then
+        elseif (optionLink == "armor02" and credits < 5000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "armor02" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "armor02" and credits >= 5000) then
+            creature:subtractCashCredits(5000)
             giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_chest_plate.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "armor03" and credits < 1) then
+        elseif (optionLink == "armor03" and credits < 5000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "armor03" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "armor03" and credits >= 5000) then
+            creature:subtractCashCredits(5000)
             giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_leggings.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "armor04" and credits < 1) then
+        elseif (optionLink == "armor04" and credits < 5000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "armor04" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "armor04" and credits >= 5000) then
+            creature:subtractCashCredits(5000)
             giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_boots.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "armor05" and credits < 1) then
+        elseif (optionLink == "armor05" and credits < 5000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "armor05" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "armor05" and credits >= 5000) then
+            creature:subtractCashCredits(5000)
             giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_bicep_r.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "armor06" and credits < 1) then
+        elseif (optionLink == "armor06" and credits < 5000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "armor06" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "armor06" and credits >= 5000) then
+            creature:subtractCashCredits(5000)
             giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_bicep_l.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "armor07" and credits < 1) then
+        elseif (optionLink == "armor07" and credits < 5000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "armor07" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "armor07" and credits >= 5000) then
+            creature:subtractCashCredits(5000)
             giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_bracer_r.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "armor08" and credits < 1) then
+        elseif (optionLink == "armor08" and credits < 5000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "armor08" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "armor08" and credits >= 5000) then
+            creature:subtractCashCredits(5000)
             giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_bracer_l.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "armor09" and credits < 1) then
+        elseif (optionLink == "armor09" and credits < 5000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "armor09" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "armor09" and credits >= 5000) then
+            creature:subtractCashCredits(5000)
             giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_gloves.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
 
         -- DEEDS
-        elseif (optionLink == "deeds01" and credits < 1) then
+        elseif (optionLink == "deeds01" and credits < 200000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "deeds01" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "deeds01" and credits >= 200000) then
+            creature:subtractCashCredits(200000)
             giveItem(pInventory, "object/tangible/veteran_reward/resource.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "deeds02" and credits < 1) then
+        elseif (optionLink == "deeds02" and credits < 15000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "deeds02" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "deeds02" and credits >= 15000) then
+            creature:subtractCashCredits(15000)
             giveItem(pInventory, "object/tangible/deed/vehicle_deed/speederbike_deed.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
 
         -- JEDI ITEMS
-        elseif (optionLink == "jedi01" and credits < 1) then
+        elseif (optionLink == "jedi01" and credits < 25000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "jedi01" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "jedi01" and credits >= 25000) then
+            creature:subtractCashCredits(25000)
             giveItem(pInventory, "object/tangible/jedi/jedi_holocron_dark.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "jedi02" and credits < 1) then
+        elseif (optionLink == "jedi02" and credits < 25000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "jedi02" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "jedi02" and credits >= 25000) then
+            creature:subtractCashCredits(25000)
             giveItem(pInventory, "object/tangible/jedi/jedi_holocron_light.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
 		
 		-- Medic ITEMS
-        elseif (optionLink == "medic01" and credits < 1) then
+        elseif (optionLink == "medic01" and credits < 500) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "medic01" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "medic01" and credits >= 500) then
+            creature:subtractCashCredits(500)
             giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_a.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "medic02" and credits < 1) then
+        elseif (optionLink == "medic02" and credits < 1000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "medic02" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "medic02" and credits >= 1000) then
+            creature:subtractCashCredits(1000)
             giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_b.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-		elseif (optionLink == "medic03" and credits < 1) then
+		elseif (optionLink == "medic03" and credits < 2000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "medic03" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "medic03" and credits >= 2000) then
+            creature:subtractCashCredits(2000)
             giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_c.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-        elseif (optionLink == "medic04" and credits < 1) then
+        elseif (optionLink == "medic04" and credits < 5000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "medic04" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "medic04" and credits >= 5000) then
+            creature:subtractCashCredits(5000)
             giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_d.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
-		elseif (optionLink == "medic05" and credits < 1) then
+		elseif (optionLink == "medic05" and credits < 10000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "medic05" and credits >= 1) then
-            creature:subtractCashCredits(1)
+        elseif (optionLink == "medic05" and credits >= 10000) then
+            creature:subtractCashCredits(10000)
             giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_e.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
         end
