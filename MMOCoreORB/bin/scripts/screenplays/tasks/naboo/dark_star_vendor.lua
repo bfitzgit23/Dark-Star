@@ -1,4 +1,4 @@
-includeFile("test_include.lua")
+includeFile("check_include.lua")
 
 dark_star_vendor = ScreenPlay:new {
     numberOfActs = 1,
