@@ -12,7 +12,7 @@ dark_star_vendor_first_screen = ConvoScreen:new {
     options = { 
         {"Buffs", "buffs"},
         {"Weapons", "weapons"},
-        {"Armor", "armor1"},
+        {"Armor", "armor"},
         {"Loot", "loot1"},
         {"Artisan", "art1"},
         {"Architect", "arch1"},
@@ -41,37 +41,34 @@ dark_star_vendor_conv:addScreen(buffs);
 weapons = ConvoScreen:new {    
     id = "weapons",
     leftDialog = "",
-    customDialogText = "Selling random loot weapons and high end weapons.",
+    customDialogText = "Selling various weapons.",
     stopConversation = "false",
     options = { 
-		{"CDEF Pistol - 5k", "option1"},
+		{"CDEF Pistol - 5k", "weapon01"},
         {"Main menu.", "first_screen"},
     }
 }
 dark_star_vendor_conv:addScreen(weapons);
 
--- armor1 = ConvoScreen:new {    
-    -- id = "armor1",
-    -- leftDialog = "",
-    -- customDialogText = "Selling Chitin Armor 65% kinetic, 25% base eff\n\nUbese armor with 80% kinetic and 50% base eff.\n\nComposite with 80%kinetic/electic and 65% base 0% stun",
-    -- stopConversation = "false",
-    -- options = { 
-        -- {"Chitin Leggings - 25k", "option16"},
-        -- {"Chitin Chest Plate - 25k", "option17"},
-        -- {"Chitin Helmet - 25k", "option18"},
-        -- {"Chitin left Bracer - 25k", "option19"},
-        -- {"Ubese Leggings - 100k", "option12"},
-        -- {"Ubese Chest Plate - 100k", "option13"},
-        -- {"Ubese Helmet - 100k", "option14"},
-        -- {"Ubese Left Bracer - 100k", "option15"},
-        -- {"Composite Leggings - 250k", "option20"},
-        -- {"Composite Chest Plate - 250k", "option21"},
-        -- {"Composite Helmet - 250k", "option22"},
-        -- {"Composite Left Bracer - 250k", "option23"},                               
-        -- {"Main menu.", "first_screen"},
-    -- }
--- }
--- dark_star_vendor_conv:addScreen(armor1);
+armor = ConvoScreen:new {    
+    id = "armor",
+    leftDialog = "",
+    customDialogText = "Selling Composite Armor",
+    stopConversation = "false",
+    options = { 
+        {"Composite Helm - 5k", "armor01"},
+		{"Composite Chest - 5k", "armor02"},
+		{"Composite Leggings - 5k", "armor03"},
+		{"Composite Boots - 5k", "armor04"},
+		{"Composite Right Bicep - 5k", "armor05"},
+		{"Composite Left Bicep - 5k", "armor06"},
+		{"Composite Right Bracer - 5k", "armor07"},
+		{"Composite Left Bracer - 5k", "armor08"},
+		{"Composite Gloves - 5k", "armor09"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(armor);
 
 -- art1 = ConvoScreen:new {
     -- id = "art1",

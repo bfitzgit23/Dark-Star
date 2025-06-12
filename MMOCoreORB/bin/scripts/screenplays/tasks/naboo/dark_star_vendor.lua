@@ -110,37 +110,154 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 -- Plays a chat box message from the NPC as well as a system message.
                 nextConversationScreen = conversation:getScreen("insufficient_space")
                 creature:sendSystemMessage("You do not have enough inventory space")
+				
             end
 
 		--BUFFS
-			if (optionLink == "buffs" and credits < 1) then
+		
+			if (optionLink == "buffs" and bankcredits < 1) then
                 -- Bail if the player doesn’t have enough cash on hand.
                 -- Plays a chat box message from the NPC as well as a system message.
                 nextConversationScreen = conversation:getScreen("insufficient_funds")
                 creature:sendSystemMessage("You have insufficient funds")
            
-		   elseif (optionLink == "buffs" and credits >= 1) then
+		   elseif (optionLink == "buffs" and bankcredits >= 1) then
                 -- Take credits from the player’s bank and grant buffs
-                creature:subtractCashCredits(1)
+                creature:subtractBankCredits(1)
                 CreatureObject(conversingPlayer):enhanceCharacter()
 				nextConversationScreen = conversation:getScreen("purchase_complete")
            
 		   end
 
 		--WEAPONS
-            if (optionLink == "option1" and credits < 1) then
+		
+            if (optionLink == "weapon01" and credits < 1) then
                 -- Bail if the player doesn’t have enough cash on hand.
                 -- Plays a chat box message from the NPC as well as a system message.
                 nextConversationScreen = conversation:getScreen("insufficient_funds")
                 creature:sendSystemMessage("You have insufficient funds")
-            elseif (optionLink == "option1" and credits >= 1) then
+				
+            elseif (optionLink == "weapon01" and credits >= 1) then
                 -- Take credits from the player’s cash on hand and give player an item.
                 creature:subtractCashCredits(1)
                 local pItem = giveItem(pInventory, "object/weapon/ranged/pistol/pistol_cdef.iff", -1)
 				nextConversationScreen = conversation:getScreen("purchase_complete")
-				-- nextConversationScreen = conversation:getScreen("first_screen")
+				
             end
 
+		--ARMOR
+		
+			if (optionLink == "armor01" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "armor01" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give player an item.
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_helmet.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+			elseif (optionLink == "armor02" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "armor02" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give player an item.
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_chest_plate.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+			elseif (optionLink == "armor03" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "armor03" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give player an item.
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_leggings.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+			elseif (optionLink == "armor04" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "armor04" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give player an item.
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_boots.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+			elseif (optionLink == "armor05" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "armor05" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give player an item.
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_bicep_r.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+			elseif (optionLink == "armor06" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "armor06" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give player an item.
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_bicep_l.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+			elseif (optionLink == "armor07" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "armor07" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give player an item.
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_bracer_r.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+			elseif (optionLink == "armor08" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "armor08" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give player an item.
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_bracer_l.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+			elseif (optionLink == "armor09" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "armor09" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give player an item.
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/wearables/armor/composite/armor_composite_gloves.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+            end
+			
+			
         end
     end
     -- end of the conversation logic.
