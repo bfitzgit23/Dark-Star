@@ -167,14 +167,14 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
 		elseif (optionLink == "weapon10" and credits < 25000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "weapon250000" and credits >= 25000) then
+        elseif (optionLink == "weapon10" and credits >= 25000) then
             creature:subtractCashCredits(25000)
             giveItem(pInventory, "object/weapon/melee/2h_sword/2h_sword_katana.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
 		elseif (optionLink == "weapon11" and credits < 25000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds.")
-        elseif (optionLink == "weapon2500025000" and credits >= 25000) then
+        elseif (optionLink == "weapon11" and credits >= 25000) then
             creature:subtractCashCredits(25000)
             giveItem(pInventory, "object/weapon/melee/special/vibroknuckler.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
