@@ -10,8 +10,8 @@ dark_star_vendor_first_screen = ConvoScreen:new {
     customDialogText = "What can I help you with?",
     stopConversation = "false",
     options = { 
-        {"Buffs", "newbuff1"},
-        {"Weapons", "weaps1"},
+        {"Buffs", "buffs"},
+        {"Weapons", "weapons"},
         {"Armor", "armor1"},
         {"Loot", "loot1"},
         {"Artisan", "art1"},
@@ -25,8 +25,21 @@ dark_star_vendor_first_screen = ConvoScreen:new {
 }
 dark_star_vendor_conv:addScreen(dark_star_vendor_first_screen);
 
-weaps1 = ConvoScreen:new {    
-    id = "weaps1",
+buffs = ConvoScreen:new {
+    id = "buffs",
+    leftDialog = "",
+    customDialogText = "I sell buffs!",
+    stopConversation = "false",
+    options = { 
+
+        {"2k Medical & Ent buffs 3hr - 15k", "buffs"},
+      	{"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(buffs);
+
+weapons = ConvoScreen:new {    
+    id = "weapons",
     leftDialog = "",
     customDialogText = "Selling random loot weapons and high end weapons.",
     stopConversation = "false",
@@ -35,7 +48,7 @@ weaps1 = ConvoScreen:new {
         {"Main menu.", "first_screen"},
     }
 }
-dark_star_vendor_conv:addScreen(weaps1);
+dark_star_vendor_conv:addScreen(weapons);
 
 -- armor1 = ConvoScreen:new {    
     -- id = "armor1",
@@ -210,19 +223,6 @@ dark_star_vendor_conv:addScreen(weaps1);
     -- }
 -- }
 -- dark_star_vendor_conv:addScreen(jedi);
-
--- newbuff1 = ConvoScreen:new {
-    -- id = "newbuff1",
-    -- leftDialog = "",
-    -- customDialogText = "I sell buffs!",
-    -- stopConversation = "false",
-    -- options = { 
-
-        -- {"2k Medical & Ent buffs 3hr - 15k", "buff1"},
-      	-- {"Main menu.", "first_screen"},
-    -- }
--- }
--- dark_star_vendor_conv:addScreen(newbuff1);
 
 dark_star_vendor_accept_quest = ConvoScreen:new {    
     id = "option1",

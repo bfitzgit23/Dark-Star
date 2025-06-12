@@ -112,7 +112,22 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You do not have enough inventory space")
             end
 
-            --WEAPONS
+		--BUFFS
+			if (optionLink == "buffs" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+           
+		   elseif (optionLink == "buffs" and credits >= 1) then
+                -- Take credits from the player’s bank and grant buffs
+                creature:subtractCashCredits(1)
+                CreatureObject(conversingPlayer):enhanceCharacter()
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+           
+		   end
+
+		--WEAPONS
             if (optionLink == "option1" and credits < 1) then
                 -- Bail if the player doesn’t have enough cash on hand.
                 -- Plays a chat box message from the NPC as well as a system message.
@@ -125,6 +140,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
 				nextConversationScreen = conversation:getScreen("purchase_complete")
 				-- nextConversationScreen = conversation:getScreen("first_screen")
             end
+
         end
     end
     -- end of the conversation logic.
