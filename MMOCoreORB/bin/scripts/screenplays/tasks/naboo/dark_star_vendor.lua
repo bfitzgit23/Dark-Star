@@ -8,63 +8,60 @@ registerScreenPlay("dark_star_vendor", true)
 
 function dark_star_vendor:start()
     -- Spawn Custom Vendor in the world
-    -- NOTE: You are reusing the same variable names (pWeaponsmith2, pWeaponsmith3, etc.)
-    -- for different spawned mobiles. This can lead to bugs or make the code
-    -- harder to debug. It's better to use unique names for each.
 
     -- Corellia
-    spawnMobile("corellia", "dark_star_vendor", 1, -157, 28.0, -4724, 35, 0)      -- cnet
-    spawnMobile("corellia", "dark_star_vendor", 1, -5042, 21.0, -2297, 35, 0)     -- tyrena
-    spawnMobile("corellia", "dark_star_vendor", 1, -3138, 31.0, 2796, 35, 0)     -- korvella
-    spawnMobile("corellia", "dark_star_vendor", 1, 3333, 308.0, 5524, 35, 0)     -- doaba
-    spawnMobile("corellia", "dark_star_vendor", 1, -5550, 15.58, -6061, 35, 0)    -- venri
-    spawnMobile("corellia", "dark_star_vendor", 1, 6643.02, 330.00, -5920.87, 35, 0) -- belav
+    local pVendor_corellia_cnet = spawnMobile("corellia", "dark_star_vendor", 1, -157, 28.0, -4724, 35, 0)      -- cnet
+    local pVendor_corellia_tyrena = spawnMobile("corellia", "dark_star_vendor", 1, -5042, 21.0, -2297, 35, 0)     -- tyrena
+    local pVendor_corellia_korvella = spawnMobile("corellia", "dark_star_vendor", 1, -3138, 31.0, 2796, 35, 0)     -- korvella
+    local pVendor_corellia_doaba = spawnMobile("corellia", "dark_star_vendor", 1, 3333, 308.0, 5524, 35, 0)     -- doaba
+    local pVendor_corellia_venri = spawnMobile("corellia", "dark_star_vendor", 1, -5550, 15.58, -6061, 35, 0)    -- venri
+    local pVendor_corellia_belav = spawnMobile("corellia", "dark_star_vendor", 1, 6643.02, 330.00, -5920.87, 35, 0) -- belav
 
     -- Naboo
-    spawnMobile("naboo", "dark_star_vendor", 1, -4872, 6.0, 4151, 35, 0)         -- theed
-    spawnMobile("naboo", "dark_star_vendor", 1, 4807, 4.0, -4705, 35, 0)         -- moena
-    spawnMobile("naboo", "dark_star_vendor", 1, 5200, -192.0, 6677, 35, 0)        -- kaadara
-    spawnMobile("naboo", "dark_star_vendor", 1, 1444, 14.0, 2777, 35, 0)         -- keren
-    spawnMobile("naboo", "dark_star_vendor", 1, 5331.16, 326.95, -1576.12, 35, 0) -- deja
-    spawnMobile("naboo", "dark_star_vendor", 1, -5495.62, -150.00, -24.69, 35, 0)  -- lake ret
+    local pVendor_naboo_theed = spawnMobile("naboo", "dark_star_vendor", 1, -4872, 6.0, 4151, 35, 0)         -- theed
+    local pVendor_naboo_moena = spawnMobile("naboo", "dark_star_vendor", 1, 4807, 4.0, -4705, 35, 0)         -- moena
+    local pVendor_naboo_kaadara = spawnMobile("naboo", "dark_star_vendor", 1, 5200, -192.0, 6677, 35, 0)        -- kaadara
+    local pVendor_naboo_keren = spawnMobile("naboo", "dark_star_vendor", 1, 1444, 14.0, 2777, 35, 0)         -- keren
+    local pVendor_naboo_deja = spawnMobile("naboo", "dark_star_vendor", 1, 5331.16, 326.95, -1576.12, 35, 0) -- deja
+    local pVendor_naboo_lake_ret = spawnMobile("naboo", "dark_star_vendor", 1, -5495.62, -150.00, -24.69, 35, 0)  -- lake ret
 
     -- Tatooine
-    spawnMobile("tatooine", "dark_star_vendor", 1, 3522, 5.0, -4803, 35, 0)      -- eisley
-    spawnMobile("tatooine", "dark_star_vendor", 1, -1281, 12.0, -3590, 35, 0)     -- bestine
-    spawnMobile("tatooine", "dark_star_vendor", 1, -2914, 5.0, 2129, 35, 0)      -- espa
-    spawnMobile("tatooine", "dark_star_vendor", 1, 1293, 7.0, 3140, 35, 0)       -- entha
-    spawnMobile("tatooine", "dark_star_vendor", 1, 48.33, 52.00, -5340.53, 35, 0)   -- anc
+    local pVendor_tatooine_eisley = spawnMobile("tatooine", "dark_star_vendor", 1, 3522, 5.0, -4803, 35, 0)      -- eisley
+    local pVendor_tatooine_bestine = spawnMobile("tatooine", "dark_star_vendor", 1, -1281, 12.0, -3590, 35, 0)     -- bestine
+    local pVendor_tatooine_espa = spawnMobile("tatooine", "dark_star_vendor", 1, -2914, 5.0, 2129, 35, 0)      -- espa
+    local pVendor_tatooine_entha = spawnMobile("tatooine", "dark_star_vendor", 1, 1293, 7.0, 3140, 35, 0)       -- entha
+    local pVendor_tatooine_anc = spawnMobile("tatooine", "dark_star_vendor", 1, 48.33, 52.00, -5340.53, 35, 0)   -- anc
 
     -- Talus
-    spawnMobile("talus", "dark_star_vendor", 1, -2193, 20.0, 2313, 35, 0)       -- talus imp
-    spawnMobile("talus", "dark_star_vendor", 1, 4447, 2.0, 5271, 35, 0)        -- nashal
-    spawnMobile("talus", "dark_star_vendor", 1, 338, 6.0, -2931, 35, 0)        -- dearic
+    local pVendor_talus_imp = spawnMobile("talus", "dark_star_vendor", 1, -2193, 20.0, 2313, 35, 0)       -- talus imp
+    local pVendor_talus_nashal = spawnMobile("talus", "dark_star_vendor", 1, 4447, 2.0, 5271, 35, 0)        -- nashal
+    local pVendor_talus_dearic = spawnMobile("talus", "dark_star_vendor", 1, 338, 6.0, -2931, 35, 0)        -- dearic
 
     -- Rori
-    spawnMobile("rori", "dark_star_vendor", 1, 5365, 80.0, 5657, 35, 0)        -- restuss
-    spawnMobile("rori", "dark_star_vendor", 1, -5305, 80.0, -2228, 35, 0)       -- narmle
-    spawnMobile("rori", "dark_star_vendor", 1, 3683, 96.0, -6436, 35, 0)       -- reb
+    local pVendor_rori_restuss = spawnMobile("rori", "dark_star_vendor", 1, 5365, 80.0, 5657, 35, 0)        -- restuss
+    local pVendor_rori_narmle = spawnMobile("rori", "dark_star_vendor", 1, -5305, 80.0, -2228, 35, 0)       -- narmle
+    local pVendor_rori_reb = spawnMobile("rori", "dark_star_vendor", 1, 3683, 96.0, -6436, 35, 0)       -- reb
 
     -- Endor
-    spawnMobile("endor", "dark_star_vendor", 1, -948, 73.0, 1550, 35, 0)        -- smugglers
-    spawnMobile("endor", "dark_star_vendor", 1, 3201, 24.0, -3501, 35, 0)       -- research
+    local pVendor_endor_smugglers = spawnMobile("endor", "dark_star_vendor", 1, -948, 73.0, 1550, 35, 0)        -- smugglers
+    local pVendor_endor_research = spawnMobile("endor", "dark_star_vendor", 1, 3201, 24.0, -3501, 35, 0)       -- research
 
     -- Dantooine
-    spawnMobile("dantooine", "dark_star_vendor", 1, -632, 3.0, 2501, 35, 0)      -- mining
-    spawnMobile("dantooine", "dark_star_vendor", 1, -4209, 3.0, -2349, 35, 0)     -- imp
-    spawnMobile("dantooine", "dark_star_vendor", 1, 1564, 4.0, -6415, 35, 0)      -- aggro
+    local pVendor_dantooine_mining = spawnMobile("dantooine", "dark_star_vendor", 1, -632, 3.0, 2501, 35, 0)      -- mining
+    local pVendor_dantooine_imp = spawnMobile("dantooine", "dark_star_vendor", 1, -4209, 3.0, -2349, 35, 0)     -- imp
+    local pVendor_dantooine_aggro = spawnMobile("dantooine", "dark_star_vendor", 1, 1564, 4.0, -6415, 35, 0)      -- aggro
 
     -- Dathomir
-    spawnMobile("dathomir", "dark_star_vendor", 1, 619, 3.0, 3090, 35, 0)       -- trade
-    spawnMobile("dathomir", "dark_star_vendor", 1, -47, 18.0, -1586, 35, 0)      -- science
+    local pVendor_dathomir_trade = spawnMobile("dathomir", "dark_star_vendor", 1, 619, 3.0, 3090, 35, 0)       -- trade
+    local pVendor_dathomir_science = spawnMobile("dathomir", "dark_star_vendor", 1, -47, 18.0, -1586, 35, 0)      -- science
 
     -- Yavin 4
-    spawnMobile("yavin4", "dark_star_vendor", 1, -265, 35.0, 4897, 35, 0)       -- mining
-    spawnMobile("yavin4", "dark_star_vendor", 1, 4053, 17.0, -6217, 35, 0)       -- imp
-    spawnMobile("yavin4", "dark_star_vendor", 1, -6922, 73.0, -5730, 35, 0)      -- labor
+    local pVendor_yavin4_mining = spawnMobile("yavin4", "dark_star_vendor", 1, -265, 35.0, 4897, 35, 0)       -- mining
+    local pVendor_yavin4_imp = spawnMobile("yavin4", "dark_star_vendor", 1, 4053, 17.0, -6217, 35, 0)       -- imp
+    local pVendor_yavin4_labor = spawnMobile("yavin4", "dark_star_vendor", 1, -6922, 73.0, -5730, 35, 0)      -- labor
 
     -- Lok
-    spawnMobile("lok", "dark_star_vendor", 1, 479, 8.0, 5512, 35, 0)          -- lok
+    local pVendor_lok = spawnMobile("lok", "dark_star_vendor", 1, 479, 8.0, 5512, 35, 0)          -- lok
 end
 
 dark_star_vendor_convo_handler = Object:new {
