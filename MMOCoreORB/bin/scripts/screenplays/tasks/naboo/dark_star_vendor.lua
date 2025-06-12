@@ -285,6 +285,58 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
 				
             end
 			
+		--JEDI ITEMS
+		
+			if (optionLink == "jedi01" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "jedi01" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give the player the item purchased
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/component/weapon/lightsaber/lightsaber_module_force_crystal.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+			elseif (optionLink == "jedi02" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "jedi02" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give the player the item purchased
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/component/weapon/lightsaber/lightsaber_module_krayt_dragon_pearl.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+			elseif (optionLink == "jedi03" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "jedi03" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give the player the item purchased
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/jedi/jedi_holocron_dark.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+			elseif (optionLink == "jedi04" and credits < 1) then
+                -- Bail if the player doesn’t have enough cash on hand.
+                -- Plays a chat box message from the NPC as well as a system message.
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds")
+				
+            elseif (optionLink == "jedi04" and credits >= 1) then
+                -- Take credits from the player’s cash on hand and give the player the item purchased
+                creature:subtractCashCredits(1)
+                local pItem = giveItem(pInventory, "object/tangible/jedi/jedi_holocron_light.iff", -1)
+				nextConversationScreen = conversation:getScreen("purchase_complete")
+				
+            end
+			
         end
     end
     -- end of the conversation logic.

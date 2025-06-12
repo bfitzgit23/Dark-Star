@@ -14,14 +14,14 @@ dark_star_vendor_first_screen = ConvoScreen:new {
         {"Weapons", "weapons"},
         {"Armor", "armor"},
 		{"Deeds", "deeds"},
-        {"Loot", "loot"},
-        {"Artisan", "art1"},
-        {"Architect", "arch1"},
-        {"Chef", "chef1"},        
-        {"Medic", "doc1"},
 		{"Jedi Items", "jedi"},
-        --{"Droids", "droid1"},
-        --{"Tailor", "tailor1"},               
+        {"Medic", "medic"},
+        -- {"Artisan", "art1"},
+        -- {"Architect", "arch1"},
+        -- {"Chef", "chef1"},        
+        -- {"Droids", "droid1"},
+        -- {"Tailor", "tailor1"}, 
+		-- {"Loot", "loot"},		
     }
 }
 dark_star_vendor_conv:addScreen(dark_star_vendor_first_screen);
@@ -84,17 +84,48 @@ deeds = ConvoScreen:new {
 }
 dark_star_vendor_conv:addScreen(deeds);
 
-loot = ConvoScreen:new {
-    id = "loot",
+jedi = ConvoScreen:new {    
+    id = "jedi",
     leftDialog = "",
-    customDialogText = "Would you like to buy some loot drops?",
+    customDialogText = "Selling rare Jedi Loot.",
     stopConversation = "false",
     options = { 
-       	{"Jedi Holocron - 10mil", "loot01"},
+        {"Lightsaber Color Crystal - 25k", "jedi01"},
+		{"Krayt Dragon Pearl - 25k", "jedi02"},
+		{"Sith Holocron - 25k", "jedi03"},
+		{"Jedi Holocron - 25k", "jedi04"},
         {"Main menu.", "first_screen"},
     }
 }
-dark_star_vendor_conv:addScreen(loot);
+dark_star_vendor_conv:addScreen(jedi);
+
+medic = ConvoScreen:new {
+    id = "medic",
+    leftDialog = "",
+    customDialogText = "medical supplies, need anything?",
+    stopConversation = "false",
+    options = { 
+        {"StimPack A - 500", "medic01"},
+        {"StimPack B - 1k", "medic02"},
+        {"StimPack C - 2k", "medic03"},
+        {"StimPack D - 5k", "medic04"},
+        {"StimPack E - 10k", "medic05"},
+      	{"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(medic);
+
+-- loot = ConvoScreen:new {
+    -- id = "loot",
+    -- leftDialog = "",
+    -- customDialogText = "Would you like to buy some loot drops?",
+    -- stopConversation = "false",
+    -- options = { 
+       	-- {"Jedi Holocron - 10mil", "loot01"},
+        -- {"Main menu.", "first_screen"},
+    -- }
+-- }
+-- dark_star_vendor_conv:addScreen(loot);
 
 -- art1 = ConvoScreen:new {
     -- id = "art1",
@@ -160,26 +191,6 @@ dark_star_vendor_conv:addScreen(loot);
 -- }
 -- dark_star_vendor_conv:addScreen(chef1);
 
-
-
--- doc1 = ConvoScreen:new {
-    -- id = "doc1",
-    -- leftDialog = "",
-    -- customDialogText = "medical supplies, need anything?",
-    -- stopConversation = "false",
-    -- options = { 
-        -- {"Doc/Ent Buffs - 10k", "buff1"},
-        -- {"1500 Health/Action Buffs - 10k", "buff2"},--not working
-        -- {"StimPack A - 500", "option50"},
-        -- {"StimPack B - 1k", "option51"},
-        -- {"StimPack C - 2k", "option52"},
-        -- {"StimPack D - 5k", "option53"},
-        -- {"StimPack E - 10k", "option54"},
-      	-- {"Main menu.", "first_screen"},
-    -- }
--- }
--- dark_star_vendor_conv:addScreen(doc1);
-
 -- droid1 = ConvoScreen:new {
     -- id = "droid1",
     -- leftDialog = "",
@@ -213,26 +224,14 @@ dark_star_vendor_conv:addScreen(loot);
 -- }
 -- dark_star_vendor_conv:addScreen(tailor1);
 
--- jedi = ConvoScreen:new {    
-    -- id = "jedi",
+-- dark_star_vendor_accept_quest = ConvoScreen:new {    
+    -- id = "option1",
     -- leftDialog = "",
-    -- customDialogText = "Selling rare Jedi Loot.",
-    -- stopConversation = "false",
-    -- options = { 
-        -- {"Lightsaber Color Crystal - 25k", "option100"},
-        -- {"Main menu.", "first_screen"},
-    -- }
+    -- customDialogText = "Enjoy!",
+    -- stopConversation = "true",
+    -- options = { }
 -- }
--- dark_star_vendor_conv:addScreen(jedi);
-
-dark_star_vendor_accept_quest = ConvoScreen:new {    
-    id = "option1",
-    leftDialog = "",
-    customDialogText = "Enjoy!",
-    stopConversation = "true",
-    options = { }
-}
-dark_star_vendor_conv:addScreen(dark_star_vendor_accept_quest);
+-- dark_star_vendor_conv:addScreen(dark_star_vendor_accept_quest);
 
 dark_star_vendor_deny_quest = ConvoScreen:new {
     id = "deny_quest",
