@@ -233,7 +233,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             creature:sendSystemMessage("You have insufficient funds.")
         elseif (optionLink == "medic04" and credits >= 1) then
             creature:subtractCashCredits(1)
-            giveItem(pInventory, "oobject/tangible/medicine/crafted/crafted_stimpack_sm_s1_d.iff", -1)
+            giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_d.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
 		elseif (optionLink == "medic05" and credits < 1) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
