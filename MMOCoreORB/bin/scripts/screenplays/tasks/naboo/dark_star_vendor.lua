@@ -96,7 +96,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds from your bank.")
         elseif (optionLink == "buffs" and bankcredits >= 15000) then
-            creature:subtractBankCredits(1)
+            creature:subtractBankCredits(15000)
             CreatureObject(conversingPlayer):enhanceCharacter()
             nextConversationScreen = conversation:getScreen("purchase_complete")
 
