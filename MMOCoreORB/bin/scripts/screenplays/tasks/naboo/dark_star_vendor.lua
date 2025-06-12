@@ -1,4 +1,4 @@
-includeFile("../../../managers/loot_manager.lua")
+includeFile("test_include.lua")
 
 dark_star_vendor = ScreenPlay:new {
     numberOfActs = 1,
