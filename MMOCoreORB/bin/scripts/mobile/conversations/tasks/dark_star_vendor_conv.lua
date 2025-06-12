@@ -10,7 +10,7 @@ dark_star_vendor_first_screen = ConvoScreen:new {
     customDialogText = "What can I help you with?",
     stopConversation = "false",
     options = { 
-        {"DOC/ENT BUFFS", "newbuff1"},
+        {"Buffs", "newbuff1"},
         {"Weapons", "weaps1"},
         {"Armor", "armor1"},
         {"Loot", "loot1"},

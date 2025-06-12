@@ -121,7 +121,8 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             elseif (optionLink == "option1" and credits >= 1) then
                 -- Take credits from the player’s cash on hand and give player an item.
                 creature:subtractCashCredits(1)
-                local pItem = giveItem(pInventory, "object/weapon/ranged/carbine/carbine_dxr6.iff", -1)
+                local pItem = giveItem(pInventory, "object/weapon/ranged/pistol/pistol_cdef.iff", -1)
+				nextConversationScreen = conversation:getScreen("first_screen")
             end
         end
     end
