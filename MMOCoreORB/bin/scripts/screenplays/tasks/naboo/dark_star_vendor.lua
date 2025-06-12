@@ -1,4 +1,4 @@
-includeFile("../managers/loot_manager.lua")
+local lootManager = includeFile("../managers/loot_manager.lua")
 
 dark_star_vendor = ScreenPlay:new {
     numberOfActs = 1,
@@ -309,7 +309,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
 				
             elseif (optionLink == "jedi02" and credits >= 1) then
 				-- 1. Create the 'looted' pearl in memory. This part you did correctly!
-				local pLootItem = LootManager:instance():createLoot("krayt_pearls", 340)
+				local pLootItem = lootManager:createLoot("krayt_pearls", 340)
 
 				-- 2. IMPORTANT: Check if the pearl was created successfully BEFORE taking money.
 				if (pLootItem ~= nil) then
