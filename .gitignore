@@ -5,9 +5,13 @@ luacov.stats.out
 .cache
 compile_commands.json
 <<<<<<< HEAD
+<<<<<<< HEAD
 .vs/Dark-Star/v17/.wsuo
 .vs/Dark-Star/v17/DocumentLayout.json
 .vs/VSWorkspaceState.json
 =======
 /.vs
 >>>>>>> test-server/main
+=======
+
+>>>>>>> 85b9b39f3a32430a66bb3bd664d0fcd270a48d19
