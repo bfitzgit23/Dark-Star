@@ -334,5 +334,5 @@ includeFile("conversations/junk_dealer/junk_dealer_reggi_conv.lua")
 includeFile("conversations/junk_dealer/junk_dealer_sheani_conv.lua")
 includeFile("conversations/junk_dealer/junk_dealer_sneg_conv.lua")
 
---myswg convos
-includeFile("conversations/tasks/myswg_vendor_conv.lua")
+--Custom Vendors
+includeFile("conversations/tasks/dark_star_vendor_conv.lua")

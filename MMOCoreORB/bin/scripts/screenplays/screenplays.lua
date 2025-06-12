@@ -733,8 +733,11 @@ includeFile("events/ServerEventAutomation.lua")
 -- Custom content - Loads last to allow for overrides
 includeFile("../custom_scripts/screenplays/screenplays.lua")
 
---myswg screenplays
-includeFile("tasks/naboo/myswg_vendor.lua")
+--custom vendor screenplays
+includeFile("tasks/naboo/dark_star_vendor.lua")
 
 --additional trainers screenplays
 includeFile("tasks/naboo/additional_trainers.lua")
+
+--additional junk dealers screenplays
+includeFile("tasks/naboo/additional_junk_dealers.lua")

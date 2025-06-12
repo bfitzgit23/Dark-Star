@@ -49,14 +49,7 @@ function myswg_vendor:start()
     local pWeaponsmith4 = spawnMobile("yavin4", "myswg_vendor", 1, -6922, 73.0, -5730, 35, 0 )--labor
     
     local pWeaponsmith4 = spawnMobile("lok", "myswg_vendor", 1, 479, 8.0, 5512, 35, 0 )--lok
-    
---    local pWeaponsmith4 = spawnMobile("endor", "myswg_vendor", 1, -4964, 9.0, 3620, 35, 0 )--pcity
---    local pWeaponsmith4 = spawnMobile("dantooine", "myswg_vendor", 1, -5731.72, 2.01,6574.19, 35, 0 )--pcity
---    local pWeaponsmith2 = spawnMobile("corellia", "myswg_vendor", 1, -1453.02,10.00,-3211.87, 35, 0 )--pc  
---    local pWeaponsmith5 = spawnMobile("tatooine", "myswg_vendor", 1, 5767.33,20.00,4408.53, 35, 0 )--pc
---    local pWeaponsmith2 = spawnMobile("corellia", "myswg_vendor", 1, 3184.02,10.00,-6778.87, 35, 0 )--pc  
---    local pWeaponsmith4 = spawnMobile("dathomir", "junk_dealer", 1, -4337, 0.0, 54, 35, 0 )--pc
-    
+        
     --junk dealers
     local pWeaponsmith4 = spawnMobile("endor", "junk_dealer", 1, -4679, 12.0, 4334, 35, 0 )--dwb
     local pWeaponsmith4 = spawnMobile("dathomir", "junk_dealer", 1, -3947, 124.0, -54, 35, 0 )--ns    
@@ -64,12 +57,6 @@ function myswg_vendor:start()
     local pWeaponsmith4 = spawnMobile("dathomir", "junk_dealer", 1, 617, 3.0, 3090, 35, 0 )--trade
     local pWeaponsmith4 = spawnMobile("dathomir", "junk_dealer", 1, -45, 18.0, -1586, 35, 0 )--science
     local pWeaponsmith5 = spawnMobile("tatooine", "junk_dealer", 1, 6668.33,22.00,4245.53, 35, 0 )--gy 
-	
-	
-	--Brawler Trainer
-	-- local pWeaponsmith4 = spawnMobile("dantooine", "trainer_brawler", 1, -636, 3.0, 2503, 35, 0 )--mining
-    -- local pWeaponsmith4 = spawnMobile("dantooine", "trainer_brawler", 1, -4209, 3.0, -2359, 35, 0 )--imp
-    -- local pWeaponsmith4 = spawnMobile("dantooine", "trainer_brawler", 1, 1564, 4.0, -6425, 35, 0 )--aggro
                 
 --    local pLarry = spawnMobile("naboo", "merch_crazy_larry", 1, -4881, 6.0, 4150, 35, 0 )
 end
@@ -114,33 +101,6 @@ function myswg_vendor_convo_handler:getNextConversationScreen(conversationTempla
                     nextConversationScreen = conversation:getScreen("insufficient_space")
                     creature:sendSystemMessage("You do not have enough inventory space")
                     
---                if (optionLink == "buff1" and credits < 5000) then
---                    -- Bail if the player doesn’t have enough cash on hand.  
---                    -- Plays a chat box message from the NPC as well as a system message.
---                      nextConversationScreen = conversation:getScreen("insufficient_funds")
---                      creature:sendSystemMessage("You have insufficient funds") 
---                elseif (optionLink == "buff1" and credits >= 5000) then
---                    -- Take 10,000 credits from the player’s cash on hand and give player a speederbike.
---                    creature:subtractCashCredits(5000)
---                    local pItem = 
---										CreatureObject(conversingPlayer):enhanceCharacter()
-										--buffTerminalMenuComponent:logUsage(conversingPlayer, "enhanceCharacter")
-                    --giveItem(pInventory, "object/tangible/deed/vehicle_deed/speederbike_deed.iff", -1)
-                    --createLoot(pInventory, "junk", 1, false)
-                    
---                elseif (optionLink == "buff2" and credits < 10000000) then
---                    -- Bail if the player doesn’t have enough cash on hand.  
---                    -- Plays a chat box message from the NPC as well as a system message.
---                      nextConversationScreen = conversation:getScreen("insufficient_funds")
---                      creature:sendSystemMessage("You have insufficient funds") 
---                elseif (optionLink == "buff2" and credits >= 10000000) then
---                    -- Take 10,000 credits from the player’s cash on hand and give player a speederbike.
---                    creature:subtractCashCredits(10000000)
---                    local pItem = 
---										CreatureObject(conversingPlayer):enhanceCharacter()
---                    --giveItem(pInventory, "object/tangible/deed/vehicle_deed/speederbike_deed.iff", -1)
---                    --createLoot(pInventory, "junk", 300, false)
-
 
 --WEAPONS
                 elseif (optionLink == "option1" and credits < 25000) then
@@ -1045,54 +1005,6 @@ function myswg_vendor_convo_handler:getNextConversationScreen(conversationTempla
 					creature:subtractBankCredits(15000)
 					CreatureObject(conversingPlayer):enhanceCharacter()
 					nextConversationScreen = conversation:getScreen("buff_complete")
-                    
-                -- elseif (optionLink == "buff2" and credits < 20000) then
-                    -- -- Bail if the player doesn’t have enough cash on hand.  
-                    -- -- Plays a chat box message from the NPC as well as a system message.
-                      -- nextConversationScreen = conversation:getScreen("insufficient_funds")
-                      -- creature:sendSystemMessage("You have insufficient funds") 
-                -- elseif (optionLink == "buff2" and credits >= 20000) then
-                    -- -- Take 10,000 credits from the player’s cash on hand and give player a speederbike.
-                    -- creature:subtractCashCredits(20000)
-
-										-- CreatureObject(conversingPlayer):enhanceCharacterDocBuff()
-
-                -- elseif (optionLink == "buff3" and credits < 30000) then
-                    -- -- Bail if the player doesn’t have enough cash on hand.  
-                    -- -- Plays a chat box message from the NPC as well as a system message.
-                      -- nextConversationScreen = conversation:getScreen("insufficient_funds")
-                      -- creature:sendSystemMessage("You have insufficient funds") 
-                -- elseif (optionLink == "buff3" and credits >= 30000) then
-                    -- -- Take 10,000 credits from the player’s cash on hand and give player a speederbike.
-                    -- creature:subtractCashCredits(30000)
-
-										-- CreatureObject(conversingPlayer):enhanceCharacterDocBuffTHREE()
-
-                -- elseif (optionLink == "buff4" and credits < 10000) then
-                    -- -- Bail if the player doesn’t have enough cash on hand.  
-                    -- -- Plays a chat box message from the NPC as well as a system message.
-                      -- nextConversationScreen = conversation:getScreen("insufficient_funds")
-                      -- creature:sendSystemMessage("You have insufficient funds") 
-                -- elseif (optionLink == "buff4" and credits >= 10000) then
-                    -- -- Take 10,000 credits from the player’s cash on hand and give player a speederbike.
-                    
-	                  -- creature:subtractCashCredits(10000)
-	                  
-										-- CreatureObject(conversingPlayer):enhanceCharacterEntBuffONE()
-
-                -- elseif (optionLink == "buff5" and credits < 20000) then
-                    -- -- Bail if the player doesn’t have enough cash on hand.  
-                    -- -- Plays a chat box message from the NPC as well as a system message.
-                      -- nextConversationScreen = conversation:getScreen("insufficient_funds")
-                      -- creature:sendSystemMessage("You have insufficient funds") 
-                -- elseif (optionLink == "buff5" and credits >= 20000) then
-                    -- -- Take 10,000 credits from the player’s cash on hand and give player a speederbike.
-                    
-	                  -- creature:subtractCashCredits(20000)
-
-										-- CreatureObject(conversingPlayer):enhanceCharacterEntBuffTWO()
-
-
                 elseif (optionLink == "option50" and credits < 500) then
                     -- Bail if the player doesn’t have enough cash on hand.  
                     -- Plays a chat box message from the NPC as well as a system message.
@@ -1186,7 +1098,15 @@ function myswg_vendor_convo_handler:getNextConversationScreen(conversationTempla
                     giveItem(pInventory, "object/tangible/mission/mission_bounty_droid_probot.iff", -1)
                     --createLoot(pInventory, "junk", 300, false) 
                     
-                                       
+ --Jedi Items
+				elseif (optionLink == "option100" and bankcredits < 25000) then
+					--if player does not have enough cash then inform Player
+					nextConversationScreen = conversation:getScreen("insufficient_funds")
+                    creature:sendSystemMessage("You have insufficient funds")
+				elseif (optionLink == "option100" and bankcredits >= 25000) then
+					--Take credits from player and give requested Item(s)
+					creature:subtractCashCredits(10000)
+					local pItem = giveItem(pInventory, "color_crystals", -1)
                 end
             end
         end
