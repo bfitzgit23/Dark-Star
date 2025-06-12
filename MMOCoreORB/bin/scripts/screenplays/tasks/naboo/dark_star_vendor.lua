@@ -123,7 +123,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:subtractCashCredits(1)
                 local pItem = giveItem(pInventory, "object/weapon/ranged/pistol/pistol_cdef.iff", -1)
 				nextConversationScreen = conversation:getScreen("purchase_complete")
-				nextConversationScreen = conversation:getScreen("first_screen")
+				-- nextConversationScreen = conversation:getScreen("first_screen")
             end
         end
     end
