@@ -734,7 +734,6 @@ includeFile("events/ServerEventAutomation.lua")
 includeFile("../custom_scripts/screenplays/screenplays.lua")
 
 --custom vendor screenplays
-includeFile("tasks/naboo/myswg_vendor.lua")
 includeFile("tasks/naboo/dark_star_vendor.lua")
 
 --additional trainers screenplays

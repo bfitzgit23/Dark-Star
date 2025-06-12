@@ -88,6 +88,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             creature:sendSystemMessage("You do not have enough inventory space")
             return nextConversationScreen
         end
+	end
 
         -- BUFFS
         if (optionLink == "buffs" and bankcredits < 1) then
