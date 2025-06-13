@@ -34,7 +34,7 @@ janta_primalist = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "janta_tribe_tier_3", chance = 1}
+				{group = "janta_tribe_tier_3", chance = 10}
 			}
 		}
 	},

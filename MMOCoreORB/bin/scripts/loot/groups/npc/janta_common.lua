@@ -3,7 +3,7 @@
 janta_common = {
 	description = "",
 	minimumLevel = 200,
-	maximumLevel = 0,
+	maximumLevel = 350,
 	lootItems = {
 		{itemTemplate = "janta_blood", weight = 2500000},
 	--	{itemTemplate = "knife_janta", weight = 1000000},
