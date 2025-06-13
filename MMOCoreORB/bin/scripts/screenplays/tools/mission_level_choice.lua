@@ -13,7 +13,7 @@ mission_level_choice = ScreenPlay:new {
 		{levelRange = "High 2", levelSelect = 45}, 
 		{levelRange = "High 3", levelSelect = 60}, 
 		{levelRange = "Hard", levelSelect = 135}, 
-		{levelRange = "Hardest", levelSelect = 200}, 
+		{levelRange = "Hardest", levelSelect = 300}, 
 	}
 }
 
