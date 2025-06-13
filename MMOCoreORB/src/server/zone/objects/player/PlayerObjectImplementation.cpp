@@ -702,7 +702,7 @@ int PlayerObjectImplementation::addExperience(TransactionLog& trx, const String&
 		// -10 million experience cap for Jedi experience loss
 		//} else if(xp < -10000000 && xpType == "jedi_general") {
 		//	xp = -10000000;
-		//}
+		}
 	}
 
 	/*int xpCap = -1;
