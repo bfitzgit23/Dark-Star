@@ -34,7 +34,7 @@ janta_loreweaver = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "janta_tribe_tier_2", chance = 10000000}
+				{group = "janta_tribe_tier_3", chance = 10}
 			}
 		}
 	},
