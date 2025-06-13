@@ -696,16 +696,16 @@ int PlayerObjectImplementation::addExperience(TransactionLog& trx, const String&
 	if (experienceList.contains(xpType)) {
 		xp += experienceList.get(xpType);
 
-		if (xp <= 0 && xpType != "jedi_general") {
+		if (xp <= 0) { //&& xpType != "jedi_general") {
 			removeExperience(trx, xpType, notifyClient);
 			return 0;
 		// -10 million experience cap for Jedi experience loss
-		} else if(xp < -10000000 && xpType == "jedi_general") {
-			xp = -10000000;
+		//} else if(xp < -10000000 && xpType == "jedi_general") {
+		//	xp = -10000000;
 		}
 	}
 
-	int xpCap = -1;
+	/*int xpCap = -1;
 
 	if (xpTypeCapList.contains(xpType))
 		xpCap = xpTypeCapList.get(xpType);
@@ -719,7 +719,7 @@ int PlayerObjectImplementation::addExperience(TransactionLog& trx, const String&
 	if (xp > xpCap) {
 		valueToAdd = xpCap - (xp - valueToAdd);
 		xp = xpCap;
-	}
+	}*/
 
 	if (notifyClient) {
 		PlayerObjectDeltaMessage8* dplay8 = new PlayerObjectDeltaMessage8(this);
