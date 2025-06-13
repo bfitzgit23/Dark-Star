@@ -20,7 +20,7 @@ mission_direction_choice = ScreenPlay:new {
 --		{dirDesc = "North", dirSelect = 90},
 --		{dirDesc = "North East", dirSelect = 45},
 		{dirDesc = "Player Facing Direction", dirSelect = 360}, 
---		{dirDesc = "South East", dirSelect = 315}, 
+		{dirDesc = "South East", dirSelect = 315}, 
 --		{dirDesc = "South", dirSelect = 270}, 
 --		{dirDesc = "South West", dirSelect = 225}, 
 --		{dirDesc = "West", dirSelect = 180}, 
