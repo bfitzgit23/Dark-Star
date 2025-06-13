@@ -830,9 +830,10 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	if (difficulty == 5)
 		difficulty = 4;
-	
-		PlayerObject* targetGhost = player->getPlayerObject();
-		String level = targetGhost->getScreenPlayData("mission_level_choice", "levelChoice");
+		
+		
+	PlayerObject* targetGhost = player->getPlayerObject();
+	String level = targetGhost->getScreenPlayData("mission_level_choice", "levelChoice");
 
 	int diffDisplay = difficultyLevel < 5 ? 4 : difficultyLevel;
 
