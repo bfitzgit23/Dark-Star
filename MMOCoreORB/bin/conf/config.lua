@@ -149,6 +149,7 @@ Core3 = {
 	------TRE config------
 	TrePath = "/home/swgemu/workspace/tre",
 	TreFiles = {
+		"robes_01.tre",
 		"skills_01.tre",
 		"Speeder_01.tre",
 		"default_patch.tre",
