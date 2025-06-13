@@ -16,7 +16,7 @@ dark_star_vendor_first_screen = ConvoScreen:new {
 		{"Deeds", "deeds"},
 		{"Jedi Items", "jedi"},
         {"Medic", "medic"},
-        -- {"Artisan", "art1"},
+        {"Wearables", "wearables"},
         -- {"Architect", "arch1"},
         -- {"Chef", "chef1"},        
         -- {"Droids", "droid1"},
@@ -32,8 +32,7 @@ buffs = ConvoScreen:new {
     customDialogText = "I sell buffs!",
     stopConversation = "false",
     options = { 
-
-        {"2k Medical & Ent buffs 3hr - 15k", "buffs"},
+        {"2k Medical & Ent buffs 3hr - 15k", "buffs01"},
       	{"Main menu.", "first_screen"},
     }
 }
@@ -122,6 +121,18 @@ medic = ConvoScreen:new {
     }
 }
 dark_star_vendor_conv:addScreen(medic);
+
+wearables = ConvoScreen:new {
+    id = "wearables",
+    leftDialog = "",
+    customDialogText = "I sell clothes and backpacks!",
+    stopConversation = "false",
+    options = { 
+        {"Backpack - 5k", "wearables01"},
+      	{"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(wearables);
 
 dark_star_vendor_deny_quest = ConvoScreen:new {
     id = "deny_quest",

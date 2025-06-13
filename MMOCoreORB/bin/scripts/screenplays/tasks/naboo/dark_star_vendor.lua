@@ -92,10 +92,10 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
         end
 
         -- BUFFS
-        if (optionLink == "buffs" and bankcredits < 15000) then
+        if (optionLink == "buffs01" and bankcredits < 15000) then
             nextConversationScreen = conversation:getScreen("insufficient_funds")
             creature:sendSystemMessage("You have insufficient funds from your bank.")
-        elseif (optionLink == "buffs" and bankcredits >= 15000) then
+        elseif (optionLink == "buffs01" and bankcredits >= 15000) then
             creature:subtractBankCredits(15000)
             CreatureObject(conversingPlayer):enhanceCharacter()
             nextConversationScreen = conversation:getScreen("purchase_complete")
@@ -311,6 +311,15 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
         elseif (optionLink == "medic05" and credits >= 10000) then
             creature:subtractCashCredits(10000)
             giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_e.iff", -1)
+            nextConversationScreen = conversation:getScreen("purchase_complete")
+			
+		-- Wearables
+        elseif (optionLink == "wearables01" and credits < 5000) then
+            nextConversationScreen = conversation:getScreen("insufficient_funds")
+            creature:sendSystemMessage("You have insufficient funds.")
+        elseif (optionLink == "wearables01" and credits >= 5000) then
+            creature:subtractCashCredits(5000)
+            giveItem(pInventory, "object/tangible/wearables/backpack/backpack_s01.iff", -1)
             nextConversationScreen = conversation:getScreen("purchase_complete")
         end
     end
