@@ -2,16 +2,16 @@
 
 janta_common = {
 	description = "",
-	minimumLevel = 0,
+	minimumLevel = 200,
 	maximumLevel = 0,
 	lootItems = {
 		{itemTemplate = "janta_blood", weight = 2500000},
-		{itemTemplate = "knife_janta", weight = 1000000},
-		{itemTemplate = "polearm_staff_janta", weight = 500000},
-		{itemTemplate = "janta_hides", weight = 3500000},
-		{itemTemplate = "spear_rack_schematic", weight = 500000},
-		{groupTemplate = "wearables_common", weight = 1000000},
-		{groupTemplate = "wearables_uncommon", weight = 500000},
+	--	{itemTemplate = "knife_janta", weight = 1000000},
+	--	{itemTemplate = "polearm_staff_janta", weight = 500000},
+	--	{itemTemplate = "janta_hides", weight = 3500000},
+	--	{itemTemplate = "spear_rack_schematic", weight = 500000},
+	--	{groupTemplate = "wearables_common", weight = 1000000},
+	--	{groupTemplate = "wearables_uncommon", weight = 500000},
 		{groupTemplate = "power_crystals", weight = 500000}
 	}
 }
