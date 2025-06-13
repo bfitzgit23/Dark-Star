@@ -55,7 +55,7 @@ Core3 = {
 	ORBPort = 44419,
 
 	------Main Database Config------
-	DBHost = "0.0.0.0",
+	DBHost = "127.0.0.1",
 	DBPort = 3306,
 	DBName = "swgemu",
 	DBUser = "swgemu",
@@ -70,7 +70,7 @@ Core3 = {
 	LoginRequiredVersion = "20050408-18:00",
 
 	------Mantis Database Config------
-	MantisHost = "0.0.0.0",
+	MantisHost = "127.0.0.1",
 	MantisPort = 3306,
 	MantisName = "swgemu",
 	MantisUser = "swgemu",
