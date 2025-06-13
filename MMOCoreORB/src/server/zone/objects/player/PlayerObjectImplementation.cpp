@@ -696,7 +696,7 @@ int PlayerObjectImplementation::addExperience(TransactionLog& trx, const String&
 	if (experienceList.contains(xpType)) {
 		xp += experienceList.get(xpType);
 
-		if (xp <= 0 { //&& xpType != "jedi_general") {
+		if (xp <= 0) { //&& xpType != "jedi_general") {
 			removeExperience(trx, xpType, notifyClient);
 			return 0;
 		// -10 million experience cap for Jedi experience loss
