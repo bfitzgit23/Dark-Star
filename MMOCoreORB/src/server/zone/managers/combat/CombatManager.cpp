@@ -2016,7 +2016,7 @@ int CombatManager::getDefenderDefenseModifier(CreatureObject* defender, WeaponOb
 	debug() << "Base target defense is " << targetDefense;
 
 	// defense hardcap
-	if (targetDefense > 125)
+	if (targetDefense > 250)
 		targetDefense = 250;
 
 	if (attacker->isPlayerCreature())
