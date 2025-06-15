@@ -43,7 +43,7 @@
 
 object_tangible_wearables_armor_composite_armor_composite_chest_plate = object_tangible_wearables_armor_composite_shared_armor_composite_chest_plate:new {
 
-	templateType = ARMOROBJECT,
+	--templateType = ARMOROBJECT,
 
 	objectMenuComponent = "ArmorObjectMenuComponent",
 
