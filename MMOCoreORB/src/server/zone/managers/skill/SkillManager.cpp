@@ -424,7 +424,7 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 
 		const SkillList* list = creature->getSkillList();
 
-		int totalSkillPointsWasted = 11250;
+		int totalSkillPointsWasted = 250;
 
 		for (int i = 0; i < list->size(); ++i) {
 			Skill* skill = list->get(i);
@@ -630,7 +630,7 @@ bool SkillManager::surrenderSkill(const String& skillName, CreatureObject* creat
 
 		const SkillList* list = creature->getSkillList();
 
-		int totalSkillPointsWasted = 11250;
+		int totalSkillPointsWasted = 250;
 
 		for (int i = 0; i < list->size(); ++i) {
 			Skill* skill = list->get(i);
@@ -861,9 +861,9 @@ bool SkillManager::canLearnSkill(const String& skillName, CreatureObject* creatu
 		}
 
 		//Check if player has enough skill points to learn the skill.
-		//if (ghost->getSkillPoints() < skill->getSkillPointsRequired()) {
-			//return false;
-		//}
+		if (ghost->getSkillPoints() < skill->getSkillPointsRequired()) {
+			return false;
+		}
 	} else {
 		//Could not retrieve player object.
 		return false;
