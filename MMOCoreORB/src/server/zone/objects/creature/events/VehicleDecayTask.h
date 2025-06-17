@@ -38,10 +38,10 @@ public:
 		if (decayCycle == 0)
 			decayCycle = 600;
 
-		int decayRate = vehicleTemplate->getDecayRate();
+		int decayRate = vehicleTemplate->getDecayRate() / 2;
 
 		if (decayRate == 0)
-			decayRate = 15;
+			decayRate = 5;
 
 		if (initialDecay) {
 			vehicle->inflictDamage(vehicle, 0, decayRate / 2, true);
