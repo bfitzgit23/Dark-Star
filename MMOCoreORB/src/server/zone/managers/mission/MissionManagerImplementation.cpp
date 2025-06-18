@@ -1783,6 +1783,11 @@ void MissionManagerImplementation::generateRandomFactionalDestroyMissionDescript
 
 	int randomNumber = System::random(randomMax) + 1;
 	
+	LairSpawn* randomLairSpawn = getRandomLairSpawn(player, faction2, MissionTypes::DESTROY);
+	String lairTemplate = randomLairSpawn->getLairTemplateName();
+	LairTemplate* lairTemplateObject = CreatureTemplateManager::instance()->getLairTemplate(lairTemplate.hashCode());
+
+	
 	const VectorMap<String, int>* mobiles = lairTemplateObject->getMobiles();
  	String mobileName = "unknown";
  	if (mobiles->size() > 0) {
