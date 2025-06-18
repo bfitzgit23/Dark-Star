@@ -976,7 +976,7 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	//mission->setMissionTitle("",  "lvl " + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + groupSuffix);//String::valueOf(diffDisplay));
 	//mission->setMissionTitle("mission/mission_destroy_neutral" + messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "t");
-	mission->setMissionTitle("lvl " + String::valueOf(minDiff) + " " + missionTargetName);// + groupSuffix);//String::valueOf(diffDisplay));
+	mission->setMissionTitle("lvl " + String::valueOf(minDiff) + " " + mission.targetName);// + groupSuffix);//String::valueOf(diffDisplay));
 	mission->setMissionDescription("mission/mission_destroy_neutral" +  messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "d");
 
 	switch (faction) {
