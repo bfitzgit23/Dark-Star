@@ -1769,7 +1769,7 @@ void MissionManagerImplementation::generateRandomFactionalDestroyMissionDescript
 	int randomNumber = System::random(randomMax) + 1;
 
 	//mission->setMissionTitle("mission/mission_destroy_" + difficultyString, "m" + String::valueOf(randomNumber) + "t");
-	mission->setMissionTitle("", "lvl " + difficulty + " ");// + mobileName.replaceAll("_", " ") + " mission");
+	mission->setMissionTitle("", "lvl " + String::valueOf(difficulty) + " ");// + mobileName.replaceAll("_", " ") + " mission");
 	mission->setMissionDescription("mission/mission_destroy_" +  difficultyString, "m" + String::valueOf(randomNumber) + "d");
 }
 
