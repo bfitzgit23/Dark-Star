@@ -1805,7 +1805,7 @@ void MissionManagerImplementation::generateRandomFactionalDestroyMissionDescript
 	int minDiff = randomLairSpawn->getMinDifficulty();
 
 	//mission->setMissionTitle("mission/mission_destroy_" + difficultyString, "m" + String::valueOf(randomNumber) + "t");
-	mission->setMissionTitle("", "lvl " + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + " mission");
+	mission->setMissionTitle("Destory", "lvl " + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + " mission");
 	mission->setMissionDescription("mission/mission_destroy_" +  difficultyString, "m" + String::valueOf(randomNumber) + "d");
 }
 
