@@ -969,12 +969,28 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 	else
 		messageDifficulty = "_hard";
 
-	if (lairTemplateObject->getMobType() == LairTemplate::NPC)
+	// if (lairTemplateObject->getMobType() == LairTemplate::NPC)
+		// missionType = "_npc";
+	// else
+		// missionType = "_creature";
+	
+	String groupSuffix;
+ 	if (lairTemplateObject->getMobType() == LairTemplate::NPC){
 		missionType = "_npc";
-	else
-		missionType = "_creature";
+		groupSuffix = " camp.";
+ 	} else {
+  		missionType = "_creature";
+ 		groupSuffix = " lair.";
+ 	}
+	
+	const VectorMap<String, int>* mobiles = lairTemplateObject->getMobiles();
+ 	String mobileName = "unknown";
+ 	if (mobiles->size() > 0) {
+ 		mobileName = mobiles->elementAt(0).getKey();
+ 	}
 
-	mission->setMissionTitle("mission/mission_destroy_neutral" + messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "t");
+	mission->setMissionTitle("Destory", "lvl " + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + groupSuffix);//String::valueOf(diffDisplay));
+	//mission->setMissionTitle("mission/mission_destroy_neutral" + messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "t");
 	mission->setMissionDescription("mission/mission_destroy_neutral" +  messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "d");
 
 	switch (faction) {
@@ -1766,8 +1782,30 @@ void MissionManagerImplementation::generateRandomFactionalDestroyMissionDescript
 	}
 
 	int randomNumber = System::random(randomMax) + 1;
+	
+	int faction2 = Factions::FACTIONNEUTRAL;
+	if (player->getFaction() == Factions::FACTIONIMPERIAL) {
+		faction2 = Factions::FACTIONIMPERIAL;
+	}
+	if (player->getFaction() == Factions::FACTIONREBEL) {
+		faction2 = Factions::FACTIONREBEL;
+	}
+	
+	LairSpawn* randomLairSpawn = getRandomLairSpawn(player, faction2, MissionTypes::DESTROY);
+	String lairTemplate = randomLairSpawn->getLairTemplateName();
+	LairTemplate* lairTemplateObject = CreatureTemplateManager::instance()->getLairTemplate(lairTemplate.hashCode());
 
-	mission->setMissionTitle("mission/mission_destroy_" + difficultyString, "m" + String::valueOf(randomNumber) + "t");
+	
+	const VectorMap<String, int>* mobiles = lairTemplateObject->getMobiles();
+ 	String mobileName = "unknown";
+ 	if (mobiles->size() > 0) {
+ 		mobileName = mobiles->elementAt(0).getKey();
+ 	}
+
+	int minDiff = randomLairSpawn->getMinDifficulty();
+
+	//mission->setMissionTitle("mission/mission_destroy_" + difficultyString, "m" + String::valueOf(randomNumber) + "t");
+	mission->setMissionTitle("Destory", "lvl " + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + " mission");
 	mission->setMissionDescription("mission/mission_destroy_" +  difficultyString, "m" + String::valueOf(randomNumber) + "d");
 }
 

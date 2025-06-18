@@ -32,7 +32,7 @@ buffs = ConvoScreen:new {
     customDialogText = "I sell buffs!",
     stopConversation = "false",
     options = { 
-        {"2k Medical & Ent buffs 3hr - 15k", "buffs01"},
+        {"2k Medical & Ent buffs 3hr - 15k from Bank", "buffs01"},
       	{"Main menu.", "first_screen"},
     }
 }
@@ -86,7 +86,7 @@ deeds = ConvoScreen:new {
     customDialogText = "Would you like to buy some Deeds?",
     stopConversation = "false",
     options = { 
-        {"10k stack Resource Deed - 200k", "deeds01"},
+        {"10k stack Resource Deed - 200k from Bank", "deeds01"},
         {"Speeder Bike - 15k", "deeds02"},
         {"Main menu.", "first_screen"},
     }
@@ -129,6 +129,7 @@ wearables = ConvoScreen:new {
     stopConversation = "false",
     options = { 
         {"Backpack - 5k", "wearables01"},
+		{"Jedi Robe - 5k", "wearables02"},
       	{"Main menu.", "first_screen"},
     }
 }
