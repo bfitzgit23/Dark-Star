@@ -975,7 +975,7 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 		missionType = "_creature";
 
 	//mission->setMissionTitle("mission/mission_destroy_neutral" + messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "t");
-	mission->setMissionTitle("",  "lvl " + String::valueOf(minDiff) + " " + missionType + groupSuffix);//String::valueOf(diffDisplay));
+	mission->setMissionTitle("",  "lvl " + String::valueOf(minDiff) + " " + missionType);// + groupSuffix);//String::valueOf(diffDisplay));
 	mission->setMissionDescription("mission/mission_destroy_neutral" +  messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "d");
 
 	switch (faction) {
@@ -1769,7 +1769,7 @@ void MissionManagerImplementation::generateRandomFactionalDestroyMissionDescript
 	int randomNumber = System::random(randomMax) + 1;
 
 	//mission->setMissionTitle("mission/mission_destroy_" + difficultyString, "m" + String::valueOf(randomNumber) + "t");
-	mission->setMissionTitle("", "lvl " + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + " mission");
+	mission->setMissionTitle("", "lvl " + difficulty + " ");// + mobileName.replaceAll("_", " ") + " mission");
 	mission->setMissionDescription("mission/mission_destroy_" +  difficultyString, "m" + String::valueOf(randomNumber) + "d");
 }
 
