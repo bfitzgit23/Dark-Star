@@ -882,76 +882,24 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 		distance += System::random(destroyMissionRandomDistance) + System::random(destroyMissionDifficultyRandomDistance * difficultyLevel);
 		//startPos = player->getWorldCoordinate((float)distance, (float)System::random(360), false);
 		
-		// float direction = (float)System::random(360);
+		float direction = (float)System::random(360);
 
-		//Player direction choice -/+ 8 degrees deviation from center
-		// if (dirChoice > 0){
-			// int dev = System::random(8);
-			// int isMinus = System::random(100);
+		// Player direction choice -/+ 8 degrees deviation from center
+		if (dirChoice > 0){
+			int dev = System::random(8);
+			int isMinus = System::random(100);
 
-			// if (isMinus > 49)
-				// dev *= -1;
+			if (isMinus > 49)
+				dev *= -1;
 
-			// direction = dirChoice + dev;
+			direction = dirChoice + dev;
 
-			//Fix degree values greater than 360
-			// if (direction > 360)
-				// direction -= 360;
-		// }
+			// Fix degree values greater than 360
+			if (direction > 360)
+				direction -= 360;
+		}
 
-		// startPos = player->getWorldCoordinate(System::random(1000) + 1000, direction, false);
-		
-	ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
-    if (ghost == nullptr) {
-        // Handle error, return
-        return;
-    }
-
-    // Retrieve the chosen direction from screenplay data
-    // Default to 0 if not found (which we'll use for random or player-facing)
-    int dirChoice = 0;
-    if (ghost->hasScreenPlayData("mission_direction_choice", "directionChoice")) {
-        dirChoice = ghost->getScreenPlayData("mission_direction_choice", "directionChoice");
-    }
-
-    float direction = 0.0f; // Initialize direction
-
-    // Handle direction based on the chosen value
-    if (dirChoice == 0) { // "Reset Direction (Random)"
-        direction = (float)System::random(360); // Random direction
-        player->sendSystemMessage("Generating mission in a random direction.");
-    } else if (dirChoice == 999) { // "Current Player Facing"
-        direction = player->getDirection()->getDirectionAngle(); // Get player's actual facing direction
-        player->sendSystemMessage("Generating mission in your current facing direction.");
-    } else { // Specific chosen direction (e.g., 90 for North, 0 for East, etc.)
-        direction = (float)dirChoice;
-        player->sendSystemMessage("Generating mission in your chosen direction.");
-    }
-
-    // Apply the +/- 8 degrees deviation for chosen directions (including player facing)
-    // Only apply deviation if it's not a truly random direction (dirChoice != 0)
-    if (dirChoice != 0) {
-        int dev = System::random(8);
-        int isMinus = System::random(100);
-
-        if (isMinus > 49) {
-            dev *= -1;
-        }
-        direction += dev; // Apply deviation
-
-        // Fix degree values greater than 360 or less than 0
-        if (direction > 360) {
-            direction -= 360;
-        } else if (direction < 0) {
-            direction += 360;
-        }
-    }
-
-    // Calculate start position using the determined direction
-    startPos = player->getWorldCoordinate(System::random(1000) + 1000, direction, false);
-
-    // ... (rest of your mission generation code)
-}	
+		startPos = player->getWorldCoordinate(System::random(1000) + 1000, direction, false);
 
 		if (zone->isWithinBoundaries(startPos)) {
 			float height = zone->getHeight(startPos.getX(), startPos.getY());
