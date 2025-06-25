@@ -112,9 +112,6 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You have purchased a character enhancement.")
                 nextConversationScreen = conversation:getScreen("purchase_complete")
             end
-		elseif (optionLink == "buffs02") then
-				CreatureObject(conversingPlayer):clearBuffs();
-                creature:sendSystemMessage("Your Buffs have been removed.")
 
         --- WEAPONS ---
         elseif (optionLink == "weapon01") then

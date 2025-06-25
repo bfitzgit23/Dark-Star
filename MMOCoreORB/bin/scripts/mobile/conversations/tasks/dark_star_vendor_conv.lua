@@ -33,19 +33,6 @@ buffs = ConvoScreen:new {
     stopConversation = "false",
     options = { 
         {"2k Medical & Ent buffs 3hr - 15k", "buffs01"},
-		{"Remove Buffs", "buffs02"},
-      	{"Main menu.", "first_screen"},
-    }
-}
-dark_star_vendor_conv:addScreen(buffs);
-
-cleanse = ConvoScreen:new {
-    id = "cleanse",
-    leftDialog = "",
-    customDialogText = "Looking for Cleansing?",
-    stopConversation = "false",
-    options = { 
-        {"Heal Wounds and Battle Fatigue - 15k", "cleanse01"},
       	{"Main menu.", "first_screen"},
     }
 }
