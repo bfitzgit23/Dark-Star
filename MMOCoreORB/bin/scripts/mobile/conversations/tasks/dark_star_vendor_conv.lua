@@ -129,19 +129,18 @@ wearables = ConvoScreen:new {
     stopConversation = "false",
     options = { 
         {"Backpack - 5k", "wearables01"},
-		{"Jedi Robe - 5k", "wearables02"},
       	{"Main menu.", "first_screen"},
     }
 }
 dark_star_vendor_conv:addScreen(wearables);
 
-dark_star_vendor_deny_quest = ConvoScreen:new {
-    id = "deny_quest",
-    leftDialog = "",
-    customDialogText = "Well, have a nice day!",
-    stopConversation = "true",
-    options = { }
-}
+-- dark_star_vendor_deny_quest = ConvoScreen:new {
+    -- id = "deny_quest",
+    -- leftDialog = "",
+    -- customDialogText = "Well, have a nice day!",
+    -- stopConversation = "true",
+    -- options = { }
+-- }
 dark_star_vendor_conv:addScreen(dark_star_vendor_deny_quest);
 
 dark_star_vendor_insufficient_funds = ConvoScreen:new {
