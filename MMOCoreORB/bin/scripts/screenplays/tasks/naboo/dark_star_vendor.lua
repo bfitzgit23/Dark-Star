@@ -96,11 +96,18 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
         -- Note: Buffs are currently only from bank, so simpler check
         if (optionLink == "buffs01") then
             local itemCost = 15000
-            if (playerBankCredits < itemCost) then
+            if (totalPlayerCredits < itemCost) then
                 nextConversationScreen = conversation:getScreen("insufficient_funds")
                 creature:sendSystemMessage("You have insufficient funds in your bank for buffs.")
             else
-                creature:subtractBankCredits(itemCost)
+               local remainingCost = itemCost
+                if (playerCashCredits >= remainingCost) then
+                    creature:subtractCashCredits(remainingCost)
+                else
+                    creature:subtractCashCredits(playerCashCredits)
+                    remainingCost = remainingCost - playerCashCredits
+                    creature:subtractBankCredits(remainingCost)
+                end
                 CreatureObject(conversingPlayer):enhanceCharacter()
                 creature:sendSystemMessage("You have purchased a character enhancement.")
                 nextConversationScreen = conversation:getScreen("purchase_complete")
@@ -518,7 +525,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                     creature:subtractBankCredits(remainingCost)
                 end
                 giveItem(pInventory, "object/tangible/jedi/jedi_holocron_dark.iff", -1)
-                creature:sendSystemMessage("You have purchased a Dark Holocron.")
+                creature:sendSystemMessage("You have purchased a Sith Holocron.")
                 nextConversationScreen = conversation:getScreen("purchase_complete")
             end
         elseif (optionLink == "jedi02") then
@@ -536,7 +543,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                     creature:subtractBankCredits(remainingCost)
                 end
                 giveItem(pInventory, "object/tangible/jedi/jedi_holocron_light.iff", -1)
-                creature:sendSystemMessage("You have purchased a Light Holocron.")
+                creature:sendSystemMessage("You have purchased a Jedi Holocron.")
                 nextConversationScreen = conversation:getScreen("purchase_complete")
             end
 
@@ -556,7 +563,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                     creature:subtractBankCredits(remainingCost)
                 end
                 giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_a.iff", -1)
-                creature:sendSystemMessage("You have purchased a Stimpack S1-A.")
+                creature:sendSystemMessage("You have purchased a Stimpack A.")
                 nextConversationScreen = conversation:getScreen("purchase_complete")
             end
         elseif (optionLink == "medic02") then
@@ -574,7 +581,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                     creature:subtractBankCredits(remainingCost)
                 end
                 giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_b.iff", -1)
-                creature:sendSystemMessage("You have purchased a Stimpack S1-B.")
+                creature:sendSystemMessage("You have purchased a Stimpack B.")
                 nextConversationScreen = conversation:getScreen("purchase_complete")
             end
         elseif (optionLink == "medic03") then
@@ -592,7 +599,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                     creature:subtractBankCredits(remainingCost)
                 end
                 giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_c.iff", -1)
-                creature:sendSystemMessage("You have purchased a Stimpack S1-C.")
+                creature:sendSystemMessage("You have purchased a Stimpack C.")
                 nextConversationScreen = conversation:getScreen("purchase_complete")
             end
         elseif (optionLink == "medic04") then
@@ -610,7 +617,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                     creature:subtractBankCredits(remainingCost)
                 end
                 giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_d.iff", -1)
-                creature:sendSystemMessage("You have purchased a Stimpack S1-D.")
+                creature:sendSystemMessage("You have purchased a Stimpack D.")
                 nextConversationScreen = conversation:getScreen("purchase_complete")
             end
         elseif (optionLink == "medic05") then
@@ -628,7 +635,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                     creature:subtractBankCredits(remainingCost)
                 end
                 giveItem(pInventory, "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_e.iff", -1)
-                creature:sendSystemMessage("You have purchased a Stimpack S1-E.")
+                creature:sendSystemMessage("You have purchased a Stimpack E.")
                 nextConversationScreen = conversation:getScreen("purchase_complete")
             end
 
