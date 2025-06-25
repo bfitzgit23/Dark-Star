@@ -481,11 +481,18 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
         -- Deeds are currently a mix of bank only and cash only, applying mixed logic to the deed02, keeping deed01 bank-only
         elseif (optionLink == "deeds01") then
             local itemCost = 200000
-            if (playerBankCredits < itemCost) then
+            if (totalPlayerCredits < itemCost) then
                 nextConversationScreen = conversation:getScreen("insufficient_funds")
-                creature:sendSystemMessage("You have insufficient funds in your bank.")
+                creature:sendSystemMessage("You have insufficient funds.")
             else
-                creature:subtractBankCredits(itemCost)
+                local remainingCost = itemCost
+                if (playerCashCredits >= remainingCost) then
+                    creature:subtractCashCredits(remainingCost)
+                else
+                    creature:subtractCashCredits(playerCashCredits)
+                    remainingCost = remainingCost - playerCashCredits
+                    creature:subtractBankCredits(remainingCost)
+                end
                 giveItem(pInventory, "object/tangible/veteran_reward/resource.iff", -1)
                 creature:sendSystemMessage("You have purchased a Resource Deed.")
                 nextConversationScreen = conversation:getScreen("purchase_complete")
