@@ -237,7 +237,7 @@ class CreatureObject extends TangibleObject {
 
 	public transient unsigned long tradeTargetID;
 
-	public static final int CONVERSATION_MAX_DISTANCE = 7; // Max range for conversations
+	public static final int CONVERSATION_MAX_DISTANCE = 15; // Max range for conversations
 
 	/**
 	 * CreatureObject constructor, used to initialized the object

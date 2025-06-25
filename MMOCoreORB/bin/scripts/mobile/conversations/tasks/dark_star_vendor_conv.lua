@@ -32,7 +32,20 @@ buffs = ConvoScreen:new {
     customDialogText = "I sell buffs!",
     stopConversation = "false",
     options = { 
-        {"2k Medical & Ent buffs 3hr - 15k from Bank", "buffs01"},
+        {"2k Medical & Ent buffs 3hr - 15k", "buffs01"},
+		{"Remove Buffs", "buffs02"},
+      	{"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(buffs);
+
+cleanse = ConvoScreen:new {
+    id = "cleanse",
+    leftDialog = "",
+    customDialogText = "Looking for Cleansing?",
+    stopConversation = "false",
+    options = { 
+        {"Heal Wounds and Battle Fatigue - 15k", "cleanse01"},
       	{"Main menu.", "first_screen"},
     }
 }
@@ -146,7 +159,7 @@ dark_star_vendor_conv:addScreen(dark_star_vendor_deny_quest);
 dark_star_vendor_insufficient_funds = ConvoScreen:new {
     id = "insufficient_funds",  
     leftDialog = "", 
-    customDialogText = "Sorry, but you don't have enough cash credits with you to purchase that. Head on over to the bank. I'll be here when ya get back!",
+    customDialogText = "Sorry, but you don't have enough credits to purchase that. Come back when you have more credits",
     stopConversation = "true",
     options = { }
 }
