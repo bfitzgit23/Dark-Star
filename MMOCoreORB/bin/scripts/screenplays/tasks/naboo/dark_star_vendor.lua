@@ -113,7 +113,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 nextConversationScreen = conversation:getScreen("purchase_complete")
             end
 		elseif (optionLink == "buffs02") then
-				CreatureObject(conversingPlayer):clearBuffs(true, false);
+				CreatureObject(conversingPlayer):clearBuffs();
                 creature:sendSystemMessage("Your Buffs have been removed.")
 
         --- WEAPONS ---
