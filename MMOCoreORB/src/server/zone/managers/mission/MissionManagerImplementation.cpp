@@ -830,8 +830,7 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	if (difficulty == 5)
 		difficulty = 4;
-		
-		
+
 	PlayerObject* targetGhost = player->getPlayerObject();
 	String level = targetGhost->getScreenPlayData("mission_level_choice", "levelChoice");
 
@@ -848,11 +847,53 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 	} else {
 		diffDisplay += playerLevel;
 	}
-	
+
 	int levelChoice = Integer::valueOf(level);
-	
-	String dir = targetGhost->getScreenPlayData("mission_direction_choice", "directionChoice");
-  	float dirChoice = Float::valueOf(dir);
+
+    // --- START MODIFIED CODE BLOCK ---
+    // Retrieve the chosen direction from screenplay data
+    int dirChoice = 0; // Default to 0 (random/default)
+    if (targetGhost->hasScreenPlayData("mission_direction_choice", "directionChoice")) {
+        dirChoice = targetGhost->getScreenPlayData("mission_direction_choice", "directionChoice");
+        info("DEBUG: Player " + player->getFirstName() + " has dirChoice in screenplay: " + String::valueOf(dirChoice));
+    } else {
+        info("DEBUG: Player " + player->getFirstName() + " DOES NOT have dirChoice in screenplay. Defaulting to 0.");
+    }
+
+    float direction = 0.0f; // Initialize direction
+
+    // Handle direction based on the chosen value
+    if (dirChoice == 0) { // "Reset Direction (Random)"
+        direction = (float)System::random(360); // Random direction
+        player->sendSystemMessage("Generating mission in a random direction."); // Optional: remove after testing
+    } else if (dirChoice == 999) { // "Current Player Facing"
+        direction = player->getDirection()->getDirectionAngle(); // Get player's actual facing direction
+        player->sendSystemMessage("Generating mission in your current facing direction."); // Optional: remove after testing
+    } else { // Specific chosen direction (e.g., 90 for North, 0 for East, etc.)
+        direction = (float)dirChoice;
+        player->sendSystemMessage("Generating mission in your chosen direction: " + String::valueOf(dirChoice) + " degrees."); // Optional: remove after testing
+    }
+
+    // Apply the +/- 8 degrees deviation for chosen directions (including player facing)
+    // Only apply deviation if it's not a truly random direction (dirChoice != 0)
+    if (dirChoice != 0) { // We apply deviation for both 999 (player facing) and explicit choices
+        int dev = System::random(8);
+        int isMinus = System::random(100);
+
+        if (isMinus > 49) {
+            dev *= -1;
+        }
+        direction += dev; // Apply deviation
+
+        // Fix degree values greater than 360 or less than 0
+        if (direction > 360) {
+            direction -= 360;
+        } else if (direction < 0) {
+            direction += 360;
+        }
+    }
+    info("DEBUG: Final calculated direction (after deviation): " + String::valueOf(direction));
+    // --- END MODIFIED CODE BLOCK ---
 
 	String building = lairTemplateObject->getMissionBuilding(difficulty);
 
@@ -880,26 +921,12 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 		int distance = destroyMissionBaseDistance + destroyMissionDifficultyDistanceFactor * difficultyLevel;
 		distance += System::random(destroyMissionRandomDistance) + System::random(destroyMissionDifficultyRandomDistance * difficultyLevel);
-		//startPos = player->getWorldCoordinate((float)distance, (float)System::random(360), false);
-		
-		float direction = (float)System::random(360);
 
-		// Player direction choice -/+ 8 degrees deviation from center
-		if (dirChoice > 0){
-			int dev = System::random(8);
-			int isMinus = System::random(100);
-
-			if (isMinus > 49)
-				dev *= -1;
-
-			direction = dirChoice + dev;
-
-			// Fix degree values greater than 360
-			if (direction > 360)
-				direction -= 360;
-		}
-
-		startPos = player->getWorldCoordinate(System::random(1000) + 1000, direction, false);
+		// *** THIS LINE IS THE ONE WE ARE REPLACING/MODIFYING ***
+		// Original: startPos = player->getWorldCoordinate((float)distance, (float)System::random(360), false);
+        // My previous code was placed where your original (commented out) random line was.
+        // The one below is the one you need to change.
+		startPos = player->getWorldCoordinate((float)distance, direction, false); // <--- THIS LINE USES THE CALCULATED 'direction'
 
 		if (zone->isWithinBoundaries(startPos)) {
 			float height = zone->getHeight(startPos.getX(), startPos.getY());
@@ -969,29 +996,23 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 	else
 		messageDifficulty = "_hard";
 
-	// if (lairTemplateObject->getMobType() == LairTemplate::NPC)
-		// missionType = "_npc";
-	// else
-		// missionType = "_creature";
-	
 	String groupSuffix;
- 	if (lairTemplateObject->getMobType() == LairTemplate::NPC){
+	if (lairTemplateObject->getMobType() == LairTemplate::NPC){
 		missionType = "_npc";
 		groupSuffix = " camp.";
- 	} else {
-  		missionType = "_creature";
- 		groupSuffix = " lair.";
- 	}
-	
-	const VectorMap<String, int>* mobiles = lairTemplateObject->getMobiles();
- 	String mobileName = "unknown";
- 	if (mobiles->size() > 0) {
- 		mobileName = mobiles->elementAt(0).getKey();
- 	}
+	} else {
+		missionType = "_creature";
+		groupSuffix = " lair.";
+	}
 
-	mission->setMissionTitle("Destory", "lvl " + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + groupSuffix);//String::valueOf(diffDisplay));
-	//mission->setMissionTitle("mission/mission_destroy_neutral" + messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "t");
-	mission->setMissionDescription("mission/mission_destroy_neutral" +  messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "d");
+	const VectorMap<String, int>* mobiles = lairTemplateObject->getMobiles();
+	String mobileName = "unknown";
+	if (mobiles->size() > 0) {
+		mobileName = mobiles->elementAt(0).getKey();
+	}
+
+	mission->setMissionTitle("Destory", "lvl " + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + groupSuffix);
+	mission->setMissionDescription("mission/mission_destroy_neutral" + messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "d");
 
 	switch (faction) {
 	case Factions::FACTIONIMPERIAL:
