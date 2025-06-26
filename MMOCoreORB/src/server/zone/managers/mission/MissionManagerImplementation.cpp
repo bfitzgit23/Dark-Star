@@ -802,6 +802,11 @@ void MissionManagerImplementation::randomizeFactionTerminalMissions(CreatureObje
 	}
 }
 
+#include "server/zone/managers/mission/MissionManager.h"
+// ... (other includes)
+#include <cmath> // For std::cos and std::sin
+// ... (rest of the file, other includes, etc.)
+
 void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject* player, MissionObject* mission, const uint32 faction) {
 	Zone* zone = player->getZone();
 
@@ -850,7 +855,7 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	int levelChoice = Integer::valueOf(level);
 
-    // --- START MODIFIED DIRECTION CALCULATION BLOCK ---
+    // --- START MODIFIED DIRECTION CALCULATION BLOCK (No change here) ---
     int dirChoice = 0; // Default to 0 (random/default)
     String directionChoiceStr = targetGhost->getScreenPlayData("mission_direction_choice", "directionChoice");
 
@@ -905,33 +910,67 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 		int distance = destroyMissionBaseDistance + destroyMissionDifficultyDistanceFactor * difficultyLevel;
 		distance += System::random(destroyMissionRandomDistance) + System::random(destroyMissionDifficultyRandomDistance * difficultyLevel);
 
-        // Calculate the player's current absolute facing angle.
-        float playerFacingAngle = player->getDirectionAngle();
+        // --- NEW CALCULATION: Manual X/Y using trigonometry ---
+        // Player's absolute coordinates
+        float playerX = player->getPositionX();
+        float playerY = player->getPositionY();
 
-        // Calculate the angle to pass to getWorldCoordinate (which seems to interpret angles as relative to player's facing)
-        float currentTryRelativeAngle = desiredAbsoluteWorldAngle;
+        // Calculate the effective angle for trigonometry
+        // Our desiredAbsoluteWorldAngle is 0=South, 90=West, 180=North, 270=East, increasing CW
+        // std::cos and std::sin use radians and assume 0=East, increasing CCW.
+        // Conversion: Math_Angle = ( (Our_Angle + 90) % 360 ) in standard 0=North CW
+        // Math_Angle = (Our_Angle - 270 + 360) % 360 in standard 0=East CCW
+        float effectiveAngleDegrees = desiredAbsoluteWorldAngle;
 
-        // Apply deviation only if a specific direction was chosen (not fully random)
+        // Apply deviation directly to the desired absolute angle
         if (dirChoice != 0) {
             int dev = System::random(8); // 0-7
             int isMinus = System::random(100); // 0-99
-
             if (isMinus > 49) {
                 dev *= -1;
             }
-            currentTryRelativeAngle += dev; // Apply deviation
+            effectiveAngleDegrees += dev; // Apply deviation
         }
 
-        // --- CRUCIAL CHANGE: Convert desired absolute angle to a relative angle for getWorldCoordinate ---
-        // (desired_absolute_world_angle - player_facing_angle + 360) % 360
-        currentTryRelativeAngle = fmod((currentTryRelativeAngle - playerFacingAngle + 360.0f), 360.0f);
+        // Normalize angle to [0, 360)
+        effectiveAngleDegrees = fmod(effectiveAngleDegrees, 360.0f);
+        if (effectiveAngleDegrees < 0) effectiveAngleDegrees += 360.0f;
+
+        // Convert to radians for sin/cos
+        float angleRad = Math::deg2rad(effectiveAngleDegrees);
+
+        // Calculate target X and Y using trigonometry
+        // In SWGEmu's coordinate system (assuming common behavior based on our logs):
+        // +X is East, +Y is North.
+        // Our angle 0 is South (-Y), 90 is West (-X), 180 is North (+Y), 270 is East (+X).
+        //
+        // This is a typical SWG world map:
+        // +Y (North)
+        //   ^
+        //   |
+        // (-X)---(0,0)---(+X) (East)
+        //   |
+        //   v
+        // -Y (South)
+        //
+        // So, X movement is sin(angle_from_Y_axis) or cos(angle_from_X_axis)
+        // Y movement is cos(angle_from_Y_axis) or sin(angle_from_X_axis)
+        //
+        // Let's use standard math angle from East, counter-clockwise:
+        // Adjust desiredAbsoluteWorldAngle (0=South, CW) to standard math angle (0=East, CCW):
+        // Math Angle = (90 - Desired_Angle_CW + 360) % 360
+        float finalMathAngleRad = Math::deg2rad(fmod(90.0f - effectiveAngleDegrees + 360.0f, 360.0f));
+
+        float targetX = playerX + (distance * cos(finalMathAngleRad));
+        float targetY = playerY + (distance * sin(finalMathAngleRad));
+
+        startPos = Vector3(targetX, targetY, 0); // Z will be set by terrain later
 
 
-        info("DEBUG: Try " + String::valueOf(tryCount) + ": Player Facing Angle: " + String::valueOf(playerFacingAngle) +
+        info("DEBUG: Try " + String::valueOf(tryCount) + ": Player X/Y: " + String::valueOf(playerX) + "/" + String::valueOf(playerY) +
              ", Desired Absolute Angle: " + String::valueOf(desiredAbsoluteWorldAngle) +
-             ", Passing Relative Angle to getWorldCoordinate: " + String::valueOf(currentTryRelativeAngle));
-
-		startPos = player->getWorldCoordinate((float)distance, currentTryRelativeAngle, true); // <--- NOW PASS TRUE FOR ISPLAYERRELATIVE
+             ", Math Angle Rad: " + String::valueOf(finalMathAngleRad) +
+             ", Passing Distance: " + String::valueOf(distance));
 
         info("DEBUG: Try " + String::valueOf(tryCount) + ": Generated startPos X=" + String::valueOf(startPos.getX()) + ", Y=" + String::valueOf(startPos.getY()));
 
