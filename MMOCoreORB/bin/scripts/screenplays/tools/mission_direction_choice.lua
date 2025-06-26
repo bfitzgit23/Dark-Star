@@ -99,6 +99,12 @@ function  mission_direction_choice:dirSelection(pPlayer, pSui, eventIndex, args)
     -- DEBUG: System message indicating write attempt (you had this, keep it)
 	CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: Attempting to write directionChoice: " .. selectedDir)
 
+    -- *** NEW DEBUG LINE ***
+    -- Read back the data immediately after writing it
+    local verifyDir = readScreenPlayData(pPlayer, "mission_direction_choice", "directionChoice")
+    CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: VERIFY Read back from screenplay: '" .. tostring(verifyDir) .. "'")
+
+
 	if (selectedDir == 0) then
 		CreatureObject(pPlayer):sendSystemMessage("Mission direction has been reset to normal randomization.")
 	elseif (selectedDir == 999) then
