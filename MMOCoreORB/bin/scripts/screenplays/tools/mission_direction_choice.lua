@@ -16,19 +16,19 @@ mission_direction_choice = ScreenPlay:new {
 	numberOfActs = 1,
 
 	directions = {
-		-- dirSelect = 0 is also used for "Reset Direction (Random)", which works as intended
-		-- because the C++ code explicitly randomizes if dirChoice is 0.
-		{dirDesc = "Current Player Facing", dirSelect = 999},      -- Special value for player facing.
-		{dirDesc = "South (0°)", dirSelect = 0},                   -- To get missions South, send 0.
-		{dirDesc = "South West (45°)", dirSelect = 45},            -- To get missions SW, send 45.
-		{dirDesc = "West (90°)", dirSelect = 90},                  -- To get missions West, send 90.
-		{dirDesc = "North West (135°)", dirSelect = 135},          -- To get missions NW, send 135.
-		{dirDesc = "North (180°)", dirSelect = 180},               -- To get missions North, send 180.
-		{dirDesc = "North East (225°)", dirSelect = 225},          -- To get missions NE, send 225.
-		{dirDesc = "East (270°)", dirSelect = 270},                -- To get missions East, send 270.
-		{dirDesc = "South East (315°)", dirSelect = 315},          -- To get missions SE, send 315.
+		{dirDesc = "Reset Direction (Random)", dirSelect = 0},
+		{dirDesc = "Current Player Facing", dirSelect = 999},
+		{dirDesc = "Test Angle 0", dirSelect = 0},
+		{dirDesc = "Test Angle 45", dirSelect = 45},
+		{dirDesc = "Test Angle 90", dirSelect = 90},
+		{dirDesc = "Test Angle 135", dirSelect = 135},
+		{dirDesc = "Test Angle 180", dirSelect = 180},
+		{dirDesc = "Test Angle 225", dirSelect = 225},
+		{dirDesc = "Test Angle 270", dirSelect = 270},
+		{dirDesc = "Test Angle 315", dirSelect = 315},
 	}
 }
+-- ... (rest of the Lua code remains unchanged)
 
 function mission_direction_choice:start()
 
