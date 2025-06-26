@@ -36,6 +36,8 @@
 #include "server/zone/managers/visibility/VisibilityManager.h"
 #include "server/zone/objects/building/BuildingObject.h"
 #include "server/zone/managers/director/DirectorManager.h"
+#include <cmath> // For std::cos and std::sin
+#include "server/zone/managers/mission/MissionManager.h"
 
 void MissionManagerImplementation::loadLuaSettings() {
 	try {
@@ -802,6 +804,7 @@ void MissionManagerImplementation::randomizeFactionTerminalMissions(CreatureObje
 	}
 }
 
+
 void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject* player, MissionObject* mission, const uint32 faction) {
 	Zone* zone = player->getZone();
 
@@ -830,9 +833,8 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	if (difficulty == 5)
 		difficulty = 4;
-		
-		
-	PlayerObject* targetGhost = player->getPlayerObject();
+
+	ManagedReference<PlayerObject*> targetGhost = player->getPlayerObject();
 	String level = targetGhost->getScreenPlayData("mission_level_choice", "levelChoice");
 
 	int diffDisplay = difficultyLevel < 5 ? 4 : difficultyLevel;
@@ -848,11 +850,34 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 	} else {
 		diffDisplay += playerLevel;
 	}
-	
+
 	int levelChoice = Integer::valueOf(level);
-	
-	String dir = targetGhost->getScreenPlayData("mission_direction_choice", "directionChoice");
-  	float dirChoice = Float::valueOf(dir);
+
+    // --- START MODIFIED DIRECTION CALCULATION BLOCK ---
+    int dirChoice = 0; // Default to 0 (random/default)
+    String directionChoiceStr = targetGhost->getScreenPlayData("mission_direction_choice", "directionChoice");
+
+    if (!directionChoiceStr.isEmpty()) {
+        dirChoice = Integer::valueOf(directionChoiceStr);
+        //info("DEBUG: Player " + player->getFirstName() + " has dirChoice in screenplay: " + String::valueOf(dirChoice)); // Commented out debug
+    } else {
+        //info("DEBUG: Player " + player->getFirstName() + " DOES NOT have dirChoice in screenplay or it's empty. Defaulting to 0."); // Commented out debug
+    }
+
+    float desiredAbsoluteWorldAngle = 0.0f; // This is the absolute angle we want the mission to spawn at
+    if (dirChoice == 0) { // "Reset Direction (Random)"
+        desiredAbsoluteWorldAngle = (float)System::random(360); // A random world angle
+      //  player->sendSystemMessage("Generating mission in a random direction.");
+    } else if (dirChoice == 999) { // "Current Player Facing"
+        desiredAbsoluteWorldAngle = player->getDirectionAngle(); // Use player's current absolute facing as the desired world angle
+      //  player->sendSystemMessage("Generating mission in your current facing direction.");
+    } else { // Specific chosen direction
+        desiredAbsoluteWorldAngle = (float)dirChoice; // Use the chosen absolute angle
+      //  player->sendSystemMessage("Generating mission in your chosen direction: " + String::valueOf(dirChoice) + " degrees.");
+    }
+
+    //info("DEBUG: Desired absolute world angle for mission: " + String::valueOf(desiredAbsoluteWorldAngle)); // Commented out debug
+    // --- END MODIFIED DIRECTION CALCULATION BLOCK ---
 
 	String building = lairTemplateObject->getMissionBuilding(difficulty);
 
@@ -875,31 +900,58 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	bool foundPosition = false;
 	int maximumNumberOfTries = 20;
+	int tryCount = 0;
 	while (!foundPosition && maximumNumberOfTries-- > 0) {
+		tryCount++;
 		foundPosition = true;
 
 		int distance = destroyMissionBaseDistance + destroyMissionDifficultyDistanceFactor * difficultyLevel;
 		distance += System::random(destroyMissionRandomDistance) + System::random(destroyMissionDifficultyRandomDistance * difficultyLevel);
-		//startPos = player->getWorldCoordinate((float)distance, (float)System::random(360), false);
-		
-		float direction = (float)System::random(360);
 
-		// Player direction choice -/+ 8 degrees deviation from center
-		if (dirChoice > 0){
-			int dev = System::random(8);
-			int isMinus = System::random(100);
+        // --- NEW CALCULATION: Manual X/Y using trigonometry ---
+        // Player's absolute coordinates
+        float playerX = player->getPositionX();
+        float playerY = player->getPositionY();
 
-			if (isMinus > 49)
-				dev *= -1;
+        float effectiveAngleDegrees = desiredAbsoluteWorldAngle;
 
-			direction = dirChoice + dev;
+        // Apply deviation directly to the desired absolute angle
+        if (dirChoice != 0) {
+            int dev = System::random(8); // 0-7
+            int isMinus = System::random(100); // 0-99
+            if (isMinus > 49) {
+                dev *= -1;
+            }
+            effectiveAngleDegrees += dev; // Apply deviation
+        }
 
-			// Fix degree values greater than 360
-			if (direction > 360)
-				direction -= 360;
-		}
+        // Normalize angle to [0, 360)
+        effectiveAngleDegrees = fmod(effectiveAngleDegrees, 360.0f);
+        if (effectiveAngleDegrees < 0) effectiveAngleDegrees += 360.0f;
 
-		startPos = player->getWorldCoordinate(System::random(1000) + 1000, direction, false);
+        // Convert to radians for sin/cos (std::cos and std::sin use radians and assume 0=East, increasing CCW).
+        // Our desiredAbsoluteWorldAngle (from Lua) is 0=North, 90=East, 180=South, 270=West, increasing CW.
+        // Conversion to Math Angle (0=East, increasing CCW):
+        // Math Angle = (90 - Our_Angle_CW + 360) % 360
+        // Example: North (0 deg CW) -> (90 - 0 + 360) % 360 = 90 deg Math Angle (Correct, 90 deg Math is +Y, North)
+        // Example: East (90 deg CW) -> (90 - 90 + 360) % 360 = 0 deg Math Angle (Correct, 0 deg Math is +X, East)
+        // Example: South (180 deg CW) -> (90 - 180 + 360) % 360 = 270 deg Math Angle (Correct, 270 deg Math is -Y, South)
+        // Example: West (270 deg CW) -> (90 - 270 + 360) % 360 = 180 deg Math Angle (Correct, 180 deg Math is -X, West)
+        float finalMathAngleRad = Math::deg2rad(fmod(90.0f - effectiveAngleDegrees + 360.0f, 360.0f));
+
+        float targetX = playerX + (distance * cos(finalMathAngleRad));
+        float targetY = playerY + (distance * sin(finalMathAngleRad));
+
+        startPos = Vector3(targetX, targetY, 0); // Z will be set by terrain later
+
+
+        //info("DEBUG: Try " + String::valueOf(tryCount) + ": Player X/Y: " + String::valueOf(playerX) + "/" + String::valueOf(playerY) + // Commented out debug
+        //     ", Desired Absolute Angle: " + String::valueOf(desiredAbsoluteWorldAngle) + // Commented out debug
+        //     ", Math Angle Rad: " + String::valueOf(finalMathAngleRad) + // Commented out debug
+        //     ", Passing Distance: " + String::valueOf(distance)); // Commented out debug
+
+        //info("DEBUG: Try " + String::valueOf(tryCount) + ": Generated startPos X=" + String::valueOf(startPos.getX()) + ", Y=" + String::valueOf(startPos.getY())); // Commented out debug
+
 
 		if (zone->isWithinBoundaries(startPos)) {
 			float height = zone->getHeight(startPos.getX(), startPos.getY());
@@ -907,7 +959,6 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 			bool result = terrain->getWaterHeight(startPos.getX(), startPos.getY(), waterHeight);
 
 			if (!result || waterHeight <= height) {
-				//Check that the position is outside cities.
 				SortedVector<ManagedReference<ActiveArea* > > activeAreas;
 
 				zone->getInRangeActiveAreas(startPos.getX(), startPos.getZ(), startPos.getY(), &activeAreas, true);
@@ -920,17 +971,22 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 					if (area->isCityRegion()) {
 						foundPosition = false;
+                        //info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Inside city region."); // Commented out debug
+                        break;
 					}
 				}
 			} else {
 				foundPosition = false;
+                //info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Water too high or no terrain height."); // Commented out debug
 			}
 		} else {
 			foundPosition = false;
+            //info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Outside zone boundaries."); // Commented out debug
 		}
 	}
 
 	if (!foundPosition) {
+		//error("DEBUG: Failed to find valid position for destroy mission after " + String::valueOf(tryCount) + " tries for player " + player->getFirstName()); // Commented out debug
 		return;
 	}
 
@@ -938,7 +994,14 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	mission->setMissionNumber(randTexts);
 
+    //info("DEBUG: Setting Mission Start Position (calculated): X=" + String::valueOf(startPos.getX()) + // Commented out debug
+    //     ", Y=" + String::valueOf(startPos.getY()) + // Commented out debug
+    //     ", Zone=" + zone->getZoneName() + // Commented out debug
+    //     " (Player is at X=" + String::valueOf(player->getPositionX()) + // Commented out debug
+    //     ", Y=" + String::valueOf(player->getPositionY()) + ")"); // Commented out debug
+
 	mission->setStartPosition(startPos.getX(), startPos.getY(), zone->getZoneName());
+
 	mission->setCreatorName(nm->makeCreatureName());
 
 	mission->setMissionTargetName("@lair_n:" + lairTemplateObject->getName());
@@ -969,29 +1032,23 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 	else
 		messageDifficulty = "_hard";
 
-	// if (lairTemplateObject->getMobType() == LairTemplate::NPC)
-		// missionType = "_npc";
-	// else
-		// missionType = "_creature";
-	
 	String groupSuffix;
- 	if (lairTemplateObject->getMobType() == LairTemplate::NPC){
+	if (lairTemplateObject->getMobType() == LairTemplate::NPC){
 		missionType = "_npc";
 		groupSuffix = " camp.";
- 	} else {
-  		missionType = "_creature";
- 		groupSuffix = " lair.";
- 	}
-	
-	const VectorMap<String, int>* mobiles = lairTemplateObject->getMobiles();
- 	String mobileName = "unknown";
- 	if (mobiles->size() > 0) {
- 		mobileName = mobiles->elementAt(0).getKey();
- 	}
+	} else {
+		missionType = "_creature";
+		groupSuffix = " lair.";
+	}
 
-	mission->setMissionTitle("Destory", "lvl " + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + groupSuffix);//String::valueOf(diffDisplay));
-	//mission->setMissionTitle("mission/mission_destroy_neutral" + messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "t");
-	mission->setMissionDescription("mission/mission_destroy_neutral" +  messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "d");
+	const VectorMap<String, int>* mobiles = lairTemplateObject->getMobiles();
+	String mobileName = "unknown";
+	if (mobiles->size() > 0) {
+		mobileName = mobiles->elementAt(0).getKey();
+	}
+
+	mission->setMissionTitle("Destory", "lvl " + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + groupSuffix);
+	mission->setMissionDescription("mission/mission_destroy_neutral" + messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "d");
 
 	switch (faction) {
 	case Factions::FACTIONIMPERIAL:

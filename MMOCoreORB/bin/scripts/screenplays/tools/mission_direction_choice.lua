@@ -1,30 +1,35 @@
 -- Allows players to choose the direction they want to take destroy missions
+
+-- Final confirmed angle mapping used by this script (0=North, increases clockwise):
 --
---							N 90
---							|
---					NW 135  |	NE 45
---						  \ | /
---						   \|/
---			W 180 ----------+---------- E 0 and 360
---						   /|\
---						  / | \
---					SW 225	|  SE 315
---							|
---							S 270
+--                            N (360°)
+--                             |
+--                    NW(315°) | NE(45°)
+--                           \ | /
+--                            \|/
+--             W(270°) ---------+--------- E(90°)
+--                           /|\
+--                          / | \
+--                    SW(225°) | SE(135°)
+--                             |
+--                             S (180°)
 
 mission_direction_choice = ScreenPlay:new {
 	numberOfActs = 1,
 
 	directions = {
-		{dirDesc = "Reset Direction", dirSelect = 0},
---		{dirDesc = "North", dirSelect = 90},
---		{dirDesc = "North East", dirSelect = 45},
-		{dirDesc = "Player Facing Direction", dirSelect = 360}, 
---		{dirDesc = "South East", dirSelect = 315}, 
---		{dirDesc = "South", dirSelect = 270}, 
---		{dirDesc = "South West", dirSelect = 225}, 
---		{dirDesc = "West", dirSelect = 180}, 
---		{dirDesc = "North West", dirSelect = 135}, 
+		{dirDesc = "Reset Direction (Random)", dirSelect = 0},     -- C++ explicitly randomizes if dirChoice is 0.
+		{dirDesc = "Current Player Facing", dirSelect = 999},      -- Special value for player facing.
+
+		-- Sorted by standard compass direction (0=North, increases clockwise) for readability
+		{dirDesc = "North", dirSelect = 360},
+		{dirDesc = "North East", dirSelect = 45},
+		{dirDesc = "East", dirSelect = 90},
+		{dirDesc = "South East", dirSelect = 135},
+		{dirDesc = "South", dirSelect = 180},
+		{dirDesc = "South West", dirSelect = 225},
+		{dirDesc = "West", dirSelect = 270},
+		{dirDesc = "North West", dirSelect = 315},
 	}
 }
 
@@ -48,13 +53,13 @@ function mission_direction_choice:showLevels(pPlayer)
 		return
 	end
 
-	local sui = SuiListBox.new("mission_direction_choice", "dirSelection") -- calls dirSelection on SUI window event
+	local sui = SuiListBox.new("mission_direction_choice", "dirSelection")
 
 	sui.setTargetNetworkId(SceneObject(pPlayer):getObjectID())
 
 	sui.setTitle("Mission Direction Selection")
 
-	local promptText = "Use this menu to select the direction in which you would like to take missions.  After you have chosen, use the mission terminal to get a selection of missions (if any exist) within that direction.  \n\nIf no missions are offered to you, it is because terrain is unsuitable for missions in that direction from your current location.  You will need to choose another direction.\n\nWhen you want to go back to the 'normal' offering of missions for your skill level/group level, just choose Reset Mission Direction."
+	local promptText = "Use this menu to select the direction in which you would like to take missions.  After you have chosen, use the mission terminal to get a selection of missions (if any exist) within that direction.  \n\nIf no missions are offered to you, it is because terrain is unsuitable for missions in that direction from your current location.  You will need to choose another direction.\n\nWhen you want to go back to the 'normal' offering of missions for your skill level/group level, just choose 'Reset Direction (Random)'."
 
 	sui.setPrompt(promptText)
 
@@ -70,7 +75,7 @@ function  mission_direction_choice:dirSelection(pPlayer, pSui, eventIndex, args)
 	local cancelPressed = (eventIndex == 1)
 
 	if (cancelPressed) then
-		return 
+		return
 	end
 
 	if (args == "-1") then
@@ -83,12 +88,17 @@ function  mission_direction_choice:dirSelection(pPlayer, pSui, eventIndex, args)
 	local selectedDir = tonumber(self.directions[selectedIndex].dirSelect)
 	local selectedDirDesc = self.directions[selectedIndex].dirDesc
 
-	writeScreenPlayData(pPlayer, "mission_direction_choice", "directionChoice", selectedDir) 
+	writeScreenPlayData(pPlayer, "mission_direction_choice", "directionChoice", selectedDir)
+
+    -- This forces player data persistence, crucial for C++ to read it immediately.
+    --CreatureObject(pPlayer):updateToDatabase();
 
 	if (selectedDir == 0) then
 		CreatureObject(pPlayer):sendSystemMessage("Mission direction has been reset to normal randomization.")
-	else	
-		CreatureObject(pPlayer):sendSystemMessage("You have selected take mission to the " .. selectedDirDesc .. ". This choice will remain active until you choose to change or reset it.")
+	elseif (selectedDir == 999) then
+		CreatureObject(pPlayer):sendSystemMessage("You have selected to take missions in your current player facing direction. This choice will remain active until you choose to change or reset it.")
+	else
+		CreatureObject(pPlayer):sendSystemMessage("You have selected to take missions to the " .. selectedDirDesc .. ". This choice will remain active until you choose to change or reset it.")
 	end
 
 end
