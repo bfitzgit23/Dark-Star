@@ -96,17 +96,20 @@ function  mission_direction_choice:dirSelection(pPlayer, pSui, eventIndex, args)
 
 	writeScreenPlayData(pPlayer, "mission_direction_choice", "directionChoice", selectedDir)
 
-    -- DEBUG: System message indicating write attempt (you had this, keep it)
+    -- DEBUG: System message indicating write attempt
 	CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: Attempting to write directionChoice: " .. selectedDir)
 
-    -- *** NEW DEBUG LINE ***
-    -- Read back the data immediately after writing it
+    -- DEBUG: VERIFY Read back the data immediately after writing it
     local verifyDir = readScreenPlayData(pPlayer, "mission_direction_choice", "directionChoice")
     CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: VERIFY Read back from screenplay: '" .. tostring(verifyDir) .. "'")
 
+    -- *** NEW: FORCE PLAYER OBJECT SAVE ***
+    CreatureObject(pPlayer):updateToDatabase();
+    CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: Forced player object save after direction selection.")
+
 
 	if (selectedDir == 0) then
-		CreatureObject(pPlayer):sendSystemMessage("Mission direction has been reset to normal randomization.")
+		CreatureObject(pPlayer):sendSystemMessage("Mission direction has been reset to normal randomization (or South).")
 	elseif (selectedDir == 999) then
 		CreatureObject(pPlayer):sendSystemMessage("You have selected to take missions in your current player facing direction. This choice will remain active until you choose to change or reset it.")
 	else
