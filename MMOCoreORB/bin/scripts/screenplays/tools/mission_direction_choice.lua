@@ -1,34 +1,36 @@
--- Re-adjusted angle map based on observed behavior (0 = South, angles increase clockwise)
+-- Definitive angle mapping for player->getWorldCoordinate in your SWGEmu server:
+-- Angles start at South (0°) and increase clockwise.
 --
---                            N 180
+--                            N (180°)
 --                             |
---                    NW 135   |   NE 225
+--                    NW(135°) | NE(225°)
 --                           \ | /
 --                            \|/
---             W 90  ----------+---------- E 270
+--             W(90°) ---------+--------- E(270°)
 --                           /|\
 --                          / | \
---                    SW 45    |   SE 315
+--                    SW(45°)  | SE(315°)
 --                             |
---                             S 0 and 360
+--                             S (0°/360°)
 
 mission_direction_choice = ScreenPlay:new {
 	numberOfActs = 1,
 
 	directions = {
-		{dirDesc = "Reset Direction (Random)", dirSelect = 0},
-		{dirDesc = "Current Player Facing", dirSelect = 999},
-		{dirDesc = "Test Angle 0", dirSelect = 0},
-		{dirDesc = "Test Angle 45", dirSelect = 45},
-		{dirDesc = "Test Angle 90", dirSelect = 90},
-		{dirDesc = "Test Angle 135", dirSelect = 135},
-		{dirDesc = "Test Angle 180", dirSelect = 180},
-		{dirDesc = "Test Angle 225", dirSelect = 225},
-		{dirDesc = "Test Angle 270", dirSelect = 270},
-		{dirDesc = "Test Angle 315", dirSelect = 315},
+		{dirDesc = "Reset Direction (Random)", dirSelect = 0},     -- C++ explicitly randomizes if dirChoice is 0.
+		{dirDesc = "Current Player Facing", dirSelect = 999},      -- Special value for player facing.
+
+		-- Sorted by standard compass direction for readability
+		{dirDesc = "North (180°)", dirSelect = 180},
+		{dirDesc = "North East (225°)", dirSelect = 225},
+		{dirDesc = "East (270°)", dirSelect = 270},
+		{dirDesc = "South East (315°)", dirSelect = 315},
+		{dirDesc = "South (0°)", dirSelect = 0},                  -- South is 0 degrees
+		{dirDesc = "South West (45°)", dirSelect = 45},
+		{dirDesc = "West (90°)", dirSelect = 90},
+		{dirDesc = "North West (135°)", dirSelect = 135},
 	}
 }
--- ... (rest of the Lua code remains unchanged)
 
 function mission_direction_choice:start()
 
