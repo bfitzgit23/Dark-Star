@@ -1,32 +1,32 @@
--- Allows players to choose the direction they want to take destroy missions
-
+-- Re-adjusted angle map based on observed behavior (0 = South, angles increase clockwise)
 --
---							N 90
---							|
---					NW 135  |	NE 45
---						  \ | /
---						   \|/
---			W 180 ----------+---------- E 0 and 360
---						   /|\
---						  / | \
---					SW 225	|  SE 315
---							|
---							S 270
+--                            N 180
+--                             |
+--                    NW 135   |   NE 225
+--                           \ | /
+--                            \|/
+--             W 90  ----------+---------- E 270
+--                           /|\
+--                          / | \
+--                    SW 45    |   SE 315
+--                             |
+--                             S 0 and 360
 
 mission_direction_choice = ScreenPlay:new {
 	numberOfActs = 1,
 
 	directions = {
-		{dirDesc = "Reset Direction (Random)", dirSelect = 0}, -- 0 for random/default
-		{dirDesc = "Current Player Facing", dirSelect = 999}, -- New value for player facing
-		{dirDesc = "North (90°)", dirSelect = 90},
-		{dirDesc = "North East (45°)", dirSelect = 45},
-		{dirDesc = "East (0°)", dirSelect = 0}, -- East is typically 0 or 360 degrees
-		{dirDesc = "South East (315°)", dirSelect = 315},
-		{dirDesc = "South (270°)", dirSelect = 270},
-		{dirDesc = "South West (225°)", dirSelect = 225},
-		{dirDesc = "West (180°)", dirSelect = 180},
-		{dirDesc = "North West (135°)", dirSelect = 135},
+		-- dirSelect = 0 is also used for "Reset Direction (Random)", which works as intended
+		-- because the C++ code explicitly randomizes if dirChoice is 0.
+		{dirDesc = "Current Player Facing", dirSelect = 999},      -- Special value for player facing.
+		{dirDesc = "South (0°)", dirSelect = 0},                   -- To get missions South, send 0.
+		{dirDesc = "South West (45°)", dirSelect = 45},            -- To get missions SW, send 45.
+		{dirDesc = "West (90°)", dirSelect = 90},                  -- To get missions West, send 90.
+		{dirDesc = "North West (135°)", dirSelect = 135},          -- To get missions NW, send 135.
+		{dirDesc = "North (180°)", dirSelect = 180},               -- To get missions North, send 180.
+		{dirDesc = "North East (225°)", dirSelect = 225},          -- To get missions NE, send 225.
+		{dirDesc = "East (270°)", dirSelect = 270},                -- To get missions East, send 270.
+		{dirDesc = "South East (315°)", dirSelect = 315},          -- To get missions SE, send 315.
 	}
 }
 
