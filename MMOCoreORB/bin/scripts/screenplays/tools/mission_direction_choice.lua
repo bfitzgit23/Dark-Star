@@ -2,7 +2,7 @@
 
 -- Final confirmed angle mapping used by this script (0=North, increases clockwise):
 --
---                            N (0°/360°)
+--                            N (360°)
 --                             |
 --                    NW(315°) | NE(45°)
 --                           \ | /
@@ -22,7 +22,7 @@ mission_direction_choice = ScreenPlay:new {
 		{dirDesc = "Current Player Facing", dirSelect = 999},      -- Special value for player facing.
 
 		-- Sorted by standard compass direction (0=North, increases clockwise) for readability
-		{dirDesc = "North", dirSelect = 0},
+		{dirDesc = "North", dirSelect = 360},
 		{dirDesc = "North East", dirSelect = 45},
 		{dirDesc = "East", dirSelect = 90},
 		{dirDesc = "South East", dirSelect = 135},

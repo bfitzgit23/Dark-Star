@@ -867,13 +867,13 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
     float desiredAbsoluteWorldAngle = 0.0f; // This is the absolute angle we want the mission to spawn at
     if (dirChoice == 0) { // "Reset Direction (Random)"
         desiredAbsoluteWorldAngle = (float)System::random(360); // A random world angle
-        player->sendSystemMessage("Generating mission in a random direction.");
+      //  player->sendSystemMessage("Generating mission in a random direction.");
     } else if (dirChoice == 999) { // "Current Player Facing"
         desiredAbsoluteWorldAngle = player->getDirectionAngle(); // Use player's current absolute facing as the desired world angle
-        player->sendSystemMessage("Generating mission in your current facing direction.");
+      //  player->sendSystemMessage("Generating mission in your current facing direction.");
     } else { // Specific chosen direction
         desiredAbsoluteWorldAngle = (float)dirChoice; // Use the chosen absolute angle
-        player->sendSystemMessage("Generating mission in your chosen direction: " + String::valueOf(dirChoice) + " degrees.");
+      //  player->sendSystemMessage("Generating mission in your chosen direction: " + String::valueOf(dirChoice) + " degrees.");
     }
 
     //info("DEBUG: Desired absolute world angle for mission: " + String::valueOf(desiredAbsoluteWorldAngle)); // Commented out debug
