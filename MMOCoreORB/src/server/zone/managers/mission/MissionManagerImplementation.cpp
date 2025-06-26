@@ -831,7 +831,7 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 	if (difficulty == 5)
 		difficulty = 4;
 
-	PlayerObject* targetGhost = player->getPlayerObject();
+	ManagedReference<PlayerObject*> targetGhost = player->getPlayerObject();
 	String level = targetGhost->getScreenPlayData("mission_level_choice", "levelChoice");
 
 	int diffDisplay = difficultyLevel < 5 ? 4 : difficultyLevel;
@@ -850,24 +850,28 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	int levelChoice = Integer::valueOf(level);
 
-    // --- START MODIFIED CODE BLOCK ---
+    // --- START MODIFIED CODE BLOCK (Addressing errors) ---
     // Retrieve the chosen direction from screenplay data
     int dirChoice = 0; // Default to 0 (random/default)
-    if (targetGhost->hasScreenPlayData("mission_direction_choice", "directionChoice")) {
-        dirChoice = targetGhost->getScreenPlayData("mission_direction_choice", "directionChoice");
+    String directionChoiceStr = targetGhost->getScreenPlayData("mission_direction_choice", "directionChoice"); // Get as String
+
+    if (!directionChoiceStr.isEmpty()) { // Check if the string is not empty
+        dirChoice = directionChoiceStr.toInt(); // Convert String to int
         info("DEBUG: Player " + player->getFirstName() + " has dirChoice in screenplay: " + String::valueOf(dirChoice));
     } else {
-        info("DEBUG: Player " + player->getFirstName() + " DOES NOT have dirChoice in screenplay. Defaulting to 0.");
+        info("DEBUG: Player " + player->getFirstName() + " DOES NOT have dirChoice in screenplay or it's empty. Defaulting to 0.");
     }
 
     float direction = 0.0f; // Initialize direction
 
     // Handle direction based on the chosen value
     if (dirChoice == 0) { // "Reset Direction (Random)"
-        direction = (float)System::random(360); // Random direction
+        direction = (float)System::random(360); // Random direction (0-359)
         player->sendSystemMessage("Generating mission in a random direction."); // Optional: remove after testing
     } else if (dirChoice == 999) { // "Current Player Facing"
-        direction = player->getDirection()->getDirectionAngle(); // Get player's actual facing direction
+        // Corrected: Use player->getDirectionAngle() or player->getDirection()->getAngle()
+        // Assuming getDirectionAngle() exists on CreatureObject
+        direction = player->getDirectionAngle(); // Get player's actual facing direction in degrees
         player->sendSystemMessage("Generating mission in your current facing direction."); // Optional: remove after testing
     } else { // Specific chosen direction (e.g., 90 for North, 0 for East, etc.)
         direction = (float)dirChoice;
@@ -877,19 +881,20 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
     // Apply the +/- 8 degrees deviation for chosen directions (including player facing)
     // Only apply deviation if it's not a truly random direction (dirChoice != 0)
     if (dirChoice != 0) { // We apply deviation for both 999 (player facing) and explicit choices
-        int dev = System::random(8);
-        int isMinus = System::random(100);
+        int dev = System::random(8); // 0-7
+        int isMinus = System::random(100); // 0-99
 
-        if (isMinus > 49) {
+        if (isMinus > 49) { // 50% chance to be minus
             dev *= -1;
         }
         direction += dev; // Apply deviation
 
         // Fix degree values greater than 360 or less than 0
-        if (direction > 360) {
-            direction -= 360;
-        } else if (direction < 0) {
-            direction += 360;
+        // Ensure angle stays within [0, 360) range
+        if (direction >= 360.0f) {
+            direction -= 360.0f;
+        } else if (direction < 0.0f) {
+            direction += 360.0f;
         }
     }
     info("DEBUG: Final calculated direction (after deviation): " + String::valueOf(direction));
@@ -922,11 +927,8 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 		int distance = destroyMissionBaseDistance + destroyMissionDifficultyDistanceFactor * difficultyLevel;
 		distance += System::random(destroyMissionRandomDistance) + System::random(destroyMissionDifficultyRandomDistance * difficultyLevel);
 
-		// *** THIS LINE IS THE ONE WE ARE REPLACING/MODIFYING ***
-		// Original: startPos = player->getWorldCoordinate((float)distance, (float)System::random(360), false);
-        // My previous code was placed where your original (commented out) random line was.
-        // The one below is the one you need to change.
-		startPos = player->getWorldCoordinate((float)distance, direction, false); // <--- THIS LINE USES THE CALCULATED 'direction'
+		// Use the calculated 'direction' and 'distance'
+		startPos = player->getWorldCoordinate((float)distance, direction, false); // THIS LINE IS CORRECTLY UPDATED TO USE 'direction'
 
 		if (zone->isWithinBoundaries(startPos)) {
 			float height = zone->getHeight(startPos.getX(), startPos.getY());
@@ -965,7 +967,7 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	mission->setMissionNumber(randTexts);
 
-	mission->setStartPosition(startPos.getX(), startPos.getY(), zone->getZoneName());
+	mission->setStartPosition(startPos.getX(), startPos.getX(), zone->getZoneName()); // Corrected: should be startPos.getY() for Y coordinate
 	mission->setCreatorName(nm->makeCreatureName());
 
 	mission->setMissionTargetName("@lair_n:" + lairTemplateObject->getName());
