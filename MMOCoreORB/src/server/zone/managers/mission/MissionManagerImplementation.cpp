@@ -854,6 +854,7 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
     // Retrieve the chosen direction from screenplay data
     int dirChoice = 0; // Default to 0 (random/default)
     String directionChoiceStr = targetGhost->getScreenPlayData("mission_direction_choice", "directionChoice"); // Get as String
+	info("DEBUG: Raw directionChoiceStr from screenplay: '" + directionChoiceStr + "'"); // Check for extra characters!
 
     if (!directionChoiceStr.isEmpty()) { // Check if the string is not empty
         dirChoice = Integer::valueOf(directionChoiceStr); // Convert String to int using Integer::valueOf()
