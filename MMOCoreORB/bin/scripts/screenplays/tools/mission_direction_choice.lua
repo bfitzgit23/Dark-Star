@@ -1,17 +1,17 @@
 -- Definitive angle mapping for player->getWorldCoordinate in your SWGEmu server:
 -- Angles start at South (0°) and increase clockwise.
 --
---                            N (180°)
+--                            N (360°)
 --                             |
---                    NW(135°) | NE(225°)
+--                    NW(135°) | NE(315°)
 --                           \ | /
 --                            \|/
 --             W(90°) ---------+--------- E(270°)
 --                           /|\
 --                          / | \
---                    SW(45°)  | SE(315°)
+--                    SW(45°)  | SE(225°)
 --                             |
---                             S (0°/360°)
+--                             S (180°)
 
 mission_direction_choice = ScreenPlay:new {
 	numberOfActs = 1,
@@ -21,11 +21,11 @@ mission_direction_choice = ScreenPlay:new {
 		{dirDesc = "Current Player Facing", dirSelect = 999},      -- Special value for player facing.
 
 		-- Sorted by standard compass direction for readability
-		{dirDesc = "North (180°)", dirSelect = 360},
-		{dirDesc = "North East (225°)", dirSelect = 315},
-		{dirDesc = "East (270°)", dirSelect = 270},
-		{dirDesc = "South East (315°)", dirSelect = 225},
-		{dirDesc = "South (0°)", dirSelect = 180},                  -- South is 0 degrees
+		{dirDesc = "North", dirSelect = 360},
+		{dirDesc = "North East", dirSelect = 315},
+		{dirDesc = "East", dirSelect = 270},
+		{dirDesc = "South East", dirSelect = 225},
+		{dirDesc = "South", dirSelect = 180},                  
 		{dirDesc = "South West (45°)", dirSelect = 45},
 		{dirDesc = "West (90°)", dirSelect = 90},
 		{dirDesc = "North West (135°)", dirSelect = 135},

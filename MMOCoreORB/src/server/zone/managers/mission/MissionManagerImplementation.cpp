@@ -850,7 +850,7 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	int levelChoice = Integer::valueOf(level);
 
-    // --- START MODIFIED DIRECTION CALCULATION BLOCK (Latest version with baseDirection) ---
+    // --- START MODIFIED DIRECTION CALCULATION BLOCK ---
     int dirChoice = 0; // Default to 0 (random/default)
     String directionChoiceStr = targetGhost->getScreenPlayData("mission_direction_choice", "directionChoice");
 
@@ -861,19 +861,19 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
         info("DEBUG: Player " + player->getFirstName() + " DOES NOT have dirChoice in screenplay or it's empty. Defaulting to 0.");
     }
 
-    float baseDirection = 0.0f; // Store the base direction (chosen or player facing)
+    float desiredAbsoluteWorldAngle = 0.0f; // This is the absolute angle we want the mission to spawn at
     if (dirChoice == 0) { // "Reset Direction (Random)"
-        baseDirection = (float)System::random(360); // Random direction (0-359)
+        desiredAbsoluteWorldAngle = (float)System::random(360); // A random world angle
         player->sendSystemMessage("Generating mission in a random direction.");
     } else if (dirChoice == 999) { // "Current Player Facing"
-        baseDirection = player->getDirectionAngle(); // Get player's actual facing direction in degrees
+        desiredAbsoluteWorldAngle = player->getDirectionAngle(); // Use player's current absolute facing as the desired world angle
         player->sendSystemMessage("Generating mission in your current facing direction.");
-    } else { // Specific chosen direction
-        baseDirection = (float)dirChoice;
+    } else { // Specific chosen direction (e.g., 180 for North in your final desired mapping)
+        desiredAbsoluteWorldAngle = (float)dirChoice; // Use the chosen absolute angle
         player->sendSystemMessage("Generating mission in your chosen direction: " + String::valueOf(dirChoice) + " degrees.");
     }
 
-    info("DEBUG: Base direction for mission generation: " + String::valueOf(baseDirection));
+    info("DEBUG: Desired absolute world angle for mission: " + String::valueOf(desiredAbsoluteWorldAngle));
     // --- END MODIFIED DIRECTION CALCULATION BLOCK ---
 
 	String building = lairTemplateObject->getMissionBuilding(difficulty);
@@ -897,48 +897,42 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	bool foundPosition = false;
 	int maximumNumberOfTries = 20;
-	int tryCount = 0; // New: to track tries
+	int tryCount = 0;
 	while (!foundPosition && maximumNumberOfTries-- > 0) {
-		tryCount++; // New: increment try counter
+		tryCount++;
 		foundPosition = true;
 
 		int distance = destroyMissionBaseDistance + destroyMissionDifficultyDistanceFactor * difficultyLevel;
 		distance += System::random(destroyMissionRandomDistance) + System::random(destroyMissionDifficultyRandomDistance * difficultyLevel);
 
-        // Calculate 'direction' for THIS try, including deviation
-        float currentTryDirection = baseDirection; // Start with the base direction
+        // Calculate the player's current absolute facing angle.
+        float playerFacingAngle = player->getDirectionAngle();
 
-        // Apply the +/- 8 degrees deviation for chosen directions (including player facing)
-        // Only apply deviation if it's not a truly random direction (dirChoice != 0)
-        if (dirChoice != 0) { // Apply deviation only if a specific direction was chosen (not fully random)
+        // Calculate the angle to pass to getWorldCoordinate (which seems to interpret angles as relative to player's facing)
+        float currentTryRelativeAngle = desiredAbsoluteWorldAngle;
+
+        // Apply deviation only if a specific direction was chosen (not fully random)
+        if (dirChoice != 0) {
             int dev = System::random(8); // 0-7
             int isMinus = System::random(100); // 0-99
 
-            if (isMinus > 49) { // 50% chance to be minus
+            if (isMinus > 49) {
                 dev *= -1;
             }
-            currentTryDirection += dev; // Apply deviation
-
-            // Fix degree values greater than 360 or less than 0
-            if (currentTryDirection >= 360.0f) {
-                currentTryDirection -= 360.0f;
-            } else if (currentTryDirection < 0.0f) {
-                currentTryDirection += 360.0f;
-            }
-        } else {
-             // If dirChoice is 0, baseDirection is already random.
-             // We use the already-generated random 'baseDirection' for this try.
-             // If you want *each* of the 20 tries to have a *new* random direction,
-             // you'd put System::random(360) here again. But for now, using baseDirection is fine.
+            currentTryRelativeAngle += dev; // Apply deviation
         }
 
-        // New: Log the direction and distance for this specific try
-        info("DEBUG: Try " + String::valueOf(tryCount) + ": Attempting with direction " + String::valueOf(currentTryDirection) + " and distance " + String::valueOf(distance));
+        // --- CRUCIAL CHANGE: Convert desired absolute angle to a relative angle for getWorldCoordinate ---
+        // (desired_absolute_world_angle - player_facing_angle + 360) % 360
+        currentTryRelativeAngle = fmod((currentTryRelativeAngle - playerFacingAngle + 360.0f), 360.0f);
 
-        // Calculate startPos for this try
-		startPos = player->getWorldCoordinate((float)distance, currentTryDirection, false);
 
-        // New: Log the generated startPos for this specific try
+        info("DEBUG: Try " + String::valueOf(tryCount) + ": Player Facing Angle: " + String::valueOf(playerFacingAngle) +
+             ", Desired Absolute Angle: " + String::valueOf(desiredAbsoluteWorldAngle) +
+             ", Passing Relative Angle to getWorldCoordinate: " + String::valueOf(currentTryRelativeAngle));
+
+		startPos = player->getWorldCoordinate((float)distance, currentTryRelativeAngle, true); // <--- NOW PASS TRUE FOR ISPLAYERRELATIVE
+
         info("DEBUG: Try " + String::valueOf(tryCount) + ": Generated startPos X=" + String::valueOf(startPos.getX()) + ", Y=" + String::valueOf(startPos.getY()));
 
 
@@ -948,7 +942,6 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 			bool result = terrain->getWaterHeight(startPos.getX(), startPos.getY(), waterHeight);
 
 			if (!result || waterHeight <= height) {
-				//Check that the position is outside cities.
 				SortedVector<ManagedReference<ActiveArea* > > activeAreas;
 
 				zone->getInRangeActiveAreas(startPos.getX(), startPos.getZ(), startPos.getY(), &activeAreas, true);
@@ -961,22 +954,22 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 					if (area->isCityRegion()) {
 						foundPosition = false;
-                        info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Inside city region."); // New: specific fail reason
-                        break; // Exit inner loop, continue to next try
+                        info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Inside city region.");
+                        break;
 					}
 				}
 			} else {
 				foundPosition = false;
-                info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Water too high or no terrain height."); // New: specific fail reason
+                info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Water too high or no terrain height.");
 			}
 		} else {
 			foundPosition = false;
-            info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Outside zone boundaries."); // New: specific fail reason
+            info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Outside zone boundaries.");
 		}
-	} // END OF WHILE LOOP
+	}
 
 	if (!foundPosition) {
-		error("DEBUG: Failed to find valid position for destroy mission after " + String::valueOf(tryCount) + " tries for player " + player->getFirstName()); // Updated count
+		error("DEBUG: Failed to find valid position for destroy mission after " + String::valueOf(tryCount) + " tries for player " + player->getFirstName());
 		return;
 	}
 
@@ -984,14 +977,13 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	mission->setMissionNumber(randTexts);
 
-    // This is the correct line to set the mission's final position.
     info("DEBUG: Setting Mission Start Position (calculated): X=" + String::valueOf(startPos.getX()) +
          ", Y=" + String::valueOf(startPos.getY()) +
          ", Zone=" + zone->getZoneName() +
          " (Player is at X=" + String::valueOf(player->getPositionX()) +
          ", Y=" + String::valueOf(player->getPositionY()) + ")");
 
-	mission->setStartPosition(startPos.getX(), startPos.getY(), zone->getZoneName()); // Corrected to use startPos.getY()
+	mission->setStartPosition(startPos.getX(), startPos.getY(), zone->getZoneName());
 
 	mission->setCreatorName(nm->makeCreatureName());
 
@@ -1060,6 +1052,7 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	mission->setTypeCRC(MissionTypes::DESTROY);
 }
+
 void MissionManagerImplementation::randomizeGenericSurveyMission(CreatureObject* player, MissionObject* mission, const uint32 faction) {
 	int maxLevel = 50;
 	int minLevel = 50;
