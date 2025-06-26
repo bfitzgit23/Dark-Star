@@ -87,6 +87,8 @@ function  mission_direction_choice:dirSelection(pPlayer, pSui, eventIndex, args)
 	local selectedDirDesc = self.directions[selectedIndex].dirDesc
 
 	writeScreenPlayData(pPlayer, "mission_direction_choice", "directionChoice", selectedDir)
+	
+	CreatureObject(pPlayer):sendSystemMessage("DEBUG: Attempting to write directionChoice: " .. selectedDir)
 
 	if (selectedDir == 0) then
 		CreatureObject(pPlayer):sendSystemMessage("Mission direction has been reset to normal randomization.")
