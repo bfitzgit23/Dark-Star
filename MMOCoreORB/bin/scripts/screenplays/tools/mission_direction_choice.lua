@@ -1,15 +1,16 @@
--- Definitive angle mapping for player->getWorldCoordinate in your SWGEmu server:
--- Angles start at South (0°) and increase clockwise.
+-- Allows players to choose the direction they want to take destroy missions
+
+-- Final confirmed angle mapping used by this script (0=North, increases clockwise):
 --
---                            N (360°)
+--                            N (0°/360°)
 --                             |
---                    NW(135°) | NE(315°)
+--                    NW(315°) | NE(45°)
 --                           \ | /
 --                            \|/
---             W(90°) ---------+--------- E(270°)
+--             W(270°) ---------+--------- E(90°)
 --                           /|\
 --                          / | \
---                    SW(45°)  | SE(225°)
+--                    SW(225°) | SE(135°)
 --                             |
 --                             S (180°)
 
@@ -20,15 +21,15 @@ mission_direction_choice = ScreenPlay:new {
 		{dirDesc = "Reset Direction (Random)", dirSelect = 0},     -- C++ explicitly randomizes if dirChoice is 0.
 		{dirDesc = "Current Player Facing", dirSelect = 999},      -- Special value for player facing.
 
-		-- Sorted by standard compass direction for readability
-		{dirDesc = "North", dirSelect = 360},
-		{dirDesc = "North East", dirSelect = 315},
-		{dirDesc = "East", dirSelect = 270},
-		{dirDesc = "South East", dirSelect = 225},
-		{dirDesc = "South", dirSelect = 180},                  
-		{dirDesc = "South West (45°)", dirSelect = 45},
-		{dirDesc = "West (90°)", dirSelect = 90},
-		{dirDesc = "North West (135°)", dirSelect = 135},
+		-- Sorted by standard compass direction (0=North, increases clockwise) for readability
+		{dirDesc = "North", dirSelect = 0},
+		{dirDesc = "North East", dirSelect = 45},
+		{dirDesc = "East", dirSelect = 90},
+		{dirDesc = "South East", dirSelect = 135},
+		{dirDesc = "South", dirSelect = 180},
+		{dirDesc = "South West", dirSelect = 225},
+		{dirDesc = "West", dirSelect = 270},
+		{dirDesc = "North West", dirSelect = 315},
 	}
 }
 
@@ -52,7 +53,7 @@ function mission_direction_choice:showLevels(pPlayer)
 		return
 	end
 
-	local sui = SuiListBox.new("mission_direction_choice", "dirSelection") -- calls dirSelection on SUI window event
+	local sui = SuiListBox.new("mission_direction_choice", "dirSelection")
 
 	sui.setTargetNetworkId(SceneObject(pPlayer):getObjectID())
 
@@ -63,7 +64,6 @@ function mission_direction_choice:showLevels(pPlayer)
 	sui.setPrompt(promptText)
 
 	for i = 1,  #self.directions, 1 do
-
 		sui.add(self.directions[i].dirDesc, "")
 	end
 
@@ -85,33 +85,16 @@ function  mission_direction_choice:dirSelection(pPlayer, pSui, eventIndex, args)
 
 	local selectedIndex = tonumber(args)+1
 
-    -- DEBUG: Print the raw arguments and selectedIndex
-    CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: Raw SUI args: " .. tostring(args))
-    CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: Selected Index: " .. tostring(selectedIndex))
-
 	local selectedDir = tonumber(self.directions[selectedIndex].dirSelect)
 	local selectedDirDesc = self.directions[selectedIndex].dirDesc
 
-    -- DEBUG: Print the calculated selectedDir before writing
-    CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: Selected Direction to Write: " .. tostring(selectedDir))
-    CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: Selected Direction Description: " .. selectedDirDesc)
-
 	writeScreenPlayData(pPlayer, "mission_direction_choice", "directionChoice", selectedDir)
 
-    -- DEBUG: System message indicating write attempt
-	CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: Attempting to write directionChoice: " .. selectedDir)
-
-    -- DEBUG: VERIFY Read back the data immediately after writing it
-    local verifyDir = readScreenPlayData(pPlayer, "mission_direction_choice", "directionChoice")
-    CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: VERIFY Read back from screenplay: '" .. tostring(verifyDir) .. "'")
-
-    -- *** NEW: FORCE PLAYER OBJECT SAVE ***
+    -- This forces player data persistence, crucial for C++ to read it immediately.
     CreatureObject(pPlayer):updateToDatabase();
-    CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: Forced player object save after direction selection.")
-
 
 	if (selectedDir == 0) then
-		CreatureObject(pPlayer):sendSystemMessage("Mission direction has been reset to normal randomization (or South).")
+		CreatureObject(pPlayer):sendSystemMessage("Mission direction has been reset to normal randomization.")
 	elseif (selectedDir == 999) then
 		CreatureObject(pPlayer):sendSystemMessage("You have selected to take missions in your current player facing direction. This choice will remain active until you choose to change or reset it.")
 	else

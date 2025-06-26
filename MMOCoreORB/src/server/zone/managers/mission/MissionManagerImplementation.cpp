@@ -36,6 +36,8 @@
 #include "server/zone/managers/visibility/VisibilityManager.h"
 #include "server/zone/objects/building/BuildingObject.h"
 #include "server/zone/managers/director/DirectorManager.h"
+#include <cmath> // For std::cos and std::sin
+#include "server/zone/managers/mission/MissionManager.h"
 
 void MissionManagerImplementation::loadLuaSettings() {
 	try {
@@ -802,10 +804,6 @@ void MissionManagerImplementation::randomizeFactionTerminalMissions(CreatureObje
 	}
 }
 
-#include "server/zone/managers/mission/MissionManager.h"
-// ... (other includes)
-#include <cmath> // For std::cos and std::sin
-// ... (rest of the file, other includes, etc.)
 
 void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject* player, MissionObject* mission, const uint32 faction) {
 	Zone* zone = player->getZone();
@@ -855,15 +853,15 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	int levelChoice = Integer::valueOf(level);
 
-    // --- START MODIFIED DIRECTION CALCULATION BLOCK (No change here) ---
+    // --- START MODIFIED DIRECTION CALCULATION BLOCK ---
     int dirChoice = 0; // Default to 0 (random/default)
     String directionChoiceStr = targetGhost->getScreenPlayData("mission_direction_choice", "directionChoice");
 
     if (!directionChoiceStr.isEmpty()) {
         dirChoice = Integer::valueOf(directionChoiceStr);
-        info("DEBUG: Player " + player->getFirstName() + " has dirChoice in screenplay: " + String::valueOf(dirChoice));
+        //info("DEBUG: Player " + player->getFirstName() + " has dirChoice in screenplay: " + String::valueOf(dirChoice)); // Commented out debug
     } else {
-        info("DEBUG: Player " + player->getFirstName() + " DOES NOT have dirChoice in screenplay or it's empty. Defaulting to 0.");
+        //info("DEBUG: Player " + player->getFirstName() + " DOES NOT have dirChoice in screenplay or it's empty. Defaulting to 0."); // Commented out debug
     }
 
     float desiredAbsoluteWorldAngle = 0.0f; // This is the absolute angle we want the mission to spawn at
@@ -873,12 +871,12 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
     } else if (dirChoice == 999) { // "Current Player Facing"
         desiredAbsoluteWorldAngle = player->getDirectionAngle(); // Use player's current absolute facing as the desired world angle
         player->sendSystemMessage("Generating mission in your current facing direction.");
-    } else { // Specific chosen direction (e.g., 180 for North in your final desired mapping)
+    } else { // Specific chosen direction
         desiredAbsoluteWorldAngle = (float)dirChoice; // Use the chosen absolute angle
         player->sendSystemMessage("Generating mission in your chosen direction: " + String::valueOf(dirChoice) + " degrees.");
     }
 
-    info("DEBUG: Desired absolute world angle for mission: " + String::valueOf(desiredAbsoluteWorldAngle));
+    //info("DEBUG: Desired absolute world angle for mission: " + String::valueOf(desiredAbsoluteWorldAngle)); // Commented out debug
     // --- END MODIFIED DIRECTION CALCULATION BLOCK ---
 
 	String building = lairTemplateObject->getMissionBuilding(difficulty);
@@ -915,11 +913,6 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
         float playerX = player->getPositionX();
         float playerY = player->getPositionY();
 
-        // Calculate the effective angle for trigonometry
-        // Our desiredAbsoluteWorldAngle is 0=South, 90=West, 180=North, 270=East, increasing CW
-        // std::cos and std::sin use radians and assume 0=East, increasing CCW.
-        // Conversion: Math_Angle = ( (Our_Angle + 90) % 360 ) in standard 0=North CW
-        // Math_Angle = (Our_Angle - 270 + 360) % 360 in standard 0=East CCW
         float effectiveAngleDegrees = desiredAbsoluteWorldAngle;
 
         // Apply deviation directly to the desired absolute angle
@@ -936,29 +929,14 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
         effectiveAngleDegrees = fmod(effectiveAngleDegrees, 360.0f);
         if (effectiveAngleDegrees < 0) effectiveAngleDegrees += 360.0f;
 
-        // Convert to radians for sin/cos
-        float angleRad = Math::deg2rad(effectiveAngleDegrees);
-
-        // Calculate target X and Y using trigonometry
-        // In SWGEmu's coordinate system (assuming common behavior based on our logs):
-        // +X is East, +Y is North.
-        // Our angle 0 is South (-Y), 90 is West (-X), 180 is North (+Y), 270 is East (+X).
-        //
-        // This is a typical SWG world map:
-        // +Y (North)
-        //   ^
-        //   |
-        // (-X)---(0,0)---(+X) (East)
-        //   |
-        //   v
-        // -Y (South)
-        //
-        // So, X movement is sin(angle_from_Y_axis) or cos(angle_from_X_axis)
-        // Y movement is cos(angle_from_Y_axis) or sin(angle_from_X_axis)
-        //
-        // Let's use standard math angle from East, counter-clockwise:
-        // Adjust desiredAbsoluteWorldAngle (0=South, CW) to standard math angle (0=East, CCW):
-        // Math Angle = (90 - Desired_Angle_CW + 360) % 360
+        // Convert to radians for sin/cos (std::cos and std::sin use radians and assume 0=East, increasing CCW).
+        // Our desiredAbsoluteWorldAngle (from Lua) is 0=North, 90=East, 180=South, 270=West, increasing CW.
+        // Conversion to Math Angle (0=East, increasing CCW):
+        // Math Angle = (90 - Our_Angle_CW + 360) % 360
+        // Example: North (0 deg CW) -> (90 - 0 + 360) % 360 = 90 deg Math Angle (Correct, 90 deg Math is +Y, North)
+        // Example: East (90 deg CW) -> (90 - 90 + 360) % 360 = 0 deg Math Angle (Correct, 0 deg Math is +X, East)
+        // Example: South (180 deg CW) -> (90 - 180 + 360) % 360 = 270 deg Math Angle (Correct, 270 deg Math is -Y, South)
+        // Example: West (270 deg CW) -> (90 - 270 + 360) % 360 = 180 deg Math Angle (Correct, 180 deg Math is -X, West)
         float finalMathAngleRad = Math::deg2rad(fmod(90.0f - effectiveAngleDegrees + 360.0f, 360.0f));
 
         float targetX = playerX + (distance * cos(finalMathAngleRad));
@@ -967,12 +945,12 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
         startPos = Vector3(targetX, targetY, 0); // Z will be set by terrain later
 
 
-        info("DEBUG: Try " + String::valueOf(tryCount) + ": Player X/Y: " + String::valueOf(playerX) + "/" + String::valueOf(playerY) +
-             ", Desired Absolute Angle: " + String::valueOf(desiredAbsoluteWorldAngle) +
-             ", Math Angle Rad: " + String::valueOf(finalMathAngleRad) +
-             ", Passing Distance: " + String::valueOf(distance));
+        //info("DEBUG: Try " + String::valueOf(tryCount) + ": Player X/Y: " + String::valueOf(playerX) + "/" + String::valueOf(playerY) + // Commented out debug
+        //     ", Desired Absolute Angle: " + String::valueOf(desiredAbsoluteWorldAngle) + // Commented out debug
+        //     ", Math Angle Rad: " + String::valueOf(finalMathAngleRad) + // Commented out debug
+        //     ", Passing Distance: " + String::valueOf(distance)); // Commented out debug
 
-        info("DEBUG: Try " + String::valueOf(tryCount) + ": Generated startPos X=" + String::valueOf(startPos.getX()) + ", Y=" + String::valueOf(startPos.getY()));
+        //info("DEBUG: Try " + String::valueOf(tryCount) + ": Generated startPos X=" + String::valueOf(startPos.getX()) + ", Y=" + String::valueOf(startPos.getY())); // Commented out debug
 
 
 		if (zone->isWithinBoundaries(startPos)) {
@@ -993,22 +971,22 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 					if (area->isCityRegion()) {
 						foundPosition = false;
-                        info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Inside city region.");
+                        //info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Inside city region."); // Commented out debug
                         break;
 					}
 				}
 			} else {
 				foundPosition = false;
-                info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Water too high or no terrain height.");
+                //info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Water too high or no terrain height."); // Commented out debug
 			}
 		} else {
 			foundPosition = false;
-            info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Outside zone boundaries.");
+            //info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Outside zone boundaries."); // Commented out debug
 		}
 	}
 
 	if (!foundPosition) {
-		error("DEBUG: Failed to find valid position for destroy mission after " + String::valueOf(tryCount) + " tries for player " + player->getFirstName());
+		//error("DEBUG: Failed to find valid position for destroy mission after " + String::valueOf(tryCount) + " tries for player " + player->getFirstName()); // Commented out debug
 		return;
 	}
 
@@ -1016,11 +994,11 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	mission->setMissionNumber(randTexts);
 
-    info("DEBUG: Setting Mission Start Position (calculated): X=" + String::valueOf(startPos.getX()) +
-         ", Y=" + String::valueOf(startPos.getY()) +
-         ", Zone=" + zone->getZoneName() +
-         " (Player is at X=" + String::valueOf(player->getPositionX()) +
-         ", Y=" + String::valueOf(player->getPositionY()) + ")");
+    //info("DEBUG: Setting Mission Start Position (calculated): X=" + String::valueOf(startPos.getX()) + // Commented out debug
+    //     ", Y=" + String::valueOf(startPos.getY()) + // Commented out debug
+    //     ", Zone=" + zone->getZoneName() + // Commented out debug
+    //     " (Player is at X=" + String::valueOf(player->getPositionX()) + // Commented out debug
+    //     ", Y=" + String::valueOf(player->getPositionY()) + ")"); // Commented out debug
 
 	mission->setStartPosition(startPos.getX(), startPos.getY(), zone->getZoneName());
 
