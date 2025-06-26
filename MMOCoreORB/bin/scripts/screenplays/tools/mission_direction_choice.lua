@@ -91,7 +91,7 @@ function  mission_direction_choice:dirSelection(pPlayer, pSui, eventIndex, args)
 	writeScreenPlayData(pPlayer, "mission_direction_choice", "directionChoice", selectedDir)
 
     -- This forces player data persistence, crucial for C++ to read it immediately.
-    CreatureObject(pPlayer):updateToDatabase();
+    --CreatureObject(pPlayer):updateToDatabase();
 
 	if (selectedDir == 0) then
 		CreatureObject(pPlayer):sendSystemMessage("Mission direction has been reset to normal randomization.")
