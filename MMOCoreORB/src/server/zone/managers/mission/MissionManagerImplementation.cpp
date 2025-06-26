@@ -856,7 +856,7 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
     String directionChoiceStr = targetGhost->getScreenPlayData("mission_direction_choice", "directionChoice"); // Get as String
 
     if (!directionChoiceStr.isEmpty()) { // Check if the string is not empty
-        dirChoice = directionChoiceStr.toInt(); // Convert String to int
+        dirChoice = Integer::valueOf(directionChoiceStr); // Convert String to int using Integer::valueOf()
         info("DEBUG: Player " + player->getFirstName() + " has dirChoice in screenplay: " + String::valueOf(dirChoice));
     } else {
         info("DEBUG: Player " + player->getFirstName() + " DOES NOT have dirChoice in screenplay or it's empty. Defaulting to 0.");
