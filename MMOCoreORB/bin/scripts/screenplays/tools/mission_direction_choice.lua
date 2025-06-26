@@ -83,12 +83,21 @@ function  mission_direction_choice:dirSelection(pPlayer, pSui, eventIndex, args)
 
 	local selectedIndex = tonumber(args)+1
 
+    -- DEBUG: Print the raw arguments and selectedIndex
+    CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: Raw SUI args: " .. tostring(args))
+    CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: Selected Index: " .. tostring(selectedIndex))
+
 	local selectedDir = tonumber(self.directions[selectedIndex].dirSelect)
 	local selectedDirDesc = self.directions[selectedIndex].dirDesc
 
+    -- DEBUG: Print the calculated selectedDir before writing
+    CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: Selected Direction to Write: " .. tostring(selectedDir))
+    CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: Selected Direction Description: " .. selectedDirDesc)
+
 	writeScreenPlayData(pPlayer, "mission_direction_choice", "directionChoice", selectedDir)
-	
-	CreatureObject(pPlayer):sendSystemMessage("DEBUG: Attempting to write directionChoice: " .. selectedDir)
+
+    -- DEBUG: System message indicating write attempt (you had this, keep it)
+	CreatureObject(pPlayer):sendSystemMessage("DEBUG Lua: Attempting to write directionChoice: " .. selectedDir)
 
 	if (selectedDir == 0) then
 		CreatureObject(pPlayer):sendSystemMessage("Mission direction has been reset to normal randomization.")
