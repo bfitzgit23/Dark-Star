@@ -92,9 +92,9 @@ object_tangible_wearables_armor_composite_armor_composite_boots = object_tangibl
 	specialResists = ELECTRICITY,
 
 	-- These are default Blue Frog stats
-	healthEncumbrance = 80,
-	actionEncumbrance = 100,
-	mindEncumbrance = 80,
+	healthEncumbrance = 10,
+	actionEncumbrance = 10,
+	mindEncumbrance = 10,
 
 	maxCondition = 30000,
 
