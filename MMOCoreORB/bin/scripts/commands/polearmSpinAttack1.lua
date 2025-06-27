@@ -44,7 +44,7 @@
 PolearmSpinAttack1Command = {
 	name = "polearmspinattack1",
 
-	damageMultiplier = 3.0,
+	damageMultiplier = 2.0,
 	speedMultiplier = 1.0,
 	accuracyBonus = 10,
 	
@@ -59,7 +59,7 @@ PolearmSpinAttack1Command = {
 
 	combatSpam = "limbsmasher",
 	
-	weaponType = POLEARMWEAPON,
+	weaponType = ONEHANDMELEEWEAPON,TWOHANDMELEEWEAPON,POLEARMWEAPON
 
 	range = -1
 

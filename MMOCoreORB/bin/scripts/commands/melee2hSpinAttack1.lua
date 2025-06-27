@@ -44,7 +44,7 @@
 Melee2hSpinAttack1Command = {
 	name = "melee2hspinattack1",
 
-	damageMultiplier = 3.0,
+	damageMultiplier = 2.0,
 	speedMultiplier = 1.0,
 	accuracyBonus = 10,
 	
@@ -55,7 +55,7 @@ Melee2hSpinAttack1Command = {
 	areaAction = true,
 	areaRange = 32,
 	
-	weaponType = TWOHANDMELEEWEAPON,
+	weaponType = ONEHANDMELEEWEAPON,TWOHANDMELEEWEAPON,POLEARMWEAPON
 
 	animation = "attack_high_right_light_2",
 

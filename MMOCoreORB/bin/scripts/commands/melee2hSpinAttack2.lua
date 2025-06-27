@@ -43,7 +43,7 @@
 
 Melee2hSpinAttack2Command = {
         name = "melee2hspinattack2",
-	damageMultiplier = 4.0,
+	damageMultiplier = 3.0,
 	speedMultiplier = 1.0,
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
@@ -70,7 +70,7 @@ Melee2hSpinAttack2Command = {
 
 	combatSpam = "spinslam",
 	
-	weaponType = TWOHANDMELEEWEAPON,
+	weaponType = ONEHANDMELEEWEAPON,TWOHANDMELEEWEAPON,POLEARMWEAPON
 
 	range = -1
 }
