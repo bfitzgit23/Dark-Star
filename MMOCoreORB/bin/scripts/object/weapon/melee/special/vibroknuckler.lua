@@ -74,7 +74,7 @@ object_weapon_melee_special_vibroknuckler = object_weapon_melee_special_shared_v
 	damageType = KINETIC,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = HEAVY,
+	armorPiercing = LIGHT,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
@@ -116,8 +116,8 @@ object_weapon_melee_special_vibroknuckler = object_weapon_melee_special_shared_v
 	maxRange = 10,
 	maxRangeAccuracy = 10,
 
-	minDamage = 150,
-	maxDamage = 300,
+	minDamage = 100,
+	maxDamage = 150,
 
 	attackSpeed = 1.0,
 
