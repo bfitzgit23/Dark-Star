@@ -48,7 +48,7 @@ public:
 		}
 
 		//Force the delay to be at least 4 seconds.
-		delay = (delay < 4) ? 4 : delay;
+		delay = (delay < 1) ? 1 : delay;
 
 		StringIdChatParameter message("healing_response", "healing_response_58"); //You are now ready to heal more damage.
 		Reference<InjuryTreatmentTask*> task = new InjuryTreatmentTask(creature, message, "injuryTreatment");
@@ -243,12 +243,12 @@ public:
 	}
 
 	void awardXp(CreatureObject* creature, const String& type, int power) const {
-		if (!creature->isPlayerCreature())
-			return;
+		// if (!creature->isPlayerCreature())
+			// return;
 
 		CreatureObject* player = cast<CreatureObject*>(creature);
 
-		int amount = (int)round((float)power * 0.25f);
+		int amount = (int)round((float)power * 0.75f);
 
 		if (amount <= 0)
 			return;
