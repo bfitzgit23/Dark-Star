@@ -45,20 +45,20 @@ Melee1hSpinAttack1Command = {
 	name = "melee1hspinattack1",
 
 	damageMultiplier = 2.0,
-	speedMultiplier = 1.0,
+	speedMultiplier = 1,
+	areaAction = true,
+	areaRange = 32,
+	accuracyBonus = 15,
+	
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
-        accuracyBonus = 25,
 
 	animation = "attack_high_right_medium_2",
 
 	combatSpam = "slashspin",
 	
-	weaponType = ONEHANDMELEEWEAPON,TWOHANDMELEEWEAPON,POLEARMWEAPON
-
-	areaAction = true,
-	areaRange = 32,
+	weaponType = TWOHANDMELEEWEAPON + ONEHANDMELEEWEAPON + POLEARMWEAPON,
 
 	range = -1
 }
