@@ -243,8 +243,8 @@ public:
 	}
 
 	void awardXp(CreatureObject* creature, const String& type, int power) const {
-		// if (!creature->isPlayerCreature())
-			// return;
+		if (!creature->isPlayerCreature())
+			return;
 
 		CreatureObject* player = cast<CreatureObject*>(creature);
 
@@ -493,8 +493,8 @@ public:
 		Locker locker(stimPack);
 		stimPack->decreaseUseCount();
 
-		if (targetCreature != creature && !targetCreature->isPet())
-			awardXp(creature, "medical", (healthHealed + actionHealed)); //No experience for healing yourself.
+		//if (targetCreature != creature && !targetCreature->isPet())
+		awardXp(creature, "medical", (healthHealed + actionHealed)*5); //No experience for healing yourself.
 
 		if (targetCreature != creature)
 			clocker.release();
