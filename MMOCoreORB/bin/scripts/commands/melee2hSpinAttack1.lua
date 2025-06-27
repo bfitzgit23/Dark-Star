@@ -55,7 +55,7 @@ Melee2hSpinAttack1Command = {
 	areaAction = true,
 	areaRange = 32,
 	
-	weaponType = ONEHANDMELEEWEAPON,TWOHANDMELEEWEAPON,POLEARMWEAPON
+	weaponType = TWOHANDMELEEWEAPON + ONEHANDMELEEWEAPON + POLEARMWEAPON,
 
 	animation = "attack_high_right_light_2",
 
