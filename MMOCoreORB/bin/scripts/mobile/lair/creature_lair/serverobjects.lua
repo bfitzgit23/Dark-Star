@@ -587,6 +587,7 @@ includeFile("lair/creature_lair/yavin4/yavin4_spined_puc_giant_neutral_medium_bo
 includeFile("lair/creature_lair/yavin4/yavin4_spined_puc_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/yavin4/yavin4_stintaril_giant_neutral_medium_boss_01.lua")
 includeFile("lair/creature_lair/yavin4/yavin4_stintaril_lair_neutral_medium.lua")
+includeFile("lair/creature_lair/yavin4/yavin4_stintaril_Prowler_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/yavin4/yavin4_tanc_mite_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/yavin4/yavin4_tanc_mite_warrior_neutral_medium_boss_01.lua")
 includeFile("lair/creature_lair/yavin4/yavin4_tybis_lair_neutral_medium.lua")
@@ -594,4 +595,5 @@ includeFile("lair/creature_lair/yavin4/yavin4_tybis_male_neutral_medium_boss_01.
 includeFile("lair/creature_lair/yavin4/yavin4_whisper_bird_lair2_neutral_medium.lua")
 includeFile("lair/creature_lair/yavin4/yavin4_whisper_bird_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/yavin4/yavin4_whisper_bird_male_neutral_medium_boss_01.lua")
+
 
