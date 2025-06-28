@@ -296,6 +296,12 @@ tatooine_destroy_missions = {
 			maxDifficulty = 100,
 			size = 25,
 		},
+		{
+			lairTemplateName = "tatooine_tusken_raider",
+			minDifficulty = 28,
+			maxDifficulty = 32,
+			size = 25,
+		},
 	}
 }
 

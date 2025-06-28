@@ -532,6 +532,7 @@ includeFile("lair/creature_lair/tatooine/tatooine_squill_lair_neutral_small.lua"
 includeFile("lair/creature_lair/tatooine/tatooine_squill_squill_neutral_medium_boss_01.lua")
 includeFile("lair/creature_lair/tatooine/tatooine_swarming_lesser_dewback_lair_neutral_large.lua")
 includeFile("lair/creature_lair/tatooine/tatooine_tatooine_mynock_lair_neutral_small.lua")
+includeFile("lair/creature_lair/tatooine/tatooine_tusken_raider.lua")
 includeFile("lair/creature_lair/tatooine/tatooine_womprat_lair_neutral_small.lua")
 includeFile("lair/creature_lair/tatooine/tatooine_womprat_womprat_neutral_medium_boss_01.lua")
 includeFile("lair/creature_lair/tatooine/tatooine_worrt_giant_neutral_medium_boss_01.lua")
