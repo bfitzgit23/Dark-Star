@@ -236,6 +236,30 @@ naboo_destroy_missions = {
 			maxDifficulty = 55,
 			size = 35,
 		},
+		{
+			lairTemplateName = "global_imperial_outpost_surface_marshal_large_theater",
+			minDifficulty = 50,
+			maxDifficulty = 55,
+			size = 35,
+		},
+		{
+			lairTemplateName = "global_rebel_outpost_surface_marshal_large_theater",
+			minDifficulty = 50,
+			maxDifficulty = 55,
+			size = 35,
+		},
+		{
+			lairTemplateName = "global_imperial_outpost_elite_commander_large_theater",
+			minDifficulty = 50,
+			maxDifficulty = 55,
+			size = 35,
+		},
+		{
+			lairTemplateName = "global_rebel_outpost_rear_admiral_large_theater",
+			minDifficulty = 50,
+			maxDifficulty = 55,
+			size = 35,
+		},
 	}
 }
 
