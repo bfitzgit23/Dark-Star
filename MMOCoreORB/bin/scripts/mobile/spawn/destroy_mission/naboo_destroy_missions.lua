@@ -236,6 +236,12 @@ naboo_destroy_missions = {
 			maxDifficulty = 55,
 			size = 35,
 		},
+		{
+			lairTemplateName = "endor_acklay_neutral_large",
+			minDifficulty = 50,
+			maxDifficulty = 55,
+			size = 35,
+		},
 	}
 }
 

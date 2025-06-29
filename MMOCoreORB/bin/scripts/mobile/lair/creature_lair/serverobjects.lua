@@ -139,6 +139,7 @@ includeFile("lair/creature_lair/dathomir/dathomir_shear_mite_queen_lair_neutral_
 includeFile("lair/creature_lair/dathomir/dathomir_stallion_bolma_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/dathomir/dathomir_verne_bull_lair_neutral_large.lua")
 
+includeFile("lair/creature_lair/endor/endor_acklay_neutral_large.lua")								--Jedi Knight Trials
 includeFile("lair/creature_lair/endor/endor_arachne_drone_lair_neutral_small.lua")
 includeFile("lair/creature_lair/endor/endor_arachne_drone_lair_neutral_small_01.lua")
 includeFile("lair/creature_lair/endor/endor_arachne_hatchling_lair_neutral_small.lua")
@@ -167,7 +168,7 @@ includeFile("lair/creature_lair/endor/endor_blurrg_crimson_neutral_small.lua")
 includeFile("lair/creature_lair/endor/endor_blurrg_hunter_lair_neutral_small.lua")
 includeFile("lair/creature_lair/endor/endor_blurrg_lair_neutral_small.lua")
 includeFile("lair/creature_lair/endor/endor_blurrg_pup_lair_neutral_small.lua")
-includeFile("lair/creature_lair/endor/endor_blurrg_raptor_neutral_small.lua") 					--Jedi Knight Trials
+includeFile("lair/creature_lair/endor/endor_blurrg_raptor_neutral_small.lua") 						--Jedi Knight Trials
 includeFile("lair/creature_lair/endor/endor_blurrg_sand_crawler_lair_neutral_small.lua")
 includeFile("lair/creature_lair/endor/endor_blushing_jax_lair_neutral_small.lua")
 includeFile("lair/creature_lair/endor/endor_boar_wolf_bloodfrenzied_lair_neutral_small.lua")
