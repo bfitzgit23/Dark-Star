@@ -260,6 +260,12 @@ naboo_destroy_missions = {
 			maxDifficulty = 55,
 			size = 35,
 		},
+		{
+			lairTemplateName = "global_imperial_outpost_trials_large_theater",
+			minDifficulty = 50,
+			maxDifficulty = 55,
+			size = 35,
+		},
 	}
 }
 
