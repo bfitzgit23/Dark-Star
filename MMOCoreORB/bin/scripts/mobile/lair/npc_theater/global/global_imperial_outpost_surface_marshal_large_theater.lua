@@ -1,5 +1,5 @@
 global_imperial_outpost_surface_marshal_large_theater = Lair:new {
-	mobiles = {{"imperial_surface_marshal",1}},
+	mobiles = {{"imperial_surface_marshall",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/building/poi/lok_imperial_large2.iff","object/building/poi/anywhere_imperial_base_large_1.iff"},
 	buildingsEasy = {"object/building/poi/lok_imperial_large2.iff","object/building/poi/anywhere_imperial_base_large_1.iff"},
