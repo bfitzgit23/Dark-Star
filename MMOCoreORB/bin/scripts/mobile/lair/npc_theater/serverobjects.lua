@@ -142,6 +142,7 @@ includeFile("lair/npc_theater/global/global_rebel_specforce_camp2_rebel_small_th
 includeFile("lair/npc_theater/global/global_rebel_specforce_camp_rebel_large_theater.lua")
 includeFile("lair/npc_theater/global/global_rebel_specforce_camp_rebel_small_theater.lua")
 includeFile("lair/npc_theater/global/global_rebel_warrant_officer_camp_rebel_medium_theater.lua")
+includeFile("lair/npc_theater/global/global_rebel_outpost_commando_large_theater.lua")								--Jedi Knight Trials
 includeFile("lair/npc_theater/global/global_rodian_tribe_camp.lua")
 includeFile("lair/npc_theater/global/global_rodian_thug_camp_neutral_small_theater.lua")
 includeFile("lair/npc_theater/global/global_slave_camp_neutral_small_theater.lua")

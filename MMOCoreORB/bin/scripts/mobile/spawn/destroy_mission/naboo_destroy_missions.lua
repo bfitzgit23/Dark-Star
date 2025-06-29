@@ -230,6 +230,12 @@ naboo_destroy_missions = {
 			maxDifficulty = 55,
 			size = 35,
 		},
+		{
+			lairTemplateName = "global_rebel_outpost_commando_large_theater",
+			minDifficulty = 50,
+			maxDifficulty = 55,
+			size = 35,
+		},
 	}
 }
 
