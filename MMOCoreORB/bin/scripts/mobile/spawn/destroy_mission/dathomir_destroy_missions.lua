@@ -159,7 +159,7 @@ dathomir_destroy_missions = {
 			size = 35,
 		},
 		{
-			lairTemplateName = "dathomir_rancor_ancient_bull_lair_neutral_large",
+			lairTemplateName = "dathomir_rancor_ancient_bull_lair_neutral_large",				--Jedi Knight Trials
 			minDifficulty = 87,
 			maxDifficulty = 91,
 			size = 35,

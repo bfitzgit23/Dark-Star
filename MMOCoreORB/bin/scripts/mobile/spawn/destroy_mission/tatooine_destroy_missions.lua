@@ -291,13 +291,13 @@ tatooine_destroy_missions = {
 			size = 25,
 		},
 		{
-			lairTemplateName = "tatooine_giant_canyon_krayt_dragon_lair_neutral_large",
+			lairTemplateName = "tatooine_giant_canyon_krayt_dragon_lair_neutral_large",		--Jedi Knight Trials
 			minDifficulty = 90,
 			maxDifficulty = 100,
 			size = 25,
 		},
 		{
-			lairTemplateName = "tatooine_tusken_raider",
+			lairTemplateName = "tatooine_tusken_raider",									--Jedi Knight Trials
 			minDifficulty = 28,
 			maxDifficulty = 32,
 			size = 25,

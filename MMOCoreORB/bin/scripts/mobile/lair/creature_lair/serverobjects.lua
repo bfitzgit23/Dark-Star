@@ -125,7 +125,7 @@ includeFile("lair/creature_lair/dathomir/dathomir_mutant_baz_nitch_lair_neutral_
 includeFile("lair/creature_lair/dathomir/dathomir_purbole_elder_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/dathomir/dathomir_purbole_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/dathomir/dathomir_purbole_lair_neutral_medium_boss_01.lua")
-includeFile("lair/creature_lair/dathomir/dathomir_rancor_ancient_bull_lair_neutral_large.lua")
+includeFile("lair/creature_lair/dathomir/dathomir_rancor_ancient_bull_lair_neutral_large.lua") --Jedi Knight Trials
 includeFile("lair/creature_lair/dathomir/dathomir_rancor_bull_lair_neutral_large.lua")
 includeFile("lair/creature_lair/dathomir/dathomir_rancor_enraged_bull_lair_neutral_large.lua")
 includeFile("lair/creature_lair/dathomir/dathomir_rancor_enraged_bull_lair_neutral_large_boss_01.lua")
@@ -167,6 +167,7 @@ includeFile("lair/creature_lair/endor/endor_blurrg_crimson_neutral_small.lua")
 includeFile("lair/creature_lair/endor/endor_blurrg_hunter_lair_neutral_small.lua")
 includeFile("lair/creature_lair/endor/endor_blurrg_lair_neutral_small.lua")
 includeFile("lair/creature_lair/endor/endor_blurrg_pup_lair_neutral_small.lua")
+includeFile("lair/creature_lair/endor/endor_blurrg_raptor_neutral_small.lua") 					--Jedi Knight Trials
 includeFile("lair/creature_lair/endor/endor_blurrg_sand_crawler_lair_neutral_small.lua")
 includeFile("lair/creature_lair/endor/endor_blushing_jax_lair_neutral_small.lua")
 includeFile("lair/creature_lair/endor/endor_boar_wolf_bloodfrenzied_lair_neutral_small.lua")
@@ -243,6 +244,7 @@ includeFile("lair/creature_lair/lok/lok_gurk_lair_neutral_small_03.lua")
 includeFile("lair/creature_lair/lok/lok_gurk_lair_neutral_small_04.lua")
 includeFile("lair/creature_lair/lok/lok_gurnaset_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/lok/lok_kimogilla_dune_lair_neutral_medium.lua")
+includeFile("lair/creature_lair/lok/lok_kimogilla_enraged_lair_neutral_medium.lua")					--Jedi Knight Trials
 includeFile("lair/creature_lair/lok/lok_kimogilla_giant_dune_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/lok/lok_kimogilla_lair2_neutral_medium.lua")
 includeFile("lair/creature_lair/lok/lok_kimogilla_lair_neutral_medium.lua")
@@ -501,7 +503,7 @@ includeFile("lair/creature_lair/tatooine/tatooine_dwarf_nuna_nuna_neutral_medium
 includeFile("lair/creature_lair/tatooine/tatooine_eopie_eopie_neutral_medium_boss_01.lua")
 includeFile("lair/creature_lair/tatooine/tatooine_eopie_lair_neutral_small.lua")
 includeFile("lair/creature_lair/tatooine/tatooine_feral_bantha_lair_neutral_large.lua")
-includeFile("lair/creature_lair/tatooine/tatooine_giant_canyon_krayt_dragon_lair_neutral_large.lua")
+includeFile("lair/creature_lair/tatooine/tatooine_giant_canyon_krayt_dragon_lair_neutral_large.lua") --Jedi Knight Trials
 includeFile("lair/creature_lair/tatooine/tatooine_giant_sand_beetle_click_neutral_large.lua")
 includeFile("lair/creature_lair/tatooine/tatooine_giant_worrt_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/tatooine/tatooine_gorg_lair_neutral_small.lua")
@@ -532,7 +534,7 @@ includeFile("lair/creature_lair/tatooine/tatooine_squill_lair_neutral_small.lua"
 includeFile("lair/creature_lair/tatooine/tatooine_squill_squill_neutral_medium_boss_01.lua")
 includeFile("lair/creature_lair/tatooine/tatooine_swarming_lesser_dewback_lair_neutral_large.lua")
 includeFile("lair/creature_lair/tatooine/tatooine_tatooine_mynock_lair_neutral_small.lua")
-includeFile("lair/creature_lair/tatooine/tatooine_tusken_raider.lua")
+includeFile("lair/creature_lair/tatooine/tatooine_tusken_raider.lua") 								--Jedi Knight Trials
 includeFile("lair/creature_lair/tatooine/tatooine_womprat_lair_neutral_small.lua")
 includeFile("lair/creature_lair/tatooine/tatooine_womprat_womprat_neutral_medium_boss_01.lua")
 includeFile("lair/creature_lair/tatooine/tatooine_worrt_giant_neutral_medium_boss_01.lua")
@@ -588,7 +590,7 @@ includeFile("lair/creature_lair/yavin4/yavin4_spined_puc_giant_neutral_medium_bo
 includeFile("lair/creature_lair/yavin4/yavin4_spined_puc_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/yavin4/yavin4_stintaril_giant_neutral_medium_boss_01.lua")
 includeFile("lair/creature_lair/yavin4/yavin4_stintaril_lair_neutral_medium.lua")
-includeFile("lair/creature_lair/yavin4/yavin4_stintaril_Prowler_lair_neutral_medium.lua")
+includeFile("lair/creature_lair/yavin4/yavin4_stintaril_Prowler_lair_neutral_medium.lua")		--Jedi Knight Trials
 includeFile("lair/creature_lair/yavin4/yavin4_tanc_mite_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/yavin4/yavin4_tanc_mite_warrior_neutral_medium_boss_01.lua")
 includeFile("lair/creature_lair/yavin4/yavin4_tybis_lair_neutral_medium.lua")

@@ -105,7 +105,7 @@ yavin4_destroy_missions = {
 			size = 25,
 		},
 		{
-			lairTemplateName = "yavin4_stintaril_Prowler_lair_neutral_medium",
+			lairTemplateName = "yavin4_stintaril_Prowler_lair_neutral_medium",				--Jedi Knight Trials
 			minDifficulty = 30,
 			maxDifficulty = 32,
 			size = 25,
