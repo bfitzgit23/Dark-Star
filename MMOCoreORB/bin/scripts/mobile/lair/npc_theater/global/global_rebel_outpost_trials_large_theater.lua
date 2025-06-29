@@ -1,5 +1,9 @@
-global_rebel_outpost_surface_marshal_large_theater = Lair:new {
-	mobiles = {{"rebel_surface_marshall",1}},
+global_rebel_outpost_trials_large_theater = Lair:new {
+	mobiles = {
+		{"rebel_rear_admiral",1},
+		{"rebel_surface_marshall",2},
+		{"rebel_commando",4},
+	},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/building/poi/anywhere_rebel_base_large_1.iff"},
 	buildingsEasy = {"object/building/poi/anywhere_rebel_base_large_1.iff"},
@@ -12,4 +16,4 @@ global_rebel_outpost_surface_marshal_large_theater = Lair:new {
 	faction = "rebel"
 }
 
-addLairTemplate("global_rebel_outpost_surface_marshal_large_theater", global_rebel_outpost_surface_marshal_large_theater)
+addLairTemplate("global_rebel_outpost_trials_large_theater", global_rebel_outpost_trials_large_theater)
