@@ -79,7 +79,7 @@ includeFile("lair/creature_lair/dantooine/dantooine_graul_frenzied_lair_neutral_
 includeFile("lair/creature_lair/dantooine/dantooine_graul_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/dantooine/dantooine_graul_mauler_lair_neutral_large.lua")
 includeFile("lair/creature_lair/dantooine/dantooine_graul_mauler_lair_neutral_large_boss_01.lua")
-includeFile("lair/creature_lair/dantooine/dathomir_graul_mauler_lair_neutral_large.lua")
+includeFile("lair/creature_lair/dantooine/dantooine_graul_marauder_lair_neutral_large.lua")						--Jedi Knight Trials
 includeFile("lair/creature_lair/dantooine/dantooine_huurton_howler_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/dantooine/dantooine_huurton_howler_lair_neutral_medium_boss_01.lua")
 includeFile("lair/creature_lair/dantooine/dantooine_huurton_matron_lair_neutral_medium.lua")
@@ -125,7 +125,7 @@ includeFile("lair/creature_lair/dathomir/dathomir_mutant_baz_nitch_lair_neutral_
 includeFile("lair/creature_lair/dathomir/dathomir_purbole_elder_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/dathomir/dathomir_purbole_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/dathomir/dathomir_purbole_lair_neutral_medium_boss_01.lua")
-includeFile("lair/creature_lair/dathomir/dathomir_rancor_ancient_bull_lair_neutral_large.lua") --Jedi Knight Trials
+includeFile("lair/creature_lair/dathomir/dathomir_rancor_ancient_bull_lair_neutral_large.lua") 				--Jedi Knight Trials
 includeFile("lair/creature_lair/dathomir/dathomir_rancor_bull_lair_neutral_large.lua")
 includeFile("lair/creature_lair/dathomir/dathomir_rancor_enraged_bull_lair_neutral_large.lua")
 includeFile("lair/creature_lair/dathomir/dathomir_rancor_enraged_bull_lair_neutral_large_boss_01.lua")
@@ -334,6 +334,7 @@ includeFile("lair/creature_lair/naboo/naboo_nightspider_lair_neutral_small_02.lu
 includeFile("lair/creature_lair/naboo/naboo_nightspider_lair_neutral_small_03.lua")
 includeFile("lair/creature_lair/naboo/naboo_nightspider_lair_neutral_small_04.lua")
 includeFile("lair/creature_lair/naboo/naboo_nuna_lair_neutral_medium.lua")
+includeFile("lair/creature_lair/naboo/naboo_peko_peko_albatross.lua")										 --Jedi Knight Trials
 includeFile("lair/creature_lair/naboo/naboo_peko_peko_eyrie_neutral_large.lua")
 includeFile("lair/creature_lair/naboo/naboo_peko_peko.lua")
 includeFile("lair/creature_lair/naboo/naboo_plains_tusk_cat_pride_neutral_medium.lua")

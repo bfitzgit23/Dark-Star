@@ -218,6 +218,18 @@ naboo_destroy_missions = {
 			maxDifficulty = 36,
 			size = 35,
 		},
+		{
+			lairTemplateName = "naboo_peko_peko_albatross",
+			minDifficulty = 32,
+			maxDifficulty = 36,
+			size = 35,
+		},
+		{
+			lairTemplateName = "global_imperial_outpost_commando_large_theater",
+			minDifficulty = 50,
+			maxDifficulty = 55,
+			size = 35,
+		},
 	}
 }
 

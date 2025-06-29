@@ -107,6 +107,7 @@ includeFile("lair/npc_theater/global/global_imperial_stormtrooper_camp_imperial_
 includeFile("lair/npc_theater/global/global_imperial_stormtrooper_camp_imperial_medium_theater.lua")
 includeFile("lair/npc_theater/global/global_imperial_stormtrooper_camp_imperial_small_theater.lua")
 includeFile("lair/npc_theater/global/global_imperial_warrant_officer_camp_imperial_medium_theater.lua")
+includeFile("lair/npc_theater/global/global_imperial_outpost_commando_large_theater.lua")							--Jedi Knight Trials
 includeFile("lair/npc_theater/global/global_miner_camp_neutral_small_theater.lua")
 includeFile("lair/npc_theater/global/global_pirate_camp_neutral_small_theater.lua")
 includeFile("lair/npc_theater/global/global_pirate_captain_camp_neutral_medium_theater.lua")
