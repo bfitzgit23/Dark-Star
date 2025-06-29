@@ -1,5 +1,5 @@
 global_imperial_outpost_elite_commander_large_theater = Lair:new {
-	mobiles = {{"stormtrooper_novatrooper_elite_commander",1}},
+	mobiles = {{"elite_novatrooper_commander",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/building/poi/lok_imperial_large2.iff","object/building/poi/anywhere_imperial_base_large_1.iff"},
 	buildingsEasy = {"object/building/poi/lok_imperial_large2.iff","object/building/poi/anywhere_imperial_base_large_1.iff"},

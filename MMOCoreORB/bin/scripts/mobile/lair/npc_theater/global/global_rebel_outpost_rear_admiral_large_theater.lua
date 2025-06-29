@@ -1,5 +1,5 @@
 global_rebel_outpost_rear_admiral_large_theater = Lair:new {
-	mobiles = {{"corvette_rebel_rear_admiral",1}},
+	mobiles = {{"rebel_rear_admiral",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/building/poi/anywhere_rebel_base_large_1.iff"},
 	buildingsEasy = {"object/building/poi/anywhere_rebel_base_large_1.iff"},
