@@ -55,7 +55,7 @@ weapons = ConvoScreen:new {
 		-- {"Long Vibro Axe - 25k", "weapon09"},
 		-- {"Two-handed Curved Sword - 25k", "weapon10"},
 		-- {"Vibro Knuckler - 25k", "weapon11"},
-		{"Melee Weapons","melee"}
+		{"Melee Weapons","melee"},
         {"Main menu.", "first_screen"},
     }
 }
@@ -75,7 +75,7 @@ melee = ConvoScreen:new {
         {"Main menu.", "first_screen"},
     }
 }
-dark_star_vendor_conv:addScreen(weapons);
+dark_star_vendor_conv:addScreen(melee);
 
 armor = ConvoScreen:new {    
     id = "armor",
