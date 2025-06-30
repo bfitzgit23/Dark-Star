@@ -164,6 +164,12 @@ dathomir_destroy_missions = {
 			maxDifficulty = 91,
 			size = 35,
 		},
+		{
+			lairTemplateName = "dathomir_elder_kiin_dray_lair_medium",							--Jedi Knight Trials
+			minDifficulty = 87,
+			maxDifficulty = 91,
+			size = 35,
+		},
 	}
 }
 
