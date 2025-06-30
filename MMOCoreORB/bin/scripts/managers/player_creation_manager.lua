@@ -1,7 +1,7 @@
 --Should all created players start with God Mode? 1 = yes, 0 = no
 freeGodMode = 0;
 --How many cash credits new characters start with after creating a character (changed during test phase, normal value is 100)
-startingCash = 1000
+startingCash = 10000
 --startingCash = 100000
 --How many bank credits new characters start with after creating a character (changed during test phase, normal value is 1000)
 startingBank = 10000
@@ -13,7 +13,6 @@ professions = {
 	"combat_brawler",
 	"combat_marksman",
 	"crafting_artisan",
-	"jedi",
 	"outdoors_scout",
 	"science_medic",
 	"social_entertainer"
@@ -25,13 +24,11 @@ marksmanRifle = "object/weapon/ranged/rifle/rifle_cdef.iff"
 
 marksmanCarbine = "object/weapon/ranged/carbine/carbine_cdef.iff"
 
-brawlerOneHander = "object/weapon/melee/knife/knife_stone.iff"
+brawlerOneHander = "object/weapon/melee/knife/knife_survival.iff"
 
 brawlerTwoHander = "object/weapon/melee/axe/axe_heavy_duty.iff"
 
 brawlerPolearm = "object/weapon/melee/polearm/lance_staff_wood_s1.iff"
-
-survivalKnife = "object/weapon/melee/knife/knife_survival.iff"
 
 genericTool = "object/tangible/crafting/station/generic_tool.iff"
 
@@ -45,7 +42,7 @@ slitherhorn = "object/tangible/instrument/slitherhorn.iff"
 
 marojMelon = "object/tangible/food/foraged/foraged_fruit_s1.iff"
 
-x31Speeder = "object/tangible/deed/vehicle_deed/landspeeder_x31_deed.iff"
+Speeder_Bike = "object/tangible/deed/vehicle_deed/speederbike_deed.iff"
 
 professionSpecificItems = {
 	combat_brawler = { brawlerOneHander, brawlerTwoHander, brawlerPolearm },
@@ -57,4 +54,4 @@ professionSpecificItems = {
 	social_entertainer = { slitherhorn }
 }
 
-commonStartingItems = { marojMelon, survivalKnife, x31Speeder }
+commonStartingItems = { marojMelon, Speeder_Bike }
