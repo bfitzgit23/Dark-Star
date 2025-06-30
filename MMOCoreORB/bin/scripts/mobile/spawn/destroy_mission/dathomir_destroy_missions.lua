@@ -159,9 +159,27 @@ dathomir_destroy_missions = {
 			size = 35,
 		},
 		{
-			lairTemplateName = "dathomir_rancor_ancient_bull_lair_neutral_large",
+			lairTemplateName = "dathomir_rancor_ancient_bull_lair_neutral_large",				--Jedi Knight Trials
 			minDifficulty = 87,
 			maxDifficulty = 91,
+			size = 35,
+		},
+		{
+			lairTemplateName = "dathomir_elder_kiin_dray_lair_medium",							--Jedi Knight Trials
+			minDifficulty = 87,
+			maxDifficulty = 91,
+			size = 35,
+		},
+		{
+			lairTemplateName = "global_imperial_outpost_trials_large_theater",					--Jedi Knight Trials
+			minDifficulty = 50,
+			maxDifficulty = 55,
+			size = 35,
+		},
+		{
+			lairTemplateName = "global_rebel_outpost_trials_large_theater",						--Jedi Knight Trials
+			minDifficulty = 50,
+			maxDifficulty = 55,
 			size = 35,
 		},
 	}

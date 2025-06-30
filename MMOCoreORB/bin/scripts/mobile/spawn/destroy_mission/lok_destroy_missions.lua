@@ -152,6 +152,24 @@ lok_destroy_missions = {
 			maxDifficulty = 50,
 			size = 25,
 		},
+		{
+			lairTemplateName = "lok_kimogilla_enraged_lair_neutral_medium",
+			minDifficulty = 45,
+			maxDifficulty = 50,
+			size = 25,
+		},
+		{
+			lairTemplateName = "global_imperial_outpost_trials_large_theater",		--Jedi Knight Trials
+			minDifficulty = 50,
+			maxDifficulty = 55,
+			size = 35,
+		},
+		{
+			lairTemplateName = "global_rebel_outpost_trials_large_theater",			--Jedi Knight Trials
+			minDifficulty = 50,
+			maxDifficulty = 55,
+			size = 35,
+		},
 	}
 }
 
