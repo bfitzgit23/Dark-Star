@@ -14,9 +14,10 @@ dark_star_vendor_first_screen = ConvoScreen:new {
         {"Weapons", "weapons"},
         {"Armor", "armor"},
 		{"Deeds", "deeds"},
+		{"Food and Drinks","food_menu"},
 		{"Jedi Items", "jedi"},
         {"Medic", "medic"},
-        {"Wearables", "wearables"},		
+        {"Wearables", "wearables"},
     }
 }
 dark_star_vendor_conv:addScreen(dark_star_vendor_first_screen);
@@ -163,6 +164,48 @@ deeds = ConvoScreen:new {
 }
 dark_star_vendor_conv:addScreen(deeds);
 
+food_menu = ConvoScreen:new {
+    id = "food_menu",
+    leftDialog = "",
+    customDialogText = "Need something delicious for your adventure?",
+    stopConversation = "false",
+    options = { 
+        {"Food","food"},
+		{"Drinks","drinks"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(food_menu);
+
+food = ConvoScreen:new {
+    id = "food",
+    leftDialog = "",
+    customDialogText = "Please choose.",
+    stopConversation = "false",
+    options = { 
+        {"Pikatta Pie - 15k","food01"},
+		{"Pyollian Cake - 15k","food02"},
+		{"Bivoli Tempari - 15k","food03"},
+		{"Synthsteak - 15k","food04"},
+		{"Thakitillo - 15k","food05"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(food);
+
+drinks = ConvoScreen:new {
+    id = "drinks",
+    leftDialog = "",
+    customDialogText = "Please choose.",
+    stopConversation = "false",
+    options = { 
+        {"Bespin Port - 15k","food06"},
+		{"Ithorian Mist - 15k","food07"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(drinks);
+
 jedi = ConvoScreen:new {    
     id = "jedi",
     leftDialog = "",
@@ -204,13 +247,6 @@ wearables = ConvoScreen:new {
 }
 dark_star_vendor_conv:addScreen(wearables);
 
--- dark_star_vendor_deny_quest = ConvoScreen:new {
-    -- id = "deny_quest",
-    -- leftDialog = "",
-    -- customDialogText = "Well, have a nice day!",
-    -- stopConversation = "true",
-    -- options = { }
--- }
 dark_star_vendor_conv:addScreen(dark_star_vendor_deny_quest);
 
 dark_star_vendor_insufficient_funds = ConvoScreen:new {
