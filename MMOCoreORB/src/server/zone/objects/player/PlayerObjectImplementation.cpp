@@ -1311,6 +1311,9 @@ void PlayerObjectImplementation::doDigest(int fillingReduction) {
 
 	if (drinkFilling > drinkFillingMax)
 		drinkFilling = drinkFillingMax;
+	
+	fillingReduction *= 2; //speeds up digeston
+
 
 	if (foodFilling > 0) {
 		setFoodFilling(foodFilling - fillingReduction);

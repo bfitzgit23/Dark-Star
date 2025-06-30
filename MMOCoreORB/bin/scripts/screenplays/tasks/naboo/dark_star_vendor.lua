@@ -93,7 +93,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
         end
 
         --- BUFFS ---
-        -- Note: Buffs are currently only from bank, so simpler check
+        
         if (optionLink == "buffs01") then
             local itemCost = 15000
             if (totalPlayerCredits < itemCost) then
@@ -114,6 +114,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             end
 
         --- WEAPONS ---
+		
         elseif (optionLink == "weapon01") then
             local itemCost = 5000
             if (totalPlayerCredits < itemCost) then
@@ -368,6 +369,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             end
 
         --- ARMOR ---
+		
         elseif (optionLink == "armor01") then
             local itemCost = 5000
             if (totalPlayerCredits < itemCost) then
@@ -532,7 +534,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             end
 
         --- DEEDS ---
-        -- Deeds are currently a mix of bank only and cash only, applying mixed logic to the deed02, keeping deed01 bank-only
+        
         elseif (optionLink == "deeds01") then
             local itemCost = 200000
             if (totalPlayerCredits < itemCost) then
@@ -569,8 +571,138 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You have purchased a Speederbike Deed.")
                 nextConversationScreen = conversation:getScreen("purchase_complete")
             end
+		
+		--- Foods ---
+      
+        elseif (optionLink == "food01") then
+            local itemCost = 15000
+            if (totalPlayerCredits < itemCost) then
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds.")
+            else
+                local remainingCost = itemCost
+                if (playerCashCredits >= remainingCost) then
+                    creature:subtractCashCredits(remainingCost)
+                else
+                    creature:subtractCashCredits(playerCashCredits)
+                    remainingCost = remainingCost - playerCashCredits
+                    creature:subtractBankCredits(remainingCost)
+                end
+                giveItem(pInventory, "object/tangible/food/crafted/dessert_pikatta_pie.iff", -1)
+                creature:sendSystemMessage("You have purchased a Pikatta Pie.")
+                nextConversationScreen = conversation:getScreen("purchase_complete")
+            end
+        elseif (optionLink == "food02") then
+            local itemCost = 15000
+            if (totalPlayerCredits < itemCost) then
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds.")
+            else
+                local remainingCost = itemCost
+                if (playerCashCredits >= remainingCost) then
+                    creature:subtractCashCredits(remainingCost)
+                else
+                    creature:subtractCashCredits(playerCashCredits)
+                    remainingCost = remainingCost - playerCashCredits
+                    creature:subtractBankCredits(remainingCost)
+                end
+                giveItem(pInventory, "object/tangible/food/crafted/dessert_pyollian_cake.iff", -1)
+                creature:sendSystemMessage("You have purchased a Pyollian Cake.")
+                nextConversationScreen = conversation:getScreen("purchase_complete")
+            end
+		elseif (optionLink == "food03") then
+            local itemCost = 15000
+            if (totalPlayerCredits < itemCost) then
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds.")
+            else
+                local remainingCost = itemCost
+                if (playerCashCredits >= remainingCost) then
+                    creature:subtractCashCredits(remainingCost)
+                else
+                    creature:subtractCashCredits(playerCashCredits)
+                    remainingCost = remainingCost - playerCashCredits
+                    creature:subtractBankCredits(remainingCost)
+                end
+                giveItem(pInventory, "object/tangible/food/crafted/dish_bivoli_tempari.iff", -1)
+                creature:sendSystemMessage("You have purchased a Bivoli Tempari Dish.")
+                nextConversationScreen = conversation:getScreen("purchase_complete")
+            end
+		elseif (optionLink == "food04") then
+            local itemCost = 15000
+            if (totalPlayerCredits < itemCost) then
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds.")
+            else
+                local remainingCost = itemCost
+                if (playerCashCredits >= remainingCost) then
+                    creature:subtractCashCredits(remainingCost)
+                else
+                    creature:subtractCashCredits(playerCashCredits)
+                    remainingCost = remainingCost - playerCashCredits
+                    creature:subtractBankCredits(remainingCost)
+                end
+                giveItem(pInventory, "object/tangible/food/crafted/dish_synthsteak.iff", -1)
+                creature:sendSystemMessage("You have purchased a Synthsteak Dish.")
+                nextConversationScreen = conversation:getScreen("purchase_complete")
+            end
+		elseif (optionLink == "food05") then
+            local itemCost = 15000
+            if (totalPlayerCredits < itemCost) then
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds.")
+            else
+                local remainingCost = itemCost
+                if (playerCashCredits >= remainingCost) then
+                    creature:subtractCashCredits(remainingCost)
+                else
+                    creature:subtractCashCredits(playerCashCredits)
+                    remainingCost = remainingCost - playerCashCredits
+                    creature:subtractBankCredits(remainingCost)
+                end
+                giveItem(pInventory, "object/tangible/food/crafted/dish_thakitillo.iff", -1)
+                creature:sendSystemMessage("You have purchased a Thakitillo Dish.")
+                nextConversationScreen = conversation:getScreen("purchase_complete")
+            end
+		elseif (optionLink == "food06") then
+            local itemCost = 15000
+            if (totalPlayerCredits < itemCost) then
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds.")
+            else
+                local remainingCost = itemCost
+                if (playerCashCredits >= remainingCost) then
+                    creature:subtractCashCredits(remainingCost)
+                else
+                    creature:subtractCashCredits(playerCashCredits)
+                    remainingCost = remainingCost - playerCashCredits
+                    creature:subtractBankCredits(remainingCost)
+                end
+                giveItem(pInventory, "object/tangible/food/crafted/drink_bespin_port.iff", -1)
+                creature:sendSystemMessage("You have purchased a bottle of Bespin Port.")
+                nextConversationScreen = conversation:getScreen("purchase_complete")
+            end
+		elseif (optionLink == "food07") then
+            local itemCost = 15000
+            if (totalPlayerCredits < itemCost) then
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds.")
+            else
+                local remainingCost = itemCost
+                if (playerCashCredits >= remainingCost) then
+                    creature:subtractCashCredits(remainingCost)
+                else
+                    creature:subtractCashCredits(playerCashCredits)
+                    remainingCost = remainingCost - playerCashCredits
+                    creature:subtractBankCredits(remainingCost)
+                end
+                giveItem(pInventory, "object/tangible/food/crafted/drink_ithorian_mist.iff", -1)
+                creature:sendSystemMessage("You have purchased a bottle of Ithorian Mist.")
+                nextConversationScreen = conversation:getScreen("purchase_complete")
+            end
 
         --- JEDI ITEMS ---
+		
         elseif (optionLink == "jedi01") then
             local itemCost = 25000
             if (totalPlayerCredits < itemCost) then
@@ -609,6 +741,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             end
 
         --- MEDIC ITEMS ---
+		
         elseif (optionLink == "medic01") then
             local itemCost = 500
             if (totalPlayerCredits < itemCost) then
@@ -701,6 +834,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             end
 
         --- WEARABLES ---
+		
         elseif (optionLink == "wearables01") then
             local itemCost = 5000
             if (totalPlayerCredits < itemCost) then
