@@ -44,12 +44,29 @@ weapons = ConvoScreen:new {
     customDialogText = "Selling various weapons.",
     stopConversation = "false",
     options = { 
-		{"CDEF Pistol - 5k", "weapon01"},
-		{"CDEF Carbine - 5k", "weapon02"},
-		{"CDEF Rifle - 5k", "weapon03"},
-		{"DH17 Pistol - 15k", "weapon04"},
-		{"DH17 Carbine - 15k", "weapon05"},
-		{"DLT20a Rifle - 15k", "weapon06"},
+		-- {"CDEF Pistol - 5k", "weapon01"},
+		-- {"CDEF Carbine - 5k", "weapon02"},
+		-- {"CDEF Rifle - 5k", "weapon03"},
+		-- {"DH17 Pistol - 15k", "weapon04"},
+		-- {"DH17 Carbine - 15k", "weapon05"},
+		-- {"DLT20a Rifle - 15k", "weapon06"},
+		-- {"Gaderiffi Baton - 25k", "weapon07"},
+		-- {"Stun Baton - 50k", "weapon08"},
+		-- {"Long Vibro Axe - 25k", "weapon09"},
+		-- {"Two-handed Curved Sword - 25k", "weapon10"},
+		-- {"Vibro Knuckler - 25k", "weapon11"},
+		{"Melee Weapons","melee"}
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(weapons);
+
+melee = ConvoScreen:new {    
+    id = "melee",
+    leftDialog = "",
+    customDialogText = "Please choose.",
+    stopConversation = "false",
+    options = { 
 		{"Gaderiffi Baton - 25k", "weapon07"},
 		{"Stun Baton - 50k", "weapon08"},
 		{"Long Vibro Axe - 25k", "weapon09"},
