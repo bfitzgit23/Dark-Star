@@ -16,12 +16,7 @@ dark_star_vendor_first_screen = ConvoScreen:new {
 		{"Deeds", "deeds"},
 		{"Jedi Items", "jedi"},
         {"Medic", "medic"},
-        {"Wearables", "wearables"},
-        -- {"Architect", "arch1"},
-        -- {"Chef", "chef1"},        
-        -- {"Droids", "droid1"},
-        -- {"Tailor", "tailor1"}, 
-		-- {"Loot", "loot"},		
+        {"Wearables", "wearables"},		
     }
 }
 dark_star_vendor_conv:addScreen(dark_star_vendor_first_screen);
