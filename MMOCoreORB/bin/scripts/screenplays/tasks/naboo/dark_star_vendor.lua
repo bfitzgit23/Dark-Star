@@ -312,6 +312,60 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 creature:sendSystemMessage("You have purchased a Vibroknuckler.")
                 nextConversationScreen = conversation:getScreen("purchase_complete")
             end
+		elseif (optionLink == "weapon12") then
+            local itemCost = 1000
+            if (totalPlayerCredits < itemCost) then
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds.")
+            else
+                local remainingCost = itemCost
+                if (playerCashCredits >= remainingCost) then
+                    creature:subtractCashCredits(remainingCost)
+                else
+                    creature:subtractCashCredits(playerCashCredits)
+                    remainingCost = remainingCost - playerCashCredits
+                    creature:subtractBankCredits(remainingCost)
+                end
+                giveItem(pInventory, "object/weapon/melee/knife/knife_survival.iff", -1)
+                creature:sendSystemMessage("You have purchased a Survival Knife.")
+                nextConversationScreen = conversation:getScreen("purchase_complete")
+            end
+		elseif (optionLink == "weapon13") then
+            local itemCost = 1000
+            if (totalPlayerCredits < itemCost) then
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds.")
+            else
+                local remainingCost = itemCost
+                if (playerCashCredits >= remainingCost) then
+                    creature:subtractCashCredits(remainingCost)
+                else
+                    creature:subtractCashCredits(playerCashCredits)
+                    remainingCost = remainingCost - playerCashCredits
+                    creature:subtractBankCredits(remainingCost)
+                end
+                giveItem(pInventory, "object/weapon/melee/polearm/lance_staff_wood_s1.iff", -1)
+                creature:sendSystemMessage("You have purchased a Wodden Staff.")
+                nextConversationScreen = conversation:getScreen("purchase_complete")
+            end
+		elseif (optionLink == "weapon14") then
+            local itemCost = 1000
+            if (totalPlayerCredits < itemCost) then
+                nextConversationScreen = conversation:getScreen("insufficient_funds")
+                creature:sendSystemMessage("You have insufficient funds.")
+            else
+                local remainingCost = itemCost
+                if (playerCashCredits >= remainingCost) then
+                    creature:subtractCashCredits(remainingCost)
+                else
+                    creature:subtractCashCredits(playerCashCredits)
+                    remainingCost = remainingCost - playerCashCredits
+                    creature:subtractBankCredits(remainingCost)
+                end
+                giveItem(pInventory, "object/weapon/melee/axe/axe_heavy_duty.iff", -1)
+                creature:sendSystemMessage("You have purchased a Heavy-Duty Axe.")
+                nextConversationScreen = conversation:getScreen("purchase_complete")
+            end
 
         --- ARMOR ---
         elseif (optionLink == "armor01") then

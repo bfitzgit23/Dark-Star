@@ -44,12 +44,93 @@ weapons = ConvoScreen:new {
     customDialogText = "Selling various weapons.",
     stopConversation = "false",
     options = { 
+
+
+		-- {"Gaderiffi Baton - 25k", "weapon07"},
+		-- {"Stun Baton - 50k", "weapon08"},
+		-- {"Long Vibro Axe - 25k", "weapon09"},
+		-- {"Two-handed Curved Sword - 25k", "weapon10"},
+		-- {"Vibro Knuckler - 25k", "weapon11"},
+		{"Melee Weapons","melee"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(weapons);
+
+ranged = ConvoScreen:new {    
+    id = "ranged",
+    leftDialog = "",
+    customDialogText = "Please choose.",
+    stopConversation = "false",
+    options = { 
+		{"Starter Ranged Weapons","ranged_starter"},
+		{"Advanced Ranged Weapons","ranged_advanced"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(ranged);
+
+ranged_starter = ConvoScreen:new {    
+    id = "ranged_starter",
+    leftDialog = "",
+    customDialogText = "Please choose.",
+    stopConversation = "false",
+    options = { 
 		{"CDEF Pistol - 5k", "weapon01"},
 		{"CDEF Carbine - 5k", "weapon02"},
 		{"CDEF Rifle - 5k", "weapon03"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(ranged_starter);
+
+ranged_advanced = ConvoScreen:new {    
+    id = "ranged_advanced",
+    leftDialog = "",
+    customDialogText = "Please choose.",
+    stopConversation = "false",
+    options = { 
 		{"DH17 Pistol - 15k", "weapon04"},
 		{"DH17 Carbine - 15k", "weapon05"},
 		{"DLT20a Rifle - 15k", "weapon06"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(ranged_advanced);
+
+melee = ConvoScreen:new {    
+    id = "melee",
+    leftDialog = "",
+    customDialogText = "Please choose.",
+    stopConversation = "false",
+    options = { 
+		{"Starter Melee Weapons","melee_starter"},
+		{"Advanced Melee Weapons","melee_advanced"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(melee);
+
+melee_starter = ConvoScreen:new {    
+    id = "melee_starter",
+    leftDialog = "",
+    customDialogText = "Please choose.",
+    stopConversation = "false",
+    options = { 
+		{"Survival Knife","weapon12"},
+		{"Wodden Staff","weapon13"},
+		{"Heavy-Duty Axe","weapon14"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(melee_starter);
+
+melee_advanced = ConvoScreen:new {    
+    id = "melee_advanced",
+    leftDialog = "",
+    customDialogText = "Please choose.",
+    stopConversation = "false",
+    options = { 
 		{"Gaderiffi Baton - 25k", "weapon07"},
 		{"Stun Baton - 50k", "weapon08"},
 		{"Long Vibro Axe - 25k", "weapon09"},
@@ -58,7 +139,7 @@ weapons = ConvoScreen:new {
         {"Main menu.", "first_screen"},
     }
 }
-dark_star_vendor_conv:addScreen(weapons);
+dark_star_vendor_conv:addScreen(melee_advanced);
 
 armor = ConvoScreen:new {    
     id = "armor",
