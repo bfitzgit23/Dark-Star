@@ -44,13 +44,7 @@ weapons = ConvoScreen:new {
     customDialogText = "Selling various weapons.",
     stopConversation = "false",
     options = { 
-
-
-		-- {"Gaderiffi Baton - 25k", "weapon07"},
-		-- {"Stun Baton - 50k", "weapon08"},
-		-- {"Long Vibro Axe - 25k", "weapon09"},
-		-- {"Two-handed Curved Sword - 25k", "weapon10"},
-		-- {"Vibro Knuckler - 25k", "weapon11"},
+		{"Ranged Weapons","ranged"},
 		{"Melee Weapons","melee"},
         {"Main menu.", "first_screen"},
     }
