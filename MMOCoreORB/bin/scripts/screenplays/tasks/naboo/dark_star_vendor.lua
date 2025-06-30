@@ -93,7 +93,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
         end
 
         --- BUFFS ---
-        -
+        
         if (optionLink == "buffs01") then
             local itemCost = 15000
             if (totalPlayerCredits < itemCost) then
