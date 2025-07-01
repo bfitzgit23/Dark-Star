@@ -1,5 +1,5 @@
 /*
- 				Copyright <SWGEmu>
+				Copyright <SWGEmu>
 		See file COPYING for copying conditions. */
 
 
@@ -38,8 +38,36 @@ public:
 				return;
 			}
 
-			StringIdChatParameter healParams;
 			if (player->hasSkill("force_discipline_enhancements_novice")){
+
+				// -----------------------------------------------------------------
+				// NEW LOGIC: PASSIVE BATTLE FATIGUE (SHOCK WOUND) HEALING
+				// This now works just like the regular wound healing, with no Force cost.
+				// -----------------------------------------------------------------
+
+				// Check if the player has any battle fatigue.
+				if (player->getShockWounds() > 0) {
+					// Heal a random amount, same as the wound healing logic.
+					int fatigueHealAmount = 40 + System::random(20);
+
+					// Cap the heal at the amount of fatigue the player actually has.
+					fatigueHealAmount = Math::min(player->getShockWounds(), fatigueHealAmount);
+
+					// Heal the battle fatigue (shock wounds).
+					player->healShockWound(fatigueHealAmount, true, false);
+
+					// Send a system message to the player.
+					StringIdChatParameter fatigueHealParams;
+					fatigueHealParams.setStringId("jedi_spam", "meditate_heal_fatigue"); // [meditation] You cleanse %DI of your battle fatigue.
+					fatigueHealParams.setDI(fatigueHealAmount);
+					player->sendSystemMessage(fatigueHealParams);
+				}
+
+
+				// -----------------------------------------------------------------
+				// EXISTING LOGIC: HEAL REGULAR WOUNDS (UNCHANGED)
+				// -----------------------------------------------------------------
+				StringIdChatParameter healParams;
 				//Here we are checking to see which pools have wounds, and we add them to a vector...
 				Vector<uint8> woundedPools;
 				Vector<uint8> hamPools;
@@ -56,7 +84,6 @@ public:
 					}
 				}
 
-				//Return without rescheduling because everything that can be healed has been?
 				if (woundedPools.size() > 0) {
 
 					// Select a random Attribute that has wounds from HAM first, then regen pools, then remaining secondary pools
