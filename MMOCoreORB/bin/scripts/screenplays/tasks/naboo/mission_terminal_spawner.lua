@@ -33,6 +33,6 @@ function mission_terminal_spawner:start()
         local heading = spawnData[5]
         
         -- Use spawnSceneObject for static objects like terminals.
-        spawnSceneObject(planet, terminalTemplate, x, y, z, 0, heading)
+        spawnSceneObject(planet, terminalTemplate, x, y, z, 90, heading)
     end
 end
