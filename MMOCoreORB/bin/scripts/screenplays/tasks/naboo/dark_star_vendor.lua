@@ -52,6 +52,7 @@ function dark_star_vendor:start()
         -- Dathomir
         { "dathomir", 619, 3.0, 3090, 35 },        -- trade
         { "dathomir", -47, 18.0, -1586, 35 },      -- science
+		{ "dathomir", -5236, 78, -4074, 35 },      -- village
         -- Yavin 4
         { "yavin4", -265, 35.0, 4897, 35 },        -- mining
         { "yavin4", 4053, 17.0, -6217, 35 },       -- imp
