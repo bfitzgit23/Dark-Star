@@ -292,6 +292,7 @@ naboo = {
 		{name = "Kaadara Starport", x = 5280.2002, z = -192, y = 6688.0498, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 6},
 		{name = "Kaadara Shuttleport", x = 5123.3857, z = -192, y = 6616.0264, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Emperor's Retreat", x = 2442.8, z = 292.0, y = -3916.8, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3}
+		{name = "Test Shuttleport", x = -4514, z = 9, y = 3650, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3}
 	},
 
 	jtlLaunchPoint = {"space_naboo", -2500, 900, -6500},
