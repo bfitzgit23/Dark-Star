@@ -49,19 +49,16 @@ public:
 					// Heal a random amount, same as the wound healing logic.
 					int fatigueHealAmount = 40 + System::random(20);
 
-					// *** CORRECTED LINE HERE ***
 					// Cap the heal at the amount of fatigue the player actually has.
-					// We cast getShockWounds() to an (int) to resolve the type mismatch.
 					fatigueHealAmount = Math::min((int)player->getShockWounds(), fatigueHealAmount);
 
 					// Heal the battle fatigue by adding a negative value to the shock wounds.
 					player->addShockWounds(-fatigueHealAmount, true, false);
 
-					// Send a system message to the player.
-					StringIdChatParameter fatigueHealParams;
-					fatigueHealParams.setStringId("jedi_spam", "meditate_heal_fatigue"); // [meditation] You cleanse %DI of your battle fatigue.
-					fatigueHealParams.setDI(fatigueHealAmount);
-					player->sendSystemMessage(fatigueHealParams);
+					// *** CORRECTED LINE HERE ***
+					// Send a raw system message instead of using the STF file to avoid the "jedi_spam" error.
+					String message = "You cleanse " + String::valueOf(fatigueHealAmount) + " of your battle fatigue.";
+					player->sendSystemMessage(message);
 				}
 
 

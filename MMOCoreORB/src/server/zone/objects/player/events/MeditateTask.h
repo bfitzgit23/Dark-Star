@@ -1,5 +1,5 @@
 /*
- 				Copyright <SWGEmu>
+				Copyright <SWGEmu>
 		See file COPYING for copying conditions. */
 
 /**
@@ -51,8 +51,33 @@ public:
 				else if (player->isDiseased() && meditateMod >= 45)
 					player->healDot(CreatureState::DISEASED, (15 + (meditateMod / 3)));
 
-			} else if (meditateMod >= 75) { // Meditate SkillMod +75 for wound Healing..
+			} else if (meditateMod >= 75) { // Meditate SkillMod +75 for wound and fatigue Healing..
 
+				// -----------------------------------------------------------------
+				// NEW LOGIC: PASSIVE BATTLE FATIGUE (SHOCK WOUND) HEALING
+				// This is placed inside the same check as wound healing.
+				// -----------------------------------------------------------------
+				if (player->getShockWounds() > 0) {
+					int fatigueHealAmount = 20 + System::random(10);
+
+					if (meditateMod >= 100)
+						fatigueHealAmount = 30 + System::random(20);
+
+					// Cap the heal at the amount of fatigue the player actually has.
+					fatigueHealAmount = Math::min((int)player->getShockWounds(), fatigueHealAmount);
+
+					// Heal the battle fatigue by adding a negative value.
+					player->addShockWounds(-fatigueHealAmount, true, false);
+
+					// Send a raw system message to the player.
+					String message = "Your meditation cleanses " + String::valueOf(fatigueHealAmount) + " of your battle fatigue.";
+					player->sendSystemMessage(message);
+				}
+
+
+				// -----------------------------------------------------------------
+				// EXISTING LOGIC: PASSIVE WOUND HEALING (UNCHANGED)
+				// -----------------------------------------------------------------
 				StringIdChatParameter healParams;
 
 				//Here we are checking to see which pools have wounds, and we add them to a vector...
@@ -63,29 +88,29 @@ public:
 				}
 
 				//Return without rescheduling because everything that can be healed has been?
-				if (woundedPools.size() <= 0)
-					return;
+				if (woundedPools.size() > 0) { // Changed to only run if there are wounds to heal.
 
-				int heal = 20 + System::random(10);
+					int heal = 20 + System::random(10);
 
-				if (meditateMod >= 100)
-					heal = 30 + System::random(20);
+					if (meditateMod >= 100)
+						heal = 30 + System::random(20);
 
-				// Select a random Attribute that has wounds...
-				uint8 pool = woundedPools.get(System::random(woundedPools.size() - 1));
+					// Select a random Attribute that has wounds...
+					uint8 pool = woundedPools.get(System::random(woundedPools.size() - 1));
 
-				int wounds = player->getWounds(pool);
+					int wounds = player->getWounds(pool);
 
-				//Cap the heal at the amount of wounds the creature has.
-				heal = Math::min(wounds, heal);
+					//Cap the heal at the amount of wounds the creature has.
+					heal = Math::min(wounds, heal);
 
-				player->healWound(player, pool, heal, true, false);
+					player->healWound(player, pool, heal, true, false);
 
-				// Sending System healing Message (wounds)
-				healParams.setStringId("teraskasi", "prose_curewound"); // [meditation] Your %TO wounds heal by %DI points.
-				healParams.setTO(CreatureAttribute::getName(pool));
-				healParams.setDI(heal);
-				player->sendSystemMessage(healParams);
+					// Sending System healing Message (wounds)
+					healParams.setStringId("teraskasi", "prose_curewound"); // [meditation] Your %TO wounds heal by %DI points.
+					healParams.setTO(CreatureAttribute::getName(pool));
+					healParams.setDI(heal);
+					player->sendSystemMessage(healParams);
+				}
 			}
 
 			if (meditateTask != nullptr)
