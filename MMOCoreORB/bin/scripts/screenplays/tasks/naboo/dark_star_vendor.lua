@@ -194,18 +194,16 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
         end
         creature:sendSystemMessage(itemToPurchase.message)
 
-        -- *** KEY CHANGE IS HERE ***
         -- Get the purchase complete screen and dynamically add the options.
         local nextConversationScreen = conversation:getScreen("purchase_complete")
         if (nextConversationScreen ~= nil) then
-            local luaNextScreen = LuaConversationScreen(nextConversationScreen)
-            -- We get the ID of the screen we were just on (e.g., "ranged_advanced")
+            -- The LuaConversationScreen wrapper is not needed here and was causing the error.
+            -- We can call the methods directly on the screen object returned by getScreen().
             local previousScreenID = luaLastConversationScreen:getScreenID()
-
-            -- We clear the old options and add our new, dynamic ones.
-            luaNextScreen:clearOptions()
-            luaNextScreen:addOption("Continue Shopping", previousScreenID) -- This now correctly links back
-            luaNextScreen:addOption("Main Menu", "first_screen")
+            
+            nextConversationScreen:clearOptions()
+            nextConversationScreen:addOption("Continue Shopping", previousScreenID)
+            nextConversationScreen:addOption("Main Menu", "first_screen")
         end
         return nextConversationScreen
 
