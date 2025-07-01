@@ -21,7 +21,7 @@ function space_terminal_spawner:start()
     local terminalSpawns = {
 	
         -- Dathomir Spawns
-		{ "dathomir", 5226, 78, -4074, 0, "-- The Village" },
+		{ "dathomir", 5210, 78, -4056, 0, "-- The Village" },
     }
 
     -- Loop through the table and spawn each terminal.
