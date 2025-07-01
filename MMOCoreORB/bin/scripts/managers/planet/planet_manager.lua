@@ -186,7 +186,6 @@ dathomir = {
 		{"singing_mountain_clan_village_nw",-7081,5888,50},
 		{"spiderclan_floating_rocks",-7120,2931,32},
 		{"spiderclan_stone_arch",7070,-6440,32},
-		{"The Village",(5306,-4145,32},
 		{"torch",-2610,-4861,32},
 		{"tower_and_stones",-443,-1156,32},
 		{"tree_hut",-5045,-2773,32},
