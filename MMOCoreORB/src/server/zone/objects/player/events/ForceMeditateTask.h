@@ -49,10 +49,11 @@ public:
 					// Heal a random amount, same as the wound healing logic.
 					int fatigueHealAmount = 40 + System::random(20);
 
-					// Cap the heal at the amount of fatigue the player actually has.
-					fatigueHealAmount = Math::min(player->getShockWounds(), fatigueHealAmount);
-
 					// *** CORRECTED LINE HERE ***
+					// Cap the heal at the amount of fatigue the player actually has.
+					// We cast getShockWounds() to an (int) to resolve the type mismatch.
+					fatigueHealAmount = Math::min((int)player->getShockWounds(), fatigueHealAmount);
+
 					// Heal the battle fatigue by adding a negative value to the shock wounds.
 					player->addShockWounds(-fatigueHealAmount, true, false);
 
