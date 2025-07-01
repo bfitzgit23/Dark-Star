@@ -13,7 +13,7 @@ registerScreenPlay("mission_terminal_spawner", true)
 
 function mission_terminal_spawner:start()
     -- The object template for the space terminal.
-    local terminalTemplate = "object/tangible/terminal/terminal_space.iff"
+    local terminalTemplate = "object/tangible/terminal/terminal_mission.iff"
 
     -- This table defines all the space terminals to be spawned.
     -- The coordinates are based on the shuttle locations, with an
