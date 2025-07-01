@@ -57,7 +57,7 @@ public:
 
 					// *** CORRECTED LINE HERE ***
 					// Send a raw system message instead of using the STF file to avoid the "jedi_spam" error.
-					String message = "You cleanse " + String::valueOf(fatigueHealAmount) + " of your battle fatigue.";
+					String message = "Your meditation cleanses " + String::valueOf(fatigueHealAmount) + " of your battle fatigue.";
 					player->sendSystemMessage(message);
 				}
 
