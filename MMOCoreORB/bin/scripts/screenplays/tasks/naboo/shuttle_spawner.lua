@@ -18,15 +18,7 @@ function shuttle_spawner:start()
     local shuttleTemplate = "object/building/player/city/shuttleport_corellia.iff" -- Example shuttle template
 
     local shuttleSpawns = {
-        -- Tatooine Spawns
 
-        -- Naboo Spawns
-        { "naboo", -4514, 9, 3650, 0, "-- Theed Starport" },
-        --{ "naboo", 5288, 6, 6789, 45, "-- Kaadara Starport" },
-
-        -- Corellia Spawns
-        
-		
 		-- Dathomir Spawns
 		{ "dathomir", 5221, 78, -4074, 0, "-- The Village" },
     }
