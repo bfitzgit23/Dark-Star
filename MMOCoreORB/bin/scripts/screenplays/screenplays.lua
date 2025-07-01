@@ -748,3 +748,6 @@ includeFile("tools/mission_level_choice.lua")
 
 --Shuttle Spawner
 includeFile("tasks/naboo/shuttle_spawner.lua")
+
+--Space Terminal Spawner
+includeFile("tasks/naboo/space_terminal_spawner.lua")
