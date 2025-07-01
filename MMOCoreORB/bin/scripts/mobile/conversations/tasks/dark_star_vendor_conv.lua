@@ -16,7 +16,7 @@ dark_star_vendor_first_screen = ConvoScreen:new {
     options = {
         {"Buffs", "buffs"},
         {"Weapons", "weapons"},
-        {"Armor", "armor"},
+        {"Armor", "armor_menu"}, -- Changed to point to the new armor menu
         {"Deeds", "deeds"},
         {"Food and Drinks","food_menu"},
         {"Jedi Items", "jedi"},
@@ -141,10 +141,24 @@ melee_advanced = ConvoScreen:new {
 }
 dark_star_vendor_conv:addScreen(melee_advanced);
 
-armor = ConvoScreen:new {
-    id = "armor",
+-- New screen to act as the main menu for different armor types
+armor_menu = ConvoScreen:new {
+    id = "armor_menu",
     leftDialog = "",
-    customDialogText = "Selling Composite Armor",
+    customDialogText = "What type of armor are you looking for?",
+    stopConversation = "false",
+    options = {
+        {"Composite Armor", "composite_armor"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(armor_menu);
+
+-- This is the old armor screen, now repurposed for just composite armor pieces
+composite_armor_screen = ConvoScreen:new {
+    id = "composite_armor", -- ID changed
+    leftDialog = "",
+    customDialogText = "Selling Composite Armor pieces.",
     stopConversation = "false",
     options = {
         {"Composite Helm - 5k", "armor01"},
@@ -156,10 +170,11 @@ armor = ConvoScreen:new {
         {"Composite Right Bracer - 5k", "armor07"},
         {"Composite Left Bracer - 5k", "armor08"},
         {"Composite Gloves - 5k", "armor09"},
+        {"Back", "armor_menu"}, -- Added back button
         {"Main menu.", "first_screen"},
     }
 }
-dark_star_vendor_conv:addScreen(armor);
+dark_star_vendor_conv:addScreen(composite_armor_screen);
 
 deeds = ConvoScreen:new {
     id = "deeds",
@@ -277,7 +292,6 @@ dark_star_vendor_insufficient_space = ConvoScreen:new {
 }
 dark_star_vendor_conv:addScreen(dark_star_vendor_insufficient_space);
 
--- This is the only changed screen. The options table is now empty.
 dark_star_vendor_purchase_complete = ConvoScreen:new {
     id = "purchase_complete",
     leftDialog = "",
