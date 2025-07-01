@@ -15,7 +15,7 @@ function shuttle_spawner:start()
     -- To add a new shuttle, simply add a new line to this table with the correct information.
     -- IMPORTANT: You must find the correct .iff file for the shuttle you want to use.
     -- The path below is a common example, but may not be correct for your server files.
-    local shuttleTemplate = "object/building/player/city/shuttleport_corellia.iff" -- Example shuttle template
+    local shuttleTemplate = "object/building/general/shuttleport_general.iff" -- Example shuttle template
 
     local shuttleSpawns = {
         -- Tatooine Spawns
