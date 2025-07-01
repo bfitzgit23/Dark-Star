@@ -71,61 +71,60 @@ dark_star_vendor_convo_handler = Object:new {
 }
 
 -- This table holds all the items for sale. It makes the code much cleaner.
--- To add a new item, just add a new entry here.
 local itemsForSale = {
     -- Buffs
-    ["buffs01"] = { cost = 15000, itemTemplate = nil, message = "You have purchased a character enhancement.", isBuff = true },
+    ["buffs01"] = { cost = 15000, itemTemplate = nil, message = "Thank you! You have purchased a character enhancement.", isBuff = true },
     -- Starter Ranged
-    ["weapon01"] = { cost = 5000, itemTemplate = "object/weapon/ranged/pistol/pistol_cdef.iff", message = "You have purchased a CDEF Pistol." },
-    ["weapon02"] = { cost = 5000, itemTemplate = "object/weapon/ranged/carbine/carbine_cdef.iff", message = "You have purchased a CDEF Carbine." },
-    ["weapon03"] = { cost = 5000, itemTemplate = "object/weapon/ranged/rifle/rifle_cdef.iff", message = "You have purchased a CDEF Rifle." },
+    ["weapon01"] = { cost = 5000, itemTemplate = "object/weapon/ranged/pistol/pistol_cdef.iff", message = "Thank you! You have purchased a CDEF Pistol." },
+    ["weapon02"] = { cost = 5000, itemTemplate = "object/weapon/ranged/carbine/carbine_cdef.iff", message = "Thank you! You have purchased a CDEF Carbine." },
+    ["weapon03"] = { cost = 5000, itemTemplate = "object/weapon/ranged/rifle/rifle_cdef.iff", message = "Thank you! You have purchased a CDEF Rifle." },
     -- Advanced Ranged
-    ["weapon04"] = { cost = 15000, itemTemplate = "object/weapon/ranged/pistol/pistol_dh17.iff", message = "You have purchased a DH-17 Pistol." },
-    ["weapon05"] = { cost = 15000, itemTemplate = "object/weapon/ranged/carbine/carbine_dh17.iff", message = "You have purchased a DH-17 Carbine." },
-    ["weapon06"] = { cost = 15000, itemTemplate = "object/weapon/ranged/rifle/rifle_dlt20a.iff", message = "You have purchased a DLT-20A Rifle." },
+    ["weapon04"] = { cost = 15000, itemTemplate = "object/weapon/ranged/pistol/pistol_dh17.iff", message = "Thank you! You have purchased a DH-17 Pistol." },
+    ["weapon05"] = { cost = 15000, itemTemplate = "object/weapon/ranged/carbine/carbine_dh17.iff", message = "Thank you! You have purchased a DH-17 Carbine." },
+    ["weapon06"] = { cost = 15000, itemTemplate = "object/weapon/ranged/rifle/rifle_dlt20a.iff", message = "Thank you! You have purchased a DLT-20A Rifle." },
     -- Starter Melee
-    ["weapon12"] = { cost = 1000, itemTemplate = "object/weapon/melee/knife/knife_survival.iff", message = "You have purchased a Survival Knife." },
-    ["weapon13"] = { cost = 1000, itemTemplate = "object/weapon/melee/polearm/lance_staff_wood_s1.iff", message = "You have purchased a Wooden Staff." },
-    ["weapon14"] = { cost = 1000, itemTemplate = "object/weapon/melee/axe/axe_heavy_duty.iff", message = "You have purchased a Heavy-Duty Axe." },
+    ["weapon12"] = { cost = 1000, itemTemplate = "object/weapon/melee/knife/knife_survival.iff", message = "Thank you! You have purchased a Survival Knife." },
+    ["weapon13"] = { cost = 1000, itemTemplate = "object/weapon/melee/polearm/lance_staff_wood_s1.iff", message = "Thank you! You have purchased a Wooden Staff." },
+    ["weapon14"] = { cost = 1000, itemTemplate = "object/weapon/melee/axe/axe_heavy_duty.iff", message = "Thank you! You have purchased a Heavy-Duty Axe." },
     -- Advanced Melee
-    ["weapon07"] = { cost = 25000, itemTemplate = "object/weapon/melee/baton/baton_gaderiffi.iff", message = "You have purchased a Gaderiffi Baton." },
-    ["weapon08"] = { cost = 50000, itemTemplate = "object/weapon/melee/baton/baton_stun.iff", message = "You have purchased a Stun Baton." },
-    ["weapon09"] = { cost = 25000, itemTemplate = "object/weapon/melee/polearm/polearm_vibro_axe.iff", message = "You have purchased a Vibro Axe." },
-    ["weapon10"] = { cost = 25000, itemTemplate = "object/weapon/melee/2h_sword/2h_sword_katana.iff", message = "You have purchased a Katana." },
-    ["weapon11"] = { cost = 25000, itemTemplate = "object/weapon/melee/special/vibroknuckler.iff", message = "You have purchased a Vibroknuckler." },
+    ["weapon07"] = { cost = 25000, itemTemplate = "object/weapon/melee/baton/baton_gaderiffi.iff", message = "Thank you! You have purchased a Gaderiffi Baton." },
+    ["weapon08"] = { cost = 50000, itemTemplate = "object/weapon/melee/baton/baton_stun.iff", message = "Thank you! You have purchased a Stun Baton." },
+    ["weapon09"] = { cost = 25000, itemTemplate = "object/weapon/melee/polearm/polearm_vibro_axe.iff", message = "Thank you! You have purchased a Vibro Axe." },
+    ["weapon10"] = { cost = 25000, itemTemplate = "object/weapon/melee/2h_sword/2h_sword_katana.iff", message = "Thank you! You have purchased a Katana." },
+    ["weapon11"] = { cost = 25000, itemTemplate = "object/weapon/melee/special/vibroknuckler.iff", message = "Thank you! You have purchased a Vibroknuckler." },
     -- Armor
-    ["armor01"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_helmet.iff", message = "You have purchased a Composite Helmet." },
-    ["armor02"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_chest_plate.iff", message = "You have purchased a Composite Chest Plate." },
-    ["armor03"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_leggings.iff", message = "You have purchased Composite Leggings." },
-    ["armor04"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_boots.iff", message = "You have purchased Composite Boots." },
-    ["armor05"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_bicep_r.iff", message = "You have purchased a Right Composite Bicep." },
-    ["armor06"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_bicep_l.iff", message = "You have purchased a Left Composite Bicep." },
-    ["armor07"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_bracer_r.iff", message = "You have purchased a Right Composite Bracer." },
-    ["armor08"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_bracer_l.iff", message = "You have purchased a Left Composite Bracer." },
-    ["armor09"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_gloves.iff", message = "You have purchased Composite Gloves." },
+    ["armor01"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_helmet.iff", message = "Thank you! You have purchased a Composite Helmet." },
+    ["armor02"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_chest_plate.iff", message = "Thank you! You have purchased a Composite Chest Plate." },
+    ["armor03"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_leggings.iff", message = "Thank you! You have purchased Composite Leggings." },
+    ["armor04"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_boots.iff", message = "Thank you! You have purchased Composite Boots." },
+    ["armor05"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_bicep_r.iff", message = "Thank you! You have purchased a Right Composite Bicep." },
+    ["armor06"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_bicep_l.iff", message = "Thank you! You have purchased a Left Composite Bicep." },
+    ["armor07"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_bracer_r.iff", message = "Thank you! You have purchased a Right Composite Bracer." },
+    ["armor08"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_bracer_l.iff", message = "Thank you! You have purchased a Left Composite Bracer." },
+    ["armor09"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_gloves.iff", message = "Thank you! You have purchased Composite Gloves." },
     -- Deeds
-    ["deeds01"] = { cost = 200000, itemTemplate = "object/tangible/veteran_reward/resource.iff", message = "You have purchased a Resource Deed." },
-    ["deeds02"] = { cost = 15000, itemTemplate = "object/tangible/deed/vehicle_deed/speederbike_deed.iff", message = "You have purchased a Speederbike Deed." },
+    ["deeds01"] = { cost = 200000, itemTemplate = "object/tangible/veteran_reward/resource.iff", message = "Thank you! You have purchased a Resource Deed." },
+    ["deeds02"] = { cost = 15000, itemTemplate = "object/tangible/deed/vehicle_deed/speederbike_deed.iff", message = "Thank you! You have purchased a Speederbike Deed." },
     -- Food
-    ["food01"] = { cost = 15000, itemTemplate = "object/tangible/food/crafted/dessert_pikatta_pie.iff", message = "You have purchased a Pikatta Pie." },
-    ["food02"] = { cost = 15000, itemTemplate = "object/tangible/food/crafted/dessert_pyollian_cake.iff", message = "You have purchased a Pyollian Cake." },
-    ["food03"] = { cost = 15000, itemTemplate = "object/tangible/food/crafted/dish_bivoli_tempari.iff", message = "You have purchased a Bivoli Tempari Dish." },
-    ["food04"] = { cost = 15000, itemTemplate = "object/tangible/food/crafted/dish_synthsteak.iff", message = "You have purchased a Synthsteak Dish." },
-    ["food05"] = { cost = 15000, itemTemplate = "object/tangible/food/crafted/dish_thakitillo.iff", message = "You have purchased a Thakitillo Dish." },
+    ["food01"] = { cost = 15000, itemTemplate = "object/tangible/food/crafted/dessert_pikatta_pie.iff", message = "Thank you! You have purchased a Pikatta Pie." },
+    ["food02"] = { cost = 15000, itemTemplate = "object/tangible/food/crafted/dessert_pyollian_cake.iff", message = "Thank you! You have purchased a Pyollian Cake." },
+    ["food03"] = { cost = 15000, itemTemplate = "object/tangible/food/crafted/dish_bivoli_tempari.iff", message = "Thank you! You have purchased a Bivoli Tempari Dish." },
+    ["food04"] = { cost = 15000, itemTemplate = "object/tangible/food/crafted/dish_synthsteak.iff", message = "Thank you! You have purchased a Synthsteak Dish." },
+    ["food05"] = { cost = 15000, itemTemplate = "object/tangible/food/crafted/dish_thakitillo.iff", message = "Thank you! You have purchased a Thakitillo Dish." },
     -- Drinks
-    ["food06"] = { cost = 15000, itemTemplate = "object/tangible/food/crafted/drink_bespin_port.iff", message = "You have purchased a bottle of Bespin Port." },
-    ["food07"] = { cost = 15000, itemTemplate = "object/tangible/food/crafted/drink_ithorian_mist.iff", message = "You have purchased a bottle of Ithorian Mist." },
+    ["food06"] = { cost = 15000, itemTemplate = "object/tangible/food/crafted/drink_bespin_port.iff", message = "Thank you! You have purchased a bottle of Bespin Port." },
+    ["food07"] = { cost = 15000, itemTemplate = "object/tangible/food/crafted/drink_ithorian_mist.iff", message = "Thank you! You have purchased a bottle of Ithorian Mist." },
     -- Jedi
-    ["jedi01"] = { cost = 25000, itemTemplate = "object/tangible/jedi/jedi_holocron_dark.iff", message = "You have purchased a Sith Holocron." },
-    ["jedi02"] = { cost = 25000, itemTemplate = "object/tangible/jedi/jedi_holocron_light.iff", message = "You have purchased a Jedi Holocron." },
+    ["jedi01"] = { cost = 25000, itemTemplate = "object/tangible/jedi/jedi_holocron_dark.iff", message = "Thank you! You have purchased a Sith Holocron." },
+    ["jedi02"] = { cost = 25000, itemTemplate = "object/tangible/jedi/jedi_holocron_light.iff", message = "Thank you! You have purchased a Jedi Holocron." },
     -- Medic
-    ["medic01"] = { cost = 500, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_a.iff", message = "You have purchased a Stimpack A." },
-    ["medic02"] = { cost = 1000, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_b.iff", message = "You have purchased a Stimpack B." },
-    ["medic03"] = { cost = 2000, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_c.iff", message = "You have purchased a Stimpack C." },
-    ["medic04"] = { cost = 5000, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_d.iff", message = "You have purchased a Stimpack D." },
-    ["medic05"] = { cost = 10000, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_e.iff", message = "You have purchased a Stimpack E." },
+    ["medic01"] = { cost = 500, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_a.iff", message = "Thank you! You have purchased a Stimpack A." },
+    ["medic02"] = { cost = 1000, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_b.iff", message = "Thank you! You have purchased a Stimpack B." },
+    ["medic03"] = { cost = 2000, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_c.iff", message = "Thank you! You have purchased a Stimpack C." },
+    ["medic04"] = { cost = 5000, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_d.iff", message = "Thank you! You have purchased a Stimpack D." },
+    ["medic05"] = { cost = 10000, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_e.iff", message = "Thank you! You have purchased a Stimpack E." },
     -- Wearables
-    ["wearables01"] = { cost = 5000, itemTemplate = "object/tangible/wearables/backpack/backpack_s01.iff", message = "You have purchased a Backpack." },
+    ["wearables01"] = { cost = 5000, itemTemplate = "object/tangible/wearables/backpack/backpack_s01.iff", message = "Thank you! You have purchased a Backpack." },
 }
 
 -- This is the main function that handles the conversation logic.
@@ -192,20 +191,14 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
         else
             giveItem(pInventory, itemToPurchase.itemTemplate, -1)
         end
+        
+        -- Send the confirmation message to the player's chat.
         creature:sendSystemMessage(itemToPurchase.message)
 
-        -- Get the purchase complete screen and dynamically add the options.
-        local nextConversationScreen = conversation:getScreen("purchase_complete")
-        if (nextConversationScreen ~= nil) then
-            -- The LuaConversationScreen wrapper is not needed here and was causing the error.
-            -- We can call the methods directly on the screen object returned by getScreen().
-            local previousScreenID = luaLastConversationScreen:getScreenID()
-            
-            nextConversationScreen:clearOptions()
-            nextConversationScreen:addOption("Continue Shopping", previousScreenID)
-            nextConversationScreen:addOption("Main Menu", "first_screen")
-        end
-        return nextConversationScreen
+        -- *** KEY CHANGE IS HERE ***
+        -- Instead of going to a new screen, we return the player to the screen
+        -- they were just on. This avoids all the errors with modifying screens.
+        return lastConversationScreen
 
     else
         -- If it's not a purchase, just navigate to the next screen.
