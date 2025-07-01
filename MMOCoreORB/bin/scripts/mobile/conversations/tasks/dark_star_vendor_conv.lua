@@ -277,25 +277,13 @@ dark_star_vendor_insufficient_space = ConvoScreen:new {
 }
 dark_star_vendor_conv:addScreen(dark_star_vendor_insufficient_space);
 
--- This is the CORRECTED version for your dark_star_vendor_conv.lua file
+-- This is the only changed screen. The options table is now empty.
 dark_star_vendor_purchase_complete = ConvoScreen:new {
     id = "purchase_complete",
     leftDialog = "",
     customDialogText = "Thank you! Have a great day!",
     stopConversation = "false",
-    options = { } -- The options table should be empty here.
-}
-dark_star_vendor_conv:addScreen(dark_star_vendor_purchase_complete);
-
-addConversationTemplate("dark_star_vendor_conv", dark_star_vendor_conv);
- = ConvoScreen:new {
-    id = "purchase_complete",
-    leftDialog = "", 
-    customDialogText = "Thank you! Have a great day!",    
-    stopConversation = "false",  
-    options = {
-		{"Main menu.", "first_screen"},	
-	}
+    options = { }
 }
 dark_star_vendor_conv:addScreen(dark_star_vendor_purchase_complete);
 
