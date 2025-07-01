@@ -746,8 +746,8 @@ includeFile("tasks/naboo/additional_junk_dealers.lua")
 includeFile("tools/mission_direction_choice.lua")
 includeFile("tools/mission_level_choice.lua")
 
---Shuttle Spawner
+--Custom Spawners
 includeFile("tasks/naboo/shuttle_spawner.lua")
-
---Space Terminal Spawner
 includeFile("tasks/naboo/space_terminal_spawner.lua")
+includeFile("tasks/naboo/mission_terminal_spawner.lua")
+

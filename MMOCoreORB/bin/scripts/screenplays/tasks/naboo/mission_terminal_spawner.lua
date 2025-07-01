@@ -1,17 +1,17 @@
 --
--- This script spawns space terminals at specified locations,
+-- This script spawns mission terminals at specified locations,
 -- intended to be near shuttle ports.
 --
 
-space_terminal_spawner = ScreenPlay:new {
+mission_terminal_spawner = ScreenPlay:new {
     numberOfActs = 1,
-    questString = "space_terminal_spawner",
+    questString = "mission_terminal_spawner",
     states = {},
 }
 
-registerScreenPlay("space_terminal_spawner", true)
+registerScreenPlay("mission_terminal_spawner", true)
 
-function space_terminal_spawner:start()
+function mission_terminal_spawner:start()
     -- The object template for the space terminal.
     local terminalTemplate = "object/tangible/terminal/terminal_space.iff"
 
@@ -21,7 +21,7 @@ function space_terminal_spawner:start()
     local terminalSpawns = {
 	
         -- Dathomir Spawns
-		{ "dathomir", 5210, 80, -4056, 0, "-- The Village" },
+		{ "dathomir", 5238, 80, -4074, 0, "-- The Village" },
     }
 
     -- Loop through the table and spawn each terminal.
