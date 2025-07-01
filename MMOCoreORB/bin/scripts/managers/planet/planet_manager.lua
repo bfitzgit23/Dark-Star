@@ -143,7 +143,8 @@ dathomir = {
 
 	planetTravelPoints = {
 		{name = "Trade Outpost", x = 618.89258, z = 6.039608, y = 3092.0142, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
-		{name = "Science Outpost", x = -49.021923, z = 18, y = -1584.7278, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3}
+		{name = "Science Outpost", x = -49.021923, z = 18, y = -1584.7278, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "The Village", x = 5221, z = 78, y = -4074, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3}
 	},
 
 	jtlLaunchPoint = {"space_dathomir", -6900, 2750, -4000},
@@ -185,6 +186,7 @@ dathomir = {
 		{"singing_mountain_clan_village_nw",-7081,5888,50},
 		{"spiderclan_floating_rocks",-7120,2931,32},
 		{"spiderclan_stone_arch",7070,-6440,32},
+		{"The Village",(5306,-4145,32},
 		{"torch",-2610,-4861,32},
 		{"tower_and_stones",-443,-1156,32},
 		{"tree_hut",-5045,-2773,32},
@@ -291,8 +293,7 @@ naboo = {
 		{name = "Dee'ja Peak Shuttleport", x = 5331.9375, z = 327.02765, y = -1576.6733, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Kaadara Starport", x = 5280.2002, z = -192, y = 6688.0498, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 6},
 		{name = "Kaadara Shuttleport", x = 5123.3857, z = -192, y = 6616.0264, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
-		{name = "Emperor's Retreat", x = 2442.8, z = 292.0, y = -3916.8, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
-		{name = "Test Shuttleport", x = -4514, z = 9, y = 3650, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3}
+		{name = "Emperor's Retreat", x = 2442.8, z = 292.0, y = -3916.8, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3}
 	},
 
 	jtlLaunchPoint = {"space_naboo", -2500, 900, -6500},

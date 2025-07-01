@@ -19,16 +19,16 @@ function shuttle_spawner:start()
 
     local shuttleSpawns = {
         -- Tatooine Spawns
-        --{ "tatooine", 3450, 5, -4757, 90, "-- Mos Eisley Starport" },
-        --{ "tatooine", -1182, 12, -3568, -175, "-- Bestine Starport" },
 
         -- Naboo Spawns
         { "naboo", -4514, 9, 3650, 0, "-- Theed Starport" },
         --{ "naboo", 5288, 6, 6789, 45, "-- Kaadara Starport" },
 
         -- Corellia Spawns
-        --{ "corellia", -250, 28, -4700, -90, "-- Coronet City Starport" },
-        --{ "corellia", -5145, 21, -2450, 180, "-- Tyrena Starport" },
+        
+		
+		-- Dathomir Spawns
+		{ "dathomir", 5221, 78, -4074, 0, "-- The Village" },
     }
 
     -- Loop through the table and spawn each shuttle.
