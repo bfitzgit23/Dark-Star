@@ -55,6 +55,7 @@ ranged = ConvoScreen:new {
     options = { 
 		{"Starter Ranged Weapons","ranged_starter"},
 		{"Advanced Ranged Weapons","ranged_advanced"},
+		{"Back","weapons"},
         {"Main menu.", "first_screen"},
     }
 }
@@ -69,6 +70,7 @@ ranged_starter = ConvoScreen:new {
 		{"CDEF Pistol - 5k", "weapon01"},
 		{"CDEF Carbine - 5k", "weapon02"},
 		{"CDEF Rifle - 5k", "weapon03"},
+		{"Back","ranged"},
         {"Main menu.", "first_screen"},
     }
 }
@@ -83,6 +85,7 @@ ranged_advanced = ConvoScreen:new {
 		{"DH17 Pistol - 15k", "weapon04"},
 		{"DH17 Carbine - 15k", "weapon05"},
 		{"DLT20a Rifle - 15k", "weapon06"},
+		{"Back","ranged"},
         {"Main menu.", "first_screen"},
     }
 }
@@ -96,6 +99,7 @@ melee = ConvoScreen:new {
     options = { 
 		{"Starter Melee Weapons","melee_starter"},
 		{"Advanced Melee Weapons","melee_advanced"},
+		{"Back","weapons"},
         {"Main menu.", "first_screen"},
     }
 }
@@ -110,6 +114,7 @@ melee_starter = ConvoScreen:new {
 		{"Survival Knife","weapon12"},
 		{"Wodden Staff","weapon13"},
 		{"Heavy-Duty Axe","weapon14"},
+		{"Back","melee"},
         {"Main menu.", "first_screen"},
     }
 }
@@ -126,6 +131,7 @@ melee_advanced = ConvoScreen:new {
 		{"Long Vibro Axe - 25k", "weapon09"},
 		{"Two-handed Curved Sword - 25k", "weapon10"},
 		{"Vibro Knuckler - 25k", "weapon11"},
+		{"Back","melee"},
         {"Main menu.", "first_screen"},
     }
 }
@@ -188,6 +194,7 @@ food = ConvoScreen:new {
 		{"Bivoli Tempari - 15k","food03"},
 		{"Synthsteak - 15k","food04"},
 		{"Thakitillo - 15k","food05"},
+		{"Back","food_menu"},
         {"Main menu.", "first_screen"},
     }
 }
@@ -201,7 +208,8 @@ drinks = ConvoScreen:new {
     options = { 
         {"Bespin Port - 15k","food06"},
 		{"Ithorian Mist - 15k","food07"},
-        {"Main menu.", "first_screen"},
+        {"Back","food_menu"},
+		{"Main menu.", "first_screen"},
     }
 }
 dark_star_vendor_conv:addScreen(drinks);
@@ -271,7 +279,7 @@ dark_star_vendor_purchase_complete = ConvoScreen:new {
     id = "purchase_complete",
     leftDialog = "", 
     customDialogText = "Thank you! Have a great day!",    
-    stopConversation = "true",  
+    stopConversation = "false",  
     options = { }
 }
 dark_star_vendor_conv:addScreen(dark_star_vendor_purchase_complete);
