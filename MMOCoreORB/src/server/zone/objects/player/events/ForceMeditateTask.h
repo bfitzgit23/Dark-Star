@@ -1,5 +1,5 @@
 /*
- 				Copyright <SWGEmu>
+				Copyright <SWGEmu>
 		See file COPYING for copying conditions. */
 
 
@@ -38,8 +38,34 @@ public:
 				return;
 			}
 
-			StringIdChatParameter healParams;
 			if (player->hasSkill("force_discipline_enhancements_novice")){
+
+				// -----------------------------------------------------------------
+				// NEW LOGIC: PASSIVE BATTLE FATIGUE (SHOCK WOUND) HEALING
+				// -----------------------------------------------------------------
+
+				// Check if the player has any battle fatigue.
+				if (player->getShockWounds() > 0) {
+					// Heal a random amount, same as the wound healing logic.
+					int fatigueHealAmount = 40 + System::random(20);
+
+					// Cap the heal at the amount of fatigue the player actually has.
+					fatigueHealAmount = Math::min((int)player->getShockWounds(), fatigueHealAmount);
+
+					// Heal the battle fatigue by adding a negative value to the shock wounds.
+					player->addShockWounds(-fatigueHealAmount, true, false);
+
+					// *** CORRECTED LINE HERE ***
+					// Send a raw system message instead of using the STF file to avoid the "jedi_spam" error.
+					String message = "Your meditation cleanses " + String::valueOf(fatigueHealAmount) + " of your battle fatigue.";
+					player->sendSystemMessage(message);
+				}
+
+
+				// -----------------------------------------------------------------
+				// EXISTING LOGIC: HEAL REGULAR WOUNDS (UNCHANGED)
+				// -----------------------------------------------------------------
+				StringIdChatParameter healParams;
 				//Here we are checking to see which pools have wounds, and we add them to a vector...
 				Vector<uint8> woundedPools;
 				Vector<uint8> hamPools;
@@ -56,7 +82,6 @@ public:
 					}
 				}
 
-				//Return without rescheduling because everything that can be healed has been?
 				if (woundedPools.size() > 0) {
 
 					// Select a random Attribute that has wounds from HAM first, then regen pools, then remaining secondary pools
