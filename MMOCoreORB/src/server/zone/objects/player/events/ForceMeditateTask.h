@@ -42,7 +42,6 @@ public:
 
 				// -----------------------------------------------------------------
 				// NEW LOGIC: PASSIVE BATTLE FATIGUE (SHOCK WOUND) HEALING
-				// This now works just like the regular wound healing, with no Force cost.
 				// -----------------------------------------------------------------
 
 				// Check if the player has any battle fatigue.
@@ -53,8 +52,9 @@ public:
 					// Cap the heal at the amount of fatigue the player actually has.
 					fatigueHealAmount = Math::min(player->getShockWounds(), fatigueHealAmount);
 
-					// Heal the battle fatigue (shock wounds).
-					player->healShockWound(fatigueHealAmount, true, false);
+					// *** CORRECTED LINE HERE ***
+					// Heal the battle fatigue by adding a negative value to the shock wounds.
+					player->addShockWounds(-fatigueHealAmount, true, false);
 
 					// Send a system message to the player.
 					StringIdChatParameter fatigueHealParams;
