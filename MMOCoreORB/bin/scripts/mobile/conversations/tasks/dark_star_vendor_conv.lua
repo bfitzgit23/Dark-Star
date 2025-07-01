@@ -277,19 +277,13 @@ dark_star_vendor_insufficient_space = ConvoScreen:new {
 }
 dark_star_vendor_conv:addScreen(dark_star_vendor_insufficient_space);
 
+-- This is the CORRECTED version for your dark_star_vendor_conv.lua file
 dark_star_vendor_purchase_complete = ConvoScreen:new {
     id = "purchase_complete",
     leftDialog = "",
     customDialogText = "Thank you! Have a great day!",
     stopConversation = "false",
-    -- DEVELOPER NOTE: For this to work, the 'luaClassHandler' script must be modified.
-    -- When a purchase is successful, the handler should dynamically set the option
-    -- below to point to the screen the player came from by replacing 'previous_menu'.
-    -- For example: { "Continue Shopping", "ranged_starter" }
-    options = {
-        {"Continue Shopping", "previous_menu"},
-        {"Main Menu", "first_screen"}
-    }
+    options = { } -- The options table should be empty here.
 }
 dark_star_vendor_conv:addScreen(dark_star_vendor_purchase_complete);
 
