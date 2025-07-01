@@ -21,7 +21,7 @@ function mission_terminal_spawner:start()
     local terminalSpawns = {
 	
         -- Dathomir Spawns
-		{ "dathomir", 5238, 80, -4074, 0, "-- The Village" },
+		{ "dathomir", 5238, 79, -4074, 90, "-- The Village" },
     }
 
     -- Loop through the table and spawn each terminal.
