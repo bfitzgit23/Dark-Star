@@ -21,7 +21,7 @@ function mission_terminal_spawner:start()
     local terminalSpawns = {
 	
         -- Dathomir Spawns
-		{ "dathomir", 5238, 78.5, -4074, 0, "-- The Village" },
+		{ "dathomir", 5232, 78.5, -4057, 0, "-- The Village" },
     }
 
     -- Loop through the table and spawn each terminal.
@@ -33,6 +33,6 @@ function mission_terminal_spawner:start()
         local heading = spawnData[5]
         
         -- Use spawnSceneObject for static objects like terminals.
-        spawnSceneObject(planet, terminalTemplate, x, y, z, 90, heading)
+        spawnSceneObject(planet, terminalTemplate, x, y, z, 0, heading)
     end
 end
