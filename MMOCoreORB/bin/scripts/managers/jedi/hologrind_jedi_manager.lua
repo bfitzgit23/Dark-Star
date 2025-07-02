@@ -3,8 +3,8 @@ local ObjectManager = require("managers.object.object_manager")
 
 jediManagerName = "HologrindJediManager"
 
-NUMBEROFPROFESSIONSTOMASTER = 1
-MAXIMUMNUMBEROFPROFESSIONSTOSHOWWITHHOLOCRON = NUMBEROFPROFESSIONSTOMASTER - 0
+NUMBEROFPROFESSIONSTOMASTER = 3
+MAXIMUMNUMBEROFPROFESSIONSTOSHOWWITHHOLOCRON = NUMBEROFPROFESSIONSTOMASTER - 2
 
 HologrindJediManager = JediManager:new {
 	screenplayName = jediManagerName,
@@ -26,7 +26,7 @@ function HologrindJediManager:getGrindableProfessionList()
 		{ "crafting_architect_master", 		CRAFTING_ARCHITECT_MASTER  },
 		{ "crafting_armorsmith_master", 	CRAFTING_ARMORSMITH_MASTER  },
 		{ "crafting_artisan_master", 		CRAFTING_ARTISAN_MASTER  },
-		{ "outdoors_bio_engineer_master", 	OUTDOORS_BIO_ENGINEER_MASTER  },
+		{ "outdoors_bio_engineer_master", 	OUTDOORS_BIOENGINEER_MASTER  },
 		{ "combat_bountyhunter_master", 	COMBAT_BOUNTYHUNTER_MASTER  },
 		{ "combat_brawler_master", 		COMBAT_BRAWLER_MASTER  },
 		{ "combat_carbine_master", 		COMBAT_CARBINE_MASTER  },
@@ -127,52 +127,19 @@ end
 -- @param pCreatureObject pointer to the creature object of the player who unlocked jedi.
 function HologrindJediManager:sendSuiWindow(pCreatureObject)
 	local suiManager = LuaSuiManager()
-	--suiManager:sendMessageBox(pCreatureObject, pCreatureObject, "@quest/force_sensitive/intro:force_sensitive", "Perhaps you should meditate somewhere alone...", "@ok", "HologrindJediManager", "notifyOkPressed")
-	suiManager:sendMessageBox(pCreatureObject, pCreatureObject, "Jedi Unlock", "You begin to feel attuned with the power of the Force. Congratulations! This character is now a Jedi. First, you need to find a lightsaber color crystal and craft a lightsaber. Use the command /findmytrainer to create a waypoint to your Jedi skill trainer. Using your Jedi abilities near NPCs or players will gain you visibility bounty hunters. May the force be with you...", "@ok", "HologrindJediManager", "notifyOkPressed")
+	suiManager:sendMessageBox(pCreatureObject, pCreatureObject, "@quest/force_sensitive/intro:force_sensitive", "Perhaps you should meditate somewhere alone...", "@ok", "HologrindJediManager", "notifyOkPressed")
 end
 
 -- Award skill and jedi status to the player.
 -- @param pCreatureObject pointer to the creature object of the player who unlocked jedi.
--- function HologrindJediManager:awardJediStatusAndSkill(pCreatureObject)
-	-- local pGhost = CreatureObject(pCreatureObject):getPlayerObject()
-
-	-- if (pGhost == nil) then
-		-- return
-	-- end
-	
-	-- awardSkill(pCreatureObject, "force_title_jedi_novice")
-	-- PlayerObject(pGhost):setJediState(1)
-	awardSkill(pCreatureObject, "force_title_jedi_rank_02")
-	PlayerObject(pGhost):setJediState(2)
--- end
-
 function HologrindJediManager:awardJediStatusAndSkill(pCreatureObject)
 	local pGhost = CreatureObject(pCreatureObject):getPlayerObject()
 
 	if (pGhost == nil) then
-		printLuaError(self.jediManagerName .. ": pGhost was nil in awardJediStatusAndSkill.")
 		return
 	end
 
-    local playerName = CreatureObject(pCreatureObject):getCustomName()
-	printLuaLog(self.jediManagerName .. ": Attempting to award Jedi skill to " .. playerName)
-
-	-- Check if player ALREADY has the skill before awarding
-	if (CreatureObject(pCreatureObject):hasSkill("force_title_jedi_novice")) then
-		printLuaLog(self.jediManagerName .. ": Player " .. playerName .. " already has force_title_jedi_novice.")
-	else
-		printLuaLog(self.jediManagerName .. ": Calling awardSkill('force_title_jedi_novice') for " .. playerName)
-		awardSkill(pCreatureObject, "force_title_jedi_novice")
-
-		-- Add a post-check to see if it worked
-		if (CreatureObject(pCreatureObject):hasSkill("force_title_jedi_novice")) then
-			printLuaLog(self.jediManagerName .. ": SUCCESS! Player " .. playerName .. " now has the skill.")
-		else
-			printLuaError(self.jediManagerName .. ": FAILURE! awardSkill did not grant the skill to " .. playerName .. ". CHECK SKILL NAME AND SERVER LOGS.")
-		end
-	end
-
-	printLuaLog(self.jediManagerName .. ": Setting Jedi State to 1 for " .. playerName)
+	awardSkill(pCreatureObject, "force_title_jedi_novice")
 	PlayerObject(pGhost):setJediState(1)
 end
 
@@ -182,7 +149,6 @@ function HologrindJediManager:checkIfProgressedToJedi(pCreatureObject)
 	if self:getNumberOfMasteredProfessions(pCreatureObject) >= NUMBEROFPROFESSIONSTOMASTER and not self:isJedi(pCreatureObject) then
 		self:sendSuiWindow(pCreatureObject)
 		self:awardJediStatusAndSkill(pCreatureObject)
-		CreatureObject(pCreatureObject):playEffect("clienteffect/trap_electric_01.cef", "")
 	end
 end
 
