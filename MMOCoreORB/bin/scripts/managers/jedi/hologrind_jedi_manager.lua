@@ -127,7 +127,8 @@ end
 -- @param pCreatureObject pointer to the creature object of the player who unlocked jedi.
 function HologrindJediManager:sendSuiWindow(pCreatureObject)
 	local suiManager = LuaSuiManager()
-	suiManager:sendMessageBox(pCreatureObject, pCreatureObject, "@quest/force_sensitive/intro:force_sensitive", "Perhaps you should meditate somewhere alone...", "@ok", "HologrindJediManager", "notifyOkPressed")
+	--suiManager:sendMessageBox(pCreatureObject, pCreatureObject, "@quest/force_sensitive/intro:force_sensitive", "Perhaps you should meditate somewhere alone...", "@ok", "HologrindJediManager", "notifyOkPressed")
+	suiManager:sendMessageBox(pCreatureObject, pCreatureObject, "Jedi Unlock", "You begin to feel attuned with the power of the Force. Congratulations! This character is now a Jedi. First, you need to find a lightsaber color crystal and craft a lightsaber. Use the command /findmytrainer to create a waypoint to your Jedi skill trainer. Using your Jedi abilities near NPCs or players will gain you visibility bounty hunters. May the force be with you...", "@ok", "HologrindJediManager", "notifyOkPressed")
 end
 
 -- Award skill and jedi status to the player.
@@ -139,8 +140,8 @@ function HologrindJediManager:awardJediStatusAndSkill(pCreatureObject)
 		return
 	end
 
-	awardSkill(pCreatureObject, "force_title_jedi_novice")
-	PlayerObject(pGhost):setJediState(1)
+	awardSkill(pCreatureObject, "force_title_jedi_rank_02")
+	PlayerObject(pGhost):setJediState(2)
 end
 
 -- Check if the player has mastered all hologrind professions and send sui window and award skills.
@@ -149,6 +150,7 @@ function HologrindJediManager:checkIfProgressedToJedi(pCreatureObject)
 	if self:getNumberOfMasteredProfessions(pCreatureObject) >= NUMBEROFPROFESSIONSTOMASTER and not self:isJedi(pCreatureObject) then
 		self:sendSuiWindow(pCreatureObject)
 		self:awardJediStatusAndSkill(pCreatureObject)
+		CreatureObject(pCreatureObject):playEffect("clienteffect/trap_electric_01.cef", "")
 	end
 end
 
