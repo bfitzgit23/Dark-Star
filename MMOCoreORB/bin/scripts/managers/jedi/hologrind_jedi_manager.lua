@@ -121,17 +121,47 @@ end
 
 -- Award skill and jedi status to the player.
 -- @param pCreatureObject pointer to the creature object of the player who unlocked jedi.
+-- function HologrindJediManager:awardJediStatusAndSkill(pCreatureObject)
+	-- local pGhost = CreatureObject(pCreatureObject):getPlayerObject()
+
+	-- if (pGhost == nil) then
+		-- return
+	-- end
+	
+	-- awardSkill(pCreatureObject, "force_title_jedi_novice")
+	-- PlayerObject(pGhost):setJediState(1)
+	awardSkill(pCreatureObject, "force_title_jedi_rank_02")
+	PlayerObject(pGhost):setJediState(2)
+-- end
+
 function HologrindJediManager:awardJediStatusAndSkill(pCreatureObject)
 	local pGhost = CreatureObject(pCreatureObject):getPlayerObject()
 
 	if (pGhost == nil) then
+		printLuaError(self.jediManagerName .. ": pGhost was nil in awardJediStatusAndSkill.")
 		return
 	end
-	
-	awardSkill(pCreatureObject, "force_title_jedi_novice")
+
+    local playerName = CreatureObject(pCreatureObject):getCustomName()
+	printLuaLog(self.jediManagerName .. ": Attempting to award Jedi skill to " .. playerName)
+
+	-- Check if player ALREADY has the skill before awarding
+	if (CreatureObject(pCreatureObject):hasSkill("force_title_jedi_novice")) then
+		printLuaLog(self.jediManagerName .. ": Player " .. playerName .. " already has force_title_jedi_novice.")
+	else
+		printLuaLog(self.jediManagerName .. ": Calling awardSkill('force_title_jedi_novice') for " .. playerName)
+		awardSkill(pCreatureObject, "force_title_jedi_novice")
+
+		-- Add a post-check to see if it worked
+		if (CreatureObject(pCreatureObject):hasSkill("force_title_jedi_novice")) then
+			printLuaLog(self.jediManagerName .. ": SUCCESS! Player " .. playerName .. " now has the skill.")
+		else
+			printLuaError(self.jediManagerName .. ": FAILURE! awardSkill did not grant the skill to " .. playerName .. ". CHECK SKILL NAME AND SERVER LOGS.")
+		end
+	end
+
+	printLuaLog(self.jediManagerName .. ": Setting Jedi State to 1 for " .. playerName)
 	PlayerObject(pGhost):setJediState(1)
-	-- awardSkill(pCreatureObject, "force_title_jedi_rank_02")
-	-- PlayerObject(pGhost):setJediState(2)
 end
 
 -- Check if the player has mastered all hologrind professions and send sui window and award skills.
