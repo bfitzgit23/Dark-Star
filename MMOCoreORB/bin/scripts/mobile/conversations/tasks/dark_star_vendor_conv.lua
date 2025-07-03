@@ -208,7 +208,7 @@ food = ConvoScreen:new {
     customDialogText = "Please choose.",
     stopConversation = "false",
     options = {
-        {"Pikatta Pie(Dodge +xx%) - 15k","food01"},
+        {"Pikatta Pie(Dodge +35%) - 15k","food01"},
         {"Pyollian Cake - 15k","food02"},
         {"Bivoli Tempari - 15k","food03"},
         {"Synthsteak - 15k","food04"},
