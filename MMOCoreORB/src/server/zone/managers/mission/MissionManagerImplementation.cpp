@@ -840,7 +840,7 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 		SpawnGroup* destroyMissionGroup = CreatureTemplateManager::instance()->getDestroyMissionGroup(missionGroup.hashCode());
 
 		if (destroyMissionGroup == nullptr) {
-			error() << "getRandomLairSpawn: No destroy mission group found for: " << missionGroup;
+			error(String("getRandomLairSpawn: No destroy mission group found for: ") + missionGroup); // Corrected error message
 			return nullptr;
 		}
 
@@ -859,7 +859,7 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 	}
 
 	if (availableLairList == nullptr || availableLairList->size() == 0) {
-		error() << "getRandomLairSpawn: No available lair list or list is empty for type: " << type;
+		error(String("getRandomLairSpawn: No available lair list or list is empty for type: ") + String::valueOf(type)); // Corrected error message
 		return nullptr;
 	}
 
@@ -885,9 +885,11 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 
 	if (levelChoice > 0) {
 		playerLevel = levelChoice;
-		info("DEBUG: Player " << player->getFirstName() << " selected mission level: " << playerLevel);
+		// CORRECTED LINE: Use + for string concatenation and String::valueOf() for numbers
+		info(String("DEBUG: Player ") + player->getFirstName() + " selected mission level: " + String::valueOf(playerLevel));
 	} else {
-		info("DEBUG: Player " << player->getFirstName() << " using calculated level: " << playerLevel);
+		// CORRECTED LINE: Use + for string concatenation and String::valueOf() for numbers
+		info(String("DEBUG: Player ") + player->getFirstName() + " using calculated level: " + String::valueOf(playerLevel));
 	}
 
 
@@ -923,12 +925,13 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 	if (suitableLairs.size() > 0) {
 		// If suitable lairs are found, pick one randomly from them
 		lairSpawn = suitableLairs.get(System::random(suitableLairs.size() - 1));
-		info("DEBUG: Found " << suitableLairs.size() << " suitable lairs within range [" << minSearchLevel << "-" << maxSearchLevel << "], selected " << lairSpawn->getLairTemplateName() << " (Min: " << lairSpawn->getMinDifficulty() << ", Max: " << lairSpawn->getMaxDifficulty() << ") randomly.");
+		// CORRECTED LINE: Use + for string concatenation and String::valueOf() for numbers
+		info(String("DEBUG: Found ") + String::valueOf(suitableLairs.size()) + " suitable lairs within range [" + String::valueOf(minSearchLevel) + "-" + String::valueOf(maxSearchLevel) + "], selected " + lairSpawn->getLairTemplateName() + " (Min: " + String::valueOf(lairSpawn->getMinDifficulty()) + ", Max: " + String::valueOf(lairSpawn->getMaxDifficulty()) + ") randomly.");
 	} else {
 		// Fallback: If no suitable lairs found within the +-5 range,
 		// try to find *any* lair whose minDifficulty is less than or equal to playerLevel + 5.
 		// This ensures we still get a mission, even if it's not perfectly in the desired window.
-		info("DEBUG: No suitable lairs found within playerLevel +-5 range. Searching for any lair <= playerLevel + 5.");
+		info("DEBUG: No suitable lairs found within playerLevel +-5 range. Searching for any lair <= playerLevel + 5."); // This line was already just a single string, so it's fine.
 
 		Vector<Reference<LairSpawn*>> fallbackLairs; // New vector for fallback options
 
@@ -955,93 +958,21 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 		if (fallbackLairs.size() > 0) {
 			// Pick one randomly from the fallback lairs
 			lairSpawn = fallbackLairs.get(System::random(fallbackLairs.size() - 1));
-			info("DEBUG: Fallback: Found " << fallbackLairs.size() << " fallback lairs (MinDifficulty <= " << maxSearchLevel << "), selected " << lairSpawn->getLairTemplateName() << " (Min: " << lairSpawn->getMinDifficulty() << ", Max: " << lairSpawn->getMaxDifficulty() << ") randomly.");
+			// CORRECTED LINE: Use + for string concatenation and String::valueOf() for numbers
+			info(String("DEBUG: Fallback: Found ") + String::valueOf(fallbackLairs.size()) + " fallback lairs (MinDifficulty <= " + String::valueOf(maxSearchLevel) + "), selected " + lairSpawn->getLairTemplateName() + " (Min: " + String::valueOf(lairSpawn->getMinDifficulty()) + ", Max: " + String::valueOf(lairSpawn->getMaxDifficulty()) + ") randomly.");
 		} else {
 			// Absolute last resort: if no lairs match any criteria, pick the first available if any exist
 			if (availableLairList->size() > 0) {
 				lairSpawn = availableLairList->get(0);
-				info("DEBUG: Absolute fallback: No suitable lairs found, picking first available lair: " << lairSpawn->getLairTemplateName());
+				// CORRECTED LINE: Use + for string concatenation
+				info(String("DEBUG: Absolute fallback: No suitable lairs found, picking first available lair: ") + lairSpawn->getLairTemplateName());
 			} else {
-				error("DEBUG: No lairs available in availableLairList! Cannot generate mission.");
+				error("DEBUG: No lairs available in availableLairList! Cannot generate mission."); // This line was already just a single string, so it's fine.
 			}
 		}
 	}
 
 	return lairSpawn;
-
-void MissionManagerImplementation::randomizeGenericSurveyMission(CreatureObject* player, MissionObject* mission, const uint32 faction) {
-	int maxLevel = 50;
-	int minLevel = 50;
-	Zone* playerZone = player->getZone();
-
-	if (playerZone == nullptr)
-		return;
-
-	long long surveySkill = player->getSkillMod("surveying");
-	if (surveySkill > 30) {
-		maxLevel += 10;
-	}
-	if (surveySkill > 50) {
-		maxLevel += 10;
-	}
-	if (surveySkill > 70) {
-		maxLevel += 10;
-	}
-	if (surveySkill > 90) {
-		maxLevel += 10;
-	}
-	if (surveySkill > 100) {
-		//Max mission level is 95.
-		maxLevel += 5;
-	}
-
-	//Mission level used as needed concentration in increments of 5. I.e. 50, 55, 60 etc. up to 95.
-	int randLevel = minLevel + 5 * System::random((maxLevel - minLevel) / 5);
-
-	if (randLevel > maxLevel)
-		randLevel = maxLevel;
-
-	ResourceManager* manager = server->getResourceManager();
-
-	String zoneName = playerZone->getZoneName();
-
-	Vector<ManagedReference<ResourceSpawn*> > resources;
-
-	int toolType = SurveyTool::MINERAL;
-
-	//75 % mineral, 25 % chemical.
-	if (System::random(3) == 0) {
-		toolType = SurveyTool::CHEMICAL;
-	}
-
-	manager->getResourceListByType(resources, toolType, zoneName);
-
-	ManagedReference<ResourceSpawn*> spawn = resources.get(System::random(resources.size() - 1));
-	uint32 containerCRC = spawn->getContainerCRC();
-	SharedObjectTemplate* templateObject = TemplateManager::instance()->getTemplate(containerCRC);
-
-	NameManager* nm = processor->getNameManager();
-
-	int texts = System::random(50);
-
-	if (texts == 0)
-		texts = 1;
-
-	mission->setMissionTargetName(spawn->getSurveyMissionSpawnFamilyName());
-	mission->setTargetTemplate(templateObject);
-
-	//Reward depending on mission level.
-	mission->setRewardCredits(400 + (randLevel - minLevel) * 20 + System::random(100));
-
-	mission->setFaction(faction);
-
-	mission->setMissionDifficulty(randLevel);
-	mission->setStartPosition(player->getPositionX(), player->getPositionY(), playerZone->getZoneName());
-	mission->setMissionTitle("mission/mission_npc_survey_neutral_easy", "m" + String::valueOf(texts) + "t");
-	mission->setMissionDescription("mission/mission_npc_survey_neutral_easy", "m" + String::valueOf(texts) + "o");
-	mission->setCreatorName(nm->makeCreatureName());
-
-	mission->setTypeCRC(MissionTypes::SURVEY);
 }
 
 void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject* player, MissionObject* mission, const uint32 faction, Vector<ManagedReference<PlayerBounty*>>* potentialTargets) {
