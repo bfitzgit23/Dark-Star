@@ -116,28 +116,28 @@ SceneObject* CreatureManagerImplementation::spawnLair(unsigned int lairTemplate,
 
 	switch(lairBuildingLevel) {
 		case 2: {
-			baseCondition = 3000.f;
+			baseCondition = 9000.f; // Original: 3000.f
 			break;
 		}
 		case 3: {
-			baseCondition = 6000.f;
+			baseCondition = 18000.f; // Original: 6000.f
 			break;
 		}
 		case 4: {
-			baseCondition = 9000.f;
+			baseCondition = 27000.f; // Original: 9000.f
 			break;
 		}
 		case 5: {
-			baseCondition = 18000.f;
+			baseCondition = 54000.f; // Original: 18000.f
 			break;
 		}
 		default:
 			break;
 	}
 
-	uint32 conditionCalc = Math::min((float)CreatureManager::CREATURE_LAIR_MAX, (System::random(baseCondition) + ((baseCondition / 10) * difficultyLevel)));
+	//uint32 conditionCalc = Math::min((float)CreatureManager::CREATURE_LAIR_MAX, (System::random(baseCondition) + ((baseCondition / 10) * difficultyLevel)));
 
-	building->setMaxCondition(conditionCalc);
+	building->setMaxCondition(difficultyLevel * (900 + System::random(200)));//lair condition here
 	building->setConditionDamage(0, false);
 
  	building->setFaction(lairTmpl->getFaction());

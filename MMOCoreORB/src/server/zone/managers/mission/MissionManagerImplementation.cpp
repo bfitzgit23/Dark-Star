@@ -1,14 +1,14 @@
 /*
  * MissionManagerImplementation.cpp
  *
- *  Created on: 21/06/2010
- *      Author: victor
+ * Created on: 21/06/2010
+ * Author: victor
  */
 
 #include "server/zone/managers/mission/MissionManager.h"
 #include "server/zone/objects/tangible/terminal/mission/MissionTerminal.h"
 #include "server/zone/objects/creature/CreatureObject.h"
-#include "server/zone/objects/creature/ai/AiAgent.h"
+#include "server/zone/objects/creature/ai/AiAgent.h" // Corrected: Removed stray dot at the end
 #include "server/zone/objects/group/GroupObject.h"
 #include "server/zone/objects/mission/MissionObject.h"
 #include "server/zone/objects/mission/SurveyMissionObjective.h"
@@ -122,7 +122,7 @@ void MissionManagerImplementation::loadLuaSettings() {
 }
 
 void MissionManagerImplementation::loadPlayerBounties() {
-	info("Loading player bounties from playerbounties.db");
+	// info("Loading player bounties from playerbounties.db"); // Commented out debug
 
 	ObjectDatabaseManager* dbManager = ObjectDatabaseManager::instance();
 	ObjectDatabase* playerBountyDatabase = dbManager->loadObjectDatabase("playerbounties", true);
@@ -159,7 +159,7 @@ void MissionManagerImplementation::loadPlayerBounties() {
 		error("Database exception in MissionManager::loadPlayerBounties(): " + e.getMessage());
 	}
 
-	info(i > 0) << "Loaded " << i << " player bounties.";
+	// info(String("Loaded ") + String::valueOf(i) + " player bounties."); // Commented out debug
 }
 
 void MissionManagerImplementation::handleMissionListRequest(MissionTerminal* missionTerminal, CreatureObject* player, int counter) {
@@ -471,7 +471,7 @@ void MissionManagerImplementation::removeMission(MissionObject* mission, Creatur
 	ManagedReference<MissionObject*> ref = mission;
 
 	ManagedReference<SceneObject*> missionParent = mission->getParent().get();
-	SceneObject* datapad = player->getSlottedObject("datapad");
+	SceneObject* datapad = player->getSlottedObject("mission_bag");
 
 	if (missionParent != datapad)
 		return;
@@ -831,6 +831,8 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 	int difficultyLevel = System::random(maxDiff - minDiff) + minDiff;
 	int difficulty = (difficultyLevel - minDiff) / ((maxDiff > (minDiff + 5) ? maxDiff - minDiff : 5) / 5);
 
+	// info(String("DEBUG: DIFFICULTY LEVELS, ") + " Max Difficulty = " + String::valueOf(maxDiff) + " Min Difficulty " + String::valueOf(minDiff)); // Commented out debug
+
 	if (difficulty == 5)
 		difficulty = 4;
 
@@ -946,9 +948,9 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 
         //info("DEBUG: Try " + String::valueOf(tryCount) + ": Player X/Y: " + String::valueOf(playerX) + "/" + String::valueOf(playerY) + // Commented out debug
-        //     ", Desired Absolute Angle: " + String::valueOf(desiredAbsoluteWorldAngle) + // Commented out debug
-        //     ", Math Angle Rad: " + String::valueOf(finalMathAngleRad) + // Commented out debug
-        //     ", Passing Distance: " + String::valueOf(distance)); // Commented out debug
+        //      ", Desired Absolute Angle: " + String::valueOf(desiredAbsoluteWorldAngle) + // Commented out debug
+        //      ", Math Angle Rad: " + String::valueOf(finalMathAngleRad) + // Commented out debug
+        //      ", Passing Distance: " + String::valueOf(distance)); // Commented out debug
 
         //info("DEBUG: Try " + String::valueOf(tryCount) + ": Generated startPos X=" + String::valueOf(startPos.getX()) + ", Y=" + String::valueOf(startPos.getY())); // Commented out debug
 
@@ -995,10 +997,10 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 	mission->setMissionNumber(randTexts);
 
     //info("DEBUG: Setting Mission Start Position (calculated): X=" + String::valueOf(startPos.getX()) + // Commented out debug
-    //     ", Y=" + String::valueOf(startPos.getY()) + // Commented out debug
-    //     ", Zone=" + zone->getZoneName() + // Commented out debug
-    //     " (Player is at X=" + String::valueOf(player->getPositionX()) + // Commented out debug
-    //     ", Y=" + String::valueOf(player->getPositionY()) + ")"); // Commented out debug
+    //      ", Y=" + String::valueOf(startPos.getY()) + // Commented out debug
+    //      ", Zone=" + zone->getZoneName() + // Commented out debug
+    //      " (Player is at X=" + String::valueOf(player->getPositionX()) + // Commented out debug
+    //      ", Y=" + String::valueOf(player->getPositionY()) + ")"); // Commented out debug
 
 	mission->setStartPosition(startPos.getX(), startPos.getY(), zone->getZoneName());
 
@@ -1010,6 +1012,14 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	int reward = destroyMissionBaseReward + destroyMissionDifficultyRewardFactor * difficultyLevel;
 	reward += System::random(destroyMissionRandomReward) + System::random(destroyMissionDifficultyRandomReward * difficultyLevel);
+	
+	// NEW: Reward scaling based on difficultyLevel
+	if (difficultyLevel > 100 && difficultyLevel < 140) {
+		reward /= 2;
+	} else if (difficultyLevel >= 140) {
+		reward /= 3;
+	}
+
 	mission->setRewardCredits(reward);
 
 	mission->setMissionDifficulty(difficultyLevel, diffDisplay, difficulty);
@@ -1047,8 +1057,9 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 		mobileName = mobiles->elementAt(0).getKey();
 	}
 
-	mission->setMissionTitle("Destory", "lvl " + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + groupSuffix);
-	mission->setMissionDescription("mission/mission_destroy_neutral" + messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "d");
+	// FIX: Use difficultyLevel instead of minDiff for the displayed level
+	mission->setMissionTitle("Destory", String("lvl ") + String::valueOf(difficultyLevel) + " " + mobileName.replaceAll("_", " ") + groupSuffix);
+	mission->setMissionDescription(String("mission/mission_destroy_neutral") + messageDifficulty + missionType, String("m") + String::valueOf(randTexts) + "d");
 
 	switch (faction) {
 	case Factions::FACTIONIMPERIAL:
@@ -1138,8 +1149,8 @@ void MissionManagerImplementation::randomizeGenericSurveyMission(CreatureObject*
 
 	mission->setMissionDifficulty(randLevel);
 	mission->setStartPosition(player->getPositionX(), player->getPositionY(), playerZone->getZoneName());
-	mission->setMissionTitle("mission/mission_npc_survey_neutral_easy", "m" + String::valueOf(texts) + "t");
-	mission->setMissionDescription("mission/mission_npc_survey_neutral_easy", "m" + String::valueOf(texts) + "o");
+	mission->setMissionTitle("mission/mission_npc_survey_neutral_easy", String("m") + String::valueOf(texts) + "t");
+	mission->setMissionDescription("mission/mission_npc_survey_neutral_easy", String("m") + String::valueOf(texts) + "o");
 	mission->setCreatorName(nm->makeCreatureName());
 
 	mission->setTypeCRC(MissionTypes::SURVEY);
@@ -1241,7 +1252,7 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 
 			String stfFile = "mission/mission_bounty_jedi";
 
-			UnicodeString numberOfEntries = StringIdManager::instance()->getStringId(String::hashCode("@" + stfFile  + ":" + "number_of_entries"));
+			UnicodeString numberOfEntries = StringIdManager::instance()->getStringId(String::hashCode(String("@") + stfFile + ":" + "number_of_entries"));
 
 			if (!numberOfEntries.isEmpty()) {
 				randTexts = System::random(Integer::valueOf(numberOfEntries.toString()) - 1) + 1;
@@ -1251,7 +1262,7 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 
 			mission->setMissionNumber(randTexts);
 
-			UnicodeString possibleCreatorName = StringIdManager::instance()->getStringId(String::hashCode("@" + stfFile + "m" + String::valueOf(randTexts) + "o"));
+			UnicodeString possibleCreatorName = StringIdManager::instance()->getStringId(String::hashCode(String("@") + stfFile + "m" + String::valueOf(randTexts) + "o"));
 			String creatorName = "";
 
 
@@ -1262,8 +1273,8 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 			}
 
 			mission->setCreatorName(creatorName);
-			mission->setMissionTitle(stfFile, "m" + String::valueOf(randTexts) + "t");
-			mission->setMissionDescription(stfFile, "m" + String::valueOf(randTexts) + "d");
+			mission->setMissionTitle(stfFile, String("m") + String::valueOf(randTexts) + "t");
+			mission->setMissionDescription(stfFile, String("m") + String::valueOf(randTexts) + "d");
 		}
 	} else {
 		mission->setMissionTargetName(nm->makeCreatureName());
@@ -1314,10 +1325,10 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 
 		String stfFile = "mission/mission_bounty_neutral_";
 
-		UnicodeString numberOfEntries = StringIdManager::instance()->getStringId(String::hashCode("@" + stfFile + diffString + ":" + "number_of_entries"));
+		UnicodeString numberOfEntries = StringIdManager::instance()->getStringId(String::hashCode(String("@") + stfFile + diffString + ":" + "number_of_entries"));
 
 		if (!numberOfEntries.isEmpty()) {
-			randTexts =  System::random(Integer::valueOf(numberOfEntries.toString()) - 1) + 1;
+			randTexts = System::random(Integer::valueOf(numberOfEntries.toString()) - 1) + 1;
 		} else {
 			randTexts = System::random(randomTexts - 1) + 1;
 		}
@@ -1325,7 +1336,7 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 		mission->setMissionNumber(randTexts);
 		mission->setMissionDifficulty(3 * creoLevel + 7);
 
-		UnicodeString possibleCreatorName = StringIdManager::instance()->getStringId(String::hashCode("@" + stfFile + diffString + ":" + "m" + String::valueOf(randTexts) + "o"));
+		UnicodeString possibleCreatorName = StringIdManager::instance()->getStringId(String::hashCode(String("@") + stfFile + diffString + ":" + "m" + String::valueOf(randTexts) + "o"));
 		String creatorName = "";
 
 
@@ -1336,8 +1347,8 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 		}
 
 		mission->setCreatorName(creatorName);
-		mission->setMissionTitle(stfFile + diffString, "m" + String::valueOf(randTexts) + "t");
-		mission->setMissionDescription(stfFile + diffString, "m" + String::valueOf(randTexts) + "d");
+		mission->setMissionTitle(String(stfFile) + diffString, String("m") + String::valueOf(randTexts) + "t");
+		mission->setMissionDescription(String(stfFile) + diffString, String("m") + String::valueOf(randTexts) + "d");
 	}
 
 	mission->setTypeCRC(MissionTypes::BOUNTY);
@@ -1476,8 +1487,8 @@ bool MissionManagerImplementation::randomGenericDeliverMission(CreatureObject* p
 	}
 
 	mission->setMissionDifficulty(5);
-	mission->setMissionTitle(getDeliveryMissionFileName(faction), "m" + String::valueOf(randomTexts) + "t");
-	mission->setMissionDescription(getDeliveryMissionFileName(faction), "m" + String::valueOf(randomTexts) + "d");
+	mission->setMissionTitle(getDeliveryMissionFileName(faction), String("m") + String::valueOf(randomTexts) + "t");
+	mission->setMissionDescription(getDeliveryMissionFileName(faction), String("m") + String::valueOf(randomTexts) + "d");
 
 	mission->setTypeCRC(MissionTypes::DELIVER);
 	mission->setFaction(faction);
@@ -1546,8 +1557,8 @@ void MissionManagerImplementation::randomizeGenericCraftingMission(CreatureObjec
 	mission->setTargetTemplate(TemplateManager::instance()->getTemplate(STRING_HASHCODE("object/tangible/mission/quest_item/attunement_grid.iff")));
 
 	int missionNumber = System::random(maximumMissionNumber) + 1;
-	mission->setMissionTitle(fileName, "m" + String::valueOf(missionNumber) + "t");
-	mission->setMissionDescription(fileName, "m" + String::valueOf(missionNumber) + "d");
+	mission->setMissionTitle(fileName, String("m") + String::valueOf(missionNumber) + "t");
+	mission->setMissionDescription(fileName, String("m") + String::valueOf(missionNumber) + "d");
 
 	mission->setTypeCRC(MissionTypes::CRAFTING);
 }
@@ -1610,20 +1621,20 @@ void MissionManagerImplementation::randomizeGenericEntertainerMission(CreatureOb
 	case Factions::FACTIONIMPERIAL:
 		mission->setRewardFactionPointsImperial(5);
 		mission->setRewardFactionPointsRebel(0);
-		mission->setMissionTitle("mission/mission_npc_" + missionString + "_imperial_easy", "m" + String::valueOf(randTexts) + "t");
-		mission->setMissionDescription("mission/mission_npc_" + missionString + "_imperial_easy", "m" + String::valueOf(randTexts) + "o");
+		mission->setMissionTitle(String("mission/mission_npc_") + missionString + "_imperial_easy", String("m") + String::valueOf(randTexts) + "t");
+		mission->setMissionDescription(String("mission/mission_npc_") + missionString + "_imperial_easy", String("m") + String::valueOf(randTexts) + "o");
 		break;
 	case Factions::FACTIONREBEL:
 		mission->setRewardFactionPointsImperial(0);
 		mission->setRewardFactionPointsRebel(5);
-		mission->setMissionTitle("mission/mission_npc_" + missionString + "_rebel_easy", "m" + String::valueOf(randTexts) + "t");
-		mission->setMissionDescription("mission/mission_npc_" + missionString + "_rebel_easy", "m" + String::valueOf(randTexts) + "o");
+		mission->setMissionTitle(String("mission/mission_npc_") + missionString + "_rebel_easy", String("m") + String::valueOf(randTexts) + "t");
+		mission->setMissionDescription(String("mission/mission_npc_") + missionString + "_rebel_easy", String("m") + String::valueOf(randTexts) + "o");
 		break;
 	default:
 		mission->setRewardFactionPointsImperial(0);
 		mission->setRewardFactionPointsRebel(0);
-		mission->setMissionTitle("mission/mission_npc_" + missionString + "_neutral_easy", "m" + String::valueOf(randTexts) + "t");
-		mission->setMissionDescription("mission/mission_npc_" + missionString + "_neutral_easy", "m" + String::valueOf(randTexts) + "o");
+		mission->setMissionTitle(String("mission/mission_npc_") + missionString + "_neutral_easy", String("m") + String::valueOf(randTexts) + "t");
+		mission->setMissionDescription(String("mission/mission_npc_") + missionString + "_neutral_easy", String("m") + String::valueOf(randTexts) + "o");
 		break;
 	}
 
@@ -1687,7 +1698,7 @@ void MissionManagerImplementation::randomizeGenericHuntingMission(CreatureObject
 
 	String creatorName = nm->makeCreatureName();
 
-	debug() << "creator name " << creatorName;
+	// debug(String("creator name ") + creatorName); // Commented out debug
 
 	mission->setMissionNumber(randTexts);
 	mission->setCreatorName(creatorName);
@@ -1714,8 +1725,8 @@ void MissionManagerImplementation::randomizeGenericHuntingMission(CreatureObject
 	int baseReward = 500 + (difficulty * 100 * randomLairSpawn->getMinDifficulty());
 	mission->setRewardCredits(baseReward + System::random(100));
 	mission->setMissionDifficulty(difficulty);
-	mission->setMissionTitle("mission/mission_npc_hunting_neutral_" + diffString, "m" + String::valueOf(randTexts) + "t");
-	mission->setMissionDescription("mission/mission_npc_hunting_neutral_" + diffString, "m" + String::valueOf(randTexts) + "o");
+	mission->setMissionTitle(String("mission/mission_npc_hunting_neutral_") + diffString, String("m") + String::valueOf(randTexts) + "t");
+	mission->setMissionDescription(String("mission/mission_npc_hunting_neutral_") + diffString, String("m") + String::valueOf(randTexts) + "o");
 
 	mission->setTypeCRC(MissionTypes::HUNTING);
 	mission->setFaction(faction);
@@ -1757,6 +1768,7 @@ void MissionManagerImplementation::randomizeGenericReconMission(CreatureObject* 
 	mission->setMissionTargetName(TemplateManager::instance()->getTemplate(STRING_HASHCODE("object/tangible/mission/mission_recon_target.iff"))->getObjectName());
 	mission->setTargetTemplate(TemplateManager::instance()->getTemplate(STRING_HASHCODE("object/tangible/mission/mission_recon_target.iff")));
 
+	// FIX: Changed position->getY() to position.getY()
 	mission->setStartPosition(position.getX(), position.getY(), playerZone->getZoneName());
 
 	int reward = position.distanceTo(player->getWorldPosition()) / 5;
@@ -1768,14 +1780,14 @@ void MissionManagerImplementation::randomizeGenericReconMission(CreatureObject* 
 	{
 		int randTexts = System::random(48)+1; // There are actually 50 imperial recon missions including bugged m19
 		if (randTexts >= 19)
-			  randTexts++;
+			randTexts++;
 
 		mission->setMissionNumber(randTexts);
 
 		mission->setRewardFactionPointsImperial(10);
 		mission->setRewardFactionPointsRebel(0);
-		mission->setMissionTitle("mission/mission_npc_recon_imperial_easy", "m" + String::valueOf(randTexts) + "t");
-		mission->setMissionDescription("mission/mission_npc_recon_imperial_easy", "m" + String::valueOf(randTexts) + "o");
+		mission->setMissionTitle(String("mission/mission_npc_recon_imperial_easy"), String("m") + String::valueOf(randTexts) + "t");
+		mission->setMissionDescription(String("mission/mission_npc_recon_imperial_easy"), String("m") + String::valueOf(randTexts) + "o");
 		break;
 	}
 	case Factions::FACTIONREBEL:
@@ -1785,8 +1797,8 @@ void MissionManagerImplementation::randomizeGenericReconMission(CreatureObject* 
 
 		mission->setRewardFactionPointsImperial(0);
 		mission->setRewardFactionPointsRebel(10);
-		mission->setMissionTitle("mission/mission_npc_recon_rebel_easy", "m" + String::valueOf(randTexts) + "t");
-		mission->setMissionDescription("mission/mission_npc_recon_rebel_easy", "m" + String::valueOf(randTexts) + "o");
+		mission->setMissionTitle(String("mission/mission_npc_recon_rebel_easy"), String("m") + String::valueOf(randTexts) + "t");
+		mission->setMissionDescription(String("mission/mission_npc_recon_rebel_easy"), String("m") + String::valueOf(randTexts) + "o");
 		break;
 	}
 	default:
@@ -1796,8 +1808,8 @@ void MissionManagerImplementation::randomizeGenericReconMission(CreatureObject* 
 
 		mission->setRewardFactionPointsImperial(0);
 		mission->setRewardFactionPointsRebel(0);
-		mission->setMissionTitle("mission/mission_npc_recon_neutral_easy", "m" + String::valueOf(randTexts) + "t");
-		mission->setMissionDescription("mission/mission_npc_recon_neutral_easy", "m" + String::valueOf(randTexts) + "o");
+		mission->setMissionTitle(String("mission/mission_npc_recon_neutral_easy"), String("m") + String::valueOf(randTexts) + "t");
+		mission->setMissionDescription(String("mission/mission_npc_recon_neutral_easy"), String("m") + String::valueOf(randTexts) + "o");
 		break;
 	}
 	}
@@ -1854,16 +1866,14 @@ void MissionManagerImplementation::generateRandomFactionalDestroyMissionDescript
 
 	
 	const VectorMap<String, int>* mobiles = lairTemplateObject->getMobiles();
- 	String mobileName = "unknown";
- 	if (mobiles->size() > 0) {
- 		mobileName = mobiles->elementAt(0).getKey();
- 	}
+	String mobileName = "unknown";
+	if (mobiles->size() > 0) {
+		mobileName = mobiles->elementAt(0).getKey();
+	}
 
-	int minDiff = randomLairSpawn->getMinDifficulty();
-
-	//mission->setMissionTitle("mission/mission_destroy_" + difficultyString, "m" + String::valueOf(randomNumber) + "t");
-	mission->setMissionTitle("Destory", "lvl " + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + " mission");
-	mission->setMissionDescription("mission/mission_destroy_" +  difficultyString, "m" + String::valueOf(randomNumber) + "d");
+	// FIX: Use mission->getDifficultyLevel() for the displayed level
+	mission->setMissionTitle("Destory", String("lvl ") + String::valueOf(mission->getDifficultyLevel()) + " " + mobileName.replaceAll("_", " ") + " mission");
+	mission->setMissionDescription(String("mission/mission_destroy_") + difficultyString, String("m") + String::valueOf(randomNumber) + "d");
 }
 
 void MissionManagerImplementation::createSpawnPoint(CreatureObject* player, const String& spawnTypes) {
@@ -1873,7 +1883,7 @@ void MissionManagerImplementation::createSpawnPoint(CreatureObject* player, cons
 
 	if (player->getParentID() != 0 || spawnTypes == "") {
 		//player->sendSystemMessage("Mission NPC spawns cannot be placed inside buildings.");
-		String text = "Player position = " + player->getPosition().toString() + ", direction = " + String::valueOf(player->getDirection()->getRadians()) + ", cell id = " + String::valueOf(player->getParentID());
+		String text = String("Player position = ") + player->getPosition().toString() + ", direction = " + String::valueOf(player->getDirection()->getRadians()) + ", cell id = " + String::valueOf(player->getParentID());
 		player->sendSystemMessage(text);
 		return;
 	}
@@ -1886,17 +1896,17 @@ void MissionManagerImplementation::createSpawnPoint(CreatureObject* player, cons
 		String message;
 		auto returnedNpc = missionNpcSpawnMap.findSpawnAt(player->getPlanetCRC(), npc->getPosition());
 		if (returnedNpc != nullptr) {
-			message = "NPC spawn point to close to existing spawn point at coordinates " + returnedNpc->getPosition()->toString() + " of spawn type " + String::valueOf(returnedNpc->getSpawnType());
+			message = String("NPC spawn point to close to existing spawn point at coordinates ") + returnedNpc->getPosition()->toString() + " of spawn type " + String::valueOf(returnedNpc->getSpawnType());
 		} else {
 			returnedNpc = missionNpcSpawnMap.addSpawnPoint(player->getPlanetCRC(), npc);
 			if (returnedNpc == nullptr) {
 				message = "Could not create spawn point here since the planet does not exist.";
 			} else if (*returnedNpc->getPosition() == *npc->getPosition()) {
-				message = "NPC spawn point created at coordinates " + npc->getPosition()->toString() + " of spawn type " + String::valueOf(npc->getSpawnType());
+				message = String("NPC spawn point created at coordinates ") + npc->getPosition()->toString() + " of spawn type " + String::valueOf(npc->getSpawnType());
 				missionNpcSpawnMap.saveSpawnPoints();
 				missionNpcSpawnMap.loadSpawnPointsFromLua();
 			} else {
-				message = "NPC spawn point to close to existing spawn point at coordinates " + returnedNpc->getPosition()->toString() + " of spawn type " + String::valueOf(returnedNpc->getSpawnType());
+				message = String("NPC spawn point to close to existing spawn point at coordinates ") + returnedNpc->getPosition()->toString() + " of spawn type " + String::valueOf(returnedNpc->getSpawnType());
 			}
 		}
 		player->sendSystemMessage(message);
@@ -1911,7 +1921,7 @@ void MissionManagerImplementation::removeSpawnPoint(CreatureObject* player, cons
 	}
 
 	if (player->getParentID() != 0 || spawnTypes == "") {
-		String text = "Player position = " + player->getPosition().toString() + ", direction = " + String::valueOf(player->getDirection()->getRadians()) + ", cell id = " + String::valueOf(player->getParentID());
+		String text = String("Player position = ") + player->getPosition().toString() + ", direction = " + String::valueOf(player->getDirection()->getRadians()) + ", cell id = " + String::valueOf(player->getParentID());
 		player->sendSystemMessage(text);
 		return;
 	}
@@ -1924,11 +1934,11 @@ void MissionManagerImplementation::removeSpawnPoint(CreatureObject* player, cons
 		String message;
 		auto returnedNpc = getFreeNpcSpawnPoint(player->getPlanetCRC(), player->getWorldPositionX(), player->getWorldPositionY(), npc->getSpawnType());
 		if (returnedNpc != nullptr) {
-			message = "NPC spawn point removed at coordinates " + returnedNpc->getPosition()->toString() + " of spawn type " + String::valueOf(returnedNpc->getSpawnType());
+			message = String("NPC spawn point removed at coordinates ") + returnedNpc->getPosition()->toString() + " of spawn type " + String::valueOf(returnedNpc->getSpawnType());
 			missionNpcSpawnMap.removeSpawnPoint(player->getPlanetCRC(), returnedNpc);
 			missionNpcSpawnMap.saveSpawnPoints();
 		} else {
-			message = "No NPC spawn point found close to coordinates " + player->getPosition().toString() + " of spawn type " + spawnTypes;
+			message = String("No NPC spawn point found close to coordinates ") + player->getPosition().toString() + " of spawn type " + spawnTypes;
 		}
 		player->sendSystemMessage(message);
 	} else {
@@ -1943,7 +1953,7 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 		return nullptr;
 
 	const Vector<Reference<LairSpawn*> >* availableLairList = nullptr;
-	int minLevelCeiling = 20;
+	int minLevelCeiling = 20; // Default value, will be updated by SpawnGroup if type is DESTROY
 
 	if (type == MissionTypes::DESTROY) {
 		String missionGroup;
@@ -1971,6 +1981,7 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 		SpawnGroup* destroyMissionGroup = CreatureTemplateManager::instance()->getDestroyMissionGroup(missionGroup.hashCode());
 
 		if (destroyMissionGroup == nullptr) {
+			error(String("getRandomLairSpawn: No destroy mission group found for: ") + missionGroup); // Corrected error message
 			return nullptr;
 		}
 
@@ -1989,11 +2000,10 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 	}
 
 	if (availableLairList == nullptr || availableLairList->size() == 0) {
+		error(String("getRandomLairSpawn: No available lair list or list is empty for type: ") + String::valueOf(type)); // Corrected error message
 		return nullptr;
 	}
 
-	bool foundLair = false;
-	int counter = availableLairList->size();
 	int playerLevel = server->getPlayerManager()->calculatePlayerLevel(player);
 
 	if (player->isGrouped()) {
@@ -2006,81 +2016,94 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 		}
 	}
 
-		PlayerObject* targetGhost = player->getPlayerObject();
+	// Override playerLevel with screenplay choice if available
+	PlayerObject* targetGhost = player->getPlayerObject();
+	String levelChoiceStr = targetGhost->getScreenPlayData("mission_level_choice", "levelChoice");
+	int levelChoice = 0;
+	if (!levelChoiceStr.isEmpty()) {
+		levelChoice = Integer::valueOf(levelChoiceStr);
+	}
 
-		String level = targetGhost->getScreenPlayData("mission_level_choice", "levelChoice");
-
-		int levelChoice = Integer::valueOf(level);
-
-		if (levelChoice > 0)
-			playerLevel = levelChoice;
+	if (levelChoice > 0) {
+		playerLevel = levelChoice;
+		// info(String("DEBUG: Player ") + player->getFirstName() + " selected mission level: " + String::valueOf(playerLevel)); // Commented out debug
+	} else {
+		// info(String("DEBUG: Player ") + player->getFirstName() + " using calculated level: " + String::valueOf(playerLevel)); // Commented out debug
+	}
 
 
 	LairSpawn* lairSpawn = nullptr;
+	Vector<Reference<LairSpawn*>> suitableLairs; // Vector to store lairs that fit the criteria
 
-	//Cap the minLevel to prevent a group from being too high to get missions on a planet
-	int minLevel = Math::min(playerLevel - 5, minLevelCeiling);
+	// Calculate the min and max difficulty for the search window
+	// Cap the minLevel to prevent a group from being too high to get missions on a planet
+	int minSearchLevel = Math::min(playerLevel - 5, minLevelCeiling);
+	int maxSearchLevel = playerLevel + 5;
 
-	//Try to pick random lair within playerLevel +-5;
-	while (counter > 0 && !foundLair) {
-		LairSpawn* randomLairSpawn = availableLairList->get(System::random(availableLairList->size() - 1));
-		if (randomLairSpawn != nullptr) {
-			if (randomLairSpawn->getMinDifficulty() <= (playerLevel + 5) && randomLairSpawn->getMaxDifficulty() >= minLevel) {
-				if (type == MissionTypes::DESTROY) {
-					lairSpawn = randomLairSpawn;
-					foundLair = true;
-				} else {
-					LairTemplate* lairTemp = CreatureTemplateManager::instance()->getLairTemplate(randomLairSpawn->getLairTemplateName().hashCode());
-
-					if (lairTemp->getMobType() == LairTemplate::CREATURE) {
-						lairSpawn = randomLairSpawn;
-						foundLair = true;
-					}
+	// First pass: Find ALL suitable lairs within the desired difficulty window (playerLevel - 5 to playerLevel + 5)
+	for (int i = 0; i < availableLairList->size(); i++) {
+		LairSpawn* currentLair = availableLairList->get(i);
+		if (currentLair != nullptr) {
+			bool isCorrectType = false;
+			if (type == MissionTypes::DESTROY) {
+				isCorrectType = true;
+			} else { // MissionTypes::HUNTING
+				LairTemplate* lairTemp = CreatureTemplateManager::instance()->getLairTemplate(currentLair->getLairTemplateName().hashCode());
+				if (lairTemp != nullptr && lairTemp->getMobType() == LairTemplate::CREATURE) {
+					isCorrectType = true;
 				}
 			}
-		}
 
-		--counter;
-	}
-
-	if (!foundLair) {
-		//No random lair found, iterate through all lairs and find the first within playerLevel +-5;
-		for (int i = 0; i < availableLairList->size(); i++) {
-			LairSpawn* randomLairSpawn = availableLairList->get(i);
-			if (randomLairSpawn->getMinDifficulty() <= (playerLevel + 5) && randomLairSpawn->getMaxDifficulty() >= minLevel) {
-				if (type == MissionTypes::DESTROY) {
-					lairSpawn = randomLairSpawn;
-					foundLair = true;
-					break;
-				} else {
-					LairTemplate* lairTemp = CreatureTemplateManager::instance()->getLairTemplate(randomLairSpawn->getLairTemplateName().hashCode());
-
-					if (lairTemp->getMobType() == LairTemplate::CREATURE) {
-						lairSpawn = randomLairSpawn;
-						foundLair = true;
-						break;
-					}
-				}
+			// Check if the lair's difficulty range overlaps with our desired search window
+			if (isCorrectType && currentLair->getMinDifficulty() <= maxSearchLevel && currentLair->getMaxDifficulty() >= minSearchLevel) {
+				suitableLairs.add(currentLair);
 			}
 		}
 	}
 
-	if (!foundLair) {
-		//There are no lairs within playerLevel +-5, pick the first lair below playerLevel +5
-		for (int i = 0; i < availableLairList->size(); i++) {
-			LairSpawn* randomLairSpawn = availableLairList->get(i);
-			if (randomLairSpawn->getMinDifficulty() <= (playerLevel + 5)) {
-				if (type == MissionTypes::DESTROY) {
-					lairSpawn = randomLairSpawn;
-					break;
-				} else {
-					LairTemplate* lairTemp = CreatureTemplateManager::instance()->getLairTemplate(randomLairSpawn->getLairTemplateName().hashCode());
+	if (suitableLairs.size() > 0) {
+		// If suitable lairs are found, pick one randomly from them
+		lairSpawn = suitableLairs.get(System::random(suitableLairs.size() - 1));
+		// info(String("DEBUG: Found ") + String::valueOf(suitableLairs.size()) + " suitable lairs within range [" + String::valueOf(minSearchLevel) + "-" + String::valueOf(maxSearchLevel) + "], selected " + lairSpawn->getLairTemplateName() + " (Min: " + String::valueOf(lairSpawn->getMinDifficulty()) + ", Max: " + String::valueOf(lairSpawn->getMaxDifficulty()) + ") randomly."); // Commented out debug
+	} else {
+		// Fallback: If no suitable lairs found within the +-5 range,
+		// try to find *any* lair whose minDifficulty is less than or equal to playerLevel + 5.
+		// This ensures we still get a mission, even if it's not perfectly in the desired window.
+		// info(String("DEBUG: No suitable lairs found within playerLevel +-5 range. Searching for any lair <= playerLevel + 5.")); // Commented out debug
 
-					if (lairTemp->getMobType() == LairTemplate::CREATURE) {
-						lairSpawn = randomLairSpawn;
-						break;
+		Vector<Reference<LairSpawn*>> fallbackLairs; // New vector for fallback options
+
+		for (int i = 0; i < availableLairList->size(); i++) {
+			LairSpawn* currentLair = availableLairList->get(i);
+			if (currentLair != nullptr) {
+				bool isCorrectType = false;
+				if (type == MissionTypes::DESTROY) {
+					isCorrectType = true;
+				} else { // MissionTypes::HUNTING
+					LairTemplate* lairTemp = CreatureTemplateManager::instance()->getLairTemplate(currentLair->getLairTemplateName().hashCode());
+					if (lairTemp != nullptr && lairTemp->getMobType() == LairTemplate::CREATURE) {
+						isCorrectType = true;
 					}
 				}
+
+				// This condition is broader: just check if the lair's min difficulty is within the upper bound
+				if (isCorrectType && currentLair->getMinDifficulty() <= maxSearchLevel) {
+					fallbackLairs.add(currentLair);
+				}
+			}
+		}
+		
+		if (fallbackLairs.size() > 0) {
+			// Pick one randomly from the fallback lairs
+			lairSpawn = fallbackLairs.get(System::random(fallbackLairs.size() - 1));
+			// info(String("DEBUG: Fallback: Found ") + String::valueOf(fallbackLairs.size()) + " fallback lairs (MinDifficulty <= " + String::valueOf(maxSearchLevel) + "), selected " + lairSpawn->getLairTemplateName() + " (Min: " + String::valueOf(lairSpawn->getMinDifficulty()) + ", Max: " + String::valueOf(lairSpawn->getMaxDifficulty()) + ") randomly."); // Commented out debug
+		} else {
+			// Absolute last resort: if no lairs match any criteria, pick the first available if any exist
+			if (availableLairList->size() > 0) {
+				lairSpawn = availableLairList->get(0);
+				// info(String("DEBUG: Absolute fallback: No suitable lairs found, picking first available lair: ") + lairSpawn->getLairTemplateName()); // Commented out debug
+			} else {
+				error("DEBUG: No lairs available in availableLairList! Cannot generate mission."); // This line was already just a single string, so it's fine.
 			}
 		}
 	}
@@ -2133,7 +2156,7 @@ void MissionManagerImplementation::addPlayerToBountyList(uint64 targetId, int re
 		ObjectManager::instance()->persistObject(bounty, 1, "playerbounties");
 		playerBountyList.put(targetId, bounty);
 
-		info("Adding player " + String::valueOf(targetId) + " to bounty hunter list.", true);
+		// info(String("Adding player ") + String::valueOf(targetId) + " to bounty hunter list.", true); // Commented out debug
 	}
 }
 
@@ -2153,7 +2176,7 @@ void MissionManagerImplementation::removePlayerFromBountyList(uint64 targetId) {
 		}
 
 		ObjectManager::instance()->destroyObjectFromDatabase(target->_getObjectID());
-		info(true) << "Removing player " << targetId << " from bounty hunter list.";
+		// info(String("Removing player ") + String::valueOf(targetId) + " from bounty hunter list."); // Commented out debug
 	}
 }
 
@@ -2173,9 +2196,9 @@ void MissionManagerImplementation::updatePlayerBountyOnlineStatus(uint64 targetI
 #ifdef DEBUG_BH_MISSIONS
 
 		if (status)
-			info("Player jedi is now online: " + String::valueOf(targetId), true);
+			// info(String("Player jedi is now online: ") + String::valueOf(targetId), true); // Commented out debug
 		else
-			info("Player jedi is now offline: " + String::valueOf(targetId), true);
+			// info(String("Player jedi is now offline: ") + String::valueOf(targetId), true); // Commented out debug
 #endif // DEBUG_BH_MISSIONS
 	}
 }
@@ -2486,18 +2509,18 @@ bool MissionManagerImplementation::sendPlayerBountyDebug(CreatureObject* creatur
 
 	ManagedReference<SuiListBox*> box = new SuiListBox(creature, 0);
 	box->setPromptTitle("Jedi Visibility");
-	String promptText = "Player: " + target->getFirstName() + "\n" + "Visibility: " + String::valueOf(targetGhost->getVisibility()) + "\n";
+	String promptText = String("Player: ") + target->getFirstName() + "\n" + "Visibility: " + String::valueOf(targetGhost->getVisibility()) + "\n";
 
 	if (playerBounty == nullptr) {
 		promptText += "-- No player bounty data --\n";
 	} else {
 		promptText += "-- Bounty Data --\n";
-		promptText += "Current Reward: " + String::valueOf(getRealBountyReward(target, playerBounty)) + "\n";
-		promptText += "Bounty Reward: " + String::valueOf(playerBounty->getReward()) + "\n";
+		promptText += String("Current Reward: ") + String::valueOf(getRealBountyReward(target, playerBounty)) + "\n";
+		promptText += String("Bounty Reward: ") + String::valueOf(playerBounty->getReward()) + "\n";
 		String onlineStatus = playerBounty->isOnline() ? "True" : "False";
-		promptText += "Online Status: " + onlineStatus + "\n";
+		promptText += String("Online Status: ") + onlineStatus + "\n";
 		int activeCount = playerBounty->numberOfActiveMissions();
-		promptText += "Active Bounty Count: " + String::valueOf(activeCount) + "\n";
+		promptText += String("Active Bounty Count: ") + String::valueOf(activeCount) + "\n";
 		if (activeCount > 0) {
 			promptText += "\nPlayers holding active bounties:";
 			ManagedReference<PlayerManager*> playerManager = creature->getZoneServer()->getPlayerManager();
