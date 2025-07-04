@@ -214,8 +214,8 @@ naboo_destroy_missions = {
 		},
 		{
 			lairTemplateName = "naboo_fambaa_lair_neutral_large_boss_01",
-			minDifficulty = 32,
-			maxDifficulty = 36,
+			minDifficulty = 150,
+			maxDifficulty = 300,
 			size = 35,
 		},
 		{
