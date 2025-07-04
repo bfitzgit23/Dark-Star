@@ -471,7 +471,7 @@ void MissionManagerImplementation::removeMission(MissionObject* mission, Creatur
 	ManagedReference<MissionObject*> ref = mission;
 
 	ManagedReference<SceneObject*> missionParent = mission->getParent().get();
-	SceneObject* datapad = player->getSlottedObject("datapad");
+	SceneObject* datapad = player->getSlottedObject("mission_bag");
 
 	if (missionParent != datapad)
 		return;
@@ -1759,7 +1759,8 @@ void MissionManagerImplementation::randomizeGenericReconMission(CreatureObject* 
 	mission->setMissionTargetName(TemplateManager::instance()->getTemplate(STRING_HASHCODE("object/tangible/mission/mission_recon_target.iff"))->getObjectName());
 	mission->setTargetTemplate(TemplateManager::instance()->getTemplate(STRING_HASHCODE("object/tangible/mission/mission_recon_target.iff")));
 
-	mission->setStartPosition(position.getX(), position->getY(), playerZone->getZoneName());
+	// FIX: Changed position->getY() to position.getY()
+	mission->setStartPosition(position.getX(), position.getY(), playerZone->getZoneName());
 
 	int reward = position.distanceTo(player->getWorldPosition()) / 5;
 
