@@ -805,14 +805,7 @@ void MissionManagerImplementation::randomizeFactionTerminalMissions(CreatureObje
 }
 
 
-void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject* player, MissionObject* mission, const uint32 faction) {
-	Zone* zone = player->getZone();
-
-	if (zone == nullptr) {
-		return;
-	}
-
-	LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* player, const uint32 faction, unsigned int type) {
+LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* player, const uint32 faction, unsigned int type) {
 	Zone* zone = player->getZone();
 
 	if (zone == nullptr)
@@ -975,7 +968,6 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 	}
 
 	return lairSpawn;
-}
 
 void MissionManagerImplementation::randomizeGenericSurveyMission(CreatureObject* player, MissionObject* mission, const uint32 faction) {
 	int maxLevel = 50;
