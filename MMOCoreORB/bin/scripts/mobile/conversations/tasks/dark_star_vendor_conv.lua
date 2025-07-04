@@ -209,10 +209,10 @@ food = ConvoScreen:new {
     stopConversation = "false",
     options = {
         {"Pikatta Pie(Dodge +35%) - 15k","food01"},
-        {"Pyollian Cake - 15k","food02"},
-        {"Bivoli Tempari - 15k","food03"},
-        {"Synthsteak - 15k","food04"},
-        {"Thakitillo - 15k","food05"},
+        {"Pyollian Cake(Crafting Bonus +10) - 15k","food02"},
+        {"Bivoli Tempari(Wound Treatment +10) - 15k","food03"},
+        {"Synthsteak(Damage Reduction +35%) - 15k","food04"},
+        {"Thakitillo(Defense vs Knockdown +80) - 15k","food05"},
         {"Back","food_menu"},
         {"Main menu.", "first_screen"},
     }
@@ -225,8 +225,8 @@ drinks = ConvoScreen:new {
     customDialogText = "Please choose.",
     stopConversation = "false",
     options = {
-        {"Bespin Port - 15k","food06"},
-        {"Ithorian Mist - 15k","food07"},
+        {"Bespin Port(Experiment Bonus +10) - 15k","food06"},
+        {"Ithorian Mist(Defense vs Dizzy +15) - 15k","food07"},
         {"Back","food_menu"},
         {"Main menu.", "first_screen"},
     }
