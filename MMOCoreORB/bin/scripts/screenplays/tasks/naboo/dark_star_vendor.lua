@@ -15,50 +15,50 @@ function dark_star_vendor:start()
     -- A list of all locations where the vendor should spawn.
     local spawnLocations = {
         -- Corellia
-        { "corellia", -157, 28.0, -4724, 35 },     -- cnet
-        { "corellia", -5042, 21.0, -2297, 35 },    -- tyrena
-        { "corellia", -3138, 31.0, 2796, 35 },     -- korvella
-        { "corellia", 3333, 308.0, 5524, 35 },     -- doaba
-        { "corellia", -5550, 15.58, -6061, 35 },   -- venri
+        { "corellia", -157, 28.0, -4724, 35 },      -- cnet
+        { "corellia", -5042, 21.0, -2297, 35 },     -- tyrena
+        { "corellia", -3138, 31.0, 2796, 35 },      -- korvella
+        { "corellia", 3333, 308.0, 5524, 35 },      -- doaba
+        { "corellia", -5550, 15.58, -6061, 35 },    -- venri
         { "corellia", 6643.02, 330.00, -5920.87, 35 }, -- belav
         -- Naboo
-        { "naboo", -4872, 6.0, 4151, 35 },         -- theed
-        { "naboo", 4807, 4.0, -4705, 35 },         -- moena
-        { "naboo", 5200, -192.0, 6677, 35 },       -- kaadara
-        { "naboo", 1444, 14.0, 2777, 35 },         -- keren
-        { "naboo", 5331.16, 326.95, -1576.12, 35 },-- deja
-        { "naboo", -5495.62, -150.00, -24.69, 35 },-- lake ret
+        { "naboo", -4872, 6.0, 4151, 35 },          -- theed
+        { "naboo", 4807, 4.0, -4705, 35 },          -- moena
+        { "naboo", 5200, -192.0, 6677, 35 },        -- kaadara
+        { "naboo", 1444, 14.0, 2777, 35 },          -- keren
+        { "naboo", 5331.16, 326.95, -1576.12, 35 }, -- deja
+        { "naboo", -5495.62, -150.00, -24.69, 35 }, -- lake ret
         -- Tatooine
         { "tatooine", 3522, 5.0, -4803, 35 },      -- eisley
-        { "tatooine", -1281, 12.0, -3590, 35 },    -- bestine
-        { "tatooine", -2914, 5.0, 2129, 35 },      -- espa
-        { "tatooine", 1293, 7.0, 3140, 35 },       -- entha
-        { "tatooine", 48.33, 52.00, -5340.53, 35 },-- anc
+        { "tatooine", -1281, 12.0, -3590, 35 },     -- bestine
+        { "tatooine", -2914, 5.0, 2129, 35 },       -- espa
+        { "tatooine", 1293, 7.0, 3140, 35 },        -- entha
+        { "tatooine", 48.33, 52.00, -5340.53, 35 }, -- anc
         -- Talus
-        { "talus", -2193, 20.0, 2313, 35 },        -- talus imp
-        { "talus", 4447, 2.0, 5271, 35 },          -- nashal
-        { "talus", 338, 6.0, -2931, 35 },          -- dearic
+        { "talus", -2193, 20.0, 2313, 35 },         -- talus imp
+        { "talus", 4447, 2.0, 5271, 35 },           -- nashal
+        { "talus", 338, 6.0, -2931, 35 },           -- dearic
         -- Rori
-        { "rori", 5365, 80.0, 5657, 35 },          -- restuss
-        { "rori", -5305, 80.0, -2228, 35 },        -- narmle
-        { "rori", 3683, 96.0, -6436, 35 },         -- reb
+        { "rori", 5365, 80.0, 5657, 35 },           -- restuss
+        { "rori", -5305, 80.0, -2228, 35 },         -- narmle
+        { "rori", 3683, 96.0, -6436, 35 },          -- reb
         -- Endor
-        { "endor", -948, 73.0, 1550, 35 },         -- smugglers
-        { "endor", 3201, 24.0, -3501, 35 },        -- research
+        { "endor", -948, 73.0, 1550, 35 },          -- smugglers
+        { "endor", 3201, 24.0, -3501, 35 },         -- research
         -- Dantooine
-        { "dantooine", -632, 3.0, 2501, 35 },      -- mining
-        { "dantooine", -4209, 3.0, -2349, 35 },    -- imp
-        { "dantooine", 1564, 4.0, -6415, 35 },     -- aggro
+        { "dantooine", -632, 3.0, 2501, 35 },       -- mining
+        { "dantooine", -4209, 3.0, -2349, 35 },     -- imp
+        { "dantooine", 1564, 4.0, -6415, 35 },      -- aggro
         -- Dathomir
-        { "dathomir", 619, 3.0, 3090, 35 },        -- trade
-        { "dathomir", -47, 18.0, -1586, 35 },      -- science
-		{ "dathomir", 5233, 78, -4057, 35 },      -- village
+        { "dathomir", 619, 3.0, 3090, 35 },         -- trade
+        { "dathomir", -47, 18.0, -1586, 35 },       -- science
+		{ "dathomir", 5233, 78, -4057, 35 },       -- village
         -- Yavin 4
-        { "yavin4", -265, 35.0, 4897, 35 },        -- mining
-        { "yavin4", 4053, 17.0, -6217, 35 },       -- imp
-        { "yavin4", -6922, 73.0, -5730, 35 },      -- labor
+        { "yavin4", -265, 35.0, 4897, 35 },         -- mining
+        { "yavin4", 4053, 17.0, -6217, 35 },        -- imp
+        { "yavin4", -6922, 73.0, -5730, 35 },       -- labor
         -- Lok
-        { "lok", 479, 8.0, 5512, 35 },             -- lok
+        { "lok", 479, 8.0, 5512, 35 },              -- lok
     }
 
     for i, location in ipairs(spawnLocations) do
@@ -72,9 +72,11 @@ dark_star_vendor_convo_handler = Object:new {
 }
 
 -- This table holds all the items for sale. It makes the code much cleaner.
+-- This table holds all the items for sale. It makes the code much cleaner.
 local itemsForSale = {
     -- Buffs
     ["buffs01"] = { cost = 15000, itemTemplate = nil, message = "Thank you! You have purchased a character enhancement.", isBuff = true },
+	-- Weapons
     -- Starter Ranged
     ["weapon01"] = { cost = 5000, itemTemplate = "object/weapon/ranged/pistol/pistol_cdef.iff", message = "Thank you! You have purchased a CDEF Pistol." },
     ["weapon02"] = { cost = 5000, itemTemplate = "object/weapon/ranged/carbine/carbine_cdef.iff", message = "Thank you! You have purchased a CDEF Carbine." },
@@ -94,6 +96,7 @@ local itemsForSale = {
     ["weapon10"] = { cost = 25000, itemTemplate = "object/weapon/melee/2h_sword/2h_sword_katana.iff", message = "Thank you! You have purchased a Katana." },
     ["weapon11"] = { cost = 25000, itemTemplate = "object/weapon/melee/special/vibroknuckler.iff", message = "Thank you! You have purchased a Vibroknuckler." },
     -- Armor
+	-- Composite
     ["armor01"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_helmet.iff", message = "Thank you! You have purchased a Composite Helmet." },
     ["armor02"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_chest_plate.iff", message = "Thank you! You have purchased a Composite Chest Plate." },
     ["armor03"] = { cost = 5000, itemTemplate = "object/tangible/wearables/armor/composite/armor_composite_leggings.iff", message = "Thank you! You have purchased Composite Leggings." },
@@ -119,14 +122,52 @@ local itemsForSale = {
     ["jedi01"] = { cost = 25000, itemTemplate = "object/tangible/jedi/jedi_holocron_dark.iff", message = "Thank you! You have purchased a Sith Holocron." },
     ["jedi02"] = { cost = 25000, itemTemplate = "object/tangible/jedi/jedi_holocron_light.iff", message = "Thank you! You have purchased a Jedi Holocron." },
     -- Medic
+    -- Stimpacks
     ["medic01"] = { cost = 500, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_a.iff", message = "Thank you! You have purchased a Stimpack A." },
     ["medic02"] = { cost = 1000, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_b.iff", message = "Thank you! You have purchased a Stimpack B." },
     ["medic03"] = { cost = 2000, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_c.iff", message = "Thank you! You have purchased a Stimpack C." },
     ["medic04"] = { cost = 5000, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_d.iff", message = "Thank you! You have purchased a Stimpack D." },
     ["medic05"] = { cost = 10000, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_e.iff", message = "Thank you! You have purchased a Stimpack E." },
+    -- Action Wound Packs
+    ["medic06"] = { cost = 1000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_action_a.iff", message = "Thank you! You have purchased an Action Wound Pack A." },
+    ["medic07"] = { cost = 2000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_action_b.iff", message = "Thank you! You have purchased an Action Wound Pack B." },
+    ["medic08"] = { cost = 3000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_action_c.iff", message = "Thank you! You have purchased an Action Wound Pack C." },
+    ["medic09"] = { cost = 4000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_action_d.iff", message = "Thank you! You have purchased an Action Wound Pack D." },
+    ["medic10"] = { cost = 5000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_action_e.iff", message = "Thank you! You have purchased an Action Wound Pack E." },
+    -- Health Wound Packs
+    ["medic11"] = { cost = 1000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_health_a.iff", message = "Thank you! You have purchased a Health Wound Pack A." },
+    ["medic12"] = { cost = 2000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_health_b.iff", message = "Thank you! You have purchased a Health Wound Pack B." },
+    ["medic13"] = { cost = 3000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_health_c.iff", message = "Thank you! You have purchased a Health Wound Pack C." },
+    ["medic14"] = { cost = 4000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_health_d.iff", message = "Thank you! You have purchased a Health Wound Pack D." },
+    ["medic15"] = { cost = 5000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_health_e.iff", message = "Thank you! You have purchased a Health Wound Pack E." },
+    -- Constitution Wound Packs
+    ["medic16"] = { cost = 1000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_constitution_a.iff", message = "Thank you! You have purchased a Constitution Wound Pack A." },
+    ["medic17"] = { cost = 2000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_constitution_b.iff", message = "Thank you! You have purchased a Constitution Wound Pack B." },
+    ["medic18"] = { cost = 3000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_constitution_c.iff", message = "Thank you! You have purchased a Constitution Wound Pack C." },
+    ["medic19"] = { cost = 4000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_constitution_d.iff", message = "Thank you! You have purchased a Constitution Wound Pack D." },
+    ["medic20"] = { cost = 5000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_constitution_e.iff", message = "Thank you! You have purchased a Constitution Wound Pack E." },
+    -- Quickness Wound Packs
+    ["medic21"] = { cost = 1000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_quickness_a.iff", message = "Thank you! You have purchased a Quickness Wound Pack A." },
+    ["medic22"] = { cost = 2000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_quickness_b.iff", message = "Thank you! You have purchased a Quickness Wound Pack B." },
+    ["medic23"] = { cost = 3000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_quickness_c.iff", message = "Thank you! You have purchased a Quickness Wound Pack C." },
+    ["medic24"] = { cost = 4000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_quickness_d.iff", message = "Thank you! You have purchased a Quickness Wound Pack D." },
+    ["medic25"] = { cost = 5000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_quickness_e.iff", message = "Thank you! You have purchased a Quickness Wound Pack E." },
+    -- Stamina Wound Packs
+    ["medic26"] = { cost = 1000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_stamina_a.iff", message = "Thank you! You have purchased a Stamina Wound Pack A." },
+    ["medic27"] = { cost = 2000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_stamina_b.iff", message = "Thank you! You have purchased a Stamina Wound Pack B." },
+    ["medic28"] = { cost = 3000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_stamina_c.iff", message = "Thank you! You have purchased a Stamina Wound Pack C." },
+    ["medic29"] = { cost = 4000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_stamina_d.iff", message = "Thank you! You have purchased a Stamina Wound Pack D." },
+    ["medic30"] = { cost = 5000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_stamina_e.iff", message = "Thank you! You have purchased a Stamina Wound Pack E." },
+    -- Strength Wound Packs
+    ["medic31"] = { cost = 1000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_strength_a.iff", message = "Thank you! You have purchased a Strength Wound Pack A." },
+    ["medic32"] = { cost = 2000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_strength_b.iff", message = "Thank you! You have purchased a Strength Wound Pack B." },
+    ["medic33"] = { cost = 3000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_strength_c.iff", message = "Thank you! You have purchased a Strength Wound Pack C." },
+    ["medic34"] = { cost = 4000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_strength_d.iff", message = "Thank you! You have purchased a Strength Wound Pack D." },
+    ["medic35"] = { cost = 5000, itemTemplate = "object/tangible/medicine/crafted/medpack_wound_strength_e.iff", message = "Thank you! You have purchased a Strength Wound Pack E." },
     -- Wearables
     ["wearables01"] = { cost = 5000, itemTemplate = "object/tangible/wearables/backpack/backpack_s01.iff", message = "Thank you! You have purchased a Backpack." },
 }
+
 
 -- This is the main function that handles the conversation logic.
 function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTemplate, conversingPlayer, selectedOption)

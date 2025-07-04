@@ -16,11 +16,11 @@ dark_star_vendor_first_screen = ConvoScreen:new {
     options = {
         {"Buffs", "buffs"},
         {"Weapons", "weapons"},
-        {"Armor", "armor_menu"}, -- Changed to point to the new armor menu
+        {"Armor", "armor_menu"},
         {"Deeds", "deeds"},
         {"Food and Drinks","food_menu"},
         {"Jedi Items", "jedi"},
-        {"Medic", "medic"},
+        {"Medic", "medic"}, -- Points to the new medic menu
         {"Wearables", "wearables"},
     }
 }
@@ -249,7 +249,21 @@ dark_star_vendor_conv:addScreen(jedi);
 medic = ConvoScreen:new {
     id = "medic",
     leftDialog = "",
-    customDialogText = "medical supplies, need anything?",
+    customDialogText = "What kind of medical supplies do you need?",
+    stopConversation = "false",
+    options = {
+        {"Stims", "stims_menu"},
+        {"Wound Treatment", "wound_treatment_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(medic);
+
+-- This screen lists all the available stimpacks.
+stims_menu = ConvoScreen:new {
+    id = "stims_menu",
+    leftDialog = "",
+    customDialogText = "Stimpacks available for purchase.",
     stopConversation = "false",
     options = {
         {"StimPack A - 500", "medic01"},
@@ -257,10 +271,137 @@ medic = ConvoScreen:new {
         {"StimPack C - 2k", "medic03"},
         {"StimPack D - 5k", "medic04"},
         {"StimPack E - 10k", "medic05"},
+        {"Back", "medic"},
         {"Main menu.", "first_screen"},
     }
 }
-dark_star_vendor_conv:addScreen(medic);
+dark_star_vendor_conv:addScreen(stims_menu);
+
+wound_treatment_menu = ConvoScreen:new {
+    id = "wound_treatment_menu",
+    leftDialog = "",
+    customDialogText = "What type of wound do you need to treat?",
+    stopConversation = "false",
+    options = {
+        {"Action", "wound_action"},
+        {"Health", "wound_health"},
+        {"Constitution", "wound_constitution"},
+        {"Quickness", "wound_quickness"},
+        {"Stamina", "wound_stamina"},
+        {"Strength", "wound_strength"},
+        {"Back", "medic"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(wound_treatment_menu);
+
+-- This screen lists Action wound treatment items.
+wound_action = ConvoScreen:new {
+    id = "wound_action",
+    leftDialog = "",
+    customDialogText = "Action wound treatment supplies.",
+    stopConversation = "false",
+    options = {
+        {"Action Wound Pack A - 1k", "medic06"},
+        {"Action Wound Pack B - 2k", "medic07"},
+        {"Action Wound Pack C - 3k", "medic08"},
+        {"Action Wound Pack D - 4k", "medic09"},
+        {"Action Wound Pack E - 5k", "medic10"},
+        {"Back", "wound_treatment_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(wound_action);
+
+-- This screen lists Health wound treatment items.
+wound_health = ConvoScreen:new {
+    id = "wound_health",
+    leftDialog = "",
+    customDialogText = "Health wound treatment supplies.",
+    stopConversation = "false",
+    options = {
+        {"Health Wound Pack A - 1k", "medic11"},
+        {"Health Wound Pack B - 2k", "medic12"},
+        {"Health Wound Pack C - 3k", "medic13"},
+        {"Health Wound Pack D - 4k", "medic14"},
+        {"Health Wound Pack E - 5k", "medic15"},
+        {"Back", "wound_treatment_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(wound_health);
+
+-- This screen lists Constitution wound treatment items.
+wound_constitution = ConvoScreen:new {
+    id = "wound_constitution",
+    leftDialog = "",
+    customDialogText = "Constitution wound treatment supplies.",
+    stopConversation = "false",
+    options = {
+        {"Constitution Wound Pack A - 1k", "medic16"},
+        {"Constitution Wound Pack B - 2k", "medic17"},
+        {"Constitution Wound Pack C - 3k", "medic18"},
+        {"Constitution Wound Pack D - 4k", "medic19"},
+        {"Constitution Wound Pack E - 5k", "medic20"},
+        {"Back", "wound_treatment_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(wound_constitution);
+
+-- This screen lists Quickness wound treatment items.
+wound_quickness = ConvoScreen:new {
+    id = "wound_quickness",
+    leftDialog = "",
+    customDialogText = "Quickness wound treatment supplies.",
+    stopConversation = "false",
+    options = {
+        {"Quickness Wound Pack A - 1k", "medic21"},
+        {"Quickness Wound Pack B - 2k", "medic22"},
+        {"Quickness Wound Pack C - 3k", "medic23"},
+        {"Quickness Wound Pack D - 4k", "medic24"},
+        {"Quickness Wound Pack E - 5k", "medic25"},
+        {"Back", "wound_treatment_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(wound_quickness);
+
+-- This screen lists Stamina wound treatment items.
+wound_stamina = ConvoScreen:new {
+    id = "wound_stamina",
+    leftDialog = "",
+    customDialogText = "Stamina wound treatment supplies.",
+    stopConversation = "false",
+    options = {
+        {"Stamina Wound Pack A - 1k", "medic26"},
+        {"Stamina Wound Pack B - 2k", "medic27"},
+        {"Stamina Wound Pack C - 3k", "medic28"},
+        {"Stamina Wound Pack D - 4k", "medic29"},
+        {"Stamina Wound Pack E - 5k", "medic30"},
+        {"Back", "wound_treatment_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(wound_stamina);
+
+-- This screen lists Strength wound treatment items.
+wound_strength = ConvoScreen:new {
+    id = "wound_strength",
+    leftDialog = "",
+    customDialogText = "Strength wound treatment supplies.",
+    stopConversation = "false",
+    options = {
+        {"Strength Wound Pack A - 1k", "medic31"},
+        {"Strength Wound Pack B - 2k", "medic32"},
+        {"Strength Wound Pack C - 3k", "medic33"},
+        {"Strength Wound Pack D - 4k", "medic34"},
+        {"Strength Wound Pack E - 5k", "medic35"},
+        {"Back", "wound_treatment_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(wound_strength);
 
 wearables = ConvoScreen:new {
     id = "wearables",
