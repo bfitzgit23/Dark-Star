@@ -804,7 +804,6 @@ void MissionManagerImplementation::randomizeFactionTerminalMissions(CreatureObje
 	}
 }
 
-
 LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* player, const uint32 faction, unsigned int type) {
 	Zone* zone = player->getZone();
 
