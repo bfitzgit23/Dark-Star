@@ -1388,6 +1388,7 @@ void CraftingSessionImplementation::createPrototype(int clientCounter, bool crea
 
 		if (createItem) {
 			startCreationTasks(manufactureSchematic->getComplexity() * 0, false);
+			xp = round(xp * 1.7f);
 
 		} else {
 			// This is for practicing
@@ -1396,7 +1397,7 @@ void CraftingSessionImplementation::createPrototype(int clientCounter, bool crea
 		}
 
 		Reference<PlayerManager*> playerManager = crafter->getZoneServer()->getPlayerManager();
-		playerManager->awardExperience(crafter, xpType, xp, true);
+		playerManager->awardExperience(crafter, xpType, xp * 20, true);
 
 		manufactureSchematic->setCompleted();
 
