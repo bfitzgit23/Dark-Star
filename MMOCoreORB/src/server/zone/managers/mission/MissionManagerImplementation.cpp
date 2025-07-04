@@ -471,18 +471,19 @@ void MissionManagerImplementation::removeMission(MissionObject* mission, Creatur
 	ManagedReference<MissionObject*> ref = mission;
 
 	ManagedReference<SceneObject*> missionParent = mission->getParent().get();
-	SceneObject* datapad = player->getSlottedObject("mission_bag");
+	SceneObject* datapad = player->getSlottedObject("datapad"); // FIX: Changed from "mission_bag" to "datapad"
 
-    // Debugging added here
-    info(String("DEBUG: removeMission called for mission: ") + String::valueOf(mission->getObjectID()) +
-         ", Player: " + player->getFirstName() +
-         ", Mission Parent ID: " + (missionParent ? String::valueOf(missionParent->getObjectID()) : "NULL") +
-         ", Datapad ID: " + (datapad ? String::valueOf(datapad->getObjectID()) : "NULL"));
+	// Debugging removed as requested.
+	// info(String("DEBUG: removeMission called for mission: ") + String::valueOf(mission->getObjectID()) +
+	//      ", Player: " + player->getFirstName() +
+	//      ", Mission Parent ID: " + (missionParent ? String::valueOf(missionParent->getObjectID()) : "NULL") +
+	//      ", Datapad ID: " + (datapad ? String::valueOf(datapad->getObjectID()) : "NULL"));
 
 	if (missionParent == nullptr || missionParent != datapad) {
-        error(String("DEBUG: removeMission aborted. Mission parent is not datapad or is NULL. Mission Parent ID: ") +
-              (missionParent ? String::valueOf(missionParent->getObjectID()) : "NULL") +
-              ", Datapad ID: " + (datapad ? String::valueOf(datapad->getObjectID()) : "NULL"));
+		// Debugging removed as requested.
+		// error(String("DEBUG: removeMission aborted. Mission parent is not datapad or is NULL. Mission Parent ID: ") +
+		//       (missionParent ? String::valueOf(missionParent->getObjectID()) : "NULL") +
+		//       ", Datapad ID: " + (datapad ? String::valueOf(datapad->getObjectID()) : "NULL"));
 		return;
     }
 
@@ -517,7 +518,7 @@ void MissionManagerImplementation::removeMission(MissionObject* mission, Creatur
 
 		group->scheduleUpdateNearestMissionForGroup(player->getPlanetCRC());
 	}
-    info(String("DEBUG: Mission ") + String::valueOf(mission->getObjectID()) + " successfully removed.");
+    // info(String("DEBUG: Mission ") + String::valueOf(mission->getObjectID()) + " successfully removed."); // Commented out debug
 }
 
 void MissionManagerImplementation::handleMissionFail(MissionObject* mission, CreatureObject* player) {
