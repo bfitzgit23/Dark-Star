@@ -116,19 +116,19 @@ SceneObject* CreatureManagerImplementation::spawnLair(unsigned int lairTemplate,
 
 	switch(lairBuildingLevel) {
 		case 2: {
-			baseCondition = 9000.f; // Original: 3000.f
+			baseCondition = 90000.f; // Original: 3000.f
 			break;
 		}
 		case 3: {
-			baseCondition = 18000.f; // Original: 6000.f
+			baseCondition = 180000.f; // Original: 6000.f
 			break;
 		}
 		case 4: {
-			baseCondition = 27000.f; // Original: 9000.f
+			baseCondition = 270000.f; // Original: 9000.f
 			break;
 		}
 		case 5: {
-			baseCondition = 54000.f; // Original: 18000.f
+			baseCondition = 540000.f; // Original: 18000.f
 			break;
 		}
 		default:
