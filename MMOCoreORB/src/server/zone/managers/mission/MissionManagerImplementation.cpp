@@ -831,7 +831,7 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 	int difficultyLevel = System::random(maxDiff - minDiff) + minDiff;
 	int difficulty = (difficultyLevel - minDiff) / ((maxDiff > (minDiff + 5) ? maxDiff - minDiff : 5) / 5);
 	
-	info("DEBUG: DIFFICULTY LEVELS, " + " Max Difficulty = " +  String::valueOf(maxDiff) + " Min Difficulty " + String::valueOf(minDiff)); 
+	info(String("DEBUG: DIFFICULTY LEVELS, ") + " Max Difficulty = " +  String::valueOf(maxDiff) + " Min Difficulty " + String::valueOf(minDiff)); 
 
 	if (difficulty == 5)
 		difficulty = 4;
