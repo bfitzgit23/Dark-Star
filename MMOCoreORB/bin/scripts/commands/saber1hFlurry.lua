@@ -44,7 +44,7 @@
 Saber1hFlurryCommand = {
 	name = "saber1hflurry",
 
-	damageMultiplier = 3.5,
+	damageMultiplier = 1.5,
 	accuracyBonus = 50,
 	speedMultiplier = 3.0,
 	healthCostMultiplier = 0,
