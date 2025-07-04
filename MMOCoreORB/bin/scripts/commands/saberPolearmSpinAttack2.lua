@@ -44,7 +44,7 @@
 SaberPolearmSpinAttack2Command = {
 	name = "saberpolearmspinattack2",
 
-	damageMultiplier = 1.25,
+	damageMultiplier = 1,
 	accuracyBonus = 50,
 	speedMultiplier = 2.0,
 	healthCostMultiplier = 0,

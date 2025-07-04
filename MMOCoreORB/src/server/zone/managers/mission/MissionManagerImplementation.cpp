@@ -1010,6 +1010,10 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	int reward = destroyMissionBaseReward + destroyMissionDifficultyRewardFactor * difficultyLevel;
 	reward += System::random(destroyMissionRandomReward) + System::random(destroyMissionDifficultyRandomReward * difficultyLevel);
+	if (difficultyLevel > 50) 
+	{
+			reward = reward / 2;
+	}
 	mission->setRewardCredits(reward);
 
 	mission->setMissionDifficulty(difficultyLevel, diffDisplay, difficulty);

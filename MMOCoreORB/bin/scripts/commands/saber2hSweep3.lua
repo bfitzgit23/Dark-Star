@@ -44,7 +44,7 @@
 Saber2hSweep3Command = {
 	name = "saber2hsweep3",
 
-	damageMultiplier = 3.0,
+	damageMultiplier = 1.25,
 	accuracyBonus = 50,
 	speedMultiplier = 3.5,
 	healthCostMultiplier = 0,
