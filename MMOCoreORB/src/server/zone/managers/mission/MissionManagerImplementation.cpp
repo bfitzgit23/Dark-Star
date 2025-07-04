@@ -8,7 +8,7 @@
 #include "server/zone/managers/mission/MissionManager.h"
 #include "server/zone/objects/tangible/terminal/mission/MissionTerminal.h"
 #include "server/zone/objects/creature/CreatureObject.h"
-#include "server/zone/objects/creature/ai/AiAgent.h" // Corrected: Removed stray dot at the end
+#include "server/zone/objects/creature/ai/AiAgent.h"
 #include "server/zone/objects/group/GroupObject.h"
 #include "server/zone/objects/mission/MissionObject.h"
 #include "server/zone/objects/mission/SurveyMissionObjective.h"
@@ -473,8 +473,18 @@ void MissionManagerImplementation::removeMission(MissionObject* mission, Creatur
 	ManagedReference<SceneObject*> missionParent = mission->getParent().get();
 	SceneObject* datapad = player->getSlottedObject("mission_bag");
 
-	if (missionParent != datapad)
+    // Debugging added here
+    info(String("DEBUG: removeMission called for mission: ") + String::valueOf(mission->getObjectID()) +
+         ", Player: " + player->getFirstName() +
+         ", Mission Parent ID: " + (missionParent ? String::valueOf(missionParent->getObjectID()) : "NULL") +
+         ", Datapad ID: " + (datapad ? String::valueOf(datapad->getObjectID()) : "NULL"));
+
+	if (missionParent == nullptr || missionParent != datapad) {
+        error(String("DEBUG: removeMission aborted. Mission parent is not datapad or is NULL. Mission Parent ID: ") +
+              (missionParent ? String::valueOf(missionParent->getObjectID()) : "NULL") +
+              ", Datapad ID: " + (datapad ? String::valueOf(datapad->getObjectID()) : "NULL"));
 		return;
+    }
 
 	uint64 targetId = 0;
 
@@ -507,6 +517,7 @@ void MissionManagerImplementation::removeMission(MissionObject* mission, Creatur
 
 		group->scheduleUpdateNearestMissionForGroup(player->getPlanetCRC());
 	}
+    info(String("DEBUG: Mission ") + String::valueOf(mission->getObjectID()) + " successfully removed.");
 }
 
 void MissionManagerImplementation::handleMissionFail(MissionObject* mission, CreatureObject* player) {
@@ -1760,7 +1771,7 @@ void MissionManagerImplementation::randomizeGenericReconMission(CreatureObject* 
 		return;
 	}
 
-	NameManager* nm = processor->getNameManager();
+	NameManager* nm = processor->getName();
 
 
 	mission->setCreatorName(nm->makeCreatureName());
