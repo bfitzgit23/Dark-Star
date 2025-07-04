@@ -1049,7 +1049,8 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 		mobileName = mobiles->elementAt(0).getKey();
 	}
 
-	mission->setMissionTitle("Destory", String("lvl ") + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + groupSuffix);
+	// FIX: Use difficultyLevel instead of minDiff for the displayed level
+	mission->setMissionTitle("Destory", String("lvl ") + String::valueOf(difficultyLevel) + " " + mobileName.replaceAll("_", " ") + groupSuffix);
 	mission->setMissionDescription(String("mission/mission_destroy_neutral") + messageDifficulty + missionType, String("m") + String::valueOf(randTexts) + "d");
 
 	switch (faction) {
@@ -1862,10 +1863,8 @@ void MissionManagerImplementation::generateRandomFactionalDestroyMissionDescript
 		mobileName = mobiles->elementAt(0).getKey();
 	}
 
-	int minDiff = randomLairSpawn->getMinDifficulty();
-
-	//mission->setMissionTitle("mission/mission_destroy_" + difficultyString, "m" + String::valueOf(randomNumber) + "t");
-	mission->setMissionTitle("Destory", String("lvl ") + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + " mission");
+	// FIX: Use mission->getDifficultyLevel() for the displayed level
+	mission->setMissionTitle("Destory", String("lvl ") + String::valueOf(mission->getDifficultyLevel()) + " " + mobileName.replaceAll("_", " ") + " mission");
 	mission->setMissionDescription(String("mission/mission_destroy_") + difficultyString, String("m") + String::valueOf(randomNumber) + "d");
 }
 
