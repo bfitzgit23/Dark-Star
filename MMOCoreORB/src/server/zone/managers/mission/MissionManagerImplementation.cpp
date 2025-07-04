@@ -804,65 +804,40 @@ void MissionManagerImplementation::randomizeFactionTerminalMissions(CreatureObje
 	}
 }
 
-LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* player, const uint32 faction, unsigned int type) {
+
+void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject* player, MissionObject* mission, const uint32 faction) {
 	Zone* zone = player->getZone();
 
-	if (zone == nullptr)
-		return nullptr;
-
-	const Vector<Reference<LairSpawn*> >* availableLairList = nullptr;
-	int minLevelCeiling = 20; // Default value, will be updated by SpawnGroup if type is DESTROY
-
-	if (type == MissionTypes::DESTROY) {
-		String missionGroup;
-
-		if (faction == Factions::FACTIONNEUTRAL) {
-			missionGroup = zone->getZoneName() + "_destroy_missions";
-		} else {
-			bool neutralMission = true;
-
-			if (player->getFaction() != 0 && player->getFaction() == faction) {
-				if (player->getFactionStatus() == FactionStatus::OVERT || player->getFactionStatus() == FactionStatus::COVERT) {
-					neutralMission = false;
-				}
-			}
-
-			if (neutralMission) {
-				missionGroup = "factional_neutral_destroy_missions";
-			} else if (faction == Factions::FACTIONIMPERIAL) {
-				missionGroup = "factional_imperial_destroy_missions";
-			} else {
-				missionGroup = "factional_rebel_destroy_missions";
-			}
-		}
-
-		SpawnGroup* destroyMissionGroup = CreatureTemplateManager::instance()->getDestroyMissionGroup(missionGroup.hashCode());
-
-		if (destroyMissionGroup == nullptr) {
-			error(String("getRandomLairSpawn: No destroy mission group found for: ") + missionGroup); // Corrected error message
-			return nullptr;
-		}
-
-		availableLairList = &destroyMissionGroup->getSpawnList();
-		minLevelCeiling = destroyMissionGroup->getMinLevelCeiling();
-
-	} else if (type == MissionTypes::HUNTING) {
-		CreatureManager* creatureManager = zone->getCreatureManager();
-
-		if (creatureManager != nullptr) {
-			SpawnArea* spawnArea = creatureManager->getWorldSpawnArea();
-
-			if (spawnArea != nullptr)
-				availableLairList = spawnArea->getSpawnList();
-		}
+	if (zone == nullptr) {
+		return;
 	}
 
-	if (availableLairList == nullptr || availableLairList->size() == 0) {
-		error(String("getRandomLairSpawn: No available lair list or list is empty for type: ") + String::valueOf(type)); // Corrected error message
-		return nullptr;
+	LairSpawn* randomLairSpawn = getRandomLairSpawn(player, faction, MissionTypes::DESTROY);
+
+	if (randomLairSpawn == nullptr) {
+		return;
+	}
+
+	String lairTemplate = randomLairSpawn->getLairTemplateName();
+	LairTemplate* lairTemplateObject = CreatureTemplateManager::instance()->getLairTemplate(lairTemplate.hashCode());
+
+	if (lairTemplateObject == nullptr) {
+		return;
 	}
 
 	int playerLevel = server->getPlayerManager()->calculatePlayerLevel(player);
+	int maxDiff = randomLairSpawn->getMaxDifficulty();
+	int minDiff = randomLairSpawn->getMinDifficulty();
+	int difficultyLevel = System::random(maxDiff - minDiff) + minDiff;
+	int difficulty = (difficultyLevel - minDiff) / ((maxDiff > (minDiff + 5) ? maxDiff - minDiff : 5) / 5);
+
+	if (difficulty == 5)
+		difficulty = 4;
+
+	ManagedReference<PlayerObject*> targetGhost = player->getPlayerObject();
+	String level = targetGhost->getScreenPlayData("mission_level_choice", "levelChoice");
+
+	int diffDisplay = difficultyLevel < 5 ? 4 : difficultyLevel;
 
 	if (player->isGrouped()) {
 		bool includeFactionPets = faction != Factions::FACTIONNEUTRAL || ConfigManager::instance()->includeFactionPetsForMissionDifficulty();
@@ -870,108 +845,229 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 
 		if (group != nullptr) {
 			Locker locker(group);
-			playerLevel = group->getGroupLevel(includeFactionPets);
+			diffDisplay += group->getGroupLevel(includeFactionPets);
 		}
-	}
-
-	// Override playerLevel with screenplay choice if available
-	PlayerObject* targetGhost = player->getPlayerObject();
-	String levelChoiceStr = targetGhost->getScreenPlayData("mission_level_choice", "levelChoice");
-	int levelChoice = 0;
-	if (!levelChoiceStr.isEmpty()) {
-		levelChoice = Integer::valueOf(levelChoiceStr);
-	}
-
-	if (levelChoice > 0) {
-		playerLevel = levelChoice;
-		// CORRECTED LINE: Use + for string concatenation and String::valueOf() for numbers
-		info(String("DEBUG: Player ") + player->getFirstName() + " selected mission level: " + String::valueOf(playerLevel));
 	} else {
-		// CORRECTED LINE: Use + for string concatenation and String::valueOf() for numbers
-		info(String("DEBUG: Player ") + player->getFirstName() + " using calculated level: " + String::valueOf(playerLevel));
+		diffDisplay += playerLevel;
 	}
 
+	int levelChoice = Integer::valueOf(level);
 
-	LairSpawn* lairSpawn = nullptr;
-	Vector<Reference<LairSpawn*>> suitableLairs; // Vector to store lairs that fit the criteria
+    // --- START MODIFIED DIRECTION CALCULATION BLOCK ---
+    int dirChoice = 0; // Default to 0 (random/default)
+    String directionChoiceStr = targetGhost->getScreenPlayData("mission_direction_choice", "directionChoice");
 
-	// Calculate the min and max difficulty for the search window
-	// Cap the minLevel to prevent a group from being too high to get missions on a planet
-	int minSearchLevel = Math::min(playerLevel - 5, minLevelCeiling);
-	int maxSearchLevel = playerLevel + 5;
+    if (!directionChoiceStr.isEmpty()) {
+        dirChoice = Integer::valueOf(directionChoiceStr);
+        //info("DEBUG: Player " + player->getFirstName() + " has dirChoice in screenplay: " + String::valueOf(dirChoice)); // Commented out debug
+    } else {
+        //info("DEBUG: Player " + player->getFirstName() + " DOES NOT have dirChoice in screenplay or it's empty. Defaulting to 0."); // Commented out debug
+    }
 
-	// First pass: Find ALL suitable lairs within the desired difficulty window (playerLevel - 5 to playerLevel + 5)
-	for (int i = 0; i < availableLairList->size(); i++) {
-		LairSpawn* currentLair = availableLairList->get(i);
-		if (currentLair != nullptr) {
-			bool isCorrectType = false;
-			if (type == MissionTypes::DESTROY) {
-				isCorrectType = true;
-			} else { // MissionTypes::HUNTING
-				LairTemplate* lairTemp = CreatureTemplateManager::instance()->getLairTemplate(currentLair->getLairTemplateName().hashCode());
-				if (lairTemp != nullptr && lairTemp->getMobType() == LairTemplate::CREATURE) {
-					isCorrectType = true;
-				}
-			}
+    float desiredAbsoluteWorldAngle = 0.0f; // This is the absolute angle we want the mission to spawn at
+    if (dirChoice == 0) { // "Reset Direction (Random)"
+        desiredAbsoluteWorldAngle = (float)System::random(360); // A random world angle
+      //  player->sendSystemMessage("Generating mission in a random direction.");
+    } else if (dirChoice == 999) { // "Current Player Facing"
+        desiredAbsoluteWorldAngle = player->getDirectionAngle(); // Use player's current absolute facing as the desired world angle
+      //  player->sendSystemMessage("Generating mission in your current facing direction.");
+    } else { // Specific chosen direction
+        desiredAbsoluteWorldAngle = (float)dirChoice; // Use the chosen absolute angle
+      //  player->sendSystemMessage("Generating mission in your chosen direction: " + String::valueOf(dirChoice) + " degrees.");
+    }
 
-			// Check if the lair's difficulty range overlaps with our desired search window
-			if (isCorrectType && currentLair->getMinDifficulty() <= maxSearchLevel && currentLair->getMaxDifficulty() >= minSearchLevel) {
-				suitableLairs.add(currentLair);
-			}
-		}
+    //info("DEBUG: Desired absolute world angle for mission: " + String::valueOf(desiredAbsoluteWorldAngle)); // Commented out debug
+    // --- END MODIFIED DIRECTION CALCULATION BLOCK ---
+
+	String building = lairTemplateObject->getMissionBuilding(difficulty);
+
+	if (building.isEmpty()) {
+		return;
 	}
 
-	if (suitableLairs.size() > 0) {
-		// If suitable lairs are found, pick one randomly from them
-		lairSpawn = suitableLairs.get(System::random(suitableLairs.size() - 1));
-		// CORRECTED LINE: Use + for string concatenation and String::valueOf() for numbers
-		info(String("DEBUG: Found ") + String::valueOf(suitableLairs.size()) + " suitable lairs within range [" + String::valueOf(minSearchLevel) + "-" + String::valueOf(maxSearchLevel) + "], selected " + lairSpawn->getLairTemplateName() + " (Min: " + String::valueOf(lairSpawn->getMinDifficulty()) + ", Max: " + String::valueOf(lairSpawn->getMaxDifficulty()) + ") randomly.");
-	} else {
-		// Fallback: If no suitable lairs found within the +-5 range,
-		// try to find *any* lair whose minDifficulty is less than or equal to playerLevel + 5.
-		// This ensures we still get a mission, even if it's not perfectly in the desired window.
-		info("DEBUG: No suitable lairs found within playerLevel +-5 range. Searching for any lair <= playerLevel + 5."); // This line was already just a single string, so it's fine.
+	SharedObjectTemplate* templateObject = TemplateManager::instance()->getTemplate(building.hashCode());
 
-		Vector<Reference<LairSpawn*>> fallbackLairs; // New vector for fallback options
+	if (templateObject == nullptr || !templateObject->isSharedTangibleObjectTemplate()) {
+		error("incorrect template object in randomizeDestroyMission " + building);
+		return;
+	}
 
-		for (int i = 0; i < availableLairList->size(); i++) {
-			LairSpawn* currentLair = availableLairList->get(i);
-			if (currentLair != nullptr) {
-				bool isCorrectType = false;
-				if (type == MissionTypes::DESTROY) {
-					isCorrectType = true;
-				} else { // MissionTypes::HUNTING
-					LairTemplate* lairTemp = CreatureTemplateManager::instance()->getLairTemplate(currentLair->getLairTemplateName().hashCode());
-					if (lairTemp != nullptr && lairTemp->getMobType() == LairTemplate::CREATURE) {
-						isCorrectType = true;
+	NameManager* nm = processor->getNameManager();
+
+	TerrainManager* terrain = zone->getPlanetManager()->getTerrainManager();
+
+	Vector3 startPos;
+
+	bool foundPosition = false;
+	int maximumNumberOfTries = 20;
+	int tryCount = 0;
+	while (!foundPosition && maximumNumberOfTries-- > 0) {
+		tryCount++;
+		foundPosition = true;
+
+		int distance = destroyMissionBaseDistance + destroyMissionDifficultyDistanceFactor * difficultyLevel;
+		distance += System::random(destroyMissionRandomDistance) + System::random(destroyMissionDifficultyRandomDistance * difficultyLevel);
+
+        // --- NEW CALCULATION: Manual X/Y using trigonometry ---
+        // Player's absolute coordinates
+        float playerX = player->getPositionX();
+        float playerY = player->getPositionY();
+
+        float effectiveAngleDegrees = desiredAbsoluteWorldAngle;
+
+        // Apply deviation directly to the desired absolute angle
+        if (dirChoice != 0) {
+            int dev = System::random(8); // 0-7
+            int isMinus = System::random(100); // 0-99
+            if (isMinus > 49) {
+                dev *= -1;
+            }
+            effectiveAngleDegrees += dev; // Apply deviation
+        }
+
+        // Normalize angle to [0, 360)
+        effectiveAngleDegrees = fmod(effectiveAngleDegrees, 360.0f);
+        if (effectiveAngleDegrees < 0) effectiveAngleDegrees += 360.0f;
+
+        // Convert to radians for sin/cos (std::cos and std::sin use radians and assume 0=East, increasing CCW).
+        // Our desiredAbsoluteWorldAngle (from Lua) is 0=North, 90=East, 180=South, 270=West, increasing CW.
+        // Conversion to Math Angle (0=East, increasing CCW):
+        // Math Angle = (90 - Our_Angle_CW + 360) % 360
+        // Example: North (0 deg CW) -> (90 - 0 + 360) % 360 = 90 deg Math Angle (Correct, 90 deg Math is +Y, North)
+        // Example: East (90 deg CW) -> (90 - 90 + 360) % 360 = 0 deg Math Angle (Correct, 0 deg Math is +X, East)
+        // Example: South (180 deg CW) -> (90 - 180 + 360) % 360 = 270 deg Math Angle (Correct, 270 deg Math is -Y, South)
+        // Example: West (270 deg CW) -> (90 - 270 + 360) % 360 = 180 deg Math Angle (Correct, 180 deg Math is -X, West)
+        float finalMathAngleRad = Math::deg2rad(fmod(90.0f - effectiveAngleDegrees + 360.0f, 360.0f));
+
+        float targetX = playerX + (distance * cos(finalMathAngleRad));
+        float targetY = playerY + (distance * sin(finalMathAngleRad));
+
+        startPos = Vector3(targetX, targetY, 0); // Z will be set by terrain later
+
+
+        //info("DEBUG: Try " + String::valueOf(tryCount) + ": Player X/Y: " + String::valueOf(playerX) + "/" + String::valueOf(playerY) + // Commented out debug
+        //     ", Desired Absolute Angle: " + String::valueOf(desiredAbsoluteWorldAngle) + // Commented out debug
+        //     ", Math Angle Rad: " + String::valueOf(finalMathAngleRad) + // Commented out debug
+        //     ", Passing Distance: " + String::valueOf(distance)); // Commented out debug
+
+        //info("DEBUG: Try " + String::valueOf(tryCount) + ": Generated startPos X=" + String::valueOf(startPos.getX()) + ", Y=" + String::valueOf(startPos.getY())); // Commented out debug
+
+
+		if (zone->isWithinBoundaries(startPos)) {
+			float height = zone->getHeight(startPos.getX(), startPos.getY());
+			float waterHeight = height * 2;
+			bool result = terrain->getWaterHeight(startPos.getX(), startPos.getY(), waterHeight);
+
+			if (!result || waterHeight <= height) {
+				SortedVector<ManagedReference<ActiveArea* > > activeAreas;
+
+				zone->getInRangeActiveAreas(startPos.getX(), startPos.getZ(), startPos.getY(), &activeAreas, true);
+
+				for (int i = 0; i < activeAreas.size(); ++i) {
+					ActiveArea* area = activeAreas.get(i);
+
+					if (area == nullptr)
+						continue;
+
+					if (area->isCityRegion()) {
+						foundPosition = false;
+                        //info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Inside city region."); // Commented out debug
+                        break;
 					}
 				}
-
-				// This condition is broader: just check if the lair's min difficulty is within the upper bound
-				if (isCorrectType && currentLair->getMinDifficulty() <= maxSearchLevel) {
-					fallbackLairs.add(currentLair);
-				}
-			}
-		}
-		
-		if (fallbackLairs.size() > 0) {
-			// Pick one randomly from the fallback lairs
-			lairSpawn = fallbackLairs.get(System::random(fallbackLairs.size() - 1));
-			// CORRECTED LINE: Use + for string concatenation and String::valueOf() for numbers
-			info(String("DEBUG: Fallback: Found ") + String::valueOf(fallbackLairs.size()) + " fallback lairs (MinDifficulty <= " + String::valueOf(maxSearchLevel) + "), selected " + lairSpawn->getLairTemplateName() + " (Min: " + String::valueOf(lairSpawn->getMinDifficulty()) + ", Max: " + String::valueOf(lairSpawn->getMaxDifficulty()) + ") randomly.");
-		} else {
-			// Absolute last resort: if no lairs match any criteria, pick the first available if any exist
-			if (availableLairList->size() > 0) {
-				lairSpawn = availableLairList->get(0);
-				// CORRECTED LINE: Use + for string concatenation
-				info(String("DEBUG: Absolute fallback: No suitable lairs found, picking first available lair: ") + lairSpawn->getLairTemplateName());
 			} else {
-				error("DEBUG: No lairs available in availableLairList! Cannot generate mission."); // This line was already just a single string, so it's fine.
+				foundPosition = false;
+                //info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Water too high or no terrain height."); // Commented out debug
 			}
+		} else {
+			foundPosition = false;
+            //info("DEBUG: Try " + String::valueOf(tryCount) + ": Failed - Outside zone boundaries."); // Commented out debug
 		}
 	}
 
-	return lairSpawn;
+	if (!foundPosition) {
+		//error("DEBUG: Failed to find valid position for destroy mission after " + String::valueOf(tryCount) + " tries for player " + player->getFirstName()); // Commented out debug
+		return;
+	}
+
+	int randTexts = System::random(34) + 1;
+
+	mission->setMissionNumber(randTexts);
+
+    //info("DEBUG: Setting Mission Start Position (calculated): X=" + String::valueOf(startPos.getX()) + // Commented out debug
+    //     ", Y=" + String::valueOf(startPos.getY()) + // Commented out debug
+    //     ", Zone=" + zone->getZoneName() + // Commented out debug
+    //     " (Player is at X=" + String::valueOf(player->getPositionX()) + // Commented out debug
+    //     ", Y=" + String::valueOf(player->getPositionY()) + ")"); // Commented out debug
+
+	mission->setStartPosition(startPos.getX(), startPos.getY(), zone->getZoneName());
+
+	mission->setCreatorName(nm->makeCreatureName());
+
+	mission->setMissionTargetName("@lair_n:" + lairTemplateObject->getName());
+	mission->setTargetTemplate(templateObject);
+	mission->setTargetOptionalTemplate(lairTemplate);
+
+	int reward = destroyMissionBaseReward + destroyMissionDifficultyRewardFactor * difficultyLevel;
+	reward += System::random(destroyMissionRandomReward) + System::random(destroyMissionDifficultyRandomReward * difficultyLevel);
+	mission->setRewardCredits(reward);
+
+	mission->setMissionDifficulty(difficultyLevel, diffDisplay, difficulty);
+	mission->setSize(randomLairSpawn->getSize());
+	mission->setFaction(faction);
+
+	int factionPointsReward = randomLairSpawn->getMinDifficulty();
+	if (factionPointsReward > 32)
+	{
+		factionPointsReward = 32;
+	}
+
+	String messageDifficulty;
+	String missionType;
+
+	if (difficulty < 2)
+		messageDifficulty = "_easy";
+	else if (difficulty == 2)
+		messageDifficulty = "_medium";
+	else
+		messageDifficulty = "_hard";
+
+	String groupSuffix;
+	if (lairTemplateObject->getMobType() == LairTemplate::NPC){
+		missionType = "_npc";
+		groupSuffix = " camp.";
+	} else {
+		missionType = "_creature";
+		groupSuffix = " lair.";
+	}
+
+	const VectorMap<String, int>* mobiles = lairTemplateObject->getMobiles();
+	String mobileName = "unknown";
+	if (mobiles->size() > 0) {
+		mobileName = mobiles->elementAt(0).getKey();
+	}
+
+	mission->setMissionTitle("Destory", "lvl " + String::valueOf(minDiff) + " " + mobileName.replaceAll("_", " ") + groupSuffix);
+	mission->setMissionDescription("mission/mission_destroy_neutral" + messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "d");
+
+	switch (faction) {
+	case Factions::FACTIONIMPERIAL:
+		mission->setRewardFactionPointsImperial(factionPointsReward * 2);
+		mission->setRewardFactionPointsRebel(-factionPointsReward);
+		generateRandomFactionalDestroyMissionDescription(player, mission, "imperial");
+		break;
+	case Factions::FACTIONREBEL:
+		mission->setRewardFactionPointsImperial(-factionPointsReward);
+		mission->setRewardFactionPointsRebel(factionPointsReward * 2);
+		generateRandomFactionalDestroyMissionDescription(player, mission, "rebel");
+		break;
+	default:
+		mission->setRewardFactionPointsImperial(0);
+		mission->setRewardFactionPointsRebel(0);
+		break;
+	}
+
+	mission->setTypeCRC(MissionTypes::DESTROY);
 }
 
 void MissionManagerImplementation::randomizeGenericSurveyMission(CreatureObject* player, MissionObject* mission, const uint32 faction) {
