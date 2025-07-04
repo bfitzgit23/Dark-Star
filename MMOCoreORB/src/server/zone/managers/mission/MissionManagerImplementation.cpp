@@ -8,7 +8,7 @@
 #include "server/zone/managers/mission/MissionManager.h"
 #include "server/zone/objects/tangible/terminal/mission/MissionTerminal.h"
 #include "server/zone/objects/creature/CreatureObject.h"
-#include "server/zone/objects/creature/ai/AiAgent.h"
+#include "server/zone/objects/creature/ai/AiAgent.h" // Corrected: Removed stray dot at the end
 #include "server/zone/objects/group/GroupObject.h"
 #include "server/zone/objects/mission/MissionObject.h"
 #include "server/zone/objects/mission/SurveyMissionObjective.h"
@@ -122,7 +122,7 @@ void MissionManagerImplementation::loadLuaSettings() {
 }
 
 void MissionManagerImplementation::loadPlayerBounties() {
-	info("Loading player bounties from playerbounties.db");
+	// info("Loading player bounties from playerbounties.db"); // Commented out debug
 
 	ObjectDatabaseManager* dbManager = ObjectDatabaseManager::instance();
 	ObjectDatabase* playerBountyDatabase = dbManager->loadObjectDatabase("playerbounties", true);
@@ -159,7 +159,7 @@ void MissionManagerImplementation::loadPlayerBounties() {
 		error("Database exception in MissionManager::loadPlayerBounties(): " + e.getMessage());
 	}
 
-	info(String("Loaded ") + String::valueOf(i) + " player bounties.");
+	// info(String("Loaded ") + String::valueOf(i) + " player bounties."); // Commented out debug
 }
 
 void MissionManagerImplementation::handleMissionListRequest(MissionTerminal* missionTerminal, CreatureObject* player, int counter) {
@@ -831,7 +831,7 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 	int difficultyLevel = System::random(maxDiff - minDiff) + minDiff;
 	int difficulty = (difficultyLevel - minDiff) / ((maxDiff > (minDiff + 5) ? maxDiff - minDiff : 5) / 5);
 
-	info(String("DEBUG: DIFFICULTY LEVELS, ") + " Max Difficulty = " + String::valueOf(maxDiff) + " Min Difficulty " + String::valueOf(minDiff));
+	// info(String("DEBUG: DIFFICULTY LEVELS, ") + " Max Difficulty = " + String::valueOf(maxDiff) + " Min Difficulty " + String::valueOf(minDiff)); // Commented out debug
 
 	if (difficulty == 5)
 		difficulty = 4;
@@ -1012,6 +1012,14 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	int reward = destroyMissionBaseReward + destroyMissionDifficultyRewardFactor * difficultyLevel;
 	reward += System::random(destroyMissionRandomReward) + System::random(destroyMissionDifficultyRandomReward * difficultyLevel);
+	
+	// NEW: Reward scaling based on difficultyLevel
+	if (difficultyLevel > 100 && difficultyLevel < 140) {
+		reward /= 2;
+	} else if (difficultyLevel >= 140) {
+		reward /= 3;
+	}
+
 	mission->setRewardCredits(reward);
 
 	mission->setMissionDifficulty(difficultyLevel, diffDisplay, difficulty);
@@ -1690,7 +1698,7 @@ void MissionManagerImplementation::randomizeGenericHuntingMission(CreatureObject
 
 	String creatorName = nm->makeCreatureName();
 
-	debug(String("creator name ") + creatorName);
+	// debug(String("creator name ") + creatorName); // Commented out debug
 
 	mission->setMissionNumber(randTexts);
 	mission->setCreatorName(creatorName);
@@ -2018,11 +2026,9 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 
 	if (levelChoice > 0) {
 		playerLevel = levelChoice;
-		// CORRECTED LINE: Use + for string concatenation and String::valueOf() for numbers
-		info(String("DEBUG: Player ") + player->getFirstName() + " selected mission level: " + String::valueOf(playerLevel));
+		// info(String("DEBUG: Player ") + player->getFirstName() + " selected mission level: " + String::valueOf(playerLevel)); // Commented out debug
 	} else {
-		// CORRECTED LINE: Use + for string concatenation and String::valueOf() for numbers
-		info(String("DEBUG: Player ") + player->getFirstName() + " using calculated level: " + String::valueOf(playerLevel));
+		// info(String("DEBUG: Player ") + player->getFirstName() + " using calculated level: " + String::valueOf(playerLevel)); // Commented out debug
 	}
 
 
@@ -2058,13 +2064,12 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 	if (suitableLairs.size() > 0) {
 		// If suitable lairs are found, pick one randomly from them
 		lairSpawn = suitableLairs.get(System::random(suitableLairs.size() - 1));
-		// CORRECTED LINE: Use + for string concatenation and String::valueOf() for numbers
-		info(String("DEBUG: Found ") + String::valueOf(suitableLairs.size()) + " suitable lairs within range [" + String::valueOf(minSearchLevel) + "-" + String::valueOf(maxSearchLevel) + "], selected " + lairSpawn->getLairTemplateName() + " (Min: " + String::valueOf(lairSpawn->getMinDifficulty()) + ", Max: " + String::valueOf(lairSpawn->getMaxDifficulty()) + ") randomly.");
+		// info(String("DEBUG: Found ") + String::valueOf(suitableLairs.size()) + " suitable lairs within range [" + String::valueOf(minSearchLevel) + "-" + String::valueOf(maxSearchLevel) + "], selected " + lairSpawn->getLairTemplateName() + " (Min: " + String::valueOf(lairSpawn->getMinDifficulty()) + ", Max: " + String::valueOf(lairSpawn->getMaxDifficulty()) + ") randomly."); // Commented out debug
 	} else {
 		// Fallback: If no suitable lairs found within the +-5 range,
 		// try to find *any* lair whose minDifficulty is less than or equal to playerLevel + 5.
 		// This ensures we still get a mission, even if it's not perfectly in the desired window.
-		info(String("DEBUG: No suitable lairs found within playerLevel +-5 range. Searching for any lair <= playerLevel + 5.")); // This line was already just a single string, so it's fine.
+		// info(String("DEBUG: No suitable lairs found within playerLevel +-5 range. Searching for any lair <= playerLevel + 5.")); // Commented out debug
 
 		Vector<Reference<LairSpawn*>> fallbackLairs; // New vector for fallback options
 
@@ -2091,14 +2096,12 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 		if (fallbackLairs.size() > 0) {
 			// Pick one randomly from the fallback lairs
 			lairSpawn = fallbackLairs.get(System::random(fallbackLairs.size() - 1));
-			// CORRECTED LINE: Use + for string concatenation and String::valueOf() for numbers
-			info(String("DEBUG: Fallback: Found ") + String::valueOf(fallbackLairs.size()) + " fallback lairs (MinDifficulty <= " + String::valueOf(maxSearchLevel) + "), selected " + lairSpawn->getLairTemplateName() + " (Min: " + String::valueOf(lairSpawn->getMinDifficulty()) + ", Max: " + String::valueOf(lairSpawn->getMaxDifficulty()) + ") randomly.");
+			// info(String("DEBUG: Fallback: Found ") + String::valueOf(fallbackLairs.size()) + " fallback lairs (MinDifficulty <= " + String::valueOf(maxSearchLevel) + "), selected " + lairSpawn->getLairTemplateName() + " (Min: " + String::valueOf(lairSpawn->getMinDifficulty()) + ", Max: " + String::valueOf(lairSpawn->getMaxDifficulty()) + ") randomly."); // Commented out debug
 		} else {
 			// Absolute last resort: if no lairs match any criteria, pick the first available if any exist
 			if (availableLairList->size() > 0) {
 				lairSpawn = availableLairList->get(0);
-				// CORRECTED LINE: Use + for string concatenation
-				info(String("DEBUG: Absolute fallback: No suitable lairs found, picking first available lair: ") + lairSpawn->getLairTemplateName());
+				// info(String("DEBUG: Absolute fallback: No suitable lairs found, picking first available lair: ") + lairSpawn->getLairTemplateName()); // Commented out debug
 			} else {
 				error("DEBUG: No lairs available in availableLairList! Cannot generate mission."); // This line was already just a single string, so it's fine.
 			}
@@ -2153,7 +2156,7 @@ void MissionManagerImplementation::addPlayerToBountyList(uint64 targetId, int re
 		ObjectManager::instance()->persistObject(bounty, 1, "playerbounties");
 		playerBountyList.put(targetId, bounty);
 
-		info(String("Adding player ") + String::valueOf(targetId) + " to bounty hunter list.", true);
+		// info(String("Adding player ") + String::valueOf(targetId) + " to bounty hunter list.", true); // Commented out debug
 	}
 }
 
@@ -2173,7 +2176,7 @@ void MissionManagerImplementation::removePlayerFromBountyList(uint64 targetId) {
 		}
 
 		ObjectManager::instance()->destroyObjectFromDatabase(target->_getObjectID());
-		info(String("Removing player ") + String::valueOf(targetId) + " from bounty hunter list.");
+		// info(String("Removing player ") + String::valueOf(targetId) + " from bounty hunter list."); // Commented out debug
 	}
 }
 
@@ -2193,9 +2196,9 @@ void MissionManagerImplementation::updatePlayerBountyOnlineStatus(uint64 targetI
 #ifdef DEBUG_BH_MISSIONS
 
 		if (status)
-			info(String("Player jedi is now online: ") + String::valueOf(targetId), true);
+			// info(String("Player jedi is now online: ") + String::valueOf(targetId), true); // Commented out debug
 		else
-			info(String("Player jedi is now offline: ") + String::valueOf(targetId), true);
+			// info(String("Player jedi is now offline: ") + String::valueOf(targetId), true); // Commented out debug
 #endif // DEBUG_BH_MISSIONS
 	}
 }
