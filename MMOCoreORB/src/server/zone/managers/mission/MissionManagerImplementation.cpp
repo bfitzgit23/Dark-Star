@@ -974,6 +974,81 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 	return lairSpawn;
 }
 
+void MissionManagerImplementation::randomizeGenericSurveyMission(CreatureObject* player, MissionObject* mission, const uint32 faction) {
+	int maxLevel = 50;
+	int minLevel = 50;
+	Zone* playerZone = player->getZone();
+
+	if (playerZone == nullptr)
+		return;
+
+	long long surveySkill = player->getSkillMod("surveying");
+	if (surveySkill > 30) {
+		maxLevel += 10;
+	}
+	if (surveySkill > 50) {
+		maxLevel += 10;
+	}
+	if (surveySkill > 70) {
+		maxLevel += 10;
+	}
+	if (surveySkill > 90) {
+		maxLevel += 10;
+	}
+	if (surveySkill > 100) {
+		//Max mission level is 95.
+		maxLevel += 5;
+	}
+
+	//Mission level used as needed concentration in increments of 5. I.e. 50, 55, 60 etc. up to 95.
+	int randLevel = minLevel + 5 * System::random((maxLevel - minLevel) / 5);
+
+	if (randLevel > maxLevel)
+		randLevel = maxLevel;
+
+	ResourceManager* manager = server->getResourceManager();
+
+	String zoneName = playerZone->getZoneName();
+
+	Vector<ManagedReference<ResourceSpawn*> > resources;
+
+	int toolType = SurveyTool::MINERAL;
+
+	//75 % mineral, 25 % chemical.
+	if (System::random(3) == 0) {
+		toolType = SurveyTool::CHEMICAL;
+	}
+
+	manager->getResourceListByType(resources, toolType, zoneName);
+
+	ManagedReference<ResourceSpawn*> spawn = resources.get(System::random(resources.size() - 1));
+	uint32 containerCRC = spawn->getContainerCRC();
+	SharedObjectTemplate* templateObject = TemplateManager::instance()->getTemplate(containerCRC);
+
+	NameManager* nm = processor->getNameManager();
+
+	int texts = System::random(50);
+
+	if (texts == 0)
+		texts = 1;
+
+	mission->setMissionTargetName(spawn->getSurveyMissionSpawnFamilyName());
+	mission->setTargetTemplate(templateObject);
+
+	//Reward depending on mission level.
+	mission->setRewardCredits(400 + (randLevel - minLevel) * 20 + System::random(100));
+
+	mission->setFaction(faction);
+
+	mission->setMissionDifficulty(randLevel);
+	mission->setStartPosition(player->getPositionX(), player->getPositionY(), playerZone->getZoneName());
+	mission->setMissionTitle("mission/mission_npc_survey_neutral_easy", "m" + String::valueOf(texts) + "t");
+	mission->setMissionDescription("mission/mission_npc_survey_neutral_easy", "m" + String::valueOf(texts) + "o");
+	mission->setCreatorName(nm->makeCreatureName());
+
+	mission->setTypeCRC(MissionTypes::SURVEY);
+}
+
 void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject* player, MissionObject* mission, const uint32 faction, Vector<ManagedReference<PlayerBounty*>>* potentialTargets) {
 	if (!player->hasSkill("combat_bountyhunter_novice")) {
 		player->sendSystemMessage("@mission/mission_generic:not_bounty_hunter_terminal");
