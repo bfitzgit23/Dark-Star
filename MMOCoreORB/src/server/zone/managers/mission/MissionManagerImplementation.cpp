@@ -1771,7 +1771,7 @@ void MissionManagerImplementation::randomizeGenericReconMission(CreatureObject* 
 		return;
 	}
 
-	NameManager* nm = processor->getName();
+	NameManager* nm = processor->getNameManager(); // Corrected: Changed getName() to getNameManager()
 
 
 	mission->setCreatorName(nm->makeCreatureName());
