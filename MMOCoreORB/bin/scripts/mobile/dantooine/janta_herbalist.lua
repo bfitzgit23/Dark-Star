@@ -5,7 +5,7 @@ janta_herbalist = Creature:new {
 	mobType = MOB_NPC,
 	socialGroup = "janta_tribe",
 	faction = "janta_tribe",
-	level = 27,
+	level = 300,
 	chanceHit = 0.39,
 	damageMin = 305,
 	damageMax = 320,
@@ -34,7 +34,10 @@ janta_herbalist = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "janta_tribe_tier_3", chance = 10}
+				{group = "junk", chance = 1500000},
+				{group = "janta_common", chance = 5000000},
+				{group = "loot_kit_parts", chance = 3000000},
+				{group = "wearables_all", chance = 500000}
 			}
 		}
 	},

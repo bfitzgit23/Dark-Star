@@ -5,13 +5,13 @@ janta_tribesman = Creature:new {
 	mobType = MOB_NPC,
 	socialGroup = "janta_tribe",
 	faction = "janta_tribe",
-	level = 20,
+	level = 300,
 	chanceHit = 0.33,
 	damageMin = 190,
 	damageMax = 200,
 	baseXp = 1803,
 	baseHAM = 5000,
-	baseHAMmax = 6100,
+	baseHAMmax = 16100,
 	armor = 0,
 	resists = {0,15,0,-1,0,0,0,-1,-1},
 	meatType = "",
@@ -34,7 +34,9 @@ janta_tribesman = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "janta_tribe_tier_3", chance = 10}
+				{group = "junk", chance = 1500000},
+				{group = "janta_common", chance = 5500000},
+				{group = "loot_kit_parts", chance = 3000000}
 			}
 		}
 	},
