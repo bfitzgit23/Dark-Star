@@ -822,8 +822,8 @@ lootableHeavyWeaponStatMods = {
 -- Values used to generate lightsaber crystal stats
 jediCrystalStats = {
 	lightsaber_module_force_crystal = {
-		minDamage = 75,
-		maxDamage = 100,
+		minDamage = 125,
+		maxDamage = 150,
 		minHitpoints = 5000,
 		maxHitpoints = 5500,
 		minHealthSac = 0,
@@ -832,10 +832,10 @@ jediCrystalStats = {
 		maxActionSac = -9,
 		minMindSac = 0,
 		maxMindSac = -9,
-		minAttackSpeed = 0,
-		maxAttackSpeed = -0.6,
-		minForceCost = -9.0,
-		maxForceCost = -9.9,
+		minAttackSpeed = -5.0,
+		maxAttackSpeed = -9.0,
+		minForceCost = -5.0,
+		maxForceCost = -9.0,
 		minWoundChance = 0,
 		maxWoundChance = 4,
 	},
@@ -851,9 +851,9 @@ jediCrystalStats = {
 		minMindSac = -6,
 		maxMindSac = -9,
 		minAttackSpeed = -5.0,
-		maxAttackSpeed = -9.9,
+		maxAttackSpeed = -9.0,
 		minForceCost = -5.0,
-		maxForceCost = -9.9,
+		maxForceCost = -9.0,
 		minWoundChance = 2,
 		maxWoundChance = 4,
 	}
