@@ -22,6 +22,7 @@ function space_terminal_spawner:start()
 	
         -- Dathomir Spawns
 		{ "dathomir", 5210, 78.5, -4056, 0, "-- The Village" },
+		{ "dantooine", 6976, 0, -4050, 0, "-- Janta Cave" },
     }
 
     -- Loop through the table and spawn each terminal.
