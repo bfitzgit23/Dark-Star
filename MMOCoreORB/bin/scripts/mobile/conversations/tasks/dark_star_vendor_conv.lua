@@ -21,6 +21,7 @@ dark_star_vendor_first_screen = ConvoScreen:new {
         {"Food and Drinks","food_menu"},
         {"Jedi Items", "jedi"},
         {"Medic", "medic"}, -- Points to the new medic menu
+        {"Artisan","artisan_menu"},
         {"Wearables", "wearables"},
     }
 }
@@ -414,6 +415,352 @@ wearables = ConvoScreen:new {
     }
 }
 dark_star_vendor_conv:addScreen(wearables);
+
+-- ARTISAN MENUS
+artisan_menu = ConvoScreen:new {
+    id = "artisan_menu",
+    leftDialog = "",
+    customDialogText = "What crafting and structural supplies do you need?",
+    stopConversation = "false",
+    options = {
+        {"Factories", "factories_menu"},
+        {"Harvesters", "harvesters_menu"},
+        {"Generators", "generators_menu"},
+        {"Player City", "player_city_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(artisan_menu);
+
+factories_menu = ConvoScreen:new {
+    id = "factories_menu",
+    leftDialog = "",
+    customDialogText = "I sell various factory deeds.",
+    stopConversation = "false",
+    options = {
+        {"Structure Factory Deed - 100k", "factory01"},
+        {"Clothing Factory Deed - 100k", "factory02"},
+        {"Item Factory Deed - 100k", "factory03"},
+        {"Food Factory Deed - 100k", "factory04"},
+        {"Back", "artisan_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(factories_menu);
+
+harvesters_menu = ConvoScreen:new {
+    id = "harvesters_menu",
+    leftDialog = "",
+    customDialogText = "What kind of harvester do you need?",
+    stopConversation = "false",
+    options = {
+        {"Heavy Ore Harvester Deed - 150k", "harvester01"},
+        {"Heavy Flora Harvester Deed - 150k", "harvester02"},
+        {"Heavy Gas Harvester Deed - 150k", "harvester03"},
+        {"Heavy Moisture Harvester Deed - 150k", "harvester04"},
+        {"Heavy Liquid Harvester Deed - 150k", "harvester05"},
+        {"Back", "artisan_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(harvesters_menu);
+
+generators_menu = ConvoScreen:new {
+    id = "generators_menu",
+    leftDialog = "",
+    customDialogText = "Need more power for your installations?",
+    stopConversation = "false",
+    options = {
+        {"Fusion Generator Deed - 75k", "generator01"},
+        {"Solar Generator Deed - 50k", "generator02"},
+        {"Wind Generator Deed - 40k", "generator03"},
+        {"Photo Bio Generator Deed - 60k", "generator04"},
+        {"Back", "artisan_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(generators_menu);
+
+-- RESTRUCTURED PLAYER CITY MENUS START HERE
+player_city_menu = ConvoScreen:new {
+    id = "player_city_menu",
+    leftDialog = "",
+    customDialogText = "Which planet's city deeds are you interested in?",
+    stopConversation = "false",
+    options = {
+        {"Generic Deeds", "generic_deeds_menu"},
+        {"Corellia Deeds", "corellia_deeds_menu"},
+        {"Naboo Deeds", "naboo_deeds_menu"},
+        {"Tatooine Deeds", "tatooine_deeds_menu"},
+        {"Back", "artisan_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(player_city_menu);
+
+-- Generic Deeds
+generic_deeds_menu = ConvoScreen:new {
+    id = "generic_deeds_menu",
+    leftDialog = "",
+    customDialogText = "Generic player city deeds.",
+    stopConversation = "false",
+    options = {
+        {"Player House Deeds", "generic_player_house_deeds_menu"},
+        {"City Deeds", "generic_city_deeds_menu"},
+        {"Back", "player_city_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(generic_deeds_menu);
+
+generic_player_house_deeds_menu = ConvoScreen:new {
+    id = "generic_player_house_deeds_menu",
+    leftDialog = "",
+    customDialogText = "Generic player house deeds.",
+    stopConversation = "false",
+    options = {
+        {"Generic Guild Hall Deed - 500k", "guildhall_generic_01"},
+        {"Large Generic House Deed - 250k", "house_generic_large_01"},
+        {"Large Generic House Deed (Style 2) - 250k", "house_generic_large_02"},
+        {"Medium Generic House Deed - 200k", "house_generic_medium_01"},
+        {"Medium Generic House Deed (Style 2) - 200k", "house_generic_medium_02"},
+        {"Small Generic House Deed - 150k", "house_generic_small_01"},
+        {"Small Generic House Deed Floorplan 2 - 150k", "house_generic_small_fp02"},
+        {"Small Generic House Deed (Style 2) - 150k", "house_generic_small_02"},
+        {"Small Generic House Deed Floorplan 2 (Style 2) - 150k", "house_generic_small_fp02_02"},
+        {"Back", "generic_deeds_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(generic_player_house_deeds_menu);
+
+generic_city_deeds_menu = ConvoScreen:new {
+    id = "generic_city_deeds_menu",
+    leftDialog = "",
+    customDialogText = "Generic city infrastructure deeds.",
+    stopConversation = "false",
+    options = {
+        {"Large Dantooine Garden - 100k", "garden_dantooine_large_01"},
+        {"Medium Dantooine Garden - 75k", "garden_dantooine_medium_01"},
+        {"Small Dantooine Garden - 50k", "garden_dantooine_small_01"},
+        {"Large Dathomir Garden - 100k", "garden_dathomir_large_01"},
+        {"Medium Dathomir Garden - 75k", "garden_dathomir_medium_01"},
+        {"Small Dathomir Garden - 50k", "garden_dathomir_small_01"},
+        {"Large Endor Garden - 100k", "garden_endor_large_01"},
+        {"Medium Endor Garden - 75k", "garden_endor_medium_01"},
+        {"Small Endor Garden - 50k", "garden_endor_small_01"},
+        {"Back", "generic_deeds_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(generic_city_deeds_menu);
+
+-- Corellia Deeds
+corellia_deeds_menu = ConvoScreen:new {
+    id = "corellia_deeds_menu",
+    leftDialog = "",
+    customDialogText = "Corellia-specific player city deeds.",
+    stopConversation = "false",
+    options = {
+        {"Player House Deeds", "corellia_player_house_deeds_menu"},
+        {"City Deeds", "corellia_city_deeds_menu"},
+        {"Back", "player_city_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(corellia_deeds_menu);
+
+corellia_player_house_deeds_menu = ConvoScreen:new {
+    id = "corellia_player_house_deeds_menu",
+    leftDialog = "",
+    customDialogText = "Corellia player house deeds.",
+    stopConversation = "false",
+    options = {
+        {"Corellian Guild Hall Deed - 500k", "guildhall_corellia_01"},
+        {"Large Corellian House Deed - 250k", "house_corellia_large_01"},
+        {"Large Corellian House Deed (Style 2) - 250k", "house_corellia_large_02"},
+        {"Medium Corellian House Deed - 200k", "house_corellia_medium_01"},
+        {"Medium Corellian House Deed (Style 2) - 200k", "house_corellia_medium_02"},
+        {"Small Corellian House Deed - 150k", "house_corellia_small_01"},
+        {"Small Corellian House Deed Floorplan 2 - 150k", "house_corellia_small_fp02"},
+        {"Small Corellian House Deed (Style 2) - 150k", "house_corellia_small_02"},
+        {"Small Corellian House Deed Floorplan 2 (Style 2) - 150k", "house_corellia_small_fp02_02"},
+        {"Back", "corellia_deeds_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(corellia_player_house_deeds_menu);
+
+corellia_city_deeds_menu = ConvoScreen:new {
+    id = "corellia_city_deeds_menu",
+    leftDialog = "",
+    customDialogText = "Corellia city infrastructure deeds.",
+    stopConversation = "false",
+    options = {
+        {"Corellia Bank Deed - 350k", "city_corellia_bank_01"},
+        {"Corellia Cantina Deed - 350k", "city_corellia_cantina_01"},
+        {"Corellia Garage Deed - 350k", "city_corellia_garage_01"},
+        {"Corellia Shuttleport Deed - 400k", "shuttleport01"}, -- Reusing existing ID
+        {"Corellia City Hall Deed - 500k", "city_corellia_cityhall_01"},
+        {"Corellia Cloning Center Deed - 350k", "city_corellia_cloning_01"},
+        {"Corellia Medical Center Deed - 350k", "city_corellia_hospital_01"},
+        {"Corellia Theater Deed - 300k", "theater01"}, -- Reusing existing ID
+        {"Large Corellia Garden (Style 1) - 100k", "garden_corellia_large_01"},
+        {"Large Corellia Garden (Style 2) - 100k", "garden_corellia_large_02"},
+        {"Large Corellia Garden (Style 3) - 100k", "garden_corellia_large_03"},
+        {"Large Corellia Garden (Style 4) - 100k", "garden_corellia_large_04"},
+        {"Large Corellia Garden (Style 5) - 100k", "garden_corellia_large_05"},
+        {"Medium Corellia Garden (Style 1) - 75k", "garden_corellia_medium_01"},
+        {"Medium Corellia Garden (Style 2) - 75k", "garden_corellia_medium_02"},
+        {"Medium Corellia Garden (Style 3) - 75k", "garden_corellia_medium_03"},
+        {"Medium Corellia Garden (Style 4) - 75k", "garden_corellia_medium_04"},
+        {"Medium Corellia Garden (Style 5) - 75k", "garden_corellia_medium_05"},
+        {"Small Corellia Garden (Style 1) - 50k", "garden_corellia_small_01"},
+        {"Small Corellia Garden (Style 2) - 50k", "garden_corellia_small_02"},
+        {"Small Corellia Garden (Style 3) - 50k", "garden_corellia_small_03"},
+        {"Small Corellia Garden (Style 4) - 50k", "garden_corellia_small_04"},
+        {"Small Corellia Garden (Style 5) - 50k", "garden_corellia_small_05"},
+        {"Back", "corellia_deeds_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(corellia_city_deeds_menu);
+
+-- Naboo Deeds
+naboo_deeds_menu = ConvoScreen:new {
+    id = "naboo_deeds_menu",
+    leftDialog = "",
+    customDialogText = "Naboo-specific player city deeds.",
+    stopConversation = "false",
+    options = {
+        {"Player House Deeds", "naboo_player_house_deeds_menu"},
+        {"City Deeds", "naboo_city_deeds_menu"},
+        {"Back", "player_city_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(naboo_deeds_menu);
+
+naboo_player_house_deeds_menu = ConvoScreen:new {
+    id = "naboo_player_house_deeds_menu",
+    leftDialog = "",
+    customDialogText = "Naboo player house deeds.",
+    stopConversation = "false",
+    options = {
+        {"Naboo Guild Hall Deed - 500k", "guildhall_naboo_01"},
+        {"Large Naboo House Deed - 250k", "house_naboo_large_01"},
+        {"Medium Naboo House Deed - 200k", "house_naboo_medium_01"},
+        {"Small Naboo House Deed - 150k", "house_naboo_small_01"},
+        {"Small Naboo House Deed (Style 2) - 150k", "house_naboo_small_02"},
+        {"Back", "naboo_deeds_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(naboo_player_house_deeds_menu);
+
+naboo_city_deeds_menu = ConvoScreen:new {
+    id = "naboo_city_deeds_menu",
+    leftDialog = "",
+    customDialogText = "Naboo city infrastructure deeds.",
+    stopConversation = "false",
+    options = {
+        {"Naboo Bank Deed - 350k", "city_naboo_bank_01"},
+        {"Naboo Cantina Deed - 350k", "city_naboo_cantina_01"},
+        {"Naboo Garage Deed - 350k", "city_naboo_garage_01"},
+        {"Naboo Shuttleport Deed - 400k", "shuttleport02"}, -- Reusing existing ID
+        {"Naboo City Hall Deed - 500k", "city_naboo_cityhall_01"},
+        {"Naboo Cloning Center Deed - 350k", "city_naboo_cloning_01"},
+        {"Naboo Medical Center Deed - 350k", "city_naboo_hospital_01"},
+        {"Naboo Theater Deed - 300k", "theater02"}, -- Reusing existing ID
+        {"Large Naboo Garden (Style 1) - 100k", "garden_naboo_large_01"},
+        {"Large Naboo Garden (Style 2) - 100k", "garden_naboo_large_02"},
+        {"Large Naboo Garden (Style 3) - 100k", "garden_naboo_large_03"},
+        {"Large Naboo Garden (Style 4) - 100k", "garden_naboo_large_04"},
+        {"Large Naboo Garden (Style 5) - 100k", "garden_naboo_large_05"},
+        {"Medium Naboo Garden (Style 1) - 75k", "garden_naboo_medium_01"},
+        {"Medium Naboo Garden (Style 2) - 75k", "garden_naboo_medium_02"},
+        {"Medium Naboo Garden (Style 3) - 75k", "garden_naboo_medium_03"},
+        {"Medium Naboo Garden (Style 4) - 75k", "garden_naboo_medium_04"},
+        {"Medium Naboo Garden (Style 5) - 75k", "garden_naboo_medium_05"},
+        {"Small Naboo Garden (Style 1) - 50k", "garden_naboo_small_01"},
+        {"Small Naboo Garden (Style 2) - 50k", "garden_naboo_small_02"},
+        {"Small Naboo Garden (Style 3) - 50k", "garden_naboo_small_03"},
+        {"Small Naboo Garden (Style 4) - 50k", "garden_naboo_small_04"},
+        {"Small Naboo Garden (Style 5) - 50k", "garden_naboo_small_05"},
+        {"Back", "naboo_deeds_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(naboo_city_deeds_menu);
+
+-- Tatooine Deeds
+tatooine_deeds_menu = ConvoScreen:new {
+    id = "tatooine_deeds_menu",
+    leftDialog = "",
+    customDialogText = "Tatooine-specific player city deeds.",
+    stopConversation = "false",
+    options = {
+        {"Player House Deeds", "tatooine_player_house_deeds_menu"},
+        {"City Deeds", "tatooine_city_deeds_menu"},
+        {"Back", "player_city_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(tatooine_deeds_menu);
+
+tatooine_player_house_deeds_menu = ConvoScreen:new {
+    id = "tatooine_player_house_deeds_menu",
+    leftDialog = "",
+    customDialogText = "Tatooine player house deeds.",
+    stopConversation = "false",
+    options = {
+        {"Tatooine Guild Hall Deed - 500k", "guildhall_tatooine_01"},
+        {"Tatooine Guild Hall (Style 2) Deed - 500k", "guildhall_tatooine_02"},
+        {"Large Tatooine House Deed - 250k", "house_tatooine_large_01"},
+        {"Medium Tatooine House Deed - 200k", "house_tatooine_medium_01"},
+        {"Small Tatooine House Deed - 150k", "house_tatooine_small_01"},
+        {"Small Tatooine House Deed (Style 2) - 150k", "house_tatooine_small_02"},
+        {"Back", "tatooine_deeds_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(tatooine_player_house_deeds_menu);
+
+tatooine_city_deeds_menu = ConvoScreen:new {
+    id = "tatooine_city_deeds_menu",
+    leftDialog = "",
+    customDialogText = "Tatooine city infrastructure deeds.",
+    stopConversation = "false",
+    options = {
+        {"Tatooine Bank Deed - 350k", "city_tatooine_bank_01"},
+        {"Tatooine Cantina Deed - 350k", "city_tatooine_cantina_01"},
+        {"Tatooine Garage Deed - 350k", "city_tatooine_garage_01"},
+        {"Tatooine Shuttleport Deed - 400k", "shuttleport03"}, -- Reusing existing ID
+        {"Tatooine City Hall Deed - 500k", "city_tatooine_cityhall_01"},
+        {"Tatooine Cloning Center Deed - 350k", "city_tatooine_cloning_01"},
+        {"Tatooine Medical Center Deed - 350k", "city_tatooine_hospital_01"},
+        {"Tatooine Theater Deed - 300k", "theater03"}, -- Reusing existing ID
+        {"Large Tatooine Garden (Style 1) - 100k", "garden_tatooine_large_01"},
+        {"Large Tatooine Garden (Style 2) - 100k", "garden_tatooine_large_02"},
+        {"Large Tatooine Garden (Style 3) - 100k", "garden_tatooine_large_03"},
+        {"Large Tatooine Garden (Style 4) - 100k", "garden_tatooine_large_04"},
+        {"Large Tatooine Garden (Style 5) - 100k", "garden_tatooine_large_05"},
+        {"Medium Tatooine Garden (Style 1) - 75k", "garden_tatooine_medium_01"},
+        {"Medium Tatooine Garden (Style 2) - 75k", "garden_tatooine_medium_02"},
+        {"Medium Tatooine Garden (Style 3) - 75k", "garden_tatooine_medium_03"},
+        {"Medium Tatooine Garden (Style 4) - 75k", "garden_tatooine_medium_04"},
+        {"Medium Tatooine Garden (Style 5) - 75k", "garden_tatooine_medium_05"},
+        {"Small Tatooine Garden (Style 1) - 50k", "garden_tatooine_small_01"},
+        {"Small Tatooine Garden (Style 2) - 50k", "garden_tatooine_small_02"},
+        {"Small Tatooine Garden (Style 3) - 50k", "garden_tatooine_small_03"},
+        {"Small Tatooine Garden (Style 4) - 50k", "garden_tatooine_small_04"},
+        {"Small Tatooine Garden (Style 5) - 50k", "garden_tatooine_small_05"},
+        {"Back", "tatooine_deeds_menu"},
+        {"Main menu.", "first_screen"},
+    }
+}
+dark_star_vendor_conv:addScreen(tatooine_city_deeds_menu);
+-- END RESTRUCTURED PLAYER CITY MENUS
 
 dark_star_vendor_insufficient_funds = ConvoScreen:new {
     id = "insufficient_funds",
