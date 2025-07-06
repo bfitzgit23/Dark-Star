@@ -21,7 +21,7 @@ function shuttle_spawner:start()
 
 		-- Dathomir Spawns
 		{ "dathomir", 5221, 78, -4074, 0, "-- The Village" },
-		{ "dantooine", 6915, 14, -4100, 0, "-- Janta Cave" },
+		{ "dantooine", 6915, 24, -4100, 0, "-- Janta Cave" },
     }
 
     -- Loop through the table and spawn each shuttle.
