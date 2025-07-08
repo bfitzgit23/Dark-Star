@@ -1,3 +1,5 @@
+-- scripts/conversation/dark_star_vendor_conv.lua
+
 -- Dark Star Vendor Conversation Template
 -- Defines the conversation flow and options for the vendor.
 
@@ -234,14 +236,16 @@ drinks = ConvoScreen:new {
 }
 dark_star_vendor_conv:addScreen(drinks);
 
+-- UPDATED Jedi Items screen with Unlock Jedi Knight option
 jedi = ConvoScreen:new {
     id = "jedi",
     leftDialog = "",
-    customDialogText = "Selling rare Jedi Loot.",
+    customDialogText = "Selling rare Jedi Loot and offering special services.",
     stopConversation = "false",
     options = {
         {"Sith Holocron - 25k", "jedi01"},
         {"Jedi Holocron - 25k", "jedi02"},
+        {"Unlock Jedi Knight - 100k", "jedi_unlock_knight"}, -- NEW: Option to unlock Jedi Knight
         {"Main menu.", "first_screen"},
     }
 }
@@ -507,7 +511,7 @@ generic_deeds_menu = ConvoScreen:new {
     options = {
         {"Player House Deeds", "generic_player_house_deeds_menu"},
         {"City Deeds", "generic_city_deeds_menu"},
-        {"Back", "player_city_menu"},
+        {"Back", "generic_deeds_menu"}, -- Corrected back to generic_deeds_menu
         {"Main menu.", "first_screen"},
     }
 }
