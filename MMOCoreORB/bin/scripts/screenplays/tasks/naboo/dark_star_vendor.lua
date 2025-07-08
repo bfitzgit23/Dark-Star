@@ -335,8 +335,8 @@ end
 
 -- Main conversation handler
 function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTemplate, conversingPlayer, selectedOption)
-    local screenID = conversationTemplate:get </* Removed for brevity, assuming standard getNextConversationScreen structure */> ScreenPlay:get -->
-    local screen = conversationTemplate:getScreen(selectedOption) -- Use selectedOption as screen ID directly
+    -- This line gets the screen object based on the selectedOption (which is the screen ID)
+    local screen = conversationTemplate:getScreen(selectedOption)
     local screenName = screen:getID()
 
     -- For screens that just navigate (like main menus, back buttons)
