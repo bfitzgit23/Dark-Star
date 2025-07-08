@@ -15,50 +15,50 @@ function dark_star_vendor:start()
     -- A list of all locations where the vendor should spawn.
     local spawnLocations = {
         -- Corellia
-        { "corellia", -157, 28.0, -4724, 35 },      -- cnet
-        { "corellia", -5042, 21.0, -2297, 35 },     -- tyrena
-        { "corellia", -3138, 31.0, 2796, 35 },      -- korvella
-        { "corellia", 3333, 308.0, 5524, 35 },      -- doaba
-        { "corellia", -5550, 15.58, -6061, 35 },    -- venri
+        { "corellia", -157, 28.0, -4724, 35 },      	-- cnet
+        { "corellia", -5042, 21.0, -2297, 35 },     	-- tyrena
+        { "corellia", -3138, 31.0, 2796, 35 },      	-- korvella
+        { "corellia", 3333, 308.0, 5524, 35 },      	-- doaba
+        { "corellia", -5550, 15.58, -6061, 35 },    	-- venri
         { "corellia", 6643.02, 330.00, -5920.87, 35 },  -- belav
         -- Naboo
-        { "naboo", -4872, 6.0, 4151, 35 },          -- theed
-        { "naboo", 4807, 4.0, -4705, 35 },          -- moena
-        { "naboo", 5200, -192.0, 6677, 35 },        -- kaadara
-        { "naboo", 1444, 14.0, 2777, 35 },          -- keren
-        { "naboo", 5331.16, 326.95, -1576.12, 35 },  -- deja
-        { "naboo", -5495.62, -150.00, -24.69, 35 },  -- lake ret
+        { "naboo", -4872, 6.0, 4151, 35 },          	-- theed
+        { "naboo", 4807, 4.0, -4705, 35 },          	-- moena
+        { "naboo", 5200, -192.0, 6677, 35 },        	-- kaadara
+        { "naboo", 1444, 14.0, 2777, 35 },          	-- keren
+        { "naboo", 5331.16, 326.95, -1576.12, 35 },  	-- deja
+        { "naboo", -5495.62, -150.00, -24.69, 35 },  	-- lake ret
         -- Tatooine
-        { "tatooine", 3522, 5.0, -4803, 35 },       -- eisley
-        { "tatooine", -1281, 12.0, -3590, 35 },	-- bestine
-        { "tatooine", -2914, 5.0, 2129, 35 },       -- espa
-        { "tatooine", 1293, 7.0, 3140, 35 },        -- entha
-        { "tatooine", 48.33, 52.00, -5340.53, 35 },  -- anc
+        { "tatooine", 3522, 5.0, -4803, 35 },       	-- eisley
+        { "tatooine", -1281, 12.0, -3590, 35 },			-- bestine
+        { "tatooine", -2914, 5.0, 2129, 35 },       	-- espa
+        { "tatooine", 1293, 7.0, 3140, 35 },        	-- entha
+        { "tatooine", 48.33, 52.00, -5340.53, 35 },  	-- anc
         -- Talus
-        { "talus", -2193, 20.0, 2313, 35 },         -- talus imp
-        { "talus", 4447, 2.0, 5271, 35 },           -- nashal
-        { "talus", 338, 6.0, -2931, 35 },           -- dearic
+        { "talus", -2193, 20.0, 2313, 35 },         	-- talus imp
+        { "talus", 4447, 2.0, 5271, 35 },           	-- nashal
+        { "talus", 338, 6.0, -2931, 35 },           	-- dearic
         -- Rori
-        { "rori", 5365, 80.0, 5657, 35 },           -- restuss
-        { "rori", -5305, 80.0, -2228, 35 },         -- narmle
-        { "rori", 3683, 96.0, -6436, 35 },          -- reb
+        { "rori", 5365, 80.0, 5657, 35 },           	-- restuss
+        { "rori", -5305, 80.0, -2228, 35 },         	-- narmle
+        { "rori", 3683, 96.0, -6436, 35 },          	-- reb
         -- Endor
-        { "endor", -948, 73.0, 1550, 35 },          -- smugglers
-        { "endor", 3201, 24.0, -3501, 35 },         -- research
+        { "endor", -948, 73.0, 1550, 35 },          	-- smugglers
+        { "endor", 3201, 24.0, -3501, 35 },         	-- research
         -- Dantooine
-        { "dantooine", -632, 3.0, 2501, 35 },       -- mining
-        { "dantooine", -4209, 3.0, -2349, 35 },	-- imp
-        { "dantooine", 1564, 4.0, -6415, 35 },      -- aggro
+        { "dantooine", -632, 3.0, 2501, 35 },       	-- mining
+        { "dantooine", -4209, 3.0, -2349, 35 },			-- imp
+        { "dantooine", 1564, 4.0, -6415, 35 },      	-- aggro
         -- Dathomir
-        { "dathomir", 619, 3.0, 3090, 35 },         -- trade
-        { "dathomir", -47, 18.0, -1586, 35 },       -- science
-        { "dathomir", 5233, 78, -4057, 35 },        -- village
+        { "dathomir", 619, 3.0, 3090, 35 },         	-- trade
+        { "dathomir", -47, 18.0, -1586, 35 },       	-- science
+        { "dathomir", 5233, 78, -4057, 35 },        	-- village
         -- Yavin 4
-        { "yavin4", -265, 35.0, 4897, 35 },         -- mining
-        { "yavin4", 4053, 17.0, -6217, 35 },        -- imp
-        { "yavin4", -6922, 73.0, -5730, 35 },       -- labor
+        { "yavin4", -265, 35.0, 4897, 35 },         	-- mining
+        { "yavin4", 4053, 17.0, -6217, 35 },        	-- imp
+        { "yavin4", -6922, 73.0, -5730, 35 },       	-- labor
         -- Lok
-        { "lok", 479, 8.0, 5512, 35 },              -- lok
+        { "lok", 479, 8.0, 5512, 35 },              	-- lok
     }
 
     for i, location in ipairs(spawnLocations) do
