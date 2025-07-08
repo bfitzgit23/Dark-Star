@@ -4,7 +4,7 @@
 -- For example, if it's in scripts/screenplays/jedi/JediTrials.lua, the path below is likely correct.
 -- If your JediTrials:unlockJediKnight function is truly within the *same* file as dark_star_vendor_task.lua,
 -- you would *not* need the 'require' line. However, best practice is to keep them separate.
---JediTrials = require("scripts.screenplays.jedi.JediTrials")
+-- JediTrials = require("scripts.screenplays.jedi.JediTrials")
 
 -- Include necessary manager files (if you have them)
 -- includeFile("../managers/loot_manager.lua")
