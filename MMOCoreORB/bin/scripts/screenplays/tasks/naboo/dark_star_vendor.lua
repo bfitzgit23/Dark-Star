@@ -1,5 +1,6 @@
 -- Include necessary manager files
 includeFile("../managers/loot_manager.lua")
+includeFile("../screenplays/jedi/jedi_trials.lua")
 
 -- Define the ScreenPlay for the vendor
 dark_star_vendor = ScreenPlay:new {
