@@ -380,7 +380,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 PlayerObject(pGhost):setFrsRank(0)
                 PlayerObject(pGhost):setJediState(4) -- Setting Jedi State to 4 (Jedi Knight)
 				writeScreenPlayData(pPlayer, "KnightTrials", "completedTrials", 1)
-				playClientEffectLoc(pPlayer, "clienteffect/trap_electric_01.cef", CreatureObject(pPlayer):getZoneName(), CreatureObject(pPlayer):getPositionX(), CreatureObject(pPlayer):getPositionZ(), CreatureObject(pPlayer):getPositionY(), CreatureObject(pPlayer):getParentID())
+				--playClientEffectLoc(pPlayer, "clienteffect/trap_electric_01.cef", CreatureObject(pPlayer):getZoneName(), CreatureObject(pPlayer):getPositionX(), CreatureObject(pPlayer):getPositionZ(), CreatureObject(pPlayer):getPositionY(), CreatureObject(pPlayer):getParentID())
 				CreatureObject(pPlayer):setFaction(FACTIONIMPERIAL)
 				PlayerObject(pGhost):setFrsCouncil(self.COUNCIL_DARK)
 				CreatureObject(pPlayer):setFactionStatus(2)
