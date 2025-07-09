@@ -210,7 +210,7 @@ local itemsForSale = {
     ["garden_dathomir_medium_01"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_dathomir_med_01_deed.iff", message = "Thank you! You have purchased a Medium Dathomir Garden." },
     ["garden_dathomir_small_01"] = { cost = 50000, itemTemplate = "object/tangible/deed/city_deed/garden_dathomir_sml_01_deed.iff", message = "Thank you! You have purchased a Small Dathomir Garden." },
     ["garden_endor_large_01"] = { cost = 100000, itemTemplate = "object/tangible/deed/city_deed/garden_endor_lrg_01_deed.iff", message = "Thank you! You have purchased a Large Endor Garden." },
-    ["garden_endor_medium_01"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_endor_med_01_deed.iff", message = "Thank you! You have purchased a Medium Endor Garden."協會},
+    ["garden_endor_medium_01"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_endor_med_01_deed.iff", message = "Thank you! You have purchased a Medium Endor Garden."},
     ["garden_endor_small_01"] = { cost = 50000, itemTemplate = "object/tangible/deed/city_deed/garden_endor_sml_01_deed.iff", message = "Thank you! You have purchased a Small Endor Garden." },
 
     -- Corellia Deeds
@@ -237,7 +237,7 @@ local itemsForSale = {
     ["garden_corellia_large_04"] = { cost = 100000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_lrg_04_deed.iff", message = "Thank you! You have purchased a Large Corellia Garden (Style 4)." },
     ["garden_corellia_large_05"] = { cost = 100000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_lrg_05_deed.iff", message = "Thank you! You have purchased a Large Corellia Garden (Style 5)." },
     ["garden_corellia_medium_01"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_med_01_deed.iff", message = "Thank you! You have purchased a Medium Corellia Garden (Style 1)." },
-    ["garden_corellia_medium_02"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_med_02_deed.iff", message = "Thank you! You have purchased a Medium Corellia Garden (Style 2)."協會},
+    ["garden_corellia_medium_02"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_med_02_deed.iff", message = "Thank you! You have purchased a Medium Corellia Garden (Style 2)."},
     ["garden_corellia_medium_03"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_med_03_deed.iff", message = "Thank you! You have purchased a Medium Corellia Garden (Style 3)." },
     ["garden_corellia_medium_04"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_med_04_deed.iff", message = "Thank you! You have purchased a Medium Corellia Garden (Style 4)." },
     ["garden_corellia_medium_05"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_med_05_deed.iff", message = "Thank you! You have purchased a Medium Corellia Garden (Style 5)." },
@@ -285,7 +285,7 @@ local itemsForSale = {
     ["city_tatooine_bank_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/bank_tatooine_deed.iff", message = "Thank you! You have purchased a Tatooine Bank Deed." },
     ["city_tatooine_cantina_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/cantina_tatooine_deed.iff", message = "Thank you! You have purchased a Tatooine Cantina Deed." },
     ["city_tatooine_garage_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/garage_tatooine_deed.iff", message = "Thank you! You have purchased a Tatooine Garage Deed." },
-    ["city_tatooine_cityhall_01"] = { cost = 500000, itemTemplate = "object/tangible/deed/city_deed/cityhall_tatooine_deed.iff", message = "Thank you! You have purchased a Tatooine City Hall Deed."協會},
+    ["city_tatooine_cityhall_01"] = { cost = 500000, itemTemplate = "object/tangible/deed/city_deed/cityhall_tatooine_deed.iff", message = "Thank you! You have purchased a Tatooine City Hall Deed."},
     ["city_tatooine_cloning_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/cloning_tatooine_deed.iff", message = "Thank you! You have purchased a Tatooine Cloning Center Deed." },
     ["city_tatooine_hospital_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/hospital_tatooine_deed.iff", message = "Thank you! You have purchased a Tatooine Hospital Deed." },
     ["garden_tatooine_large_01"] = { cost = 100000, itemTemplate = "object/tangible/deed/city_deed/garden_tatooine_lrg_01_deed.iff", message = "Thank you! You have purchased a Large Tatooine Garden (Style 1)." },
