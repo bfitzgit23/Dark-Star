@@ -27,6 +27,7 @@ function dark_star_vendor:start()
         { "corellia", 3333, 308.0, 5524, 35 },      	-- doaba
         { "corellia", -5550, 15.58, -6061, 35 },    	-- venri
         { "corellia", 6643.02, 330.00, -5920.87, 35 },  -- belav
+		{ "corellia", 6092, 342, 5575, 35},				-- Shrine
         -- Naboo
         { "naboo", -4872, 6.0, 4151, 35 },          	-- theed
         { "naboo", 4807, 4.0, -4705, 35 },          	-- moena
