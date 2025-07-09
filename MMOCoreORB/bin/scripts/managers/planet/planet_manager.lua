@@ -71,6 +71,12 @@ corellia = {
 		{name = "Doaba Guerfel Starport", x = 3337, z = 308, y = 5527, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Bela Vistal Shuttleport A", x = 6644.269, z = 330, y = -5922.5225, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Bela Vistal Shuttleport B", x = 6930.8042, z = 330, y = -5534.8936, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		-- Force Shrine Spawns
+		{name = "Corellia Shrine", x = -7391, z = 236, y = -3938, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Tyrena Shrine", x = 6300, z = 352, y = 6687, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Doaba Guerfel Shrine", x = -2384, z = 220, y = 6393, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Kor Vella Shrine", x = -6907, z = 448, y = 4527, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Kor Vella Shrine", x = 6092, z = 342, y = -5578, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 	},
 
 	jtlLaunchPoint = {"space_corellia", 6520, -5400, -2600},
@@ -109,7 +115,13 @@ dantooine = {
 		{name = "Dantooine Imperial Outpost", x = -4208.6602, z = 3, y = -2350.24, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Dantooine Agro Outpost", x = 1569.66, z = 4, y = -6415.7598, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Abandoned Rebel Base", x = -6799.6, z = 46.0, y = 5574.3, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
-		{name = "Janta Cave", x = 6915, z = 24, y = -4084, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 2}
+		{name = "Janta Cave", x = 6915, z = 24, y = -4084, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 2},
+		-- Force Shrine Spawns
+		{name = "Dantooine Shrine", x = -1814, z = 9, y = -6202, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Dantooine Pirate Outpost Shrine", x = -6999, z = 11, y = -5269, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Dantooine Imperial Outpost Shrine", x = 2638, z = 11, y = -1541, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Dantooine Pirate Outpost Shrine", x = -6173, z = 35, y = 4120, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Dantooine Mining Outpost Shrine", x = 2163, z = 161, y = 7548, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 	},
 
 	jtlLaunchPoint = {"space_dantooine", 1380, -750, -5900},
@@ -145,7 +157,13 @@ dathomir = {
 	planetTravelPoints = {
 		{name = "Trade Outpost", x = 618.89258, z = 6.039608, y = 3092.0142, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Science Outpost", x = -49.021923, z = 18, y = -1584.7278, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
-		{name = "The Village", x = 5220, z = 78, y = -4056, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3}
+		{name = "The Village", x = 5220, z = 78, y = -4056, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		-- Force Shrine Spawns
+		{name = "Dathomir Shrine", x = 3087, z = 125, y = 4887, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Dathomir Trade Outpost Shrine", x = 1654, z = 103, y = -5765, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Dathomir Science Outpost Shrine", x = -4961, z = 130, y = -3493, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Dathomir Science Outpost Shrine", x = -4148, z = 119, y = 5926, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Dathomir Trade Outpost Shrine", x = 5570, z = 99, y = -1514, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 	},
 
 	jtlLaunchPoint = {"space_dathomir", -6900, 2750, -4000},
@@ -206,7 +224,13 @@ endor = {
 
 	planetTravelPoints = {
 		{name = "Smuggler Outpost", x = -950.59241, z = 73, y = 1553.4125, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
-		{name = "Research Outpost", x = 3201.6599, z = 24, y = -3499.76, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3}
+		{name = "Research Outpost", x = 3201.6599, z = 24, y = -3499.76, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		-- Force Shrine Spawns
+		{name = "Endor Shrine", x = 670, z = 205, y = 5548, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Endor Smuggler Outpost Shrine", x = -5055, z = 201, y = -1703, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Endor Smuggler Outpost Shrine", x = -5627, z = 400, y = 4813, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Endor Smuggler Outpost Shrine", x = 5116, z = 18, y = 1923, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Endor Research Outpost Shrine", x = -3870, z = 0, y = -4467, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 	},
 
 	jtlLaunchPoint = {"space_endor", -5300, -1500, 5250},
@@ -246,6 +270,12 @@ lok = {
 	planetTravelPoints = {
 		{name = "Nym's Stronghold", x = 478.92676, z = 9, y = 5511.9565, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Force Shrine", x = -3633, z = 17, y = -6034, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		-- Force Shrine Spawns
+		{name = "Lok Shrine", x = -2132, z = 106, y = 5938, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Nym's Stronghold Shrine", x = 5455, z = 17, y = 3805, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Nym's Stronghold Shrine", x = -5806, z = 34, y = 1977, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Nym's Stronghold Shrine", x = 4978, z = 115, y = -5674, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Nym's Stronghold Shrine", x = -3641, z = 17, y = -6030, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 	},
 
 	jtlLaunchPoint = {"space_lok", -6200, -5350, 113},
@@ -294,7 +324,12 @@ naboo = {
 		{name = "Dee'ja Peak Shuttleport", x = 5331.9375, z = 327.02765, y = -1576.6733, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Kaadara Starport", x = 5209, z = -192, y = 6676, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Kaadara Shuttleport", x = 5123.3857, z = -192, y = 6616.0264, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
-		{name = "Emperor's Retreat", x = 2442.8, z = 292.0, y = -3916.8, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3}
+		{name = "Emperor's Retreat", x = 2442.8, z = 292.0, y = -3916.8, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		-- Force Shrine Spawns
+		{name = "Naboo Shrine", x = 2377, z = 292, y = -473, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Dee'ja Peak Shrine", x = 7182, z = 331, y = -234, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Moenia Shrine", x = -6859, z = 475, y = -1937, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Theed Shrine", x = -2582, z = 4, y = -6184, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 	},
 
 	jtlLaunchPoint = {"space_naboo", -2500, 900, -6500},
@@ -310,7 +345,7 @@ naboo = {
 		{"amidalas_beach",-5526,-31,128},
 		{"beach_gungan_ruins",7570,6968,32},
 		{"emperors_retreat",2415,-3921,100},
-		{"fire_and_pillars",-1775,-487,32},
+		{"fire_and_1pillars",-1775,-487,32},
 		{"fishing_pond",-6312,-5086,32},
 		{"gate_and_gazebo",-258,-61,32},
 		{"gungan_ruins",0,-1866,32},
@@ -346,7 +381,13 @@ rori = {
 		{name = "Restuss Shuttleport", x = 5211, z = 80, y = 5791, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Narmle Starport", x = -5310, z = 80, y = -2221, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Narmle Shuttleport", x = -5255.4116, z = 80.664185, y = -2161.6274, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
-		{name = "Rebel Outpost", x = 3691.9023, z = 96, y = -6403.4404, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3}
+		{name = "Rebel Outpost", x = 3691.9023, z = 96, y = -6403.4404, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		-- Force Shrine Spawns
+		{name = "Rori Shrine", x = -4496, z = 180, y = -7531, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Narmle Shrine", x = 307, z = 81, y = -978, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Narmle Shrine", x = 6854, z = 85, y = -1221, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Rori Rebel Outpost Shrine", x = -926, z = 84, y = 6046, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Restuss Shrine", x = -6375, z = 75, y = 6403, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 	},
 
 	jtlLaunchPoint = {"space_naboo", 6300, -4400, 500},
@@ -423,7 +464,12 @@ talus = {
 		{name = "Dearic Shuttleport", x = 699.297, z = 6, y = -3041.4199, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Talus Imperial Outpost", x = -2227.4, z = 20, y = 2319.9, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 2},
 		{name = "Nashal Shuttleport", x = 4334.5786, z = 9.8999996, y = 5431.0415, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
-		{name = "Nashal Starport", x = 4451, z = 2, y = 5281, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3}
+		{name = "Nashal Starport", x = 4451, z = 2, y = 5281, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		-- Force Shrine Spawns
+		{name = "Talus Shrine", x = -5785, z = 226, y = 4478, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Talus Imperial Outpost Shrine", x = 318, z = 13, y = 5842, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Nashal Shrine", x = -5494, z = 106, y = -3241, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Dearic Shrine", x = 5760, z = 654, y = -5208, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 	},
 
 	jtlLaunchPoint = {"space_corellia", -6400, -5300, -4000},
@@ -513,7 +559,13 @@ tatooine = {
 		{name = "Mos Entha Starport", x = 1288, z = 7, y = 3133, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Mos Entha Shuttle B", x = 1395.447, z = 7, y = 3467.0117, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Mos Entha Shuttle A", x = 1730.8828, z = 7, y = 3184.6135, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
-		{name = "Jabba's Palace", x = -6171.6, z = 90.0, y = -6381.5, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3}
+		{name = "Jabba's Palace", x = -6171.6, z = 90.0, y = -6381.5, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		-- Force Shrine Spawns
+		{name = "Tatooine Shrine", x = 5958, z = 155, y = -5685, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Mos Eisley Shrine", x = -3622, z = 248, y = 5280, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Mos Espa Shrine", x = 5264, z = 188, y = 113, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Mos Entha Shrine", x = -6505, z = 73, y = -3667, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Bestine Shrine", x = 5632, z = 194, y = 6015, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 	},
 
 	jtlLaunchPoint = {"space_tatooine",2300,-5900,1900},
@@ -570,7 +622,12 @@ yavin4 = {
 	planetTravelPoints = {
 		{name = "Yavin IV Labor Outpost", x = -6921.6733, z = 73, y = -5726.5161, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 		{name = "Yavin IV Mining Outpost", x = -267.23914, z = 35, y = 4896.3013, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
-		{name = "Yavin IV Imperial Outpost", x = 4054.1, z = 37, y = -6216.9, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3}
+		{name = "Yavin IV Imperial Outpost", x = 4054.1, z = 37, y = -6216.9, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		-- Force Shrine Spawns
+		{name = "Yavin IV Shrine", x = 2389, z = 80, y = -4934, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Yavin Imperial Base Shrine", x = -4585, z = 588, y = -3761, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Yavin Labor Outpost Shrine", x = -3362, z = 236, y = 6914, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Yavin Mining Outpost Shrine", x = 6455, z = 18, y = 6423, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 	},
 
 	jtlLaunchPoint = {"space_yavin4", -5600, -5200, -5200},

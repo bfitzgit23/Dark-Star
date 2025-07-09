@@ -2,10 +2,8 @@
 -- This script spawns space terminals at specified locations,
 -- intended to be near shuttle ports or points of interest like force shrines.
 --
--- IMPORTANT: The 'm' suffix in the original input indicated a distance and has been
--- omitted. Only valid X and Z coordinates have been used.
--- Entries with only a distance (e.g., "Coronet6215m") have been removed as they
--- did not contain actual coordinate pairs.
+-- The 'y' coordinate (vertical height) has been updated with precise values
+-- from the provided shrine data.
 --
 
 space_terminal_spawner = ScreenPlay:new {
@@ -21,80 +19,82 @@ function space_terminal_spawner:start()
     local terminalTemplate = "object/tangible/terminal/terminal_space.iff"
 
     -- This table defines all the space terminals to be spawned.
-    -- The coordinates are based on the provided shrine locations.
-    -- The 'y' coordinate (vertical height) is set to a default of 50.
-    -- You may need to adjust the 'y' coordinate for accurate placement on terrain.
+    -- The coordinates are based on the provided shrine locations,
+    -- with precise Y (height) values.
     local terminalSpawns = {
         -- Existing Spawns (from your example)
         { "dathomir", 5210, 78.5, -4056, 0, "-- The Village" },
         { "dantooine", 6910, 25, -4086, 0, "-- Janta Cave" },
+        { "lok", -3633, 18, -6034, 0, "-- Janta Cave" },
+
+        -- Force Shrine Spawns (Precise Y-Coordinates) --
 
         -- Corellia Shrines
-        { "corellia", -7391, 50, -3938, 0, "-- Corellia Shrine" },
-        { "corellia", 6300, 50, 6687, 0, "-- Tyrena Shrine" },
-        { "corellia", -2384, 50, 6393, 0, "-- Doaba Guerfel Shrine" },
-        { "corellia", -6907, 50, 4527, 0, "-- Kor Vella Shrine" },
-        { "corellia", 6092, 50, -5578, 0, "-- Kor Vella Shrine" },
+        { "corellia", -7391, 236, -3938, 0, "-- Corellia Shrine" },
+        { "corellia", 6300, 352, 6687, 0, "-- Tyrena Shrine" },
+        { "corellia", -2384, 220, 6393, 0, "-- Doaba Guerfel Shrine" },
+        { "corellia", -6907, 448, 4527, 0, "-- Kor Vella Shrine" },
+        { "corellia", 6092, 342, -5578, 0, "-- Kor Vella Shrine" },
 
         -- Dantooine Shrines
-        { "dantooine", -1814, 50, -6202, 0, "-- Dantooine Shrine" },
-        { "dantooine", -6999, 50, -5269, 0, "-- Dantooine Pirate Outpost Shrine" },
-        { "dantooine", 2638, 50, -1541, 0, "-- Dantooine Imperial Outpost Shrine" },
-        { "dantooine", -6173, 50, 4120, 0, "-- Dantooine Pirate Outpost Shrine" },
-        { "dantooine", 2163, 50, 7548, 0, "-- Dantooine Mining Outpost Shrine" },
+        { "dantooine", -1814, 9, -6202, 0, "-- Dantooine Shrine" },
+        { "dantooine", -6999, 11, -5269, 0, "-- Dantooine Pirate Outpost Shrine" },
+        { "dantooine", 2638, 11, -1541, 0, "-- Dantooine Imperial Outpost Shrine" },
+        { "dantooine", -6173, 35, 4120, 0, "-- Dantooine Pirate Outpost Shrine" },
+        { "dantooine", 2163, 161, 7548, 0, "-- Dantooine Mining Outpost Shrine" },
 
         -- Dathomir Shrines
-        { "dathomir", 3087, 50, 4887, 0, "-- Dathomir Shrine" },
-        { "dathomir", 1654, 50, -5765, 0, "-- Dathomir Trade Outpost Shrine" },
-        { "dathomir", -4961, 50, -3493, 0, "-- Dathomir Science Outpost Shrine" },
-        { "dathomir", -4148, 50, 5926, 0, "-- Dathomir Science Outpost Shrine" },
-        { "dathomir", 5570, 50, -1514, 0, "-- Dathomir Trade Outpost Shrine" },
+        { "dathomir", 3087, 125, 4887, 0, "-- Dathomir Shrine" },
+        { "dathomir", 1654, 103, -5765, 0, "-- Dathomir Trade Outpost Shrine" },
+        { "dathomir", -4961, 130, -3493, 0, "-- Dathomir Science Outpost Shrine" },
+        { "dathomir", -4148, 119, 5926, 0, "-- Dathomir Science Outpost Shrine" },
+        { "dathomir", 5570, 99, -1514, 0, "-- Dathomir Trade Outpost Shrine" },
 
         -- Endor Shrines
-        { "endor", 670, 50, 5548, 0, "-- Endor Shrine" },
-        { "endor", -5055, 50, -1703, 0, "-- Endor Smuggler Outpost Shrine" },
-        { "endor", -5627, 50, 4813, 0, "-- Endor Smuggler Outpost Shrine" },
-        { "endor", 5116, 50, 1923, 0, "-- Endor Smuggler Outpost Shrine" },
-        { "endor", -3870, 50, -4467, 0, "-- Endor Research Outpost Shrine" },
+        { "endor", 670, 205, 5548, 0, "-- Endor Shrine" },
+        { "endor", -5055, 201, -1703, 0, "-- Endor Smuggler Outpost Shrine" },
+        { "endor", -5627, 400, 4813, 0, "-- Endor Smuggler Outpost Shrine" },
+        { "endor", 5116, 18, 1923, 0, "-- Endor Smuggler Outpost Shrine" },
+        { "endor", -3870, 0, -4467, 0, "-- Endor Research Outpost Shrine" },
 
         -- Lok Shrines
-        { "lok", -2132, 50, 5938, 0, "-- Lok Shrine" },
-        { "lok", 5455, 50, 3805, 0, "-- Nym's Stronghold Shrine" },
-        { "lok", -5806, 50, 1977, 0, "-- Nym's Stronghold Shrine" },
-        { "lok", 4978, 50, -5674, 0, "-- Nym's Stronghold Shrine" },
-        { "lok", -3641, 18, -6030, 0, "-- Nym's Stronghold Shrine" },
+        { "lok", -2132, 106, 5938, 0, "-- Lok Shrine" },
+        { "lok", 5455, 17, 3805, 0, "-- Nym's Stronghold Shrine" },
+        { "lok", -5806, 34, 1977, 0, "-- Nym's Stronghold Shrine" },
+        { "lok", 4978, 115, -5674, 0, "-- Nym's Stronghold Shrine" },
+        { "lok", -3641, 17, -6030, 0, "-- Nym's Stronghold Shrine" },
 
         -- Naboo Shrines
-        { "naboo", 2377, 50, -473, 0, "-- Naboo Shrine" },
-        { "naboo", 7182, 50, -234, 0, "-- Dee'ja Peak Shrine" },
-        { "naboo", -6859, 50, -1937, 0, "-- Moenia Shrine" },
-        { "naboo", -2582, 50, -6184, 0, "-- Theed Shrine" },
+        { "naboo", 2377, 292, -473, 0, "-- Naboo Shrine" },
+        { "naboo", 7182, 331, -234, 0, "-- Dee'ja Peak Shrine" },
+        { "naboo", -6859, 475, -1937, 0, "-- Moenia Shrine" },
+        { "naboo", -2582, 4, -6184, 0, "-- Theed Shrine" },
 
         -- Rori Shrines
-        { "rori", -4496, 50, -7531, 0, "-- Rori Shrine" },
-        { "rori", 307, 50, -978, 0, "-- Narmle Shrine" },
-        { "rori", 6854, 50, -1221, 0, "-- Narmle Shrine" },
-        { "rori", -926, 50, 6046, 0, "-- Rori Rebel Outpost Shrine" },
-        { "rori", -6375, 50, 6403, 0, "-- Restuss Shrine" },
+        { "rori", -4496, 180, -7531, 0, "-- Rori Shrine" },
+        { "rori", 307, 81, -978, 0, "-- Narmle Shrine" },
+        { "rori", 6854, 85, -1221, 0, "-- Narmle Shrine" },
+        { "rori", -926, 84, 6046, 0, "-- Rori Rebel Outpost Shrine" },
+        { "rori", -6375, 75, 6403, 0, "-- Restuss Shrine" },
 
         -- Talus Shrines
-        { "talus", -5785, 50, 4478, 0, "-- Talus Shrine" },
-        { "talus", 318, 50, 5842, 0, "-- Talus Imperial Outpost Shrine" },
-        { "talus", -5494, 50, -3241, 0, "-- Nashal Shrine" },
-        { "talus", 5760, 50, -5208, 0, "-- Dearic Shrine" },
+        { "talus", -5785, 226, 4478, 0, "-- Talus Shrine" },
+        { "talus", 318, 13, 5842, 0, "-- Talus Imperial Outpost Shrine" },
+        { "talus", -5494, 106, -3241, 0, "-- Nashal Shrine" },
+        { "talus", 5760, 654, -5208, 0, "-- Dearic Shrine" },
 
         -- Tatooine Shrines
-        { "tatooine", 5958, 50, -5685, 0, "-- Tatooine Shrine" },
-        { "tatooine", -3622, 50, 5280, 0, "-- Mos Eisley Shrine" },
-        { "tatooine", 5264, 50, 113, 0, "-- Mos Espa Shrine" },
-        { "tatooine", -6505, 50, -3667, 0, "-- Mos Entha Shrine" },
-        { "tatooine", 5632, 50, 6015, 0, "-- Bestine Shrine" },
+        { "tatooine", 5958, 155, -5685, 0, "-- Tatooine Shrine" },
+        { "tatooine", -3622, 248, 5280, 0, "-- Mos Eisley Shrine" },
+        { "tatooine", 5264, 188, 113, 0, "-- Mos Espa Shrine" },
+        { "tatooine", -6505, 73, -3667, 0, "-- Mos Entha Shrine" },
+        { "tatooine", 5632, 194, 6015, 0, "-- Bestine Shrine" },
 
         -- Yavin IV Shrines
-        { "yavin4", 2389, 50, -4934, 0, "-- Yavin IV Shrine" },
-        { "yavin4", -4585, 50, -3761, 0, "-- Yavin Imperial Base Shrine" },
-        { "yavin4", -3362, 50, 6914, 0, "-- Yavin Labor Outpost Shrine" },
-        { "yavin4", 6455, 50, 6423, 0, "-- Yavin Mining Outpost Shrine" },
+        { "yavin4", 2389, 80, -4934, 0, "-- Yavin IV Shrine" },
+        { "yavin4", -4585, 588, -3761, 0, "-- Yavin Imperial Base Shrine" },
+        { "yavin4", -3362, 236, 6914, 0, "-- Yavin Labor Outpost Shrine" },
+        { "yavin4", 6455, 18, 6423, 0, "-- Yavin Mining Outpost Shrine" },
     }
 
     -- Loop through the table and spawn each terminal.
