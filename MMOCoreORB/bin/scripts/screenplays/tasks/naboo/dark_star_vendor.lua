@@ -379,14 +379,14 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                 awardSkill(conversingPlayer, "force_title_jedi_rank_03")
                 PlayerObject(pGhost):setFrsRank(0)
                 PlayerObject(pGhost):setJediState(4) -- Setting Jedi State to 4 (Jedi Knight)
-				writeScreenPlayData(pPlayer, "KnightTrials", "completedTrials", 1)
-				--playClientEffectLoc(pPlayer, "clienteffect/trap_electric_01.cef", CreatureObject(pPlayer):getZoneName(), CreatureObject(pPlayer):getPositionX(), CreatureObject(pPlayer):getPositionZ(), CreatureObject(pPlayer):getPositionY(), CreatureObject(pPlayer):getParentID())
-				CreatureObject(pPlayer):setFaction(FACTIONIMPERIAL)
+				writeScreenPlayData(conversingPlayer, "KnightTrials", "completedTrials", 1)
+				playClientEffectLoc(conversingPlayer, "clienteffect/trap_electric_01.cef", CreatureObject(conversingPlayer):getZoneName(), CreatureObject(conversingPlayer):getPositionX(), CreatureObject(conversingPlayer):getPositionZ(), CreatureObject(conversingPlayer):getPositionY(), CreatureObject(conversingPlayer):getParentID())
+				CreatureObject(conversingPlayer):setFaction(FACTIONIMPERIAL)
 				PlayerObject(pGhost):setFrsCouncil(self.COUNCIL_DARK)
-				CreatureObject(pPlayer):setFactionStatus(2)
-				local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
+				CreatureObject(conversingPlayer):setFactionStatus(2)
+				local pInventory = SceneObject(conversingPlayer):getSlottedObject("inventory")
 			if (pInventory == nil or SceneObject(pInventory):isContainerFullRecursive()) then
-			CreatureObject(pPlayer):sendSystemMessage("@jedi_spam:inventory_full_jedi_robe")
+			CreatureObject(conversingPlayer):sendSystemMessage("@jedi_spam:inventory_full_jedi_robe")
 			else
 			giveItem(pInventory, "object/tangible/wearables/robe/robe_jedi_dark_s01.iff", -1)
 			end
