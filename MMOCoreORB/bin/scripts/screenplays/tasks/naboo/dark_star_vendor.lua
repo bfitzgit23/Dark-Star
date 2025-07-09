@@ -377,37 +377,12 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             -- Directly perform Jedi Knight unlock actions
             local pGhost = CreatureObject(conversingPlayer):getPlayerObject()
             if (pGhost ~= nil) then
+				local trialsCompleted = 15
+				JediTrials:setTrialsCompleted(conversingPlayer, trialsCompleted)
 				KnightTrials:sendCouncilChoiceSui(conversingPlayer)
+				JediTrials:unlockJediKnight(conversingPlayer)
 				
 				
-				--councilType = COUNCIL_DARK
-				knightRobe = "object/tangible/wearables/robe/robe_jedi_dark_s01.iff"
-				unlockMusic = "sound/music_become_dark_jedi.snd"
-				unlockString = "@jedi_trials:knight_trials_completed_dark"
-				enclaveLoc = { 5079, 305, "yavin4" }
-				enclaveName = "Dark Jedi Enclave"
-				jediState = 8
-				setFactionVal = FACTIONIMPERIAL
-
-                awardSkill(conversingPlayer, "force_title_jedi_rank_03")
-				writeScreenPlayData(conversingPlayer, "KnightTrials", "completedTrials", 1)
-				CreatureObject(conversingPlayer):playMusicMessage(unlockMusic)
-				playClientEffectLoc(conversingPlayer, "clienteffect/trap_electric_01.cef", CreatureObject(conversingPlayer):getZoneName(), CreatureObject(conversingPlayer):getPositionX(), CreatureObject(conversingPlayer):getPositionZ(), CreatureObject(conversingPlayer):getPositionY(), CreatureObject(conversingPlayer):getParentID())
-
-				PlayerObject(pGhost):addWaypoint(enclaveLoc[3], enclaveName, "", enclaveLoc[1], 0, enclaveLoc[2], WAYPOINT_YELLOW, true, true, 0)
-				PlayerObject(pGhost):setJediState(jediState)
-				PlayerObject(pGhost):setFrsCouncil(councilType)
-				PlayerObject(pGhost):setFrsRank(0)
-				CreatureObject(conversingPlayer):setFactionStatus(2) -- Overt
-				CreatureObject(conversingPlayer):setFaction(setFactionVal)
-				
-				local pInventory = SceneObject(conversingPlayer):getSlottedObject("inventory")
-				
-				if (pInventory == nil or SceneObject(pInventory):isContainerFullRecursive()) then
-				CreatureObject(conversingPlayer):sendSystemMessage("@jedi_spam:inventory_full_jedi_robe")
-				else
-				giveItem(pInventory, knightRobe, -1)
-				end
                 -- Note: No automatic robe or music here, as that was part of the original JediTrials function.
                 -- You would need to add those explicitly if desired.
                 -- Example: giveItem(pInventory, "object/tangible/wearables/robe/robe_jedi_light_s01.iff", -1)
