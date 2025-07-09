@@ -2,7 +2,8 @@
 
 -- Include necessary manager files
 includeFile("../managers/loot_manager.lua")
--- REMOVED: includeFile("../screenplays/jedi/jedi_trials.lua")
+includeFile("../screenplays/jedi/knight/knight_trials.lua")
+includeFile("../screenplays/jedi/jedi_trials.lua")
 -- The Jedi Knight unlock logic is now handled directly in this file.
 
 
@@ -376,6 +377,10 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             -- Directly perform Jedi Knight unlock actions
             local pGhost = CreatureObject(conversingPlayer):getPlayerObject()
             if (pGhost ~= nil) then
+				KnightTrials:sendCouncilChoiceSui(conversingPlayer)
+				
+				
+				--councilType = COUNCIL_DARK
 				knightRobe = "object/tangible/wearables/robe/robe_jedi_dark_s01.iff"
 				unlockMusic = "sound/music_become_dark_jedi.snd"
 				unlockString = "@jedi_trials:knight_trials_completed_dark"
