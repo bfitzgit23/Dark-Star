@@ -1,5 +1,11 @@
+-- scripts/screenplays/tasks/naboo/dark_star_vendor.lua
+
 -- Include necessary manager files
 includeFile("../managers/loot_manager.lua")
+includeFile("../screenplays/jedi/knight/knight_trials.lua")
+includeFile("../screenplays/jedi/jedi_trials.lua")
+-- The Jedi Knight unlock logic is now handled directly in this file.
+
 
 -- Define the ScreenPlay for the vendor
 dark_star_vendor = ScreenPlay:new {
@@ -15,50 +21,51 @@ function dark_star_vendor:start()
     -- A list of all locations where the vendor should spawn.
     local spawnLocations = {
         -- Corellia
-        { "corellia", -157, 28.0, -4724, 35 },      -- cnet
-        { "corellia", -5042, 21.0, -2297, 35 },     -- tyrena
-        { "corellia", -3138, 31.0, 2796, 35 },      -- korvella
-        { "corellia", 3333, 308.0, 5524, 35 },      -- doaba
-        { "corellia", -5550, 15.58, -6061, 35 },    -- venri
+        { "corellia", -157, 28.0, -4724, 35 },      	-- cnet
+        { "corellia", -5042, 21.0, -2297, 35 },     	-- tyrena
+        { "corellia", -3138, 31.0, 2796, 35 },      	-- korvella
+        { "corellia", 3333, 308.0, 5524, 35 },      	-- doaba
+        { "corellia", -5550, 15.58, -6061, 35 },    	-- venri
         { "corellia", 6643.02, 330.00, -5920.87, 35 },  -- belav
+		{ "corellia", 6090, 342, -5578, 35},			-- Shrine
         -- Naboo
-        { "naboo", -4872, 6.0, 4151, 35 },          -- theed
-        { "naboo", 4807, 4.0, -4705, 35 },          -- moena
-        { "naboo", 5200, -192.0, 6677, 35 },        -- kaadara
-        { "naboo", 1444, 14.0, 2777, 35 },          -- keren
-        { "naboo", 5331.16, 326.95, -1576.12, 35 },  -- deja
-        { "naboo", -5495.62, -150.00, -24.69, 35 },  -- lake ret
+        { "naboo", -4872, 6.0, 4151, 35 },          	-- theed
+        { "naboo", 4807, 4.0, -4705, 35 },          	-- moena
+        { "naboo", 5200, -192.0, 6677, 35 },        	-- kaadara
+        { "naboo", 1444, 14.0, 2777, 35 },          	-- keren
+        { "naboo", 5331.16, 326.95, -1576.12, 35 }, 	-- deja
+        { "naboo", -5495.62, -150.00, -24.69, 35 }, 	-- lake ret
         -- Tatooine
-        { "tatooine", 3522, 5.0, -4803, 35 },       -- eisley
-        { "tatooine", -1281, 12.0, -3590, 35 },	-- bestine
-        { "tatooine", -2914, 5.0, 2129, 35 },       -- espa
-        { "tatooine", 1293, 7.0, 3140, 35 },        -- entha
-        { "tatooine", 48.33, 52.00, -5340.53, 35 },  -- anc
+        { "tatooine", 3522, 5.0, -4803, 35 },       	-- eisley
+        { "tatooine", -1281, 12.0, -3590, 35 },			-- bestine
+        { "tatooine", -2914, 5.0, 2129, 35 },       	-- espa
+        { "tatooine", 1293, 7.0, 3140, 35 },        	-- entha
+        { "tatooine", 48.33, 52.00, -5340.53, 35 }, 	-- anc
         -- Talus
-        { "talus", -2193, 20.0, 2313, 35 },         -- talus imp
-        { "talus", 4447, 2.0, 5271, 35 },           -- nashal
-        { "talus", 338, 6.0, -2931, 35 },           -- dearic
+        { "talus", -2193, 20.0, 2313, 35 },         	-- talus imp
+        { "talus", 4447, 2.0, 5271, 35 },           	-- nashal
+        { "talus", 338, 6.0, -2931, 35 },           	-- dearic
         -- Rori
-        { "rori", 5365, 80.0, 5657, 35 },           -- restuss
-        { "rori", -5305, 80.0, -2228, 35 },         -- narmle
-        { "rori", 3683, 96.0, -6436, 35 },          -- reb
+        { "rori", 5365, 80.0, 5657, 35 },           	-- restuss
+        { "rori", -5305, 80.0, -2228, 35 },         	-- narmle
+        { "rori", 3683, 96.0, -6436, 35 },          	-- reb
         -- Endor
-        { "endor", -948, 73.0, 1550, 35 },          -- smugglers
-        { "endor", 3201, 24.0, -3501, 35 },         -- research
+        { "endor", -948, 73.0, 1550, 35 },          	-- smugglers
+        { "endor", 3201, 24.0, -3501, 35 },         	-- research
         -- Dantooine
-        { "dantooine", -632, 3.0, 2501, 35 },       -- mining
-        { "dantooine", -4209, 3.0, -2349, 35 },	-- imp
-        { "dantooine", 1564, 4.0, -6415, 35 },      -- aggro
+        { "dantooine", -632, 3.0, 2501, 35 },       	-- mining
+        { "dantooine", -4209, 3.0, -2349, 35 },			-- imp
+        { "dantooine", 1564, 4.0, -6415, 35 },      	-- aggro
         -- Dathomir
-        { "dathomir", 619, 3.0, 3090, 35 },         -- trade
-        { "dathomir", -47, 18.0, -1586, 35 },       -- science
-        { "dathomir", 5233, 78, -4057, 35 },        -- village
+        { "dathomir", 619, 3.0, 3090, 35 },         	-- trade
+        { "dathomir", -47, 18.0, -1586, 35 },       	-- science
+        { "dathomir", 5233, 78, -4057, 35 },        	-- village
         -- Yavin 4
-        { "yavin4", -265, 35.0, 4897, 35 },         -- mining
-        { "yavin4", 4053, 17.0, -6217, 35 },        -- imp
-        { "yavin4", -6922, 73.0, -5730, 35 },       -- labor
+        { "yavin4", -265, 35.0, 4897, 35 },         	-- mining
+        { "yavin4", 4053, 17.0, -6217, 35 },        	-- imp
+        { "yavin4", -6922, 73.0, -5730, 35 },       	-- labor
         -- Lok
-        { "lok", 479, 8.0, 5512, 35 },              -- lok
+        { "lok", 479, 8.0, 5512, 35 },              	-- lok
     }
 
     for i, location in ipairs(spawnLocations) do
@@ -120,6 +127,8 @@ local itemsForSale = {
     -- Jedi
     ["jedi01"] = { cost = 25000, itemTemplate = "object/tangible/jedi/jedi_holocron_dark.iff", message = "Thank you! You have purchased a Sith Holocron." },
     ["jedi02"] = { cost = 25000, itemTemplate = "object/tangible/jedi/jedi_holocron_light.iff", message = "Thank you! You have purchased a Jedi Holocron." },
+	["jedi_unlock_knight"] = { cost = 0, message = "Congratulations! You have unlocked Jedi Knight trials!", isJediUnlock = true },
+
     -- Medic
     -- Stimpacks
     ["medic01"] = { cost = 500, itemTemplate = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_a.iff", message = "Thank you! You have purchased a Stimpack A." },
@@ -203,7 +212,7 @@ local itemsForSale = {
     ["garden_dathomir_medium_01"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_dathomir_med_01_deed.iff", message = "Thank you! You have purchased a Medium Dathomir Garden." },
     ["garden_dathomir_small_01"] = { cost = 50000, itemTemplate = "object/tangible/deed/city_deed/garden_dathomir_sml_01_deed.iff", message = "Thank you! You have purchased a Small Dathomir Garden." },
     ["garden_endor_large_01"] = { cost = 100000, itemTemplate = "object/tangible/deed/city_deed/garden_endor_lrg_01_deed.iff", message = "Thank you! You have purchased a Large Endor Garden." },
-    ["garden_endor_medium_01"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_endor_med_01_deed.iff", message = "Thank you! You have purchased a Medium Endor Garden." },
+    ["garden_endor_medium_01"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_endor_med_01_deed.iff", message = "Thank you! You have purchased a Medium Endor Garden."},
     ["garden_endor_small_01"] = { cost = 50000, itemTemplate = "object/tangible/deed/city_deed/garden_endor_sml_01_deed.iff", message = "Thank you! You have purchased a Small Endor Garden." },
 
     -- Corellia Deeds
@@ -219,16 +228,18 @@ local itemsForSale = {
     ["city_corellia_bank_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/bank_corellia_deed.iff", message = "Thank you! You have purchased a Corellia Bank Deed." },
     ["city_corellia_cantina_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/cantina_corellia_deed.iff", message = "Thank you! You have purchased a Corellia Cantina Deed." },
     ["city_corellia_garage_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/garage_corellia_deed.iff", message = "Thank you! You have purchased a Corellia Garage Deed." },
+    ["shuttleport01"] = { cost = 400000, itemTemplate = "object/tangible/deed/city_deed/corellia_shuttleport_deed_01.iff", message = "You purchased a Corellia Shuttleport Deed." },
     ["city_corellia_cityhall_01"] = { cost = 500000, itemTemplate = "object/tangible/deed/city_deed/cityhall_corellia_deed.iff", message = "Thank you! You have purchased a Corellia City Hall Deed." },
     ["city_corellia_cloning_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/cloning_corellia_deed.iff", message = "Thank you! You have purchased a Corellia Cloning Center Deed." },
     ["city_corellia_hospital_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/hospital_corellia_deed.iff", message = "Thank you! You have purchased a Corellia Medical Center Deed." },
+    ["theater01"] = { cost = 300000, itemTemplate = "object/tangible/deed/city_deed/corellia_theater_deed_01.iff", message = "You purchased a Corellia Theater Deed." },
     ["garden_corellia_large_01"] = { cost = 100000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_lrg_01_deed.iff", message = "Thank you! You have purchased a Large Corellia Garden (Style 1)." },
     ["garden_corellia_large_02"] = { cost = 100000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_lrg_02_deed.iff", message = "Thank you! You have purchased a Large Corellia Garden (Style 2)." },
     ["garden_corellia_large_03"] = { cost = 100000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_lrg_03_deed.iff", message = "Thank you! You have purchased a Large Corellia Garden (Style 3)." },
     ["garden_corellia_large_04"] = { cost = 100000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_lrg_04_deed.iff", message = "Thank you! You have purchased a Large Corellia Garden (Style 4)." },
     ["garden_corellia_large_05"] = { cost = 100000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_lrg_05_deed.iff", message = "Thank you! You have purchased a Large Corellia Garden (Style 5)." },
     ["garden_corellia_medium_01"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_med_01_deed.iff", message = "Thank you! You have purchased a Medium Corellia Garden (Style 1)." },
-    ["garden_corellia_medium_02"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_med_02_deed.iff", message = "Thank you! You have purchased a Medium Corellia Garden (Style 2)." },
+    ["garden_corellia_medium_02"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_med_02_deed.iff", message = "Thank you! You have purchased a Medium Corellia Garden (Style 2)."},
     ["garden_corellia_medium_03"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_med_03_deed.iff", message = "Thank you! You have purchased a Medium Corellia Garden (Style 3)." },
     ["garden_corellia_medium_04"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_med_04_deed.iff", message = "Thank you! You have purchased a Medium Corellia Garden (Style 4)." },
     ["garden_corellia_medium_05"] = { cost = 75000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_med_05_deed.iff", message = "Thank you! You have purchased a Medium Corellia Garden (Style 5)." },
@@ -276,7 +287,7 @@ local itemsForSale = {
     ["city_tatooine_bank_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/bank_tatooine_deed.iff", message = "Thank you! You have purchased a Tatooine Bank Deed." },
     ["city_tatooine_cantina_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/cantina_tatooine_deed.iff", message = "Thank you! You have purchased a Tatooine Cantina Deed." },
     ["city_tatooine_garage_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/garage_tatooine_deed.iff", message = "Thank you! You have purchased a Tatooine Garage Deed." },
-    ["city_tatooine_cityhall_01"] = { cost = 500000, itemTemplate = "object/tangible/deed/city_deed/cityhall_tatooine_deed.iff", message = "Thank you! You have purchased a Tatooine City Hall Deed." },
+    ["city_tatooine_cityhall_01"] = { cost = 500000, itemTemplate = "object/tangible/deed/city_deed/cityhall_tatooine_deed.iff", message = "Thank you! You have purchased a Tatooine City Hall Deed."},
     ["city_tatooine_cloning_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/cloning_tatooine_deed.iff", message = "Thank you! You have purchased a Tatooine Cloning Center Deed." },
     ["city_tatooine_hospital_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/hospital_tatooine_deed.iff", message = "Thank you! You have purchased a Tatooine Hospital Deed." },
     ["garden_tatooine_large_01"] = { cost = 100000, itemTemplate = "object/tangible/deed/city_deed/garden_tatooine_lrg_01_deed.iff", message = "Thank you! You have purchased a Large Tatooine Garden (Style 1)." },
@@ -296,6 +307,10 @@ local itemsForSale = {
     ["garden_tatooine_small_05"] = { cost = 50000, itemTemplate = "object/tangible/deed/city_deed/garden_tatooine_sml_05_deed.iff", message = "Thank you! You have purchased a Small Tatooine Garden (Style 5)." },
     -- END RESTRUCTURED PLAYER CITY DEEDS
 }
+
+
+-- The JediTrials:unlockJediKnight function definition has been removed from this file.
+-- The unlock logic is now handled directly within getNextConversationScreen.
 
 
 -- This is the main function that handles the conversation logic.
@@ -332,8 +347,8 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             return nil
         end
 
-        -- Check for inventory space first
-        if (SceneObject(pInventory):isContainerFullRecursive()) then
+        -- Check for inventory space first (only if it's a physical item being given)
+        if (not itemToPurchase.isJediUnlock and SceneObject(pInventory):isContainerFullRecursive()) then
             creature:sendSystemMessage("You do not have enough inventory space.")
             return conversation:getScreen("insufficient_space")
         end
@@ -356,18 +371,28 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             creature:subtractBankCredits(remainingCost)
         end
 
-        -- Give the item or buff
+        -- Give the item, buff, or perform unlock
         if (itemToPurchase.isBuff) then
             CreatureObject(conversingPlayer):enhanceCharacter()
+        elseif (itemToPurchase.isJediUnlock) then
+            -- Directly perform Jedi Knight unlock actions
+            local pGhost = CreatureObject(conversingPlayer):getPlayerObject()
+            if (pGhost ~= nil) then
+				KnightTrials:startKnightTrials(conversingPlayer)
+            else
+                creature:sendSystemMessage("Error: Could not access player object for Jedi unlock. Please contact an administrator.")
+            end
         else
-            -- Handle deeds and regular items.
-            -- Special handling for resources if you add them later.
+            -- Handle deeds, regular items, and resources
             if (itemToPurchase.resourceName and itemToPurchase.quantity) then
                 local resourceObject = giveItem(pInventory, itemToPurchase.itemTemplate, -1)
                 if (resourceObject ~= nil) then
                     local luaResource = LuaSceneObject(resourceObject)
                     luaResource:setResourceName(itemToPurchase.resourceName)
                     luaResource:setQuantity(itemToPurchase.quantity)
+                else
+                    creature:sendSystemMessage("Error creating resource item. Please contact an administrator.")
+                    return conversation:getScreen("insufficient_funds") -- Or specific error screen
                 end
             else
                 giveItem(pInventory, itemToPurchase.itemTemplate, -1)
@@ -377,7 +402,6 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
         -- Send the confirmation message to the player's chat.
         creature:sendSystemMessage(itemToPurchase.message)
 
-        -- *** KEY CHANGE IS HERE ***
         -- Instead of going to a new screen, we return the player to the screen
         -- they were just on. This avoids all the errors with modifying screens.
         return lastConversationScreen

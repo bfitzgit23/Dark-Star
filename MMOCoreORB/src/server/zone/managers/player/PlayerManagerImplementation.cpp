@@ -1861,6 +1861,8 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 
 		if ((curExp + xpLoss) < negXpCap)
 			xpLoss = negXpCap - curExp;
+		
+		xpLoss = 0;
 
 		awardExperience(player, "jedi_general", xpLoss, true);
 		StringIdChatParameter message("base_player","prose_revoke_xp");
