@@ -245,6 +245,7 @@ lok = {
 
 	planetTravelPoints = {
 		{name = "Nym's Stronghold", x = 478.92676, z = 9, y = 5511.9565, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
+		{name = "Force Shrine", x = -3633, z = 17, y = -6034, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1, landingRange = 3},
 	},
 
 	jtlLaunchPoint = {"space_lok", -6200, -5350, 113},
