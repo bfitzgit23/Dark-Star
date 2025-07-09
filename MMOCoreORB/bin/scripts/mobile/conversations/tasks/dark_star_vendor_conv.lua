@@ -245,7 +245,7 @@ jedi = ConvoScreen:new {
     options = {
         {"Sith Holocron - 25k", "jedi01"},
         {"Jedi Holocron - 25k", "jedi02"},
-        {"Unlock Jedi Knight - 100k", "jedi_unlock_knight"}, -- NEW: Option to unlock Jedi Knight
+        {"Unlock Jedi Knight", "jedi_unlock_knight"}, -- NEW: Option to unlock Jedi Knight
         {"Main menu.", "first_screen"},
     }
 }
