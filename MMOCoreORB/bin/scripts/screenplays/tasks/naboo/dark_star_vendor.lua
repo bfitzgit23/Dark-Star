@@ -2,9 +2,11 @@
 
 -- Include necessary manager files
 includeFile("../managers/loot_manager.lua")
--- REMOVED: includeFile("../screenplays/jedi/jedi_trials.lua")
--- The JediTrials:unlockJediKnight function is defined directly in this file below,
--- so we don't need to include it from an external file.
+-- Re-adding the include for jedi_trials.lua.
+-- This assumes jedi_trials.lua exists at scripts/screenplays/jedi/jedi_trials.lua
+-- and defines the JediTrials table and its functions/constants.
+includeFile("../screenplays/jedi/jedi_trials.lua")
+
 
 -- Define the ScreenPlay for the vendor
 dark_star_vendor = ScreenPlay:new {
@@ -21,26 +23,26 @@ function dark_star_vendor:start()
     local spawnLocations = {
         -- Corellia
         { "corellia", -157, 28.0, -4724, 35 },      	-- cnet
-        { "corellia", -5042, 21.0, -2297, 35 },      	-- tyrena
+        { "corellia", -5042, 21.0, -2297, 35 },     	-- tyrena
         { "corellia", -3138, 31.0, 2796, 35 },      	-- korvella
         { "corellia", 3333, 308.0, 5524, 35 },      	-- doaba
-        { "corellia", -5550, 15.58, -6061, 35 },     	-- venri
+        { "corellia", -5550, 15.58, -6061, 35 },    	-- venri
         { "corellia", 6643.02, 330.00, -5920.87, 35 },  -- belav
         -- Naboo
-        { "naboo", -4872, 6.0, 4151, 35 },           	-- theed
-        { "naboo", 4807, 4.0, -4705, 35 },           	-- moena
-        { "naboo", 5200, -192.0, 6677, 35 },         	-- kaadara
-        { "naboo", 1444, 14.0, 2777, 35 },           	-- keren
-        { "naboo", 5331.16, 326.95, -1576.12, 35 },  	-- deja
-        { "naboo", -5495.62, -150.00, -24.69, 35 },  	-- lake ret
+        { "naboo", -4872, 6.0, 4151, 35 },          	-- theed
+        { "naboo", 4807, 4.0, -4705, 35 },          	-- moena
+        { "naboo", 5200, -192.0, 6677, 35 },        	-- kaadara
+        { "naboo", 1444, 14.0, 2777, 35 },          	-- keren
+        { "naboo", 5331.16, 326.95, -1576.12, 35 }, 	-- deja
+        { "naboo", -5495.62, -150.00, -24.69, 35 }, 	-- lake ret
         -- Tatooine
         { "tatooine", 3522, 5.0, -4803, 35 },       	-- eisley
         { "tatooine", -1281, 12.0, -3590, 35 },			-- bestine
         { "tatooine", -2914, 5.0, 2129, 35 },       	-- espa
         { "tatooine", 1293, 7.0, 3140, 35 },        	-- entha
-        { "tatooine", 48.33, 52.00, -5340.53, 35 },  	-- anc
+        { "tatooine", 48.33, 52.00, -5340.53, 35 }, 	-- anc
         -- Talus
-        { "talus", -2193, 20.0, 2313, 35 },          	-- talus imp
+        { "talus", -2193, 20.0, 2313, 35 },         	-- talus imp
         { "talus", 4447, 2.0, 5271, 35 },           	-- nashal
         { "talus", 338, 6.0, -2931, 35 },           	-- dearic
         -- Rori
@@ -48,7 +50,7 @@ function dark_star_vendor:start()
         { "rori", -5305, 80.0, -2228, 35 },         	-- narmle
         { "rori", 3683, 96.0, -6436, 35 },          	-- reb
         -- Endor
-        { "endor", -948, 73.0, 1550, 35 },           	-- smugglers
+        { "endor", -948, 73.0, 1550, 35 },          	-- smugglers
         { "endor", 3201, 24.0, -3501, 35 },         	-- research
         -- Dantooine
         { "dantooine", -632, 3.0, 2501, 35 },       	-- mining
@@ -59,11 +61,11 @@ function dark_star_vendor:start()
         { "dathomir", -47, 18.0, -1586, 35 },       	-- science
         { "dathomir", 5233, 78, -4057, 35 },        	-- village
         -- Yavin 4
-        { "yavin4", -265, 35.0, 4897, 35 },          	-- mining
+        { "yavin4", -265, 35.0, 4897, 35 },         	-- mining
         { "yavin4", 4053, 17.0, -6217, 35 },        	-- imp
         { "yavin4", -6922, 73.0, -5730, 35 },       	-- labor
         -- Lok
-        { "lok", 479, 8.0, 5512, 35 },           	    -- lok
+        { "lok", 479, 8.0, 5512, 35 },              	-- lok
     }
 
     for i, location in ipairs(spawnLocations) do
@@ -125,7 +127,7 @@ local itemsForSale = {
     -- Jedi
     ["jedi01"] = { cost = 25000, itemTemplate = "object/tangible/jedi/jedi_holocron_dark.iff", message = "Thank you! You have purchased a Sith Holocron." },
     ["jedi02"] = { cost = 25000, itemTemplate = "object/tangible/jedi/jedi_holocron_light.iff", message = "Thank you! You have purchased a Jedi Holocron." },
-    ["jedi_unlock_knight"] = { cost = 100000, message = "Congratulations! You have unlocked Jedi Knight status!", isJediUnlock = true },
+	["jedi_unlock_knight"] = { cost = 100000, message = "Congratulations! You have unlocked Jedi Knight status!", isJediUnlock = true },
 
     -- Medic
     -- Stimpacks
@@ -226,9 +228,11 @@ local itemsForSale = {
     ["city_corellia_bank_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/bank_corellia_deed.iff", message = "Thank you! You have purchased a Corellia Bank Deed." },
     ["city_corellia_cantina_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/cantina_corellia_deed.iff", message = "Thank you! You have purchased a Corellia Cantina Deed." },
     ["city_corellia_garage_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/garage_corellia_deed.iff", message = "Thank you! You have purchased a Corellia Garage Deed." },
+    ["shuttleport01"] = { cost = 400000, itemTemplate = "object/tangible/deed/city_deed/corellia_shuttleport_deed_01.iff", message = "You purchased a Corellia Shuttleport Deed." },
     ["city_corellia_cityhall_01"] = { cost = 500000, itemTemplate = "object/tangible/deed/city_deed/cityhall_corellia_deed.iff", message = "Thank you! You have purchased a Corellia City Hall Deed." },
     ["city_corellia_cloning_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/cloning_corellia_deed.iff", message = "Thank you! You have purchased a Corellia Cloning Center Deed." },
     ["city_corellia_hospital_01"] = { cost = 350000, itemTemplate = "object/tangible/deed/city_deed/hospital_corellia_deed.iff", message = "Thank you! You have purchased a Corellia Medical Center Deed." },
+    ["theater01"] = { cost = 300000, itemTemplate = "object/tangible/deed/city_deed/corellia_theater_deed_01.iff", message = "You purchased a Corellia Theater Deed." },
     ["garden_corellia_large_01"] = { cost = 100000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_lrg_01_deed.iff", message = "Thank you! You have purchased a Large Corellia Garden (Style 1)." },
     ["garden_corellia_large_02"] = { cost = 100000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_lrg_02_deed.iff", message = "Thank you! You have purchased a Large Corellia Garden (Style 2)." },
     ["garden_corellia_large_03"] = { cost = 100000, itemTemplate = "object/tangible/deed/city_deed/garden_corellia_lrg_03_deed.iff", message = "Thank you! You have purchased a Large Corellia Garden (Style 3)." },
@@ -304,108 +308,10 @@ local itemsForSale = {
     -- END RESTRUCTURED PLAYER CITY DEEDS
 }
 
--- The JediTrials:unlockJediKnight function definition
--- It's crucial that this function is defined BEFORE it is called in getNextConversationScreen.
--- Since it's in the same file, this placement is fine.
--- No 'require' needed for JediTrials if it's defined here.
--- You will need to ensure JediTrials.COUNCIL_LIGHT and JediTrials.COUNCIL_DARK are defined
--- somewhere (perhaps at the top of this file, or a global utility script).
-JediTrials = JediTrials or {} -- Ensure JediTrials table exists, in case it's not global
-JediTrials.COUNCIL_LIGHT = 1 -- Example value, confirm in your actual JediTrials.lua
-JediTrials.COUNCIL_DARK = 2  -- Example value, confirm in your actual JediTrials.lua
 
--- Define the getJediCouncil function if it's not global or included elsewhere
--- This is a placeholder, as the actual logic might be complex.
--- If getJediCouncil is in your JediTrials.lua, and you want to keep them separate,
--- then you would *re-add* the includeFile("../screenplays/jedi/jedi_trials.lua") at the top.
--- If it's *not* in a separate file, you need its definition here.
-if (JediTrials.getJediCouncil == nil) then
-    function JediTrials:getJediCouncil(pPlayer)
-        -- Placeholder for actual logic
-        -- This should return either self.COUNCIL_LIGHT or self.COUNCIL_DARK
-        -- For testing, you might just return one for now.
-        -- For example, always return light for testing:
-        -- return self.COUNCIL_LIGHT
-        -- Or, if your server uses FRS factions for this:
-        local pGhost = CreatureObject(pPlayer):getPlayerObject()
-        if (pGhost ~= nil) then
-            local frsFaction = PlayerObject(pGhost):getFrsCouncil()
-            if (frsFaction == 1) then -- Assuming 1 is light, confirm with your FRS system
-                return self.COUNCIL_LIGHT
-            elseif (frsFaction == 2) then -- Assuming 2 is dark, confirm with your FRS system
-                return self.COUNCIL_DARK
-            end
-        end
-        return nil -- Or a default
-    end
-end
-
--- Define FACTIONREBEL and FACTIONIMPERIAL if not global
-FACTIONREBEL = FACTIONREBEL or 1 -- Example, confirm actual enum/global value
-FACTIONIMPERIAL = FACTIONIMPERIAL or 2 -- Example, confirm actual enum/global value
-
-
-function JediTrials:unlockJediKnight(pPlayer)
-    if (pPlayer == nil) then
-        return
-    end
-
-    local pGhost = CreatureObject(pPlayer):getPlayerObject()
-
-    if (pGhost == nil) then
-        return
-    end
-
-    local knightRobe, unlockMusic, unlockString, enclaveLoc, enclaveName, jediState, setFactionVal, skillForceRank
-    -- Use 'self' because getJediCouncil is part of the JediTrials table
-    local councilType = self:getJediCouncil(pPlayer)
-
-    if (councilType == self.COUNCIL_LIGHT) then
-        knightRobe = "object/tangible/wearables/robe/robe_jedi_light_s01.iff"
-        unlockMusic = "sound/music_become_light_jedi.snd"
-        unlockString = "@jedi_trials:knight_trials_completed_light"
-        enclaveLoc = { -5575, 4905, "yavin4" }
-        enclaveName = "Light Jedi Enclave"
-        jediState = 4
-        setFactionVal = FACTIONREBEL
-    elseif (councilType == self.COUNCIL_DARK) then
-        knightRobe = "object/tangible/wearables/robe/robe_jedi_dark_s01.iff"
-        unlockMusic = "sound/music_become_dark_jedi.snd"
-        unlockString = "@jedi_trials:knight_trials_completed_dark"
-        enclaveLoc = { 5079, 305, "yavin4" }
-        enclaveName = "Dark Jedi Enclave"
-        jediState = 8
-        setFactionVal = FACTIONIMPERIAL
-    else
-        printLuaError("Invalid council type in JediTrials:unlockJediKnight for " .. CreatureObject(pPlayer):getFirstName())
-        return
-    end
-
-    awardSkill(pPlayer, "force_title_jedi_rank_03")
-    writeScreenPlayData(pPlayer, "KnightTrials", "completedTrials", 1)
-    CreatureObject(pPlayer):playMusicMessage(unlockMusic)
-    playClientEffectLoc(pPlayer, "clienteffect/trap_electric_01.cef", CreatureObject(pPlayer):getZoneName(), CreatureObject(pPlayer):getPositionX(), CreatureObject(pPlayer):getPositionZ(), CreatureObject(pPlayer):getPositionY(), CreatureObject(pPlayer):getParentID())
-
-    PlayerObject(pGhost):addWaypoint(enclaveLoc[3], enclaveName, "", enclaveLoc[1], 0, enclaveLoc[2], WAYPOINT_YELLOW, true, true, 0)
-    PlayerObject(pGhost):setJediState(jediState)
-    PlayerObject(pGhost):setFrsCouncil(councilType)
-    PlayerObject(pGhost):setFrsRank(0)
-    CreatureObject(pPlayer):setFactionStatus(2) -- Overt
-    CreatureObject(pPlayer):setFaction(setFactionVal)
-
-    local sui = SuiMessageBox.new("JediTrials", "emptyCallback") -- No callback
-    sui.setTitle("@jedi_trials:knight_trials_title")
-    sui.setPrompt(unlockString)
-    sui.sendTo(pPlayer)
-
-    local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
-
-    if (pInventory == nil or SceneObject(pInventory):isContainerFullRecursive()) then
-        CreatureObject(pPlayer):sendSystemMessage("@jedi_spam:inventory_full_jedi_robe")
-    else
-        giveItem(pInventory, knightRobe, -1)
-    end
-end
+-- The JediTrials:unlockJediKnight function definition has been moved to jedi_trials.lua.
+-- This file now assumes that JediTrials table and its functions/constants are available
+-- after the includeFile("../screenplays/jedi/jedi_trials.lua") at the top.
 
 
 -- This is the main function that handles the conversation logic.
@@ -466,16 +372,20 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             creature:subtractBankCredits(remainingCost)
         end
 
-        -- Give the item or perform the action (Jedi Unlock)
+        -- Give the item, buff, or perform unlock
         if (itemToPurchase.isBuff) then
             CreatureObject(conversingPlayer):enhanceCharacter()
         elseif (itemToPurchase.isJediUnlock) then
-            -- Call the JediTrials:unlockJediKnight function
-            -- Since it's defined in this same file, it's directly accessible.
-            JediTrials:unlockJediKnight(conversingPlayer)
+            -- Call the unlockJediKnight function from the included jedi_trials.lua
+            -- It's crucial that jedi_trials.lua defines the JediTrials table and its functions.
+            if (JediTrials ~= nil and JediTrials.unlockJediKnight ~= nil) then
+                JediTrials:unlockJediKnight(conversingPlayer)
+            else
+                creature:sendSystemMessage("Error: Jedi Knight unlock function not available. Please contact an administrator.")
+                return conversation:getScreen("insufficient_funds") -- Or a more specific error screen
+            end
         else
-            -- Handle deeds and regular items.
-            -- Special handling for resources if you add them later.
+            -- Handle deeds, regular items, and resources
             if (itemToPurchase.resourceName and itemToPurchase.quantity) then
                 local resourceObject = giveItem(pInventory, itemToPurchase.itemTemplate, -1)
                 if (resourceObject ~= nil) then
@@ -484,6 +394,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
                     luaResource:setQuantity(itemToPurchase.quantity)
                 else
                     creature:sendSystemMessage("Error creating resource item. Please contact an administrator.")
+                    return conversation:getScreen("insufficient_funds") -- Or specific error screen
                 end
             else
                 giveItem(pInventory, itemToPurchase.itemTemplate, -1)
