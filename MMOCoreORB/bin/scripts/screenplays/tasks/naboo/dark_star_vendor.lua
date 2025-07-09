@@ -377,10 +377,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             -- Directly perform Jedi Knight unlock actions
             local pGhost = CreatureObject(conversingPlayer):getPlayerObject()
             if (pGhost ~= nil) then
-				local trialsCompleted = 15
-				JediTrials:setTrialsCompleted(conversingPlayer, trialsCompleted)
-				KnightTrials:sendCouncilChoiceSui(conversingPlayer)
-				JediTrials:unlockJediKnight(conversingPlayer)
+				KnightTrials:startKnightTrials(conversingPlayer)
 				
 				
                 -- Note: No automatic robe or music here, as that was part of the original JediTrials function.
