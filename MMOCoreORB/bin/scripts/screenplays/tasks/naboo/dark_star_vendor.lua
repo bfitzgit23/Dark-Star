@@ -126,7 +126,7 @@ local itemsForSale = {
     -- Jedi
     ["jedi01"] = { cost = 25000, itemTemplate = "object/tangible/jedi/jedi_holocron_dark.iff", message = "Thank you! You have purchased a Sith Holocron." },
     ["jedi02"] = { cost = 25000, itemTemplate = "object/tangible/jedi/jedi_holocron_light.iff", message = "Thank you! You have purchased a Jedi Holocron." },
-	["jedi_unlock_knight"] = { cost = 1, message = "Congratulations! You have unlocked Jedi Knight status!", isJediUnlock = true },
+	["jedi_unlock_knight"] = { cost = 0, message = "Congratulations! You have unlocked Jedi Knight trials!", isJediUnlock = true },
 
     -- Medic
     -- Stimpacks
@@ -378,12 +378,6 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
             local pGhost = CreatureObject(conversingPlayer):getPlayerObject()
             if (pGhost ~= nil) then
 				KnightTrials:startKnightTrials(conversingPlayer)
-				
-				
-                -- Note: No automatic robe or music here, as that was part of the original JediTrials function.
-                -- You would need to add those explicitly if desired.
-                -- Example: giveItem(pInventory, "object/tangible/wearables/robe/robe_jedi_light_s01.iff", -1)
-                -- Example: CreatureObject(conversingPlayer):playMusicMessage("sound/music_become_light_jedi.snd")
             else
                 creature:sendSystemMessage("Error: Could not access player object for Jedi unlock. Please contact an administrator.")
             end
