@@ -389,6 +389,7 @@ function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTe
 			CreatureObject(pPlayer):sendSystemMessage("@jedi_spam:inventory_full_jedi_robe")
 			else
 			giveItem(pInventory, "object/tangible/wearables/robe/robe_jedi_dark_s01.iff", -1)
+			end
                 -- Note: No automatic robe or music here, as that was part of the original JediTrials function.
                 -- You would need to add those explicitly if desired.
                 -- Example: giveItem(pInventory, "object/tangible/wearables/robe/robe_jedi_light_s01.iff", -1)
