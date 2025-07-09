@@ -264,7 +264,7 @@ end
 
 function JediTrials:getRandomShrineOnPlanet(planet)
 	local shrineList = self.forceShrineIds[planet]
-	local shrineID = shrineList[getRandomNumber(1, #shrineList)]
+	local shrineID = 7345554 --shrineList[getRandomNumber(1, #shrineList)]
 	local pShrine = getSceneObject(shrineID)
 	local attempts = 0
 
