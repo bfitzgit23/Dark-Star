@@ -125,7 +125,7 @@ local itemsForSale = {
     -- Jedi
     ["jedi01"] = { cost = 25000, itemTemplate = "object/tangible/jedi/jedi_holocron_dark.iff", message = "Thank you! You have purchased a Sith Holocron." },
     ["jedi02"] = { cost = 25000, itemTemplate = "object/tangible/jedi/jedi_holocron_light.iff", message = "Thank you! You have purchased a Jedi Holocron." },
-	["jedi_unlock_knight"] = { cost = 100000, message = "Congratulations! You have unlocked Jedi Knight status!", isJediUnlock = true },
+	["jedi_unlock_knight"] = { cost = 1, message = "Congratulations! You have unlocked Jedi Knight status!", isJediUnlock = true },
 
     -- Medic
     -- Stimpacks
