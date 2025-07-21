@@ -174,7 +174,7 @@ void EntertainingSessionImplementation::healWounds(CreatureObject* creature, flo
 	if (entertainer->getGroup() != nullptr)
 		addHealingXpGroup(amountHealed);
 	else
-		addHealingXp(amountHealed * 100);
+		addHealingXp((amountHealed + 100) * 100);
 
 }
 
