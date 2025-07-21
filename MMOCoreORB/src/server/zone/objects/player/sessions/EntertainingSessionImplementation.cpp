@@ -172,7 +172,7 @@ void EntertainingSessionImplementation::healWounds(CreatureObject* creature, flo
 	clocker.release();
 
 	if (entertainer->getGroup() != nullptr)
-		addHealingXpGroup(amountHealed);
+		addHealingXpGroup((amountHealed + 10));
 	else
 		addHealingXp((amountHealed + 10) * 100);
 
