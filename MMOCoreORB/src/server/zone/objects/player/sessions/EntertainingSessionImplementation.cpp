@@ -174,7 +174,7 @@ void EntertainingSessionImplementation::healWounds(CreatureObject* creature, flo
 	if (entertainer->getGroup() != nullptr)
 		addHealingXpGroup(amountHealed);
 	else
-		addHealingXp(amountHealed);
+		addHealingXp(amountHealed * 100);
 
 }
 
@@ -196,7 +196,7 @@ void EntertainingSessionImplementation::addHealingXpGroup(int xp) {
 					String healxptype("entertainer_healing");
 
 					if (playerManager != nullptr)
-						playerManager->awardExperience(groupMember, healxptype, xp, true);
+						playerManager->awardExperience(groupMember, healxptype, (xp * 100), true);
 				}
 			}
 		} catch (Exception& e) {
@@ -1016,7 +1016,7 @@ void EntertainingSessionImplementation::awardEntertainerExperience() {
 			flourishXp = oldFlourishXp;
 
 			if (flourishXp > 0) {
-				int flourishDec = (int)((float)performance->getFlourishXpMod() / 6.0f);
+				int flourishDec = (int)((float)performance->getFlourishXpMod() / 100.0f);
 				flourishXp -= Math::max(1, flourishDec);
 			}
 
