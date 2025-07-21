@@ -994,7 +994,7 @@ void EntertainingSessionImplementation::increaseEntertainerBuff(CreatureObject* 
 
 	float buffAcceleration = 1 + ((float)entertainer->getSkillMod("accelerate_entertainer_buff") / 100.f);
 
-	addEntertainerBuffDuration(patron, performance->getType(), 2.0f * buffAcceleration);
+	addEntertainerBuffDuration(patron, performance->getType(), 5.0f * buffAcceleration);
 	addEntertainerBuffStrength(patron, performance->getType(), performance->getHealShockWound());
 
 }
@@ -1016,7 +1016,7 @@ void EntertainingSessionImplementation::awardEntertainerExperience() {
 			flourishXp = oldFlourishXp;
 
 			if (flourishXp > 0) {
-				int flourishDec = (int)((float)performance->getFlourishXpMod() / 100.0f);
+				int flourishDec = (int)((float)performance->getFlourishXpMod() / 1.0f);
 				flourishXp -= Math::max(1, flourishDec);
 			}
 
@@ -1069,7 +1069,7 @@ void EntertainingSessionImplementation::awardEntertainerExperience() {
 			xpAmount = ceil(xpAmount * totalBonus);
 
 			if (playerManager != nullptr)
-				playerManager->awardExperience(player, xptype, xpAmount, true);
+				playerManager->awardExperience(player, xptype, (xpAmount * 100), true);
 
 			oldFlourishXp = flourishXp;
 			flourishXp = 0;
