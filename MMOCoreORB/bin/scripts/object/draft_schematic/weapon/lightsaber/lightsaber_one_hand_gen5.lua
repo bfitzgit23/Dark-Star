@@ -41,7 +41,7 @@
 --this exception also makes it possible to release a modified version 
 
 
-object_draft_schematic_weapon_lightsaber_lightsaber_one_hand_gen4 = object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen4:new {
+object_draft_schematic_weapon_lightsaber_lightsaber_one_hand_gen5 = object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen5:new {
 
    templateType = DRAFTSCHEMATIC,
 
