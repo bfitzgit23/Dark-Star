@@ -68,8 +68,8 @@ object_draft_schematic_weapon_lightsaber_lightsaber_polearm_gen4 = object_draft_
    ingredientTitleNames = {"emitter_shroud", "primary_crystal", "activator", "handgrip", "focusing_crystals", "power_field_insulator", "energizers", "focusing_crystals", "focusing_crystals"},
    ingredientSlotType = {0, 1, 0, 0, 1, 0, 0, 1, 1},
    resourceTypes = {"steel_duralloy", "object/tangible/component/weapon/lightsaber/shared_lightsaber_refined_crystal_pack.iff", "aluminum_titanium", "petrochem_inert_polymer", "object/tangible/component/weapon/lightsaber/shared_lightsaber_refined_crystal_pack.iff", "gas_inert_culsion", "copper_polysteel"},
-   resourceQuantities = {40, 1, 30, 46, 1, 58, 58},
-   contribution = {100, 100, 100, 100, 100, 100, 100},
+  resourceQuantities = {40, 1, 30, 46, 1, 58, 58, 1, 1},
+   contribution = {100, 100, 100, 100, 100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/weapon/melee/polearm/crafted_saber/sword_lightsaber_polearm_gen4.iff",
