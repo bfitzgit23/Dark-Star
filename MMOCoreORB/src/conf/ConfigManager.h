@@ -826,7 +826,7 @@ namespace conf {
 
 
 		inline bool isJtlEnabled() {
-			static uint32 cachedVersion = 0;
+			static uint32 cachedVersion = 1;
 			static bool cachedJtlEnabled;
 
 			if (configVersion.get() > cachedVersion) {
@@ -839,7 +839,7 @@ namespace conf {
 		}
 
 		inline bool launchFromDevice() {
-			static uint32 cachedVersion = 0;
+			static uint32 cachedVersion = 1;
 			static bool cachedLaunchFromDevice;
 
 			if (configVersion.get() > cachedVersion) {

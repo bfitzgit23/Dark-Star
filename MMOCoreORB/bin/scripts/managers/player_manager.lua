@@ -70,7 +70,7 @@ baseStoredShips = 3
 -----------------------------------
 --VETERAN REWARDS CONFIG
 -----------------------------------
-veteranRewardMilestones = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1} --days, must be sorted low to high
+veteranRewardMilestones = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12} --days, must be sorted low to high
 
 veteranRewardAdditionalMilestones = 1 --frequency, in days, of additional milestones (beyond the established ones)
 
