@@ -754,5 +754,5 @@ includeFile("tasks/naboo/mission_terminal_spawner.lua")
 -- Imperial
 includeFile("space/conversations/imperial/imperialBrokerConvoHandler.lua")
 includeFile("space/BlackEpsilonSquadronScreenplay.lua")
-includeFile("mobile/conversations/space/imperial/hakasshaSireenConvo.lua")       -- ADD THIS LINE
+includeFile("../mobile/conversations/space/imperial/hakasshaSireenConvo.lua")       -- ADD THIS LINE
 includeFile("space/conversations/imperial/hakasshaSireenConvoHandler.lua") -- ADD THIS LINE
