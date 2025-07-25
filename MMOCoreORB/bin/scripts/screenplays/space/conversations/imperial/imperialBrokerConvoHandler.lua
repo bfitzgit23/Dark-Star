@@ -1,5 +1,5 @@
 local SpaceHelpers = require("utils.space_helpers")
-local BlackEpsilonSquadronScreenplay = require("screens.blackepsilon.BlackEpsilonSquadronScreenplay") -- Assuming path to BlackEpsilonSquadronScreenplay.lua
+local BlackEpsilonSquadronScreenplay = require("screenplays.space.BlackEpsilonSquadronScreenplay") -- Corrected path
 
 imperialBrokerConvoHandler = conv_handler:new {}
 
@@ -183,6 +183,7 @@ function imperialBrokerConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pN
 	local playerGender = CreatureObject(pPlayer):getGender()
 
 	-- Handle Imperial Pilot Recruitment / Joining Black Epsilon
+	-- This block handles if a Neutral player decides to become an Imperial pilot through this broker.
 	if (screenID == "yes_neutral_recruit" or screenID == "yes_recruiting_male" or screenID == "yes_recruiting_female") then
 		CreatureObject(pNpc):doAnimation("explain")
 		SpaceHelpers:grantNovicePilot(pPlayer, "imperialPilot") -- Grant Imperial Novice skill
@@ -200,21 +201,12 @@ function imperialBrokerConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pN
 		CreatureObject(pNpc):doAnimation("salute1")
 	elseif (screenID == "never_mind" or screenID == "no_never_mind") then
 		CreatureObject(pNpc):doAnimation("salute2")
-	-- Handling for existing Imperial Pilots not in Black Epsilon
-	elseif (screenID == "hello_imperial_pilot") then
-		-- Offer to join Black Epsilon or other options
-		clonedConversation:addOption("@conversation/imperial_broker:s_black_epsilon_offer", "join_black_epsilon_squadron") -- Option to join Black Epsilon
-		clonedConversation:addOption("@conversation/imperial_broker:s_storm_squadron_offer", "storm_squadron") -- Existing Storm Squadron option
-		clonedConversation:addOption("@conversation/imperial_broker:s_inquisition_offer", "imperial_inquisition") -- Existing Imperial Inquisition option
-		clonedConversation:addOption("@conversation/imperial_broker:s_imperial_broker_retire", "request_retire") -- Retirement option
-
-	-- Joining Black Epsilon Squadron from the "hello_imperial_pilot" screen
+	-- Handling for existing Imperial Pilots not in Black Epsilon, allowing them to join
 	elseif (screenID == "join_black_epsilon_squadron") then
 		CreatureObject(pNpc):doAnimation("nod_head_once")
 		SpaceHelpers:setSquadronType(pPlayer, BLACK_EPSILON_SQUADRON)
-		-- Potentially offer first quest right away
+		-- Once joined, they should now be able to proceed with the Black Epsilon quest line
 		return clonedConversation:getScreen("imperial_yes_im_ready")
-
 
 	-- Imperial Training
 	elseif (screenID == "imperial_more_training") then
@@ -257,7 +249,7 @@ function imperialBrokerConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pN
 		end
 		return pClonedScreen
 
-	-- Missions
+	-- Missions - Calling the Black Epsilon quest start functions
 	elseif (screenID == "imperial_yes_im_ready") then
 		patrol_naboo_imperial_1:startQuest(pPlayer, pNpc)
 	elseif (screenID == "imperial_train_me2") then
@@ -271,18 +263,18 @@ function imperialBrokerConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pN
 	elseif (screenID == "imperial_escort_duty") then
 		escort_duty_naboo_imperial_7:startQuest(pPlayer, pNpc)
 
-	-- Handle other existing screen IDs
-	elseif (screenID == "destroy_duty") then -- This still exists in original, consider renaming to avoid confusion or if it's generic
-		--destroy_duty_corellia_privateer_6:startQuest(pPlayer, pNpc) -- This would be for Corsec, needs to be changed for Imperial
-		clonedConversation:setDialogText("No Imperial duty mission assigned from here.") -- Placeholder
-	elseif (screenID == "escort_duty") then -- This still exists in original, consider renaming to avoid confusion or if it's generic
-		escort_duty_corellia_privateer_7:startQuest(pPlayer, pNpc) -- This would be for Corsec, needs to be changed for Imperial
-		clonedConversation:setDialogText("No Imperial duty mission assigned from here.") -- Placeholder
-
 	-- Original Imperial Broker logic (re-ordered for clarity and integration)
+	elseif (screenID == "hello_imperial_pilot") then
+		-- This screen leads to options to join Black Epsilon, Storm, Inquisition or retire.
+		-- The "join_black_epsilon_squadron" option is handled above.
+		clonedConversation:addOption("@conversation/imperial_broker:s_black_epsilon_offer", "join_black_epsilon_squadron")
+		clonedConversation:addOption("@conversation/imperial_broker:s_storm_squadron_offer", "storm_squadron")
+		clonedConversation:addOption("@conversation/imperial_broker:s_inquisition_offer", "imperial_inquisition")
+		clonedConversation:addOption("@conversation/imperial_broker:s_imperial_broker_retire", "request_retire")
 	elseif (screenID == "recruit_male" or screenID == "recruiting_female" or screenID == "recruiting_neutral") then
 		CreatureObject(pNpc):doAnimation("nod_head_once")
 	elseif (screenID == "more_black_epsilon_male" or screenID == "more_black_epsilon_female" or screenID == "more_black_epsilon_neutral") then
+		-- This section handles the original waypoint grant for Black Epsilon, which now is less critical if the quest line starts directly.
 		CreatureObject(pNpc):doAnimation("explain")
 		SpaceHelpers:addBlackEpsilonSquadWaypoint(pPlayer)
 		imperialBrokerConvoHandler:setBrokerStatus(pPlayer)
