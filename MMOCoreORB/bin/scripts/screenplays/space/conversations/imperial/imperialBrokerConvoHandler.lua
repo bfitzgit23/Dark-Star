@@ -1,5 +1,6 @@
 local SpaceHelpers = require("utils.space_helpers")
-local BlackEpsilonSquadronScreenplay = require("screenplays.space.BlackEpsilonSquadronScreenplay") -- Corrected path
+-- REMOVED: local BlackEpsilonSquadronScreenplay = require("screenplays.space.BlackEpsilonSquadronScreenplay")
+-- REMOVED: local QuestManager = require("managers.quest.quest_manager") -- Also remove this, it's not used.
 
 imperialBrokerConvoHandler = conv_handler:new {}
 
@@ -29,6 +30,7 @@ function imperialBrokerConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTemplat
 	local isBlackEpsilonSquadron = SpaceHelpers:isBlackEpsilonSquadron(pPlayer)
 	local hasShip = SpaceHelpers:hasCertifiedShip(pPlayer, true)
 
+	-- These variables will now refer to the globally registered BlackEpsilonSquadronScreenplay and its quests
 	local questOneStarted = SpaceHelpers:isSpaceQuestActive(pPlayer, BlackEpsilonSquadronScreenplay.QUEST_STRING_1.type, BlackEpsilonSquadronScreenplay.QUEST_STRING_1.name)
 	local questTwoStarted = SpaceHelpers:isSpaceQuestActive(pPlayer, BlackEpsilonSquadronScreenplay.QUEST_STRING_2.type, BlackEpsilonSquadronScreenplay.QUEST_STRING_2.name)
 	local questThreeStarted = SpaceHelpers:isSpaceQuestActive(pPlayer, BlackEpsilonSquadronScreenplay.QUEST_STRING_3.type, BlackEpsilonSquadronScreenplay.QUEST_STRING_3.name)
