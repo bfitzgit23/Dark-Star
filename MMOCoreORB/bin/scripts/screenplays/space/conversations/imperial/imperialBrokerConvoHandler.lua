@@ -1,11 +1,9 @@
 local SpaceHelpers = require("utils.space_helpers")
--- BlackEpsilonSquadronScreenplay is accessed globally due to registerScreenPlay
 
 imperialBrokerConvoHandler = conv_handler:new {}
 
 function imperialBrokerConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 	local convoTemplate = LuaConversationTemplate(pConvTemplate)
-    -- No need to call addImperialBrokerScreens here, as they are defined in imperial_broker_convo.lua
 
 	local faction = CreatureObject(pPlayer):getFaction()
 	local playerFactionStatus = CreatureObject(pPlayer):getFactionStatus()
@@ -51,7 +49,7 @@ function imperialBrokerConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTemplat
 	if (isImperialPilot and isBlackEpsilonSquadron) then
         -- Check to ensure player has a starter ship or one they can use
         if (not hasShip and not questOneStarted) then
-            return convoTemplate:getScreen("no_ship") -- Renamed to no_ship in imperial_broker_convo.lua
+            return convoTemplate:getScreen("no_ship") -- This screen exists in imperial_broker_convo.lua now
         end
 		-- Player has an active quest from the Broker
 		if ((questTwoStarted and not questTwoComplete) or (questThreeStarted and not questThreeComplete) or (questFourStarted and not questFourComplete) or (destroyDutyStarted and not destroyDutyComplete) or (escortDutyStarted and not escortDutyComplete)) then
@@ -189,7 +187,6 @@ function imperialBrokerConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pN
 	local playerGender = CreatureObject(pPlayer):getGender()
 
 	-- Handle Imperial Pilot Recruitment / Joining Black Epsilon
-	-- This block handles if a Neutral player decides to become an Imperial pilot through this broker.
 	if (screenID == "yes_neutral_recruit" or screenID == "yes_recruiting_male" or screenID == "yes_recruiting_female") then
 		CreatureObject(pNpc):doAnimation("explain")
 		SpaceHelpers:grantNovicePilot(pPlayer, "imperialPilot")
@@ -198,12 +195,7 @@ function imperialBrokerConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pN
 
 		if (not SpaceHelpers:hasCertifiedShip(pPlayer, true)) then
 			grantStarterShip(pPlayer, "imperial")
-            -- The conversation system will transition to "no_ship" (formerly imperial_no_ship) via getInitialScreen logic
-            -- if the player lacks a ship after this point.
 		end
-        -- After joining and potentially getting a ship, the initial screen logic will determine
-        -- the next state (imperial_yes_im_ready, imperial_has_mission, etc.).
-        -- So, we simply return the cloned screen to allow the conversation to re-evaluate its state.
 		return pClonedScreen
 	-- Handle initial recruitment rejection
 	elseif (screenID == "no_just_checking_male" or screenID == "no_just_checking_female" or screenID == "no_just_checking") then
@@ -214,15 +206,13 @@ function imperialBrokerConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pN
 	elseif (screenID == "join_black_epsilon_squadron") then
 		CreatureObject(pNpc):doAnimation("nod_head_once")
 		SpaceHelpers:setSquadronType(pPlayer, BLACK_EPSILON_SQUADRON)
-		-- Once joined, they should now be able to proceed with the Black Epsilon quest line
-		return pClonedScreen -- Allow getInitialScreen to determine next step
+		return pClonedScreen
 
 	-- Imperial Training (dynamic options are added here)
 	elseif (screenID == "imperial_more_training") then
 		local skillManager = LuaSkillManager()
 
-		-- The text for these options will need to be defined in your STF file (imperial_broker.tab) if it exists.
-		-- Otherwise, they will show as UNKNOWN_STF_ID.
+		-- The text for these options is defined directly in the conversation .lua file, not here.
 		if (not CreatureObject(pPlayer):hasSkill("pilot_imperial_navy_starships_01") and skillManager:fulfillsSkillPrerequisitesAndXp(pPlayer, "pilot_imperial_navy_starships_01")) then
 			clonedConversation:addOption("@conversation/imperial_broker:s_imperial_fighters_train", "train_player_imperial_fighters")
 		end
@@ -235,7 +225,7 @@ function imperialBrokerConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pN
 		if (not CreatureObject(pPlayer):hasSkill("pilot_imperial_navy_droid_01") and skillManager:fulfillsSkillPrerequisitesAndXp(pPlayer, "pilot_imperial_navy_droid_01")) then
 			clonedConversation:addOption("@conversation/imperial_broker:s_imperial_droid_train", "train_player_imperial_droid")
 		end
-        return pClonedScreen -- Always return the cloned screen for dynamic options
+        return pClonedScreen
 	-- Handle Skill box granting for Imperial
 	elseif (string.find(screenID, "train_player_imperial_")) then
 		local skillManager = LuaSkillManager()
@@ -259,7 +249,7 @@ function imperialBrokerConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pN
 				SpaceHelpers:grantSpaceSkill(pPlayer, "pilot_imperial_navy_weapons_01", deductExperience)
 			end
 		end
-		return pClonedScreen -- Return to re-evaluate options on "imperial_more_training"
+		return pClonedScreen
 
 	-- Missions - Calling the Black Epsilon quest start functions
 	elseif (screenID == "imperial_first_assignment_start") then
@@ -281,15 +271,13 @@ function imperialBrokerConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pN
 		escort_duty_naboo_imperial_7:startQuest(pPlayer, pNpc)
         return pClonedScreen
 
-	-- Original Imperial Broker logic (re-ordered for clarity and integration)
-	-- These options link to pre-defined screens.
+	-- Original Imperial Broker logic (where options link to pre-defined screens)
 	elseif (screenID == "more_black_epsilon_male" or screenID == "more_black_epsilon_female" or screenID == "more_black_epsilon_neutral") then
 		CreatureObject(pNpc):doAnimation("explain")
 		SpaceHelpers:addBlackEpsilonSquadWaypoint(pPlayer)
 		imperialBrokerConvoHandler:setBrokerStatus(pPlayer)
 	elseif (screenID == "storm_squadron") then
 		CreatureObject(pNpc):doAnimation("pose_proudly")
-		-- Options for Storm squadron will be handled by the .lua convo file directly
 	elseif (screenID == "not_interested_storm_male" or screenID == "not_interested_storm_female" or screenID == "storm_squadron_neutral_no_int") then
 		CreatureObject(pNpc):doAnimation("shrug_hands")
 	elseif (screenID == "storm_more_male" or screenID == "storm_more_female" or screenID == "more_storm_neutral") then
