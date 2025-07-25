@@ -1,5 +1,4 @@
--- NO require for BlackEpsilonSquadronScreenplay here, it's global
-local SpaceHelpers = require("utils.space_helpers") -- This one is correctly required as it's in utils/
+local SpaceHelpers = require("utils.space_helpers")
 
 imperialBrokerConvoHandler = conv_handler:new {}
 
@@ -55,7 +54,7 @@ local function addImperialBrokerScreens(convoTemplate)
     -- Imperial Duty Missions
     convoTemplate:addScreen("imperial_duty_missions", "Duty calls, pilot. Are you ready for a new assignment?",
         {"I'll take a destruction duty mission.", "imperial_destroy_duty"},
-        {"I'll take an an escort duty mission.", "imperial_escort_duty"},
+        {"I'll take an escort duty mission.", "imperial_escort_duty"},
         {"Not at this time, Commander.", "goodbye"})
 
     -- Quest completion screens
@@ -141,7 +140,7 @@ local function addImperialBrokerScreens(convoTemplate)
     convoTemplate:addScreen("stop_bothering", "I've told you before, get lost!", {"Goodbye.", "goodbye"})
     convoTemplate:addScreen("i_dont_think_so", "Very well. Let me know if you change your mind.", {"Goodbye.", "goodbye"})
     convoTemplate:addScreen("i_dont_think", "As you wish. Perhaps you'll find what you're looking for elsewhere.", {"Goodbye.", "goodbye"})
-}
+end
 
 function imperialBrokerConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 	local convoTemplate = LuaConversationTemplate(pConvTemplate)
@@ -332,12 +331,12 @@ function imperialBrokerConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pN
 	-- This block handles if a Neutral player decides to become an Imperial pilot through this broker.
 	if (screenID == "yes_neutral_recruit" or screenID == "yes_recruiting_male" or screenID == "yes_recruiting_female") then
 		CreatureObject(pNpc):doAnimation("explain")
-		SpaceHelpers:grantNovicePilot(pPlayer, "imperialPilot") -- Grant Imperial Novice skill
-		SpaceHelpers:setSquadronType(pPlayer, BLACK_EPSILON_SQUADRON) -- Set squadron type to Black Epsilon
-		PlayerObject(pGhost):incrementPilotTier() -- Increment pilot tier
+		SpaceHelpers:grantNovicePilot(pPlayer, "imperialPilot")
+		SpaceHelpers:setSquadronType(pPlayer, BLACK_EPSILON_SQUADRON)
+		PlayerObject(pGhost):incrementPilotTier()
 
 		if (not SpaceHelpers:hasCertifiedShip(pPlayer, true)) then
-			grantStarterShip(pPlayer, "imperial") -- Grant Imperial Starter Ship
+			grantStarterShip(pPlayer, "imperial")
             -- The conversation system will transition to "imperial_no_ship" due to getInitialScreen logic
             -- if the player lacks a ship after this point.
 		end
