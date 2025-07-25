@@ -1,5 +1,8 @@
+-- File: imperial_broker_convo.lua
+-- Location: MMOCoreORB\bin\scripts\mobile\conversations\space\imperial\
+
 imperial_broker_convo_template = ConvoTemplate:new {
-	initialScreen = "", -- This will be set dynamically by imperialBrokerConvoHandler:getInitialScreen
+	initialScreen = "",
 	templateType = "Lua",
 	luaClassHandler = "imperialBrokerConvoHandler",
 	screens = {}
@@ -223,14 +226,6 @@ yes_recruiting_female = ConvoScreen:new {
 	}
 }
 imperial_broker_convo_template:addScreen(yes_recruiting_female);
-
-no_just_checking_female = ConvoScreen:new {
-	id = "no_just_checking_female",
-	leftDialog = "@conversation/imperial_broker:s_83a7ae89", -- Very well, ma'am.  Please come see me if you change your mind.  The Empire could use more soldiers of your caliber in space!
-	stopConversation = "true",
-	options = {}
-}
-imperial_broker_convo_template:addScreen(no_just_checking_female);
 
 -- Greet Neutral
 greet_neutral = ConvoScreen:new {
@@ -752,7 +747,7 @@ imperial_broker_convo_template:addScreen(imperial_escort_duty);
 imperial_first_assignment_start = ConvoScreen:new {
     id = "imperial_first_assignment_start",
     leftDialog = "", -- No direct dialogue, just a target for routing
-    stopConversation = "false", -- Handled by runScreenHandlers
+    stopConversation = "false",
     options = {}
 }
 imperial_broker_convo_template:addScreen(imperial_first_assignment_start);
