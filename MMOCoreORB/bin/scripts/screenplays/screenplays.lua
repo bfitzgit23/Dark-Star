@@ -1,10 +1,6 @@
--- File: MMOCoreORB\bin\scripts\screenplays\screenplays.lua
-
 package.path = package.path .. ";scripts/screenplays/themepark/?.lua;scripts/screenplays/?.lua;scripts/screenplays/dungeon/corellian_corvette/?.lua"
 require("screenplay")
 require("conv_handler")
-require("core.ConversationTemplate") -- ADDED: Defines ConvoTemplate and ConvoScreen
-require("core.CreatureTemplate")    -- ADDED: Defines Creature and CreatureTemplates
 require("themeParkLogic")
 require("corvetteTicketGiverLogic")
 require("corvetteTicketTakerLogic")
@@ -755,91 +751,3 @@ includeFile("tasks/naboo/shuttle_spawner.lua")
 includeFile("tasks/naboo/space_terminal_spawner.lua")
 includeFile("tasks/naboo/mission_terminal_spawner.lua")
 
--- Imperial (This section needs attention)
-includeFile("space/conversations/imperial/imperialBrokerConvoHandler.lua")
-includeFile("space/BlackEpsilonSquadronScreenplay.lua") -- Included correctly
-includeFile("mobile/conversations/space/imperial/hakasshaSireenConvo.lua")       -- Correct path
-includeFile("space/conversations/imperial/hakasshaSireenConvoHandler.lua") -- Correct path
-
--- Imperial Inquisition
-includeFile("space/InquisitionSquadronScreenplay.lua")
-
--- Storm
-includeFile("space/StormSquadronScreenplay.lua")
-
-
--- Spawning Sub Folder
-includeFile("space/spawning/screenplays.lua")
-
---[[
-	Ship Components
-]]
-
-includeFile("space/ship_components/escape_pod_hatch_menu_component.lua")
-includeFile("space/ship_components/pilot_seat_menu_component.lua")
-includeFile("space/ship_components/ship_operations_menu_component.lua")
-includeFile("space/ship_components/ship_turret_menu_component.lua")
-includeFile("space/ship_components/ship_interior_component_menu_component.lua")
-
-
---[[
-	Conversation Handlers
-]]
-
-includeFile("space/conversations/defaultShipConvoHandler.lua")
-includeFile("space/conversations/chassisDealerConvoHandler.lua")
-
--- Greeters
-
--- Theed
-includeFile("space/conversations/greeters/kultonWoodleConvoHandler.lua")
-includeFile("space/conversations/greeters/j1p0ConvoHandler.lua")
-
--- Mos Eisley
-includeFile("space/conversations/greeters/vincieKalhoonConvoHandler.lua")
-includeFile("space/conversations/greeters/moochDavoneyConvoHandler.lua")
-includeFile("space/conversations/greeters/guilloParootchieConvoHandler.lua")
-
--- Coronet
-includeFile("space/conversations/greeters/ioTsomcrenConvoHandler.lua")
-includeFile("space/conversations/greeters/ralMundiConvoHandler.lua")
-includeFile("space/conversations/greeters/tarthJaxxConvoHandler.lua")
-
--- Mining Outpost, Dantooine
-includeFile("space/conversations/greeters/raneYarrowConvoHandler.lua")
-includeFile("space/conversations/greeters/fernYarrowConvoHandler.lua")
-includeFile("space/conversations/greeters/kessYarrowConvoHandler.lua")
-
--- Squadrons
-
-
--- Neutral
-includeFile("space/conversations/neutral/gilBurtinConvoHandler.lua")
-
--- Corsec
-includeFile("space/CorsecSquadronScreenplay.lua")
-includeFile("space/conversations/neutral/corsec_squadron/rheaConvoHandler.lua")
-
--- Smuggler
-includeFile("space/SmugglerSquadronScreenplay.lua")
-
--- RSF
-includeFile("space/RsfSquadronScreenplay.lua")
-
-
--- Rebel
-includeFile("space/conversations/rebel/jPaiBrekConvoHandler.lua")
-
--- Crimson Phoenix
-includeFile("space/CrimsonPhoenixSquadronScreenplay.lua")
-
--- Havoc
-includeFile("space/HavocSquadronScreenplay.lua")
-
--- Vortex
-includeFile("space/VortexSquadronScreenplay.lua")
-
--- Imperial (These includes are duplicates of what's already above)
--- includeFile("space/conversations/imperial/imperialBrokerConvoHandler.lua")
--- includeFile("space/BlackEpsilonSquadronScreenplay.lua")
--- includeFile("space/conversations/imperial/imperialBrokerConvoHandler.lua") -- Duplicate!
