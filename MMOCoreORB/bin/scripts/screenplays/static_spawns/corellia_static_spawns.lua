@@ -77,8 +77,6 @@ function CorelliaStaticSpawnsScreenPlay:spawnMobiles()
 	self:setMoodString(pNpc, "neutral")
 	pNpc = spawnMobile("corellia", "contractor", 60,618.957,26.2465,-433.424,130,0)
 	self:setMoodString(pNpc, "angry")
-	pNpc = spawnMobile("corellia", "revan", 60,618.957,26.2465,-433.424,130,0)
-	self:setMoodString(pNpc, "angry")
 
 	--Rebels vs Imps (4112 -1252) Smoking small Rebel base
 	spawnMobile("corellia", "rebel_army_captain", 360,5.2,0.1,-3.6,-93,6036092)
