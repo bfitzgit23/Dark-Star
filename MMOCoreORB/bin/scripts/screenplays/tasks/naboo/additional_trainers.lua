@@ -15,7 +15,6 @@ function additional_trainers:start()
     -- with an offset of +5 to the X-coordinate to place them nearby.
     local trainerSpawns = {
         -- Corellia Spawns
-		{ "corellia", "revan", -152, 28.0, -4724, 35, "-- CNET (Vendor at -157)" },
         { "corellia", "trainer_brawler", -152, 28.0, -4724, 35, "-- CNET (Vendor at -157)" },
         { "corellia", "trainer_brawler", -5037, 21.0, -2297, 35, "-- Tyrena (Vendor at -5042)" },
         { "corellia", "trainer_brawler", -3133, 31.0, 2796, 35, "-- Kor Vella (Vendor at -3138)" },
