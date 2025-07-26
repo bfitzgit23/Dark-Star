@@ -1,5 +1,5 @@
 revan = Creature:new {
-	objectName = "@mob/creature_names:revan",
+	objectName = "@mob/creature_names:dark_jedi_master",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
 	mobType = MOB_NPC,
