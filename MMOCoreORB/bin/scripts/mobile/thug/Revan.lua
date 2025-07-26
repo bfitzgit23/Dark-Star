@@ -1,5 +1,5 @@
 revan = Creature:new {
-	objectName = "@mob/creature_names:dark_jedi_master",
+	objectName = "@mob/creature_names:revan",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
 	mobType = MOB_NPC,
@@ -28,7 +28,7 @@ revan = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = { "dark_jedi" },
+	templates = { "object/mobile/dressed_dark_jedi.iff" },
 	lootGroups = {
 		{
 			groups = {
