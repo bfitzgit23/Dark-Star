@@ -28,7 +28,7 @@ revan = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = { "object/mobile/shared_dressed_dark_jedi_human_male_01.iff" },
+	templates = { "object/mobile/dressed_dark_jedi_human_male_01.iff" },
 	lootGroups = {
 		{
 			groups = {
