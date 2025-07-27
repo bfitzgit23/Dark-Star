@@ -1,9 +1,9 @@
--- File: MMOCoreORB\bin\scripts\conversations\custom\bastilla_conv.lua
+-- File: MMOCoreORB\bin\scripts\conversation\custom\bastilla_conv.lua
 
 bastilla_conv = ConvoTemplate:new {
 	initialScreen = "first_screen",
 	templateType = "Lua",
-	luaClassHandler = "bastilla_convo_handler",
+	luaClassHandler = "bastilla_convo_handler", -- Points to Bastila's conversation handler
 	screens = {}
 }
 
@@ -18,12 +18,11 @@ bastilla_first_screen = ConvoScreen:new {
 }
 bastilla_conv:addScreen(bastilla_first_screen);
 
--- New screen to handle Revan spawn confirmation/dialogue
 revan_spawn_screen = ConvoScreen:new {
-    id = "revan_spawn_screen",
-    leftDialog = "",
-    customDialogText = "Thank you, stranger. He will appear nearby when you are ready to face him. Prepare yourself.",
-    stopConversation = "true",
-    options = {}
+    id = "revan_spawn_screen",
+    leftDialog = "",
+    customDialogText = "Thank you, stranger. He will appear nearby when you are ready to face him. Prepare yourself.",
+    stopConversation = "true",
+    options = {}
 }
 bastilla_conv:addScreen(revan_spawn_screen);
