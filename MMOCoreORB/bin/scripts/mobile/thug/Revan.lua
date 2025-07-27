@@ -1,14 +1,13 @@
 revan = Creature:new {
-	objectName = "@mob/creature_names:revan",
-	randomNameType = NAME_GENERIC,
-	randomNameTag = true,
+	objectName = "@mob/creature_names:dark_jedi_master",
+	customName = "Revan",
 	mobType = MOB_NPC,
 	socialGroup = "dark_jedi",
 	faction = "",
-	level = 350,
+	level = 291,
 	chanceHit = 27.25,
-	damageMin = 2500,
-	damageMax = 5000,
+	damageMin = 1800,
+	damageMax = 3310,
 	baseXp = 27849,
 	baseHAM = 321000,
 	baseHAMmax = 392000,
@@ -28,7 +27,7 @@ revan = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_garyn_theif_zabrak_female_01.iff"},
+	templates = { "dark_jedi" },
 	lootGroups = {
 		{
 			groups = {
