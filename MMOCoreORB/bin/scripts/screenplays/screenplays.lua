@@ -751,3 +751,6 @@ includeFile("tasks/naboo/shuttle_spawner.lua")
 includeFile("tasks/naboo/space_terminal_spawner.lua")
 includeFile("tasks/naboo/mission_terminal_spawner.lua")
 
+--Custom content
+includeFile("custom/bastilla.lua")
+
