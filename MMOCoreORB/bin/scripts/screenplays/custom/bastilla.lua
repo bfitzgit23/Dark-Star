@@ -1,5 +1,30 @@
 -- File: MMOCoreORB\bin\scripts\conversations\custom\bastilla_convo_handler.lua
 
+bastilla_vendor = ScreenPlay:new {
+	numberOfActs = 1,
+	questString = "bastilla_vendor_task",
+	states = {},
+}
+
+registerScreenPlay("bastilla_vendor", true)
+
+-- function bastilla_vendor:start()
+    -- local spawnLocations = {
+        -- { "corellia", 1000, 35, 2000, 35 },  -- Example spawn location
+        -- { "naboo", 2000, 35, 3000, 35 },
+        -- { "tatooine", 1500, 35, 2500, 35 },
+    -- }
+
+    -- for i, location in ipairs(spawnLocations) do
+        -- spawnMobile(location[1], "bastilla_vendor", 1, location[2], location[3], location[4], location[5], 0)
+    -- end
+-- end
+
+function bastilla_vendor:start()     
+    -- Spawn our character into the world, setting pLarry a pointer variable we can use to check or change his state. 
+    local pWeaponsmith = spawnMobile("corellia", "bastilla_vendor", 1, -157, 28.0, -4724, 35, 0 )--cnet
+end
+
 bastilla_convo_handler = conv_handler:new {}
 
 function bastilla_convo_handler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
@@ -30,22 +55,3 @@ function bastilla_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, 
 	return clonedConversation:getScreen(screen:getOptionLink(selectedOption))
 end
 
-bastilla_vendor = ScreenPlay:new {
-	numberOfActs = 1,
-	questString = "bastilla_vendor_task",
-	states = {},
-}
-
-registerScreenPlay("bastilla_vendor", true)
-
--- function bastilla_vendor:start()
-    -- local spawnLocations = {
-        -- { "corellia", 1000, 35, 2000, 35 },  -- Example spawn location
-        -- { "naboo", 2000, 35, 3000, 35 },
-        -- { "tatooine", 1500, 35, 2500, 35 },
-    -- }
-
-    -- for i, location in ipairs(spawnLocations) do
-        -- spawnMobile(location[1], "bastilla_vendor", 1, location[2], location[3], location[4], location[5], 0)
-    -- end
--- end
