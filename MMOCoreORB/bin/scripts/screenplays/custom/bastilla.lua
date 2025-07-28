@@ -4,7 +4,7 @@ bastilla_convo_handler = conv_handler:new {}
 
 function bastilla_convo_handler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 	local convoTemplate = LuaConversationTemplate(pConvTemplate)
-    return convoTemplate:getScreen("first_screen")
+	return convoTemplate:getScreen("first_screen")
 end
 
 function bastilla_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, selectedOption, pConvScreen)
