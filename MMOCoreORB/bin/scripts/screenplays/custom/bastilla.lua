@@ -1,14 +1,15 @@
--- File: MMOCoreORB\bin\scripts\conversations\custom\bastilla_convo_handler.lua
+-- File: MMOCoreORB\bin\scripts\screenplays\custom\bastilla.lua
 
-bastilla_vendor = ScreenPlay:new {
+-- 1. Bastila ScreenPlay Definition
+-- Define the screenplay object using a local variable (e.g., bastila_screenplay_obj)
+local bastila_screenplay_obj = ScreenPlay:new {
 	numberOfActs = 1,
 	questString = "bastilla_npc_task",
 	states = {},
 }
 
-registerScreenPlay("bastilla_npc_quest", true)
-
-function bastilla_npc_quest:start()
+-- Define methods on the local screenplay object BEFORE it's registered globally
+function bastila_screenplay_obj:start()
     local spawnLocations = {
         { "corellia", 1000, 35, 2000, 35 },  -- Example spawn location
         { "naboo", 2000, 35, 3000, 35 },
@@ -16,17 +17,25 @@ function bastilla_npc_quest:start()
     }
 
     for i, location in ipairs(spawnLocations) do
+        -- Spawn the NPC using the CREATURE TEMPLATE named "bastilla_npc"
+        -- This "bastilla_npc" creature template must be defined in bastilla_npc.lua
         spawnMobile(location[1], "bastilla_npc", 1, location[2], location[3], location[4], location[5], 0)
     end
 end
 
+-- Register the local screenplay object globally *after* its methods are defined.
+-- This makes the global 'bastilla_npc_quest' variable refer to 'bastila_screenplay_obj'.
+registerScreenPlay("bastilla_npc_quest", true)
+
+
+-- 2. Bastila's Conversation Handler (This part is correctly structured)
 bastilla_convo_handler = Object:new {
     tstring = "myconversation"
 }
 
 function bastilla_convo_handler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 	local convoTemplate = LuaConversationTemplate(pConvTemplate)
-	return convoTemplate:getScreen("first_screen")
+	return convoTemplate:getScreen("first_screen") -- "first_screen" must be defined in bastilla_conv.lua
 end
 
 function bastilla_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, selectedOption, pConvScreen)
@@ -42,13 +51,13 @@ function bastilla_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, 
 			local planetName = SceneObject(pPlayer):getZoneName()
 
 			-- Spawn Revan nearby the player
-			spawnMobile(planetName, "revan", 1, x + 10, z, y + 10, 0, 0) -- "revan" is the creature template name
+			-- "revan" must be a globally loaded creature template
+			spawnMobile(planetName, "revan", 1, x + 10, z, y + 10, 0, 0)
 			CreatureObject(pPlayer):sendSystemMessage("You feel a powerful presence nearby...")
 
-			return clonedConversation:getScreen("revan_spawn_screen")
+			return clonedConversation:getScreen("revan_spawn_screen") -- "revan_spawn_screen" must be in bastilla_conv.lua
 		end
 	end
 
 	return clonedConversation:getScreen(screen:getOptionLink(selectedOption))
 end
-
