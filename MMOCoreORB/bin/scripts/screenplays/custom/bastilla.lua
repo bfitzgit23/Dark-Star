@@ -8,32 +8,32 @@ function bastilla_convo_handler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 end
 
 function bastilla_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, selectedOption, pConvScreen)
-    local screen = LuaConversationScreen(pConvScreen)
-    local screenID = screen:getScreenID()
-    local clonedConversation = LuaConversationScreen(screen:cloneScreen())
+	local screen = LuaConversationScreen(pConvScreen)
+	local screenID = screen:getScreenID()
+	local clonedConversation = LuaConversationScreen(screen:cloneScreen())
 
-    if (screenID == "first_screen") then
-        if (selectedOption == 0) then -- Assuming "yes" is the first (0th) option
-            local x = CreatureObject(pPlayer):getPositionX()
-            local z = CreatureObject(pPlayer):getPositionZ()
-            local y = CreatureObject(pPlayer):getPositionY()
-            local planetName = SceneObject(pPlayer):getZoneName()
+ 	if (screenID == "first_screen") then
+		if (selectedOption == 0) then -- Assuming "yes" is the first (0th) option
+			local x = CreatureObject(pPlayer):getPositionX()
+			local z = CreatureObject(pPlayer):getPositionZ()
+			local y = CreatureObject(pPlayer):getPositionY()
+			local planetName = SceneObject(pPlayer):getZoneName()
 
-            -- Spawn Revan nearby the player
-            spawnMobile(planetName, "revan", 1, x + 10, z, y + 10, 0, 0) -- "revan" is the creature template name
-            CreatureObject(pPlayer):sendSystemMessage("You feel a powerful presence nearby...")
+			-- Spawn Revan nearby the player
+			spawnMobile(planetName, "revan", 1, x + 10, z, y + 10, 0, 0) -- "revan" is the creature template name
+			CreatureObject(pPlayer):sendSystemMessage("You feel a powerful presence nearby...")
 
-            return clonedConversation:getScreen("revan_spawn_screen")
-        end
-    end
+			return clonedConversation:getScreen("revan_spawn_screen")
+		end
+	end
 
-    return clonedConversation:getScreen(screen:getOptionLink(selectedOption))
+	return clonedConversation:getScreen(screen:getOptionLink(selectedOption))
 end
 
 bastilla_vendor = ScreenPlay:new {
-    numberOfActs = 1,
-    questString = "bastilla_vendor_task",
-    states = {},
+	numberOfActs = 1,
+	questString = "bastilla_vendor_task",
+	states = {},
 }
 
 registerScreenPlay("bastilla_vendor", true)
