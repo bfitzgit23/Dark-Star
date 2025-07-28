@@ -12,7 +12,7 @@ function bastilla_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, 
 	local screenID = screen:getScreenID()
 	local clonedConversation = LuaConversationScreen(screen:cloneScreen())
 
- 	if (screenID == "first_screen") then
+	if (screenID == "first_screen") then
 		if (selectedOption == 0) then -- Assuming "yes" is the first (0th) option
 			local x = CreatureObject(pPlayer):getPositionX()
 			local z = CreatureObject(pPlayer):getPositionZ()
