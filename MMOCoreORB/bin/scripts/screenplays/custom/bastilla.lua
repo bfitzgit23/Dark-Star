@@ -2,23 +2,23 @@
 
 bastilla_vendor = ScreenPlay:new {
 	numberOfActs = 1,
-	questString = "bastilla_vendor_task",
+	questString = "bastilla_npc_task",
 	states = {},
 }
 
-registerScreenPlay("bastilla_vendor", true)
+registerScreenPlay("bastilla_npc", true)
 
--- function bastilla_vendor:start()
-    -- local spawnLocations = {
-        -- { "corellia", 1000, 35, 2000, 35 },  -- Example spawn location
-        -- { "naboo", 2000, 35, 3000, 35 },
-        -- { "tatooine", 1500, 35, 2500, 35 },
-    -- }
+function bastilla_npc:start()
+    local spawnLocations = {
+        { "corellia", 1000, 35, 2000, 35 },  -- Example spawn location
+        { "naboo", 2000, 35, 3000, 35 },
+        { "tatooine", 1500, 35, 2500, 35 },
+    }
 
-    -- for i, location in ipairs(spawnLocations) do
-        -- spawnMobile(location[1], "bastilla_vendor", 1, location[2], location[3], location[4], location[5], 0)
-    -- end
--- end
+    for i, location in ipairs(spawnLocations) do
+        spawnMobile(location[1], "bastilla_npc", 1, location[2], location[3], location[4], location[5], 0)
+    end
+end
 
 bastilla_convo_handler = Object:new {
     tstring = "myconversation"
