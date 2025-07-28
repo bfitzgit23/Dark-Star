@@ -19,10 +19,10 @@ bastilla_first_screen = ConvoScreen:new {
 bastilla_conv:addScreen(bastilla_first_screen);
 
 revan_spawn_screen = ConvoScreen:new {
-    id = "revan_spawn_screen",
-    leftDialog = "",
-    customDialogText = "Thank you, stranger. He will appear nearby when you are ready to face him. Prepare yourself.",
-    stopConversation = "true",
-    options = {}
+	id = "revan_spawn_screen",
+	leftDialog = "",
+	customDialogText = "Thank you, stranger. He will appear nearby when you are ready to face him. Prepare yourself.",
+	stopConversation = "true",
+	options = {}
 }
 bastilla_conv:addScreen(revan_spawn_screen);
