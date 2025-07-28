@@ -25,7 +25,9 @@ function bastilla_vendor:start()
     local pWeaponsmith = spawnMobile("corellia", "bastilla_vendor", 1, -157, 28.0, -4724, 35, 0 )--cnet
 end
 
-bastilla_convo_handler = conv_handler:new {}
+bastilla_convo_handler = Object:new {
+    tstring = "myconversation"
+}
 
 function bastilla_convo_handler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 	local convoTemplate = LuaConversationTemplate(pConvTemplate)
