@@ -6,9 +6,9 @@ bastilla_vendor = ScreenPlay:new {
 	states = {},
 }
 
-registerScreenPlay("bastilla_npc", true)
+registerScreenPlay("bastilla_npc_quest", true)
 
-function bastilla_npc:start()
+function bastilla_npc_quest:start()
     local spawnLocations = {
         { "corellia", 1000, 35, 2000, 35 },  -- Example spawn location
         { "naboo", 2000, 35, 3000, 35 },
