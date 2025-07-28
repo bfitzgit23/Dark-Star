@@ -20,11 +20,6 @@ registerScreenPlay("bastilla_vendor", true)
     -- end
 -- end
 
-function bastilla_vendor:start()     
-    -- Spawn our character into the world, setting pLarry a pointer variable we can use to check or change his state. 
-    local pWeaponsmith = spawnMobile("corellia", "bastilla_vendor", 1, -157, 28.0, -4724, 35, 0 )--cnet
-end
-
 bastilla_convo_handler = Object:new {
     tstring = "myconversation"
 }
