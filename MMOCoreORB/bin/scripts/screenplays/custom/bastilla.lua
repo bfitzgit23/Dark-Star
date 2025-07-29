@@ -74,7 +74,3 @@ function bastilla_convo_handler:getNextConversationScreen(conversationTemplate, 
 
     return nextConversationScreen
 end
-
-function bastilla_convo_handler:runScreenHandlers(conversationTemplate, conversingPlayer, conversingNPC, selectedOption, conversationScreen)
-    return conversationScreen
-end
