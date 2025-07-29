@@ -48,9 +48,9 @@ function bastilla_convo_handler:getNextConversationScreen(conversationTemplate, 
     local nextConversationScreen = nil -- Initialize next screen
 
     -- If this is the initial interaction (no last screen)
-    -- if (lastConversationScreen == nil) then
-        -- return conversation:getInitialScreen()
-    -- else
+    if (lastConversationScreen == nil) then
+        nextConversationScreen = conversation:getInitialScreen() -- Get the first screen ("first_screen")
+    else
         -- If it's a subsequent interaction, get the option link
         local luaLastConversationScreen = LuaConversationScreen(lastConversationScreen)
         local optionLink = luaLastConversationScreen:getOptionLink(selectedOption)
