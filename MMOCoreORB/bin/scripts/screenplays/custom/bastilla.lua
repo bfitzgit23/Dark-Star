@@ -48,7 +48,7 @@ function bastilla_convo_handler:getNextConversationScreen(conversationTemplate, 
     local nextConversationScreen = nil -- Initialize next screen
 
     -- If this is the initial interaction (no last screen)
-    f (lastConversationScreen == nil) then
+    if (lastConversationScreen == nil) then
         return conversation:getInitialScreen()
     end
         -- If it's a subsequent interaction, get the option link
