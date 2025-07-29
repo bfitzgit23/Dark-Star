@@ -26,7 +26,7 @@ bastilla_convo_handler = Object:new {
     tstring = "myconversation2" -- Unique tstring
 }
 
-function dark_star_vendor_convo_handler:getNextConversationScreen(conversationTemplate, conversingPlayer, selectedOption)
+function bastilla_convo_handler:getNextConversationScreen(conversationTemplate, conversingPlayer, selectedOption)
     local creature = LuaCreatureObject(conversingPlayer)
     local convosession = creature:getConversationSession()
     local conversation = LuaConversationTemplate(conversationTemplate)
