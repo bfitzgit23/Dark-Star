@@ -51,3 +51,7 @@ function bastilla_convo_handler:getNextConversationScreen(conversationTemplate, 
     local luaLastConversationScreen = LuaConversationScreen(lastConversationScreen)
     local optionLink = luaLastConversationScreen:getOptionLink(selectedOption)
 end
+
+function bastilla_convo_handler:runScreenHandlers(conversationTemplate, conversingPlayer, conversingNPC, selectedOption, conversationScreen)
+    return conversationScreen
+end
