@@ -24,7 +24,7 @@ end
 
 -- 2. Bastila's Conversation Handler (This part is correctly structured)
 bastilla_convo_handler = Object:new {
-    tstring = "myconversation"
+    tstring = "myconversation2"
 }
 
 function bastilla_convo_handler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
