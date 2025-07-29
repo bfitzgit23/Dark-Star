@@ -26,3 +26,5 @@ revan_spawn_screen = ConvoScreen:new {
 	options = {}
 }
 bastilla_conv:addScreen(revan_spawn_screen);
+
+addConversationTemplate("bastilla_conv", bastilla_conv);
