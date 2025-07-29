@@ -47,7 +47,7 @@ function bastilla_convo_handler:getNextConversationScreen(conversationTemplate, 
 	local luaLastConversationScreen = LuaConversationScreen(lastConversationScreen)
     local optionLink = luaLastConversationScreen:getOptionLink(selectedOption)
 	
-	if (optionLink == "revan_spawn_screen")
+	if (optionLink == "revan_spawn_screen") then
 		local x = CreatureObject(pPlayer):getPositionX()
 			local z = CreatureObject(pPlayer):getPositionZ()
 			local y = CreatureObject(pPlayer):getPositionY()
