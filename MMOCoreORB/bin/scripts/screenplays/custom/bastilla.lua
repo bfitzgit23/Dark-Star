@@ -1,93 +1,76 @@
 -- File: MMOCoreORB\bin\scripts\screenplays\custom\bastilla.lua
 
--- Define the ScreenPlay for the vendor
-bastilla = ScreenPlay:new {
-    numberOfActs = 1,
-    questString = "bastilla_task",
-    states = {},
+-- 1. Bastila ScreenPlay Definition
+local bastila_screenplay_obj = ScreenPlay:new {
+	numberOfActs = 1,
+	questString = "bastilla_spawn_screenplay_task",
+	states = {},
 }
+registerScreenPlay("bastila_screenplay", true) -- Registers the screenplay globally as "bastila_screenplay"
 
-registerScreenPlay("bastilla", true)
-
--- This function runs when the script starts, spawning all the vendor NPCs
-function bastilla:start()
-    -- A list of all locations where the vendor should spawn.
+function bastila_screenplay_obj:start()
     local spawnLocations = {
-        -- Corellia
-        { "corellia", -3271, 86, 3114, 35 },      	-- cnet
+        { "corellia", -3271, 86, 3114, 35 }, -- Corellia coordinates
     }
 
     for i, location in ipairs(spawnLocations) do
+        -- Spawn Bastila using the "bastilla_npc" creature template name.
+        -- The conversation template for this spawn is linked in bastila_npc.lua (bastilla_conv).
         spawnMobile(location[1], "bastilla_npc", 1, location[2], location[3], location[4], location[5], 0)
     end
 end
 
--- 2. Bastila's Conversation Handler (This part is correctly structured)
+
+-- 2. Bastila's Conversation Handler (Corrected to use getNextConversationScreen exclusively)
 bastilla_convo_handler = Object:new {
-    tstring = "myconversation2"
+    tstring = "myconversation2" -- Unique tstring
 }
 
--- function bastilla_convo_handler:getNextConversationScreen(conversationTemplate, conversingPlayer, selectedOption)
-	-- local creature = LuaCreatureObject(conversingPlaer)
-	-- local convosession = creature:getConversationSession()
-	-- local conversation = LuaConversationTemplate(conversationTemplate)
-	
-	-- if (conversation == nil) then
-        -- return nil
-    -- end
-	
-	-- local lastConversationScreen = nil
-    -- if (convosession ~= nil) then
-        -- local session = LuaConversationSession(convosession)
-        -- if (session ~= nil) then
-            -- lastConversationScreen = session:getLastConversationScreen()
-        -- end
-    -- end
+-- This is the single conversation handling function for bastilla_convo_handler
+function bastilla_convo_handler:getNextConversationScreen(conversationTemplate, conversingPlayer, selectedOption)
+    local creature = LuaCreatureObject(conversingPlayer)
+    local convosession = creature:getConversationSession()
+    local conversation = LuaConversationTemplate(conversationTemplate)
 
-	-- local luaLastConversationScreen = LuaConversationScreen(lastConversationScreen)
-    -- local optionLink = luaLastConversationScreen:getOptionLink(selectedOption)
-	
-	-- if (optionLink == "revan_spawn_screen") then
-		-- local x = CreatureObject(pPlayer):getPositionX()
-			-- local z = CreatureObject(pPlayer):getPositionZ()
-			-- local y = CreatureObject(pPlayer):getPositionY()
-			-- local planetName = SceneObject(pPlayer):getZoneName()
+    -- If conversationTemplate is nil, return nil (safety check)
+    if (conversation == nil) then
+        return nil
+    end
 
-			--Spawn Revan nearby the player
-			--"revan" must be a globally loaded creature template
-			-- spawnMobile(planetName, "revan", 1, x + 10, z, y + 10, 0, 0)
-			-- CreatureObject(pPlayer):sendSystemMessage("You feel a powerful presence nearby...")
-	-- end
--- end
+    local lastConversationScreen = nil
+    if (convosession ~= nil) then
+        local session = LuaConversationSession(convosession)
+        if (session ~= nil) then
+            lastConversationScreen = session:getLastConversationScreen()
+        end
+    end
 
-function bastilla_convo_handler:runScreenHandlers(conversationTemplate, conversingPlayer, conversingNPC, selectedOption, conversationScreen)
-    return conversationScreen
-end
-function bastilla_convo_handler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
-	local convoTemplate = LuaConversationTemplate(pConvTemplate)
-	return convoTemplate:getScreen("first_screen") -- "first_screen" must be defined in bastilla_conv.lua
-end
+    local nextConversationScreen = nil -- Initialize next screen
 
-function bastilla_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, selectedOption, pConvScreen)
-	local screen = LuaConversationScreen(pConvScreen)
-	local screenID = screen:getScreenID()
-	local clonedConversation = LuaConversationScreen(screen:cloneScreen())
+    -- If this is the initial interaction (no last screen)
+    if (lastConversationScreen == nil) then
+        nextConversationScreen = conversation:getInitialScreen() -- Get the first screen ("first_screen")
+    else
+        -- If it's a subsequent interaction, get the option link
+        local luaLastConversationScreen = LuaConversationScreen(lastConversationScreen)
+        local optionLink = luaLastConversationScreen:getOptionLink(selectedOption)
 
-	if (screenID == "first_screen") then
-		if (selectedOption == 0) then -- Assuming "yes" is the first (0th) option
-			local x = CreatureObject(pPlayer):getPositionX()
-			local z = CreatureObject(pPlayer):getPositionZ()
-			local y = CreatureObject(pPlayer):getPositionY()
-			local planetName = SceneObject(pPlayer):getZoneName()
+        -- Handle the "yes" option from the "first_screen"
+        if (optionLink == "revan_spawn_screen") then -- This is the option that spawns Revan
+            local x = CreatureObject(conversingPlayer):getPositionX()
+            local z = CreatureObject(conversingPlayer):getPositionZ()
+            local y = CreatureObject(conversingPlayer):getPositionY()
+            local planetName = SceneObject(conversingPlayer):getZoneName()
 
-			--Spawn Revan nearby the player
-			--"revan" must be a globally loaded creature template
-			spawnMobile(planetName, "revan", 1, x + 10, z, y + 10, 0, 0)
-			CreatureObject(pPlayer):sendSystemMessage("You feel a powerful presence nearby...")
+            spawnMobile(planetName, "revan", 1, x + 10, z, y + 10, 0, 0)
+            CreatureObject(conversingPlayer):sendSystemMessage("You feel a powerful presence nearby...")
 
-			return clonedConversation:getScreen("revan_spawn_screen") -- "revan_spawn_screen" must be in bastilla_conv.lua
-		end
-	end
+            nextConversationScreen = conversation:getScreen("revan_spawn_screen") -- Transition to the Revan spawn confirmation screen
+        else
+            -- For any other option, just navigate to the linked screen
+            nextConversationScreen = conversation:getScreen(optionLink)
+        end
+    end
 
-	return clonedConversation:getScreen(screen:getOptionLink(selectedOption))
+    return nextConversationScreen
 end
