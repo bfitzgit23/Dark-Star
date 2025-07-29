@@ -50,26 +50,25 @@ function bastilla_convo_handler:getNextConversationScreen(conversationTemplate, 
     -- If this is the initial interaction (no last screen)
     if (lastConversationScreen == nil) then
         return conversation:getInitialScreen()
-    end
-        -- If it's a subsequent interaction, get the option link
-        local luaLastConversationScreen = LuaConversationScreen(lastConversationScreen)
-        local optionLink = luaLastConversationScreen:getOptionLink(selectedOption)
+	end
+	-- If it's a subsequent interaction, get the option link
+	local luaLastConversationScreen = LuaConversationScreen(lastConversationScreen)
+	local optionLink = luaLastConversationScreen:getOptionLink(selectedOption)
 
-        -- Handle the "yes" option from the "first_screen"
-        if (optionLink == "revan_spawn_screen") then -- This is the option that spawns Revan
-            local x = CreatureObject(conversingPlayer):getPositionX()
-            local z = CreatureObject(conversingPlayer):getPositionZ()
-            local y = CreatureObject(conversingPlayer):getPositionY()
-            local planetName = SceneObject(conversingPlayer):getZoneName()
+    -- Handle the "yes" option from the "first_screen"
+    if (optionLink == "revan_spawn_screen") then -- This is the option that spawns Revan
+        local x = CreatureObject(conversingPlayer):getPositionX()
+        local z = CreatureObject(conversingPlayer):getPositionZ()
+        local y = CreatureObject(conversingPlayer):getPositionY()
+        local planetName = SceneObject(conversingPlayer):getZoneName()
 
-            spawnMobile(planetName, "revan", 1, x + 10, z, y + 10, 0, 0)
-            CreatureObject(conversingPlayer):sendSystemMessage("You feel a powerful presence nearby...")
+        spawnMobile(planetName, "revan", 1, x + 10, z, y + 10, 0, 0)
+        CreatureObject(conversingPlayer):sendSystemMessage("You feel a powerful presence nearby...")
 
-            nextConversationScreen = conversation:getScreen("revan_spawn_screen") -- Transition to the Revan spawn confirmation screen
-        else
-            -- For any other option, just navigate to the linked screen
-            nextConversationScreen = conversation:getScreen(optionLink)
-        end
+        nextConversationScreen = conversation:getScreen("revan_spawn_screen") -- Transition to the Revan spawn confirmation screen
+    else
+    -- For any other option, just navigate to the linked screen
+    nextConversationScreen = conversation:getScreen(optionLink)
     end
 
     return nextConversationScreen
