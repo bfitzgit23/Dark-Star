@@ -1,14 +1,15 @@
 -- File: MMOCoreORB\bin\scripts\screenplays\custom\bastilla.lua
 
 -- 1. Bastila ScreenPlay Definition
-local bastila_screenplay_obj = ScreenPlay:new {
-	numberOfActs = 1,
-	questString = "bastilla_spawn_screenplay_task",
-	states = {},
+bastilla = ScreenPlay:new {
+    numberOfActs = 1,
+    questString = "bastilla_task",
+    states = {},
 }
-registerScreenPlay("bastila_screenplay", true) -- Registers the screenplay globally as "bastila_screenplay"
 
-function bastila_screenplay_obj:start()
+registerScreenPlay("bastilla", true) -- Registers the screenplay globally as "bastila_screenplay"
+
+function bastilla:start()
     local spawnLocations = {
         { "corellia", -3271, 86, 3114, 35 }, -- Corellia coordinates
     }
