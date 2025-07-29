@@ -1,7 +1,7 @@
 -- File: MMOCoreORB\bin\scripts\screenplays\custom\bastilla.lua
 
 -- Define the ScreenPlay for the vendor
-dark_star_vendor = ScreenPlay:new {
+bastilla = ScreenPlay:new {
     numberOfActs = 1,
     questString = "bastilla_task",
     states = {},
