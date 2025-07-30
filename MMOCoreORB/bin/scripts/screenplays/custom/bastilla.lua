@@ -85,7 +85,7 @@ function bastilla_convo_handler:getNextConversationScreen(conversationTemplate, 
                 -- Set a flag that Revan has now been spawned for this player
                 writeData(playerID .. ":revan_spawned_for_quest", 1)
 
-                nextConversationScreen = conversation:getScreen("revan_spawn_screen")
+                nextConversationScreen = conversation:getScreen("first_screen")
             else
                 -- Revan has already spawned. Give a different dialogue or end conversation.
                 CreatureObject(conversingPlayer):sendSystemMessage("You have already faced Revan. There is nothing more here for you.")
