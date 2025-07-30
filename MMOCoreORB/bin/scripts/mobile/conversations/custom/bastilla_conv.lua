@@ -27,4 +27,14 @@ revan_spawn_screen = ConvoScreen:new {
 }
 bastilla_conv:addScreen(revan_spawn_screen);
 
+-- NEW: Screen for when Revan has already spawned
+revan_already_spawned = ConvoScreen:new {
+    id = "revan_already_spawned",
+    leftDialog = "",
+    customDialogText = "My friend senses you have already undertaken this challenge. There is nothing more for me to ask of you at this time.",
+    stopConversation = "true", -- End conversation
+    options = {}
+}
+bastilla_conv:addScreen(revan_already_spawned);
+
 addConversationTemplate("bastilla_conv", bastilla_conv);
