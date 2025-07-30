@@ -77,3 +77,4 @@ includeFile("thug/veteran_explorer.lua")
 includeFile("thug/warder.lua")
 includeFile("thug/wastrel.lua")
 includeFile("thug/wookiee_brawler.lua")
+

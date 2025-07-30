@@ -336,3 +336,6 @@ includeFile("conversations/junk_dealer/junk_dealer_sneg_conv.lua")
 
 --Custom Vendors
 includeFile("conversations/tasks/dark_star_vendor_conv.lua")
+
+--Custom Content
+includeFile("conversations/custom/bastilla_conv.lua")
