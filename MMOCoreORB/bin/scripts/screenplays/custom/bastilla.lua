@@ -59,6 +59,20 @@ function bastilla_convo_handler:getNextConversationScreen(conversationTemplate, 
 
         spawnMobile(planetName, "revan", 1, x + 10, z, y + 10, 0, 0)
         CreatureObject(conversingPlayer):sendSystemMessage("You feel a powerful presence nearby...")
+		
+		-- NEW: Add item to Revan's inventory if spawn was successful
+            if (pRevan ~= nil) then
+                local pRevanInventory = CreatureObject(pRevan):getSlottedObject("inventory")
+                if (pRevanInventory ~= nil) then
+                    giveItem(pRevanInventory, "object/weapon/melee/sword/sword_lightsaber_ben.iff", -1) -- Replace with your item's IFF path
+                    -- You can also send a system message to yourself (the admin) for debugging
+                    -- CreatureObject(conversingPlayer):sendSystemMessage("Revan spawned and received item: Revan's Lightsaber.");
+                else
+                    CreatureObject(conversingPlayer):sendSystemMessage("Error: Revan's inventory not found.");
+                end
+            else
+                CreatureObject(conversingPlayer):sendSystemMessage("Error: Revan failed to spawn.");
+            end
 
         nextConversationScreen = conversation:getScreen("revan_spawn_screen") -- Transition to the Revan spawn confirmation screen
     else
