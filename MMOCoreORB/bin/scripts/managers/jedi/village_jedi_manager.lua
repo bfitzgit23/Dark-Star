@@ -6,7 +6,7 @@ jediManagerName = "VillageJediManager"
 
 NOTINABUILDING = 0
 
-NUMBEROFTREESTOMASTER = 1
+NUMBEROFTREESTOMASTER = 6
 
 VillageJediManager = JediManager:new {
 	screenplayName = jediManagerName,
@@ -110,7 +110,7 @@ function VillageJediManager:canLearnSkill(pPlayer, skillName)
 		end
 	end
 
-	if skillName == "force_title_jedi_rank_01" and CreatureObject(pPlayer):getForceSensitiveSkillCount(false) < 4  then
+	if skillName == "force_title_jedi_rank_01" and CreatureObject(pPlayer):getForceSensitiveSkillCount(false) < 24 then
 		return false
 	end
 
