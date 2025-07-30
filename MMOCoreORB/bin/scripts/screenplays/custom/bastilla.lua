@@ -73,8 +73,8 @@ function bastilla_convo_handler:getNextConversationScreen(conversationTemplate, 
                     local pRevanInventory = CreatureObject(pRevan):getSlottedObject("inventory")
                     if (pRevanInventory ~= nil) then
                         -- REPLACE WITH YOUR ACTUAL ITEM'S IFF PATH
-                        giveItem(pRevanInventory, "object/weapon/melee/lightsaber/s_ls_revan.iff", -1)
-                        CreatureObject(conversingPlayer):sendSystemMessage("Revan spawned and received item: Revan's Lightsaber.")
+                        giveItem(pRevanInventory, "object/weapon/melee/baton/baton_stun.iff", -1)
+                        CreatureObject(conversingPlayer):sendSystemMessage("Revan spawned and received item: Stun Baton.")
                     else
                         CreatureObject(conversingPlayer):sendSystemMessage("Error: Revan's inventory not found after spawn.")
                     end
