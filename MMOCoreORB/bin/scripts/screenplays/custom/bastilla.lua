@@ -16,7 +16,7 @@ function bastilla:start()
 
     for i, location in ipairs(spawnLocations) do
         -- Spawn Bastila using the "bastilla_npc" creature template name.
-        -- The conversation template for this spawn is linked in bastilla_npc.lua (bastilla_conv).
+        -- The conversation template for this spawn is linked in bastila_npc.lua (bastilla_conv).
         spawnMobile(location[1], "bastilla_npc", 1, location[2], location[3], location[4], location[5], 0)
     end
 end
@@ -65,8 +65,22 @@ function bastilla_convo_handler:getNextConversationScreen(conversationTemplate, 
                 local y = CreatureObject(conversingPlayer):getPositionY()
                 local planetName = SceneObject(conversingPlayer):getZoneName()
 
-                spawnMobile(planetName, "revan", 1, x + 10, z, y + 10, 0, 0)
+                local pRevan = spawnMobile(planetName, "revan", 1, x + 10, z, y + 10, 0, 0)
                 CreatureObject(conversingPlayer):sendSystemMessage("You feel a powerful presence nearby...")
+
+                -- NEW: Add item to Revan's inventory if spawn was successful
+                if (pRevan ~= nil) then
+                    local pRevanInventory = CreatureObject(pRevan):getSlottedObject("inventory")
+                    if (pRevanInventory ~= nil) then
+                        -- REPLACE WITH YOUR ACTUAL ITEM'S IFF PATH
+                        giveItem(pRevanInventory, "object/weapon/melee/lightsaber/s_ls_revan.iff", -1)
+                        CreatureObject(conversingPlayer):sendSystemMessage("Revan spawned and received item: Revan's Lightsaber.")
+                    else
+                        CreatureObject(conversingPlayer):sendSystemMessage("Error: Revan's inventory not found after spawn.")
+                    end
+                else
+                    CreatureObject(conversingPlayer):sendSystemMessage("Error: Revan failed to spawn.")
+                end
 
                 -- Set a flag that Revan has now been spawned for this player
                 writeData(playerID .. ":revan_spawned_for_quest", 1)
@@ -87,6 +101,6 @@ end
 
 -- The runScreenHandlers function is not needed when getNextConversationScreen handles all logic.
 -- It was likely causing an overwrite or confusion previously.
--- function bastilla_convo_handler:runScreenHandlers(conversationTemplate, conversingPlayer, conversingNPC, selectedOption, conversationScreen)
---     return conversationScreen
--- end
+function bastilla_convo_handler:runScreenHandlers(conversationTemplate, conversingPlayer, conversingNPC, selectedOption, conversationScreen)
+    return conversationScreen
+end
