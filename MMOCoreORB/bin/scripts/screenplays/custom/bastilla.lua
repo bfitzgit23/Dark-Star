@@ -64,7 +64,7 @@ function bastilla_convo_handler:getNextConversationScreen(conversationTemplate, 
             if (pRevan ~= nil) then
                 local pRevanInventory = CreatureObject(pRevan):getSlottedObject("inventory")
                 if (pRevanInventory ~= nil) then
-                    giveItem(pRevanInventory, "object/weapon/melee/sword/crafted_saber/sword_lightsaber_one_handed_gen4.iff", -1) -- Replace with your item's IFF path
+                    giveItem(pRevanInventory, "object/weapon/melee/baton/baton_stun.iff", -1) -- Replace with your item's IFF path
                     -- You can also send a system message to yourself (the admin) for debugging
                     CreatureObject(conversingPlayer):sendSystemMessage("Revan spawned and received item: Revan's Lightsaber.");
                 else
