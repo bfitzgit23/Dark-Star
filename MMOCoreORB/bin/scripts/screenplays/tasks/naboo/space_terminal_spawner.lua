@@ -26,6 +26,7 @@ function space_terminal_spawner:start()
         { "dathomir", 5210, 78.5, -4056, 0, "-- The Village" },
         { "dantooine", 6910, 25, -4086, 0, "-- Janta Cave" },
         { "lok", -3633, 18, -6034, 0, "-- Janta Cave" },
+		{ "corellia", -321, 28, -4634, 0, "-- Corellia Shuttle B" },
 
         -- Force Shrine Spawns (Precise Y-Coordinates) --
 
