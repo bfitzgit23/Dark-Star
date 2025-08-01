@@ -26,7 +26,19 @@ function space_terminal_spawner:start()
         { "dathomir", 5210, 78.5, -4056, 0, "-- The Village" },
         { "dantooine", 6910, 25, -4086, 0, "-- Janta Cave" },
         { "lok", -3633, 18, -6034, 0, "-- Janta Cave" },
+		
+		-- Corellia Shuttleport's
 		{ "corellia", -321, 28.5, -4634, 180, "-- Corellia Shuttle B" },
+		{ "corellia", -17, 28.5, -4402, 180, "-- Corellia Shuttle A" },
+		{ "corellia", -6637, 330.5, -5913, 180, "-- Bela Vistal Shuttleport A" },
+		{ "corellia", -6935, 330.5, -5544, 180, "-- Bela Vistal Shuttleport B" },
+		{ "corellia", -5543, 16.5, -6053, 180, "-- Vreni Island Shuttleport" },
+		{ "corellia", -5607, 21.5, -2782, 180, "-- Tyrena Shuttleport B" },
+		{ "corellia", -4996, 21.5, -2381, 180, "-- Tyrena Shuttleport A" },
+		{ "corellia", -3767, 86.5, 3241, 180, "-- Kor Vella Shuttleport" },
+		{ "corellia", 3078, 280.5, 5001, 180, "-- Doaba Guerfel Shuttleport" },
+		{ "corellia", 691, 6.5, -3048, 180, "-- Dearic Shuttleport" },
+		{ "corellia", 4327, 10.5, 5439, 180, "-- Nashal Shuttleport" },
 
         -- Force Shrine Spawns (Precise Y-Coordinates) --
 
