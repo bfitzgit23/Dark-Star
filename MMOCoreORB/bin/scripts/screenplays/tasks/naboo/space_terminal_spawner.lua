@@ -37,8 +37,10 @@ function space_terminal_spawner:start()
 		{ "corellia", -4996, 21.5, -2381, 180, "-- Tyrena Shuttleport A" },
 		{ "corellia", -3767, 86.5, 3241, 180, "-- Kor Vella Shuttleport" },
 		{ "corellia", 3078, 280.5, 5001, 180, "-- Doaba Guerfel Shuttleport" },
-		{ "corellia", 691, 6.5, -3048, 180, "-- Dearic Shuttleport" },
-		{ "corellia", 4327, 10.5, 5439, 180, "-- Nashal Shuttleport" },
+		
+		--Talus Shuttleports
+		{ "talus", 691, 6.5, -3048, 180, "-- Dearic Shuttleport" },
+		{ "talus", 4327, 10.5, 5439, 180, "-- Nashal Shuttleport" },
 
         -- Force Shrine Spawns (Precise Y-Coordinates) --
 
