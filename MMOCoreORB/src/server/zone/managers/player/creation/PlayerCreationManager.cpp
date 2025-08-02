@@ -408,6 +408,14 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 	ManagedReference<PlayerObject*> ghost = playerCreature->getPlayerObject();
 
+	if (profession.contains("jedi"))
+            if (ghost != nullptr) {
+            	ghost->setJediState(2);
+            	ghost->addHologrindProfession(0);
+            	// Award force_title_jedi_rank_02 skill
+            	SkillManager::instance()->awardSkill("force_title_jedi_rank_02", playerCreature, false, true, true);
+            }
+	
 	if (ghost != nullptr) {
 		//Set skillpoints before adding any skills.
 		ghost->setSkillPoints(skillPoints);
