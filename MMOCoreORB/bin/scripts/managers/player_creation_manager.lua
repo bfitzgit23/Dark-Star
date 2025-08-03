@@ -51,11 +51,13 @@ jediCrystal = "object/tangible/component/weapon/lightsaber/lightsaber_module_for
 
 gasTool = "object/tangible/survey_tool/survey_tool_gas.iff"
 
+saber = "object/weapon/melee/sword/crafted_saber/sword_lightsaber_s9_training.iff"
+
 professionSpecificItems = {
 	combat_brawler = { brawlerOneHander, brawlerTwoHander, brawlerPolearm },
 	combat_marksman = { marksmanPistol, marksmanCarbine, marksmanRifle },
 	crafting_artisan = { genericTool, mineralTool, chemicalTool },
-	jedi_padawan = { robe, jediTool, jediCrystal, genericTool, mineralTool, chemicalTool, gasTool },
+	jedi_padawan = { robe, jediTool, jediCrystal, genericTool, mineralTool, chemicalTool, gasTool, saber },
 	outdoors_scout = { genericTool },
 	science_medic = { foodTool },
 	social_entertainer = { slitherhorn }
