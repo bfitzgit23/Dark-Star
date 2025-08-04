@@ -104,6 +104,6 @@ entertainerMissionSkillDurationFactor = 5     -- 5 seconds per skill level
 --    <BaseReward> + <SkillRewardFactor> * <entertainerSkillLevel> + 
 --    rand(<RandomReward>) + rand(<SkillRandomReward> * <entertainerSkillLevel>)
 entertainerMissionBaseReward = 1500
-entertainerMissionSkillRewardFactor = 250
+entertainerMissionSkillRewardFactor = 1000
 entertainerMissionRandomReward = 1000
-entertainerMissionSkillRandomReward = 20
+entertainerMissionSkillRandomReward = 25
