@@ -92,3 +92,18 @@ destroyMissionBaseReward = 0
 destroyMissionDifficultyRewardFactor = 1000
 destroyMissionRandomReward = 0
 destroyMissionDifficultyRandomReward = 25
+
+-- Entertainer Mission Configuration
+-- Duration in seconds is simulated as:
+--    <BaseDuration> + rand(<RandomDuration>) + <SkillDurationFactor> * <entertainerSkillLevel>
+entertainerMissionBaseDuration = 180          -- 3 minutes base
+entertainerMissionRandomDuration = 120        -- up to +2 minutes
+entertainerMissionSkillDurationFactor = 5     -- 5 seconds per skill level
+
+-- Mission payout calculated as: 
+--    <BaseReward> + <SkillRewardFactor> * <entertainerSkillLevel> + 
+--    rand(<RandomReward>) + rand(<SkillRandomReward> * <entertainerSkillLevel>)
+entertainerMissionBaseReward = 1500
+entertainerMissionSkillRewardFactor = 250
+entertainerMissionRandomReward = 1000
+entertainerMissionSkillRandomReward = 20
