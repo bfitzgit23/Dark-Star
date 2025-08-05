@@ -286,33 +286,15 @@ tatooine_destroy_missions = {
 		},
 		{
 			lairTemplateName = "tatooine_canyon_krayt_dragon_lair_neutral_large",
-			minDifficulty = 90,
-			maxDifficulty = 100,
+			minDifficulty = 80,
+			maxDifficulty = 80,
 			size = 25,
 		},
 		{
-			lairTemplateName = "tatooine_giant_canyon_krayt_dragon_lair_neutral_large",		--Jedi Knight Trials
-			minDifficulty = 90,
-			maxDifficulty = 100,
+			lairTemplateName = "tatooine_giant_canyon_krayt_dragon_lair_neutral_large",
+			minDifficulty = 125,
+			maxDifficulty = 125,
 			size = 25,
-		},
-		{
-			lairTemplateName = "tatooine_tusken_raider",									--Jedi Knight Trials
-			minDifficulty = 28,
-			maxDifficulty = 32,
-			size = 25,
-		},
-		{
-			lairTemplateName = "global_imperial_outpost_trials_large_theater",				--Jedi Knight Trials
-			minDifficulty = 50,
-			maxDifficulty = 55,
-			size = 35,
-		},
-		{
-			lairTemplateName = "global_rebel_outpost_trials_large_theater",					--Jedi Knight Trials
-			minDifficulty = 50,
-			maxDifficulty = 55,
-			size = 35,
 		},
 	}
 }
