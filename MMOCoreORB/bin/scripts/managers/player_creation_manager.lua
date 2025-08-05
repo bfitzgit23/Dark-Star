@@ -51,7 +51,7 @@ jediCrystal = "object/tangible/component/weapon/lightsaber/lightsaber_module_for
 
 gasTool = "object/tangible/survey_tool/survey_tool_gas.iff"
 
-saber = "object/draft_schematic/weapon/lightsaber/lightsaber_training.iff"
+saber = "object/weapon/melee/sword/crafted_saber/sword_lightsaber_training.iff"
 
 professionSpecificItems = {
 	combat_brawler = { brawlerOneHander, brawlerTwoHander, brawlerPolearm },
