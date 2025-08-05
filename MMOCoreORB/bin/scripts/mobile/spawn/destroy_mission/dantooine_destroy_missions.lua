@@ -183,22 +183,16 @@ dantooine_destroy_missions = {
 			size = 25,
 		},
 		{
-			lairTemplateName = "dantooine_graul_marauder_lair_neutral_large",		--Jedi Knight Trials
-			minDifficulty = 58,
-			maxDifficulty = 62,
+			lairTemplateName = "global_dark_jedi_master_neutral_none",
+			minDifficulty = 80,
+			maxDifficulty = 80,
 			size = 25,
 		},
 		{
-			lairTemplateName = "global_imperial_outpost_trials_large_theater",		--Jedi Knight Trials
-			minDifficulty = 50,
-			maxDifficulty = 55,
-			size = 35,
-		},
-		{
-			lairTemplateName = "global_rebel_outpost_trials_large_theater",			--Jedi Knight Trials
-			minDifficulty = 50,
-			maxDifficulty = 55,
-			size = 35,
+			lairTemplateName = "global_dark_jedi_camp_dark_jedi_theater",
+			minDifficulty = 125,
+			maxDifficulty = 125,
+			size = 25,
 		},
 	}
 }
