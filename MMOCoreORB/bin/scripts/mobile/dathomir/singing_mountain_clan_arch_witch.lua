@@ -1,10 +1,10 @@
-singing_mountain_clan_arch_witch = Creature:new {
-	objectName = "@mob/creature_names:singing_mtn_clan_arch_witch",
+nightsister_spell_weaver = Creature:new {
+	objectName = "@mob/creature_names:nightsister_spell_weaver",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
 	mobType = MOB_NPC,
-	socialGroup = "mtn_clan",
-	faction = "mtn_clan",
+	socialGroup = "nightsister",
+	faction = "nightsister",
 	level = 107,
 	chanceHit = 1,
 	damageMin = 645,
@@ -13,7 +13,7 @@ singing_mountain_clan_arch_witch = Creature:new {
 	baseHAM = 24000,
 	baseHAMmax = 30000,
 	armor = 2,
-	resists = {100,5,5,100,100,100,100,100,-1},
+	resists = {5,100,5,100,100,100,100,100,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -28,12 +28,13 @@ singing_mountain_clan_arch_witch = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_dathomir_sing_mt_clan_arch_witch.iff"},
+	templates = {"object/mobile/dressed_dathomir_nightsister_spellweaver.iff"},
 	lootGroups = {
 		{
 			groups = {
-				{group = "mtn_clan_tier_4", chance = 10000000}
-			}
+				{group = "nightsister_tier_4", chance = 10000000}
+			},
+			lootChance = 7000000
 		}
 	},
 
@@ -45,8 +46,8 @@ singing_mountain_clan_arch_witch = Creature:new {
 
 	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
 	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(pikemanmaster,swordsmanmaster,fencermaster,brawlermaster,forcewielder),
+	primaryAttacks = merge(fencermid,swordsmanmid,pikemanmaster,brawlermaster,forcewielder),
 	secondaryAttacks = forcewielder
 }
 
-CreatureTemplates:addCreatureTemplate(singing_mountain_clan_arch_witch, "singing_mountain_clan_arch_witch")
+CreatureTemplates:addCreatureTemplate(nightsister_spell_weaver, "nightsister_spell_weaver")
