@@ -685,3 +685,82 @@ creature_test = {
 	planetObjects = {
 	}
 }
+
+mandalore = {
+
+	weatherEnabled = 1,
+	gcwEnabled = 1,
+
+	outpostRegionNames = { },
+
+	planetTravelPoints = {
+		{name = "Bralsin", x = -5689, z = 0, y = -5034, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "Keldabe Starport", x = 1575, z = 4, y = -6408, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "Keldabe Shuttleport", x = 1432, z = 1.9, y = -6163, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "Sundari", x = 6275, z = 1, y = -6211, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "Norg Bral", x = -6648, z = 30, y = 5583, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "Enceri", x = 4713, z = 2, y = 7154, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "Shuror", x = 1068, z = 1, y = 2733, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+	},
+
+	badgeAreas = {
+		{"exp_man_mythosaur_graveyard",1800,-1175,0,30,146},
+		{"exp_man_keldabe_skybridge",1592,-6360,0,30,147},
+		{"exp_man_mandalmotors",6625,-6301,0,30,148},
+		{"exp_man_taung_warrior_bunker",-6354,288,0,30,149},
+		{"exp_man_cave_of_darth_caedus",7374,256,0,30,150},
+		{"exp_man_peace_park",6148,-6111,0,30,151},
+		{"exp_man_vizsla_hideout",441,7489,0,30,152},
+		{"exp_man_shadow_collective_hideout",-6998,3118,0,30,153},
+		{"exp_man_bralor_clan_headquarters",-6655,5567,0,30,154},
+		{"exp_man_mandalore_imperial_garrison",6498,-4721,0,30,155},
+	},
+
+		navAreas = {
+			},
+
+		planetObjects = {
+		}
+	}
+
+hoth = {
+	 weatherEnabled = 1,
+	 gcwEnabled = 1,
+outpostRegionNames = { },
+	planetTravelPoints = {
+		{name = "Scavenger Outpost", x = 0, z = 0, y = -2000, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+	},
+	badgeAreas = {
+		{"exp_hot_echo_base",-5100,5100,0,30,170},
+		{"exp_hot_wampa_cave",-351,2428,0,30,171},
+		},
+	navAreas = {
+		},
+	planetObjects = {
+	}
+}
+
+kaas = {
+  weatherEnabled = 1,
+  gcwEnabled = 1,
+
+	outpostRegionNames = { },
+
+  planetTravelPoints = {
+    {name = "a Prophet Trooper Garrison", x = -5163, z = 80, y = -2238, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+    {name = "a Smuggler Outpost", x = 2946, z = 121, y = 3886, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+    },
+
+		badgeAreas = {
+		{"exp_kaa_city_ruins",-6172,2690,0,30,172},
+		{"exp_kaa_separatist_facility",825,-1230,0,30,173},
+		{"exp_kaa_vitiate_tomb",6017,-1142,0,30,174},
+		{"exp_kaa_imperial_garrison",-5163,-2238,0,30,175},
+		},
+
+		navAreas = {
+			},
+
+		planetObjects = {
+		}
+	}
