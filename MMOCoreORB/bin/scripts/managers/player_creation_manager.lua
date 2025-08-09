@@ -16,7 +16,7 @@ professions = {
 	"outdoors_scout",
 	"science_medic",
 	"social_entertainer",
-	"jedi_padawan"
+	"returns_jedi"
 }
 
 marksmanPistol = "object/weapon/ranged/pistol/pistol_cdef.iff"
@@ -41,7 +41,7 @@ chemicalTool = "object/tangible/survey_tool/survey_tool_liquid.iff"
 
 slitherhorn = "object/tangible/instrument/slitherhorn.iff"
 
-Speeder_Bike = "object/tangible/deed/vehicle_deed/speederbike_deed.iff"
+Swoop_Bike = "object/tangible/deed/vehicle_deed/speederbike_swoop_deed.iff"
 
 robe = "object/tangible/wearables/robe/robe_jedi_padawan.iff"
 
@@ -55,10 +55,10 @@ professionSpecificItems = {
 	combat_brawler = { brawlerOneHander, brawlerTwoHander, brawlerPolearm },
 	combat_marksman = { marksmanPistol, marksmanCarbine, marksmanRifle },
 	crafting_artisan = { genericTool, mineralTool, chemicalTool },
-	jedi_padawan = { robe, jediTool, jediCrystal, genericTool, mineralTool, chemicalTool, gasTool },
+	returns_jedi = { robe, jediTool, jediCrystal, genericTool, mineralTool, chemicalTool, gasTool },
 	outdoors_scout = { genericTool },
 	science_medic = { foodTool },
 	social_entertainer = { slitherhorn }
 }
 
-commonStartingItems = { Speeder_Bike }
+commonStartingItems = { Swoop_Bike }
