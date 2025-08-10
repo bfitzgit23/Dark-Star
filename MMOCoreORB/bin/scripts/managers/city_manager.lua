@@ -126,7 +126,7 @@ CitiesAllowed = {
 --]]
 CityTaxes = {
 	{--Income Tax
-		min = 0, max = 2000,
+		min = 0, max = 0,
 		menuText = "@city/city:income_tax",
 		inputTitle = "@city/city:set_tax_t_income",
 		inputText = "@city/city:set_tax_d_income",
@@ -136,7 +136,7 @@ CityTaxes = {
 		emailBody = "@city/city:tax_income_body"
 	},
 	{--Property Tax
-		min = 0, max = 50,
+		min = 0, max = 0,
 		menuText = "@city/city:property_tax_prompt",
 		inputTitle = "@city/city:set_tax_t_property",
 		inputText = "@city/city:set_tax_d_property",
@@ -146,7 +146,7 @@ CityTaxes = {
 		emailBody = "@city/city:tax_property_body"
 	},
 	{--Sales Tax
-		min = 0, max = 20,
+		min = 0, max = 0,
 		menuText = "@city/city:sales_tax",
 		inputTitle = "@city/city:set_tax_t_sales",
 		inputText = "@city/city:set_tax_d_sales",
@@ -156,7 +156,7 @@ CityTaxes = {
 		emailBody = "@city/city:tax_sales_body"
 	},
 	{--Travel Tax
-		min = 0, max = 500,
+		min = 0, max = 0,
 		menuText = "@city/city:travel_tax",
 		inputTitle = "@city/city:set_tax_t_travel",
 		inputText = "@city/city:set_tax_d_travel",
@@ -166,7 +166,7 @@ CityTaxes = {
 		emailBody = "@city/city:tax_travel_body"
 	},
 	{--Garage Tax
-		min = 0, max = 30,
+		min = 0, max = 0,
 		menuText = "@city/city:garage_tax",
 		inputTitle = "Adjust Garage Service Fee", -- missing from stf
 		inputText = "@city/city:set_tax_d_garage",
@@ -186,7 +186,7 @@ CityTaxes = {
 CitySpecializations = {
 	{--Sample Rich
 		name = "@city/city:city_spec_sample_rich",
-		cost = 1000,
+		cost = 0,
 		skillMods = {
 			{"private_spec_samplesize", 20},
 			{"private_spec_samplerate", 10},
@@ -200,7 +200,7 @@ CitySpecializations = {
 	},
 	{--Manufacturing Center
 		name = "@city/city:city_spec_industry",
-		cost = 1000,
+		cost = 0,
 		skillMods = {
 			{"private_spec_samplesize", 20},
 			{"private_spec_samplerate", 10},
@@ -214,7 +214,7 @@ CitySpecializations = {
 	},
 	{--Medical Center
 		name = "@city/city:city_spec_doctor",
-		cost = 1000,
+		cost = 0,
 		skillMods = {
 			{"private_spec_samplesize", 20},
 			{"private_spec_samplerate", 10},
@@ -228,7 +228,7 @@ CitySpecializations = {
 	},
 	{--Clone Lab
 		name = "@city/city:city_spec_cloning",
-		cost = 1000,
+		cost = 0,
 		skillMods = {
 			{"private_spec_samplesize", 20},
 			{"private_spec_samplerate", 10},
@@ -256,7 +256,7 @@ CitySpecializations = {
 	},
 	{--Improved Job Market
 		name = "@city/city:city_spec_missions",
-		cost = 1000,
+		cost = 0,
 		skillMods = {
 			{"private_spec_samplesize", 20},
 			{"private_spec_samplerate", 10},
@@ -270,7 +270,7 @@ CitySpecializations = {
 	},
 	{--Entertainment District
 		name = "@city/city:city_spec_entertainer",
-		cost = 1000,
+		cost = 0,
 		skillMods = {
 			{"private_spec_samplesize", 20},
 			{"private_spec_samplerate", 10},
@@ -284,7 +284,7 @@ CitySpecializations = {
 	},
 	{--Stronghold
 		name = "@city/city:city_spec_stronghold",
-		cost = 1000,
+		cost = 0,
 		skillMods = {
 			{"private_spec_samplesize", 20},
 			{"private_spec_samplerate", 10},
