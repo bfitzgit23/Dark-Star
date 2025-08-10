@@ -55,13 +55,13 @@ CitySpecializationCooldown = 604800000
 TreasuryWithdrawalCooldown = 86400000
 
 --The number of city update cycles that must pass before mayoral voting process is complete.
-CityVotingCycles = 3
+CityVotingCycles = 1
 
 --The number of city update cyles after which to lock the mayoral voting race registration.
-CityVotingCyclesUntilLocked = 2
+CityVotingCyclesUntilLocked = 1
 
 --The amount of time in minutes before the city performs an update.
-CityUpdateInterval = 60
+CityUpdateInterval = 10080
 
 --The amount of time in minutes a new city has to gain enough citizens to remain a city.
 NewCityGracePeriod = 1440
@@ -81,8 +81,8 @@ RadiusPerRank = {150, 200, 300, 400, 450}
 
 -- Maximum for each rank.  ex. rank 1 = DecorationsPerRank * 1, rank 5 = DecorationsPerRank * 5
 DecorationsPerRank = 10
-TrainersPerRank = 5
-MissionTerminalsPerRank = 5
+TrainersPerRank = 7
+MissionTerminalsPerRank = 3
 
 -- Amount to discount city maintenance  float.  1 = 100%, .75 =75%, .5=50% etc
 maintenanceDiscount = 1.0
@@ -234,11 +234,20 @@ CitySpecializations = {
 			{"private_spec_entertainer", 10}
 		}
 	},
-	{--Stronghold
-		name = "@city/city:city_spec_stronghold",
+	{--Manufacturing Center
+		name = "@city/city:city_spec_master_manufacturing",
 		cost = 150000,
 		skillMods = {
-			{"private_defense", 90}
+			{"private_spec_assembly", 10},
+			{"private_spec_experimentation", 15}
+		}
+	},
+	{--Scientific Society
+		name = "@city/city:city_spec_master_healing",
+		cost = 150000,
+		skillMods = {
+			{"private_spec_entertainer", 10},
+			{"private_medical_rating", 10}
 		}
 	},
 }
