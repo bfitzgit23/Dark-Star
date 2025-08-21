@@ -105,7 +105,11 @@ Core3 = {
 	"talus",
 	"tatooine",
 	"tutorial",
-	"yavin4"
+	"yavin4",
+	"mandalore",
+	"kass",
+	"hoth",
+	"kashyyyk",
 	-------- TEST ZONES -------
 	--"09",
 	--"10",
@@ -149,6 +153,7 @@ Core3 = {
 	------TRE config------
 	TrePath = "/home/swgemu/workspace/tre",
 	TreFiles = {
+		"mandalore.tre",
 		"skills_01.tre",
 		"default_patch.tre",
 		"patch_sku1_14_00.tre",
