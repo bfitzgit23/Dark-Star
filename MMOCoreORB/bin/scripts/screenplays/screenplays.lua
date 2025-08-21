@@ -754,3 +754,8 @@ includeFile("tasks/naboo/mission_terminal_spawner.lua")
 --Custom content
 includeFile("custom/bastilla.lua")
 
+
+-- Kashyyyk Screenplays
+includeFile("kashyyyk/serverobjects.lua")
+includeFile("screenplays/kashyyyk/_kashyyyk_loader.lua")
+includeFile("screenplays/kashyyyk/kashyyyk_basic_spawns.lua")
