@@ -151,7 +151,7 @@ Core3 = {
 	},
 
 	------TRE config------
-	TrePath = "/home/swgemu/workspace/tre",
+	TrePath = "/home/swgadmin/tre",
 	TreFiles = {
 		"mandalore.tre",
 		"skills_01.tre",
