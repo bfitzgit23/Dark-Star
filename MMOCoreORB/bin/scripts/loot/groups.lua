@@ -730,4 +730,4 @@ includeFile("groups/wearables/wearables_scarce.lua")
 includeFile("groups/wearables/wearables_uncommon.lua")
 
 -- Kashyyyk Loot Groups
-includeFile("kashyyyk/serverobjects.lua")
+includeFile("groups/kashyyyk/serverobjects.lua")
