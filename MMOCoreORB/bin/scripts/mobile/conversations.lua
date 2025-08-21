@@ -339,3 +339,14 @@ includeFile("conversations/tasks/dark_star_vendor_conv.lua")
 
 --Custom Content
 includeFile("conversations/custom/bastilla_conv.lua")
+
+-- Kashyyyk Conversations (optional)
+includeFile("kashyyyk/kk_guide_conv.lua")
+includeFile("kashyyyk/kk_guide_conv_handler.lua")
+includeFile("kashyyyk/kk_theme_start_conv.lua")
+includeFile("kashyyyk/kk_theme_start_conv_handler.lua")
+includeFile("kashyyyk/kk_theme_warden_conv.lua")
+includeFile("kashyyyk/kk_theme_warden_conv_handler.lua")
+includeFile("kashyyyk/kk_theme_chief_conv.lua")
+includeFile("kashyyyk/kk_theme_chief_conv_handler.lua")
+  
