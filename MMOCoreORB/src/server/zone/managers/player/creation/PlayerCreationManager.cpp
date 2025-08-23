@@ -435,14 +435,9 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
                         saber->destroyObjectFromDatabase(true);
                     }
                     break;
-                }
-            }
-        }
-    }
-}
-// === End Jedi-start patch ===
-	
-	if (ghost != nullptr) {
+ } } } } // === End Jedi-start patch ===
+
+if (ghost != nullptr) {
 		//Set skillpoints before adding any skills.
 		ghost->setSkillPoints(skillPoints);
 		ghost->setStarterProfession(profession);
