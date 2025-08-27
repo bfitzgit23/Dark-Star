@@ -3,11 +3,11 @@ local ObjectManager = require("managers.object.object_manager")
 
 jediManagerName = "HologrindJediManager"
 
-NUMBEROFPROFESSIONSTOMASTER = 2
-MAXIMUMNUMBEROFPROFESSIONSTOSHOWWITHHOLOCRON = 2
+NUMBEROFPROFESSIONSTOMASTER = 3
+MAXIMUMNUMBEROFPROFESSIONSTOSHOWWITHHOLOCRON = 1
 
 USEDHOLOCRON = "used_holocron"
-HOLOCRONCOOLDOWNTIME = 60 * 60 * 1000 -- 1 hour
+HOLOCRONCOOLDOWNTIME = 28800 * 60 * 1000 -- 8 hours
 
 HologrindJediManager = JediManager:new {
 	screenplayName = jediManagerName,
